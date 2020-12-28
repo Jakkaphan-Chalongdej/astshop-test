@@ -1,10 +1,10 @@
 import {  Row, Col, Card } from "react-bootstrap";
-
+import '../Footer.css'
 function Footer() {
   return (
     <div>
-      <Card.Footer style={{ marginTop: "200px" }}>
-        <Row className="footers">
+      <Card.Footer className="footer-contaner" style={{ marginTop: "200px" }}>
+        <Row className="footers ">
           <Col>
             <div className="center">
               <img src="/logo-AST.png" alt="logo-navbaer" />
@@ -45,7 +45,7 @@ function Footer() {
               <br /> <br />
             </p>
           </Col>
-          <Col style={{ marginLeft: "50px" }}>
+          <Col >
             <h3>สอบถามข้อมูลเกี่ยวกับ </h3>
             <br />
             <p>
