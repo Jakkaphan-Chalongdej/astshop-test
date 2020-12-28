@@ -161,11 +161,11 @@
 }
 
 .shop-btn-primary{
-    color: #F17E0A;
+    color: #3bb1ff;
     font-size: 13px;
     background-color: transparent;
     font-weight: 600;
-    border-color: #F17E0A;
+    border-color: #3bb1ff;
     border-radius: 10px;
 }
 
@@ -177,7 +177,7 @@
 .shop-btn-primary:active:focus,
 .shop-btn-primary.active {
     color: #ffffff;
-    background-color: #F17E0A;
+    background-color: #3bb1ff;
 }
 
 /*cart and checkout buttons*/

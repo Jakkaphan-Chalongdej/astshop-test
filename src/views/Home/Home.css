@@ -87,7 +87,8 @@
 }
 
 .form-control {
-  border-radius: 0rem;
+  border-radius: 1rem;
+  
 }
 
 /* banner section */
@@ -217,7 +218,7 @@
 }
 
 .deals-image {
-  max-height: 400px;
+  max-height: 450px;
   align-self: center;
   justify-self: center;
 }
@@ -229,7 +230,7 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  background: radial-gradient(#21d3ff,#ffffff) ;
+  /* background: radial-gradient(#21d3ff,#ffffff) ; */
  
 }
 
@@ -247,6 +248,12 @@
 }
 
 @media (max-width: 576px) {
+  .form-control {
+    border-radius: 1rem;
+    margin-left: -50px;
+    position: relative;
+    width: 60px !important;
+  }
   /* deals section */
   .deals-image {
     height: 150px;
@@ -270,6 +277,7 @@
 }
 
 @media (max-width: 768px) and (min-width: 567px) {
+  
   /* sellout section */
   .sellout-section {
     grid-template-columns: 1fr;

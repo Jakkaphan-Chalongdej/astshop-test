@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Deal = () => {
   const deal = {
-    image: "/images//DS-2CD1123GOE-I.jpg",
+    image: "../../../../pexels-jimmy-chan-3159622.jpg",
     title: "กล้องวงจรปิด Hikvision",
     text:
       "",
@@ -16,6 +16,7 @@ const Deal = () => {
           className="deals-image"
           src={deal.image}
           alt="#"
+          
         />
         <div className="deals-text">
           <div className="heading-block">

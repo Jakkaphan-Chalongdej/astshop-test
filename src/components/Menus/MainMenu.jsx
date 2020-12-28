@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const MainMenu = (props) => {
   return (
     <nav
-      className="navbar navbar-expand-md navbar-light bg-light"
+      className="navbar navbar-expand-md navbar-light bg-light fixed-top"
       style={{ boxShadow: "0 2px 2px -2px gray" }}
     >
       <div className="container">
