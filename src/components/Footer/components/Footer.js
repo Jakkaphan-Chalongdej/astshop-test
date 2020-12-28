@@ -6,7 +6,7 @@ function Footer() {
       <Card.Footer className="footer-contaner" style={{ marginTop: "200px" }}>
         <Row className="footers ">
           <Col>
-            <div className="center">
+            <div >
               <img src="/logo-AST.png" alt="logo-navbaer" />
             </div>
           </Col>
