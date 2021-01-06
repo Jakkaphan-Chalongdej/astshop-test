@@ -30,31 +30,15 @@ const appReducer = (state = initialState, action) => {
 
       let quantityToAdd = parseInt(toAddProduct.quantity);
       if (filteredCartItems.length) {
-        if (toAddProduct.size) {
-          let prodIndex = cart.findIndex(
-            (product) =>
-              product.id === toAddProduct.id &&
-              product.size === toAddProduct.size
-          );
-          if (prodIndex > -1) {
-            let itemToModify = newCart[prodIndex];
-            newCart[prodIndex] = {
-              ...itemToModify,
-              quantity: parseInt(itemToModify.quantity) + quantityToAdd,
-            };
-          } else {
-            newCart = cart.concat(toAddProduct);
-          }
-        } else {
-          let prodIndex = cart.findIndex(
-            (product) => product.id === toAddProduct.id
-          );
-          let itemToModify = newCart[prodIndex];
-          newCart[prodIndex] = {
-            ...itemToModify,
-            quantity: parseInt(itemToModify.quantity) + quantityToAdd,
-          };
-        }
+        let prodIndex = cart.findIndex(
+          (product) => product.id === toAddProduct.id
+        );
+        let itemToModify = newCart[prodIndex];
+        newCart[prodIndex] = {
+          ...itemToModify,
+          quantity: parseInt(itemToModify.quantity) + quantityToAdd,
+        };
+
         newCartTotal = state.cartTotal + quantityToAdd;
       } else {
         newCart = cart.concat(toAddProduct);
@@ -73,21 +57,7 @@ const appReducer = (state = initialState, action) => {
       let toRemoveProduct = action.productDetails;
       let removeIndex = null;
       let cartToRemove = [...state.cart];
-
-      if (toRemoveProduct.size) {
-        removeIndex = cartToRemove.findIndex(
-          (product) =>
-            product.id === toRemoveProduct.id &&
-            product.size === toRemoveProduct.size
-        );
-      } else {
-        removeIndex = cartToRemove.findIndex(
-          (product) => product.id === toRemoveProduct.id
-        );
-      }
-
       cartToRemove.splice(removeIndex, 1);
-
       return {
         ...state,
         cart: cartToRemove,

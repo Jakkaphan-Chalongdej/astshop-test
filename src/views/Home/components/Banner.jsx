@@ -10,12 +10,12 @@ const Banner = () => {
     link: "/all",
   };
   return (
-    <div className="container main-banner-container my-4">
+    <div className="container main-banner-container my-4 ">
       <div className="main-banner-content">
         <div className="main-banner-text">
           <h4 className="display-4 main-banner-title">{banner.title}</h4>
-          <p className="lead">{banner.text}</p>
-          <p>
+          <p className="font-p ">{banner.text}</p>
+          <p style={{marginTop:"60px"}}>
             <NavLink className="btn btn-primary btn-lg btn-shop" to={banner.link} exact>
              <span>Shop Now</span> 
             </NavLink>

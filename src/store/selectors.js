@@ -9,8 +9,8 @@ export const getProductsByFilter = (store, visibilityFilter, count = null) => {
   const filterPrices = getProductPriceFilter(store);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.CAMERA:
-    case VISIBILITY_FILTERS.WOMEN:
-    case VISIBILITY_FILTERS.KIDS:
+    // case VISIBILITY_FILTERS.WOMEN:
+    // case VISIBILITY_FILTERS.KIDS:
       return allProducts.filter(
         (product) =>
           product.category === visibilityFilter &&

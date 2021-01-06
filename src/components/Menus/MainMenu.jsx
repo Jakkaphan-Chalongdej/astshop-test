@@ -10,7 +10,7 @@ const MainMenu = (props) => {
       className="navbar navbar-expand-md navbar-light bg-light fixed-top"
       style={{ boxShadow: "0 2px 2px -2px gray" }}
     >
-      <div className="container">
+      <div className="container " style={{width:"1400px"}} >
         <span className="navbar-brand">
           <NavLink to={"/"} exact>
             <picture>

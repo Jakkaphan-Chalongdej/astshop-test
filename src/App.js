@@ -5,7 +5,6 @@ import { closeMaxProductModal, toogleSideBar } from "./store/actions";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import "./App.css";
-import ScrollToTop from "./Layouts/ScrollToTop";
 
 class App extends Component {
   render() {
@@ -20,28 +19,27 @@ class App extends Component {
           toggleSideBar={this.props.toggleSideBarProp}
         >
           <Switch>
-            <Route path={"/"} exact component={Maincontainers.HomePage}>
-              <ScrollToTop />
-            </Route>
-            <Route path={"/all"} exact component={Maincontainers.AllPage}>
-              <ScrollToTop />
-            </Route>
+            <Route path={"/"} exact component={Maincontainers.HomePage}></Route>
+            <Route
+              path={"/all"}
+              exact
+              component={Maincontainers.AllPage}
+            ></Route>
             <Route
               path={"/category/:category"}
               exact
               component={Maincontainers.ProductCategoriesPage}
-            >
-              <ScrollToTop />
-            </Route>
-            <Route path={"/sale"} component={Maincontainers.SalesPage}>
-              <ScrollToTop />
-            </Route>
-            <Route path={"/cart"} component={Maincontainers.CartPage}>
-              <ScrollToTop />
-            </Route>
-            <Route path={"/checkout"} component={Maincontainers.CheckoutPage}>
-              <ScrollToTop />
-            </Route>
+            ></Route>
+            <Route path={"/sale"} component={Maincontainers.SalesPage}></Route>
+            <Route
+              path={"/contact"}
+              component={Maincontainers.ContactPage}
+            ></Route>
+            <Route path={"/cart"} component={Maincontainers.CartPage}></Route>
+            <Route
+              path={"/checkout"}
+              component={Maincontainers.CheckoutPage}
+            ></Route>
             <Route
               path={"/product/:productSlug"}
               render={(props) => (
@@ -50,9 +48,7 @@ class App extends Component {
                   {...props}
                 />
               )}
-            >
-              <ScrollToTop />
-            </Route>
+            ></Route>
             {/*always redirect to index*/}
             <Redirect to={"/"} />
           </Switch>

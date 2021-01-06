@@ -1,15 +1,8 @@
 const env = {
-  database: 'site-next-js',
-  username: 'root',
-  password: '12345678',
-  host: 'localhost',
-  dialect: 'mysql',
-  pool: {
-	  max: 5,
-	  min: 0,
-	  acquire: 30000,
-	  idle: 10000
-  }
+  database: "AST_Shop",
+  user: "root",
+  password: "12345678",
+  host: "localhost",
 };
 
 module.exports = env;

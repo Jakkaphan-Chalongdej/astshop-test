@@ -3,10 +3,10 @@
 
 .card {
   background-color: #fff;
-  padding: 10px;
+  padding: 30px;
   text-align: left;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  border: 2px solid #eaeaea;
   border-radius: 10px; 
   position: relative;
   margin: 0px 10px;
@@ -18,10 +18,18 @@
   max-width: 230px;
   width: auto;
   height: 200px;
+  margin-left: 40px;
 }
 
 .card-img-top {
   border-radius: 0;
+}
+.contact-list{
+  margin-top: "200px";
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shadow {
@@ -50,6 +58,31 @@
 .btn-primary:active:focus {
   background-color: #ffffff !important;
   border-color: #f17e0a !important;
+  color: #070707 !important;
+}
+.btn-primary2,
+.btn-primary2:disabled {
+  margin-top: 20px;
+  background-color: #60b0f100;
+  border-color: #60b0f100;
+ 
+  margin-bottom: 20px;
+  color: #6e6e6e;
+  border-radius: 10px;
+}
+
+.btn-primary2:disabled {
+  cursor: not-allowed;
+}
+
+.btn-primary2:focus,
+.btn-primary2.focus,
+.btn-primary2:hover,
+.btn-primary2:active,
+.btn-primary2.active,
+.btn-primary2:active:focus {
+  background-color: #ffffff00 !important;
+  border-color: #f17d0a00 !important;
   color: #070707 !important;
 }
 
@@ -97,8 +130,13 @@
   max-height: 500px;
 }
 
+.font-p {
+  font-size: 1.7rem;
+  font-weight: 200;
+}
+
 .main-banner-content {
-  padding: 2rem;
+  padding: 6rem;
   background: #ffffff;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -148,7 +186,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background-color: #ffffff;
-  padding: 20px;
+  padding: 30px;
 }
 
 .item-content {
@@ -219,6 +257,7 @@
 
 .deals-image {
   max-height: 450px;
+  margin-left: -100px;
   align-self: center;
   justify-self: center;
 }
@@ -369,6 +408,7 @@
   /* item banners section*/
   .banner-image {
     height: 150px;
+ 
   }
 
   .item-banner-title {
@@ -392,6 +432,7 @@
   /* item banners section*/
   .banner-image {
     height: 250px;
+    
   }
 
   /* products section */

@@ -74,8 +74,10 @@ input.success {
 /* ------------- shop menu --------------*/
 
 .navbar {
-  padding: 0.8rem 1rem;
+  padding: 0.1rem 0.1rem !important;
+  
 }
+
 
 .navbar-brand > a {
   color: #e40046;
@@ -285,8 +287,8 @@ input.success {
   height: auto;
   transition: all 0.3s;
   position: absolute;
-  top: 0;
-  right: 0;
+  /* top: 0;
+  right: 0; */
 }
 
 .side-menu-wrapper.show {
