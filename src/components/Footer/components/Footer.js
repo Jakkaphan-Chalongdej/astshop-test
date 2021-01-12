@@ -3,7 +3,8 @@ import '../Footer.css'
 function Footer() {
   return (
     <div>
-      <Card.Footer className="footer-contaner" style={{ marginTop: "200px" }}>
+     
+      <Card.Footer className="footer-contaner " >
         <Row className="footers ">
           <Col>
             <div >
@@ -71,6 +72,7 @@ function Footer() {
           </Col>
         </Row>
       </Card.Footer>
+     
     </div>
   );
 }

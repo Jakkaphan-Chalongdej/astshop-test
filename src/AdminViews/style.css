@@ -1,0 +1,21 @@
+.flex-topbar {
+    position: relative;
+    top: 0;
+  
+    
+}
+
+.link-style {
+    color: aliceblue !important;
+    
+}
+.link-style a{
+    color: rgb(0, 0, 0) !important;
+    
+}
+.link-style:hover {
+    text-decoration: none !important;
+}
+.link-style:hover a{
+    text-decoration: none !important;
+}

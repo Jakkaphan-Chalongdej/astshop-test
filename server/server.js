@@ -3,16 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const server = express();
-const PORT = process.env.PORT || 3002;
-const mysql = require("mysql");
-const dbcon = mysql.createConnection(require("../src/config/db.config"));
-dbcon.connect(function(err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-  console.log('Connected to the MySQL server.');
+const PORT = process.env.PORT || 3003;
+const db = require("../src/model");
+
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and Resync with { force: true }");
+  console.log("Create MySQL.");
+  console.log("Connected to the MySQL server.");
 });
 
+//db.sequelize.sync(console.log("Connected to the MySQL server."));
 var corsOptions = {
   origin: ` http://localhost:${PORT}`,
   optionsSuccessStatus: 200,
@@ -24,16 +24,11 @@ server.use(express.static(path.resolve(__dirname, "..", "build")));
 server.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 });
-server.get("/user", function (req, res) { 
-  dbcon.query("SELECT * FROM user", function (error, results, fields) {
-    if (error) throw error;
-    res.send(results);
-  });
-  dbcon.end();
-});
-// require("../src/route/book.route")(server);
 
-server.listen(PORT, () => {
+require("../src/route/product_route")(server);
+require("../src/route/productStatus.route")(server);
+server.listen(PORT, (err) => {
+  if (err) throw err;
   console.log(`Server is running on port ${PORT}.`);
   console.log("-----------------------------------------");
   console.log(`PLEASE VISIT >> http://localhost:${PORT}. <<`);

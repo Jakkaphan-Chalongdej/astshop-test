@@ -5,13 +5,12 @@ export default function Contact() {
   return (
     <>
       <div className="contact-list">
-        <h1>Contact</h1>
+        {/* <h1>Contact</h1> */}
         <br />
         <br />
-        
         <Row>
           <Col>
-            <div className="center" style={{ marginTop: "200px" }}>
+            <div className="center" style={{ marginTop: "100px" }}>
               <img src="/logo-AST.png" alt="logo-navbaer" />
             </div>
           </Col>
@@ -47,8 +46,9 @@ export default function Contact() {
               <br />
               Email : ast.allsolutionstech@gmail.com
               <br /> <br />
-            </p>
-          </Col>
+            </p >
+            <div style={{marginBottom:'100px'}}></div>
+          </Col >
         </Row>
       </div>
     </>

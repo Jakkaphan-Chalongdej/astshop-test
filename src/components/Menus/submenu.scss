@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+body {
+  background: #f1f1f1;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+.submenu {
+  border: 1px solid #ccc;
+}
+
+.menu li {
+  padding: 10px;
+}
+
+.menu-icon {
+  color: white;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/* Flexbox rules */
+
+.navbar {
+  overflow: visible !important;
+}
+
+.menu {
+  /* color: #555; */
+  display: flex;
+  /* align-items: center;
+    text-align: center;
+    width: 100vh;
+    margin: 10px 5vw;
+    height: 60px; */
+  position: relative;
+}
+
+.menu-item {
+  flex: 1;
+}
+
+.menu-item > a {
+  color: #555;
+  line-height: 40px;
+}
+
+.submenu {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-item {
+  padding: 15px;
+  background-color: #ffffff;
+}
+
+.submenu-top {
+  display: flex;
+  padding: 0 50px;
+  justify-content: space-around;
+}
+
+/* Submenu general styling */
+
+.submenu-top li {
+  padding-left: 0;
+}
+
+.submenu a {
+  color: #111;
+}
+
+.submenu-top-item {
+  max-width: 33.333%;
+}
+
+.submenu .submenu-title {
+  font-weight: bold;
+  margin-left: 20px !important;
+  color: #007bff;
+}
+
+.submenu .submenu-title:hover {
+  text-decoration: none;
+}
+
+.submenu-list,
+.submenu-bottom {
+  margin-top: 10px;
+}
+
+/* Submenu: Thumbnail list */
+
+.thumb-list .submenu-list > li {
+  display: flex;
+  align-items: center;
+}
+
+/* Submenu: Description list */
+
+.desc-list .submenu-list > li {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-desc {
+  margin-top: 10px;
+  color: #555;
+}
+
+.background {
+  height: 100vh;
+  background-color: rgba(192, 192, 192, 0.692);
+
+  filter: blur(5px);
+  -webkit-filter: blur(2px);
+}
+.background p {
+  color: rgba(192, 192, 192, 0.692);
+}
+
+/* Hover rule */
+
+.submenu {
+  display: none;
+}
+
+.menu-item:hover .submenu {
+  display: flex;
+  color: #f17e0a !important;
+}
+
+/* .menu-item:hover .submenu:active  {
+    display: none !important;
+} */
+
+.menu-item:hover > a {
+  text-decoration: none;
+}
+
+.link-styles:hover {
+  color: #f17e0a;
+  text-decoration: none !important;
+}
+
+

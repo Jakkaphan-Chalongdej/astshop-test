@@ -16,7 +16,7 @@ class ProductDetails extends Component {
   state = {
     productDetails: {
       id: null,
-     
+
       quantity: 1,
     },
   };
@@ -49,8 +49,8 @@ class ProductDetails extends Component {
       !prodDetails.quantity ||
       prodDetails.quantity < 1 ||
       prodDetails.quantity > this.product.quantity;
-    
-    return generalValidations 
+
+    return generalValidations;
   }
 
   handleAdditionSubtraction(action) {
@@ -89,7 +89,6 @@ class ProductDetails extends Component {
   handleAddToCart = () => {
     this.props.addProductToCartProp(this.state.productDetails);
   };
-
   render() {
     return (
       <React.Fragment>
@@ -129,7 +128,7 @@ class ProductDetails extends Component {
                       classStyleName={"product-wishlist"}
                     />
                   </div>
-                  
+
                   <div>
                     <span>
                       <Ratings
@@ -171,8 +170,13 @@ class ProductDetails extends Component {
                   <div className="product-features-container">
                     <div className="product-features">
                       <p className="product-features-title text-muted">
-                        Features:
-                      </p>                   
+                        Stock:
+                      </p>
+                      <div className="product-quantity">
+                        <span className="product-quantity">
+                          {this.product.quantity}
+                        </span>
+                      </div>
                     </div>
                     {this.product.quantity ? (
                       <div className="product-features">

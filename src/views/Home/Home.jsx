@@ -23,6 +23,7 @@ class Home extends Component {
       <Loader />
     ) : (
       <React.Fragment>
+    
         <Banner />
         {/* <SelloutCards /> */}
           

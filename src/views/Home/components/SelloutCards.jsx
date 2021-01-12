@@ -3,23 +3,18 @@ import React from "react";
 const SelloutCards = () => {
   let cardsData = [
     {
-      image: "/images/5ad808b05c486.jpg",
-      title: "เครื่องสแกนนิ้วมือ",
+      image: "../../../../best-price-lettering-paint-blots_1262-7448.jpg",
+      title: "Best Prices",
       description:
         "",
     },
     {
-      image: "/images/camera.jpg",
-      title: "กล้องวงจรปิด AVTECH",
+      image: "../../../../delivery-staff-ride-motorcycles-shopping-concept_1150-34879.jpg",
+      title: "Fast delivery",
       description:
         "",
     },
-    {
-      image: "/images//DS-2CD1123GOE-I.jpg",
-      title: "กล้องวงจรปิด Hikvision",
-      description:
-        "",
-    },
+   
   ];
 
   function generateSelloutCards() {

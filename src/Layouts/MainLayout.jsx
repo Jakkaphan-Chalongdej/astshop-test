@@ -40,9 +40,10 @@ const MainLayout = (props) => {
                 </Modal>
               ) : null}
             </main>
-            <footer>
+            {/* <footer>
               <Footer />
-            </footer>
+            </footer> */}
+             <Footer />
           </ContentWrapper>
         </div>
       </MainWrapper>

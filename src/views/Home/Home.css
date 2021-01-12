@@ -169,7 +169,10 @@
 }
 
 .sellout-icon {
-  height: 60px;
+  max-width: 300px !important;
+  width: auto !important;
+  max-height: 300px !important;
+  height: 300px !important;
 }
 .sellout-title {
   font-weight: bold;

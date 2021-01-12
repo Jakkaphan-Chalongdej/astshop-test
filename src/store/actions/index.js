@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from './axios';
+// import axios from './axios';
 
 export const setProductPriceFilter = (price) => {
   return { type: actionTypes.SET_PRODUCT_PRICE_FILTER, price: price };
