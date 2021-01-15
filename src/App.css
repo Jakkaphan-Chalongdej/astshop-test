@@ -74,10 +74,15 @@ input.success {
 /* ------------- shop menu --------------*/
 
 .navbar {
+  
   padding: 0.1rem 0.1rem !important;
   
 }
-
+ 
+.navbar-color{
+  align-items: center ;
+  background-color: #e2e2e2 !important;
+}
 
 .navbar-brand > a {
   color: #e40046;
@@ -132,6 +137,7 @@ input.success {
 /* ------------- shop left column --------------*/
 .shop-left-column {
   background: #fff;
+  border-radius: 10px;
   box-shadow: 2px 2px 2px -2px gray;
 }
 
@@ -473,7 +479,13 @@ input[type="radio"] {
     margin-bottom: 0.5rem;
   }
 }
-
+.colsubmu{
+  position:static !important;
+  height: 50px;
+}
+.row{
+  padding: 5px -4px 5px;
+}
 @media (max-width: 991.98px) {
   .shop-cart-name {
     font-size: 0.9rem;

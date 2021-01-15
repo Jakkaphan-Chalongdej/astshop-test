@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
+    marginTop: "-40px",
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    padding: "0.6rem 0.1rem",
+    padding: "2.1rem 1rem",
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: "relative",
-    // marginTop: "-20px",
+   
     padding: "1rem 0.2rem",
     // whiteSpace: "nowrap",
     height: "100vh",
@@ -112,7 +113,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar className={classes.appBar}>
+      <AppBar className={classes.appBar} >
         <Toolbar className={classes.toolbar}>
           {/* <IconButton
             edge="start"
@@ -128,7 +129,7 @@ export default function Dashboard() {
           </IconButton> */}
           <Typography
             component="h1"
-            variant="h6"
+            variant="h5"
             color="inherit"
             noWrap
             className={classes.title}

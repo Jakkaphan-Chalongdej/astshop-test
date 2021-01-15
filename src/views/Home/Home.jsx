@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import SelloutCards from "./components/SelloutCards";
+import SelloutCards from "./components/SelloutCards";
 import ItemBanners from "./components/ItemBanners";
 import Deal from "./components/Deal";
 import Banner from "./components/Banner";
@@ -25,7 +25,7 @@ class Home extends Component {
       <React.Fragment>
     
         <Banner />
-        {/* <SelloutCards /> */}
+        <SelloutCards />
           
         <ItemBanners />
         <Deal />

@@ -29,7 +29,7 @@ const MainLayout = (props) => {
                 toggleSideBar={props.toggleSideBar}
               />
             </header>
-            <main style={{ marginTop: "100px" }}>
+            <main style={{ marginTop: "160px" }}>
               {props.children}
               {props.showModal ? (
                 <Modal

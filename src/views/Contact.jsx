@@ -10,14 +10,17 @@ export default function Contact() {
         <br />
         <Row>
           <Col>
-            <div className="center" style={{ marginTop: "100px" }}>
+            <div
+              className="center"
+              style={{ marginTop: "100px", marginLeft: "150px" }}
+            >
               <img src="/logo-AST.png" alt="logo-navbaer" />
             </div>
           </Col>
           <Col>
-            <p>
+            <p  style={{  marginLeft: "50px" ,fontSize:'18px' }}>
               <br />
-              <b>
+              <b style={{fontSize:'20px' }}>
                 สำนักงานใหญ่
                 <br />
                 <br />
@@ -30,7 +33,7 @@ export default function Contact() {
               <br />
               <br />
               <br />
-              <b>สำนักงานนครราชสีมา </b>
+              <b style={{fontSize:'20px' }}>สำนักงานนครราชสีมา </b>
               <br />
               <br />
               <br />
@@ -40,15 +43,15 @@ export default function Contact() {
               <br />
               NakhonRatchasima,Thailand 30000 <br />
               <br />
-              โทรศัพท์/แฟ็กซ์ 02-012-3795 / 065-969-3552 <br />
+              <b style={{fontSize:'18px' }}>โทรศัพท์/แฟ็กซ์</b> 02-012-3795 / 065-969-3552 <br />
               Tel./Fax. +662-012-3795 <br />
               Mobile : +665-969-3552
               <br />
               Email : ast.allsolutionstech@gmail.com
               <br /> <br />
-            </p >
-            <div style={{marginBottom:'100px'}}></div>
-          </Col >
+            </p>
+            <div style={{ marginBottom: "100px" }}></div>
+          </Col>
         </Row>
       </div>
     </>

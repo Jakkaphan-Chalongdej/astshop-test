@@ -41,12 +41,12 @@ export default function Adminview(props) {
     <div>
       <main className={classes.container}>
         <Row>
-          <div className="col-md-2 col-lg-2 shop-hide">
+          <div className="col-md-2 col-lg-2 shop-hide" >
             <Dashboard />
           </div>
           <div className={"col-md-10 col-lg-10"}>
             <div maxWidth="lg" className={classes.container}>
-              <div style={{ marginTop: "30px" }} className="row">
+              <div style={{ marginTop: "-10px" }} className="row">
                 {props.children}
               </div>
             </div>

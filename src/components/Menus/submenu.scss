@@ -72,7 +72,7 @@ img {
   width: 100%;
   height: 100vh;
   position: absolute;
-  top: 80px;
+  top: 102px;
   left: 0;
   text-align: left;
   display: flex;
@@ -86,7 +86,7 @@ img {
 
 .submenu-top {
   display: flex;
-  padding: 0 50px;
+  padding: 0 100px;
   justify-content: space-around;
 }
 
@@ -137,16 +137,13 @@ img {
   margin-top: 10px;
   color: #555;
 }
+// .backgroundsubmenu{
+//   display: none;
+// }
 
-.background {
+.backgroundsubmenu {
   height: 100vh;
-  background-color: rgba(192, 192, 192, 0.692);
-
-  filter: blur(5px);
-  -webkit-filter: blur(2px);
-}
-.background p {
-  color: rgba(192, 192, 192, 0.692);
+  background-color: rgba(171, 194, 207, 0.555);
 }
 
 /* Hover rule */
@@ -168,9 +165,11 @@ img {
   text-decoration: none;
 }
 
+.link-styles {
+  color: #555 !important;
+  margin-bottom: -10px;
+}
 .link-styles:hover {
-  color: #f17e0a;
+  color: #f17e0a !important;
   text-decoration: none !important;
 }
-
-

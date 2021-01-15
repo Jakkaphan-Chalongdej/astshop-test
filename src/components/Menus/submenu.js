@@ -1,7 +1,7 @@
 import React from "react";
 import "./submenu.scss";
 import { Link } from "react-router-dom";
-import {  Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 const menu1 = [
   { href: "/category/camera", name: "กล้องวงจรปิด" },
   { href: "/all", name: "  โดรนถ่ายภาพ (Drone)" },
@@ -145,9 +145,7 @@ export default function Submenu() {
               {/* End .submenu-top */}
             </li>
             {/* End .submenu-item*/}
-            <ul className="background">
-              <p>a</p>
-            </ul>
+            <ul className="backgroundsubmenu" />
           </ul>
         </li>
       </ul>

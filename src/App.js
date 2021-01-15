@@ -9,8 +9,8 @@ import AdminRoute from "./AdminViews/routers/admin.roter";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
 
-class App extends Component {
 
+class App extends Component {
   render() {
     return (
       <div className="App">
@@ -24,7 +24,6 @@ class App extends Component {
         >
           <ScrollToTop>
             <Switch>
-            
               <Route
                 path={"/"}
                 exact
@@ -62,7 +61,8 @@ class App extends Component {
                   />
                 )}
               ></Route>
-
+          
+             
               {/*always redirect to index*/}
 
               <AdminRoute />

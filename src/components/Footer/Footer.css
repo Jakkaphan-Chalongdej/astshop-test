@@ -30,6 +30,9 @@
   color: #6c757d;
   text-decoration: none;
 }
+.footer-contaner  {
+  background-color:#6c757d00 !important;
+}
 
 
 @media (max-width: 576px) {
