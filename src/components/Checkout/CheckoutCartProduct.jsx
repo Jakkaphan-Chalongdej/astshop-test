@@ -5,7 +5,6 @@ import { currencyToUse } from "../../Utility/currency";
 const checkoutCartProduct = (props) => {
   let currencyKeys = currencyToUse(props.currency);
   let currencyName = currencyKeys.name;
-
   return (
     <React.Fragment>
       <li className="list-group-item ">
@@ -25,12 +24,6 @@ const checkoutCartProduct = (props) => {
             </p>
 
             <p>
-              {props.checkoutCartSize ? (
-                <small className="pr-2">
-                  <span className="text-muted">Size: </span>
-                  {props.checkoutCartSize}
-                </small>
-              ) : null}
               <small>
                 <span className="text-muted">Qty: </span>
                 {props.checkoutCartCount}

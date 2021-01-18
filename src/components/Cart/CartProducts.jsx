@@ -12,7 +12,7 @@ const cartProducts = (props) => {
       <div class="card wish-list mb-3">
         <div class="card-body">
           <Row className="row mb-4">
-            <Col className="col-md-5 col-lg-4 col-xl-4">
+            <Col className="col-md-5 col-lg-5 col-xl-5">
               <img
                 className={"shop-cart-image"}
                 src={props.productPhoto}
@@ -20,7 +20,7 @@ const cartProducts = (props) => {
               />
             </Col>
 
-            <Col className="col-md-7 col-lg-8 col-xl-8">
+            <Col className="col-md-7 col-lg-7 col-xl-7">
               <div className="d-flex justify-content-between">
                 <div>
                   <h5> {props.productName}</h5>
@@ -42,7 +42,7 @@ const cartProducts = (props) => {
 
                 <div className="col-sm-7 col-md-6 ">
                   <div
-                    style={{ marginTop: "20px" }}
+                    style={{ marginTop: "30px" }}
                     className="wishlist-container"
                   >
                     <AddToWishList

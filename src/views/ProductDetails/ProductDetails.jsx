@@ -186,7 +186,7 @@ class ProductDetails extends Component {
                         <div className="product-quantity">
                           <button
                             type="button"
-                            className="btn btn-secondary"
+                            className="btn btn-secondary btn-border"
                             onClick={() =>
                               this.handleAdditionSubtraction("subtract")
                             }
@@ -203,7 +203,7 @@ class ProductDetails extends Component {
                           ></input>
                           <button
                             type="button"
-                            className="btn btn-secondary"
+                            className="btn btn-secondary btn-border2"
                             onClick={() =>
                               this.handleAdditionSubtraction("add")
                             }
@@ -218,11 +218,13 @@ class ProductDetails extends Component {
                       </div>
                     ) : null}
                   </div>
-
                   <div className="mt-4">
+                  <p>{this.product.des}</p>
+                  </div>
+                  <div className="mt-4 btn-addcart">
                     <button
                       type="button"
-                      className="btn btn-primary btn-block btn-lg"
+                      className="btn btn-primary btn-block btn-lg "
                       disabled={this.disableAddToCartButton()}
                       onClick={this.handleAddToCart}
                     >

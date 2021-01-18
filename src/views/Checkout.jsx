@@ -12,7 +12,7 @@ import PaymentOptions from "../components/Checkout/Forms/Payments/PaymentOptions
 import Alert from "../components/UI/Alert/Alert";
 import PropTypes from "prop-types";
 import formValidator from "../Utility/formValidation";
-import { CardElement, injectStripe } from "react-stripe-elements";
+// import { CardElement, injectStripe } from "react-stripe-elements";
 import { currencyToUse } from "../Utility/currency";
 
 class Checkout extends Component {
@@ -205,21 +205,21 @@ class Checkout extends Component {
         ? productTotals + vat + shippingPrice - discountAmount
         : 0;
 
-    if (this.state.paymentMethod === "creditCard") {
-      chosenPaymentMethod = (
-        <div className={"ml-4 p-3 shop-card-field"}>
-          <CardElement
-            onChange={(element) => this.creditCardHandler(element)}
-          />
-        </div>
-      );
-    } else if (this.state.paymentMethod === "onDelivery") {
-      chosenPaymentMethod = (
-        <div className={"ml-4 p-3"}>
-          You will pay when the product is delivered to you.
-        </div>
-      );
-    }
+    // if (this.state.paymentMethod === "creditCard") {
+    //   chosenPaymentMethod = (
+    //     <div className={"ml-4 p-3 shop-card-field"}>
+    //       <CardElement
+    //         onChange={(element) => this.creditCardHandler(element)}
+    //       />
+    //     </div>
+    //   );
+    // } else if (this.state.paymentMethod === "onDelivery") {
+    //   chosenPaymentMethod = (
+    //     <div className={"ml-4 p-3"}>
+    //       You will pay when the product is delivered to you.
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className="container py-4">
@@ -243,7 +243,7 @@ class Checkout extends Component {
               </span>
             </h4>
 
-            <ul className="list-group mb-3">
+            <ul className="list-group mb-3 card-checkout">
               {/* items in cart */}
               {cartProducts}
 
@@ -279,12 +279,12 @@ class Checkout extends Component {
             <h4 className="mb-3">Billing Information</h4>
             <form className="shop-form shop-bg-white p-3" noValidate>
               {/* customer details form fields */}
-              <CustomerInputs
+              {/* <CustomerInputs
                 customerInfo={this.state.customerInfo}
                 inputChanged={(event, identifier) =>
                   this.customerInfoChangeHandler(event, identifier)
-                }
-              />
+                } 
+              />*/}
               {/* delivery options selection fields */}
               <h4 className="">Delivery Options</h4>
               <DeliveryOptions
@@ -355,8 +355,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-// inject stripe prop into the component
-export default connect(
+// inject stripe prop into the component (injectStripe(Checkout))
+export default  connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectStripe(Checkout));
+)(Checkout);

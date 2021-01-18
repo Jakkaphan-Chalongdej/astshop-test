@@ -24,6 +24,23 @@
 .card-img-top {
   border-radius: 0;
 }
+
+.card-checkout {
+  background-color: #fff;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  border: 2px solid #eaeaea;
+  border-radius: 10px; 
+  position: relative;
+  margin: 0px 10px;
+}
+.card-checkout img{
+  max-width: 100px;
+  width: auto;
+  height: 100px;
+  margin-left: 40px;
+}
 .contact-list{
   margin-top: "200px";
   width: 100%;

@@ -22,8 +22,8 @@ const MainMenu = (props) => {
                   <img
                     src="/logo-title.png"
                     alt="AST-logo"
-                    width={64}
-                    height={42}
+                    width={80}
+                    height={60}
                     quality="70%"
                   />
                 </picture>

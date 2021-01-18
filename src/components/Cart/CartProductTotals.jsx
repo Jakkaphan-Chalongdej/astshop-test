@@ -6,7 +6,8 @@ import { currencyToUse } from "../../Utility/currency";
 const cartProductTotals = (props) => {
   let currencyKeys = currencyToUse(props.currency);
   let currencyName = currencyKeys.name;
-
+  let products = props.productName;
+  let productsQuan = props.productQuantity;
   let subtotal = props.subtotal;
   let vatPercentage = props.vat > 0 ? props.vat / 100 : 0;
   let vat = subtotal > 0 ? Math.round(subtotal * vatPercentage) : 0;
@@ -28,6 +29,12 @@ const cartProductTotals = (props) => {
                 {subtotal.toLocaleString()}
               </span>
             </li>
+            <ul>
+              <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                <p>{products}</p>
+                <span>{productsQuan}</span>
+              </li>
+            </ul>
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
               <div>
                 <strong>
@@ -63,29 +70,29 @@ const cartProductTotals = (props) => {
           >
             Clear cart
           </button>
-        
+
           <Link to={"/all"} className="btn btn-primary btn-block checkout">
             Continue shopping
           </Link>
-          {/* <Link
-            className="btn btn-lg shop-btn-secondary checkout"
-            to={"/checkout"}
-          > */}
           <Link
             className="btn btn-block shop-btn-secondary checkout"
-            to={"/cart"}
+            to={"/checkout"}
           >
+          {/* <Link
+            className="btn btn-block shop-btn-secondary checkout"
+            to={"/cart"}
+          > */}
             Checkout
           </Link>
         </div>
-       
       </div>
-   
     </React.Fragment>
   );
 };
 
 cartProductTotals.propTypes = {
+  productName: PropTypes.string.isRequired,
+  productQuantity: PropTypes.number.isRequired,
   subtotal: PropTypes.number.isRequired,
   clearCart: PropTypes.func.isRequired,
   vat: PropTypes.number,

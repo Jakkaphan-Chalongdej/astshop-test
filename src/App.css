@@ -5,7 +5,7 @@
 }
 
 .shop-container {
-  width: 75%;
+  width: 100%;
 }
 
 .shop-bg-white {
@@ -335,7 +335,7 @@ input.success {
 /* ------------- checkout page --------------*/
 .badge-secondary {
   color: #fff;
-  background-color: #f17e0a;
+  background-color: #60b0f1;
 }
 
 .shop-checkout-image {
@@ -356,7 +356,7 @@ input.success {
   margin-top: 0.2rem;
   margin-bottom: 0;
   font-size: 0.9rem;
-  color: #f17e0a;
+  color: #60b0f1;
   font-weight: 600;
 }
 
@@ -381,7 +381,7 @@ input.success {
 }
 
 .shop-checkout-total .shop-total {
-  color: #f17e0a;
+  color: #f16060;
 }
 
 .shop-form ul {
