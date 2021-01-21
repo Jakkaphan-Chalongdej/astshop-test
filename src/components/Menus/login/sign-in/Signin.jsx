@@ -4,7 +4,7 @@ export default function Signin() {
   return (
     <>
       <div>
-        <div className="signin-wrapper  ">
+        <div className="signin-wrapper slideDown">
           <div className="form-wrapper">
             <h5>Sign In</h5>
             <input type="email" placeholder="Email" className="form-field" />

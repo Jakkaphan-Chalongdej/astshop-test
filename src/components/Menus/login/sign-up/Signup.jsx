@@ -17,7 +17,7 @@ export default function Signup() {
   return (
     <>
       <div >
-        <div className="signin-wrapper  ">
+        <div className="signin-wrapper slideDown ">
           <div className="form-wrapper ">
             <h5>Sign Up</h5>
             <input

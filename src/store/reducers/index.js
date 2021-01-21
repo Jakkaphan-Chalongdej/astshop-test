@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import Data from "../../static/data";
 
 const initialState = Data;
-
+// const initialState = [];
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_PRODUCT_PRICE_FILTER:
@@ -73,18 +73,18 @@ const appReducer = (state = initialState, action) => {
 
     case actionTypes.UPDATE_CART_PRODUCT_COUNT:
       let cartToUpdate = [...state.cart];
-      let prodToUpdate = action.productDetails;
+      // let prodToUpdate = action.productDetails;
       let updateIndex = null;
-      if (prodToUpdate.size) {
-        updateIndex = state.cart.findIndex(
-          (product) =>
-            product.id === prodToUpdate.id && product.size === prodToUpdate.size
-        );
-      } else {
-        updateIndex = state.cart.findIndex(
-          (product) => product.id === prodToUpdate.id
-        );
-      }
+      // if (prodToUpdate.size) {
+      //   updateIndex = state.cart.findIndex(
+      //     (product) =>
+      //       product.id === prodToUpdate.id && product.size === prodToUpdate.size
+      //   );
+      // } else {
+      //   updateIndex = state.cart.findIndex(
+      //     (product) => product.id === prodToUpdate.id
+      //   );
+      // }
 
       let cartTotal = state.cartTotal;
       if (updateIndex > -1) {

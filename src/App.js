@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { closeMaxProductModal, toogleSideBar } from "./store/actions";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import AdminRoute from "./AdminViews/routers/admin.roter";
+import UserRoute from "./userViews/userview.router.js/user.router";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
-
 
 class App extends Component {
   render() {
@@ -61,11 +60,12 @@ class App extends Component {
                   />
                 )}
               ></Route>
-          
-             
-              {/*always redirect to index*/}
+              <div>
+                <AdminRoute />
+                <UserRoute />
+              </div>
 
-              <AdminRoute />
+              {/*always redirect to index*/}
 
               <Redirect to={"/"} />
             </Switch>

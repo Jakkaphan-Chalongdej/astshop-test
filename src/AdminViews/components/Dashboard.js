@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    padding: "2.1rem 1rem",
+    padding: "2rem 1rem",
+    backgroundColor:"#60B0EF",
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -64,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: "relative",
-   
     padding: "1rem 0.2rem",
     // whiteSpace: "nowrap",
     height: "100vh",

@@ -19,8 +19,8 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
-    paritialVisibilityGutter: 30,
+    items: 2,
+    paritialVisibilityGutter: -20,
   },
 };
 const HomeSale = (props) => {
@@ -42,7 +42,7 @@ const HomeSale = (props) => {
           ) : null}
         </p>
 
-        <NavLink
+        <NavLink style={{marginTop:'10px'}}
           className="btn btn-primary btn-sm"
           to={`/product/${product.slug}`}
           exact

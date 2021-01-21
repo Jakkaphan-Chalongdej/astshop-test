@@ -27,15 +27,13 @@ const SelloutCards = () => {
   function generateSelloutCards() {
     return cardsData.map((card, index) => {
       return (
-        <>
-          <div className="card sellout-card card-body shadow" key={index}>
-            <img className="sellout-icon" src={card.image} alt={card.title} />
-            <div className="mt-3 text-center">
-              <h5 className="sellout-title">{card.title}</h5>
-              <p className="text-muted">{card.description}</p>
-            </div>
+        <div className="card sellout-card card-body shadow" key={index}>
+          <img className="sellout-icon" src={card.image} alt={card.title} />
+          <div className="mt-3 text-center">
+            <h5 className="sellout-title">{card.title}</h5>
+            <p className="text-muted">{card.description}</p>
           </div>
-        </>
+        </div>
       );
     });
   }

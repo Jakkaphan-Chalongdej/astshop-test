@@ -63,7 +63,7 @@
   background-color: #60b0f1;
   border-color: #60b0f1;
  
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   color: #ffffff;
   border-radius: 10px;
 }
@@ -471,4 +471,35 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
   }
+}
+@media (max-width: 375px) {
+  .card {
+    
+    background-color: #fff;
+    padding: 5px;
+    text-align: left;
+    text-decoration: none;
+    border: 2px solid #eaeaea;
+    border-radius: 10px; 
+    position: relative;
+    margin: 0px 3px;
+    width: 186px !important;
+    height: 250px !important;
+  }
+  .card-img-top {
+    border-radius: 0;
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+
+  .sellout-card {
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+  .sellout-icon {
+    max-width: 100px !important;
+    max-height: 100px !important; 
+    margin-left: 0 !important;
+  }
+  
 }

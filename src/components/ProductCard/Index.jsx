@@ -15,10 +15,11 @@ const Index = (props) => {
   let currencyValue = currencyKeys.value;
   let currencyName = currencyKeys.name;
   let item = props.product;
-
+//col-sm-6 col-md-6 col-lg-4 mb-4 
   return (
     <React.Fragment>
-      <div className={"col-sm-6 col-md-6 col-lg-4 mb-4"}>
+     
+      <div className={"con col-sm-6 col-md-6 col-lg-4 mb-4 "}>
         <div className="shop-card">
           <div className="shop-card-image">
             <NavLink to={`/product/${item.slug}`} exact>
@@ -79,6 +80,7 @@ const Index = (props) => {
           </div>
         </div>
       </div>
+      
     </React.Fragment>
   );
 };

@@ -6,7 +6,7 @@ import CheckoutCartProduct from "../components/Checkout/CheckoutCartProduct";
 import PromoCodeForm from "../components/Checkout/PromoCodeForm";
 import PromoCodeValue from "../components/Checkout/PromoCodeValue";
 import CheckoutCartTotals from "../components/Checkout/CheckoutCartTotals";
-import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
+// import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
 import DeliveryOptions from "../components/Checkout/Forms/DeliveryOptions";
 import PaymentOptions from "../components/Checkout/Forms/Payments/PaymentOptions";
 import Alert from "../components/UI/Alert/Alert";

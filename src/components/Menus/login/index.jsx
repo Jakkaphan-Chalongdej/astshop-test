@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CancelIcon from '@material-ui/icons/Cancel';
+import CancelIcon from "@material-ui/icons/Cancel";
 import { Navbar } from "react-bootstrap";
 import Signup from "./sign-up/Signup";
 import Signin from "./sign-in/Signin";
@@ -40,11 +40,11 @@ export default function Login() {
       {showFormSignUp && (
         <>
           <div className="box">
-            <Signup />
-            <div onClick={showform} >
-              <div className="fullscreen">
+            <div className="fullscreen">
+              <Signup />
+              <div onClick={showform}>
                 <div className="icon-wrapper ">
-                  <CancelIcon />
+                  <CancelIcon style={{ color: "black" }} />
                 </div>
               </div>
             </div>
@@ -53,11 +53,11 @@ export default function Login() {
       )}
       {showFormSignIn && (
         <div className="box">
-          <Signin />
-          <div onClick={showform2}>
-            <div className="fullscreen">
-              <div className="icon-wrapper " >
-                <CancelIcon />
+          <div className="fullscreen">
+            <Signin />
+            <div onClick={showform2}>
+              <div className="icon-wrapper ">
+                <CancelIcon style={{ color: "black" }} />
               </div>
             </div>
           </div>
