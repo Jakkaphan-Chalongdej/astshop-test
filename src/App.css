@@ -307,14 +307,23 @@ input.success {
 }
 
 .nav {
+  display: block;
   list-style-type: none;
 }
 
 .nav .nav-item .nav-link {
-  padding: 15px 20px;
+  padding: 15px 80px 20px;
+  width: 200px;
   font-size: 1em;
   display: block;
   color: #6e6e6e;
+}
+.nav .nav-item .link-styles {
+  width: 200px;
+  font-size: 1em;
+  display: block;
+  color: #6e6e6e;
+  
 }
 
 .nav .nav-item .nav-link:hover {

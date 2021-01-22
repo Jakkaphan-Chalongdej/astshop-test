@@ -2,6 +2,7 @@ import React from "react";
 import "./submenu.scss";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import '../../App.css'
 const menu1 = [
   { href: "/category/camera", name: "กล้องวงจรปิด" },
   { href: "/all", name: "  โดรนถ่ายภาพ (Drone)" },
@@ -13,9 +14,15 @@ const menu1 = [
   { href: "/all", name: " เครื่องทำลายเอกสาร" },
   { href: "/all", name: "  ระบบประตูกั้นทางเดิน" },
   { href: "/all", name: "  ตู้เซฟ" },
+  { href: "/all", name: "ระบบแจ้งเตือนเพลิงใหม้" },
 ];
 
 const menu2 = [
+
+  { href: "/all", name: "  Network accessories" },
+  { href: "/all", name: " ระบบห้องประชุม" },
+  { href: "/all", name: " Video Conference" },
+  { href: "/all", name: "  ตู้สาขาโทรศัพท์" },
   { href: "/all", name: " เครื่องสแกน" },
   { href: "/all", name: " การ์ด Card" },
   { href: "/all", name: "เครื่องทาบบัตร (Reader Card)" },
@@ -23,28 +30,31 @@ const menu2 = [
   { href: "/all", name: "  เครื่องบันทึกเวลา" },
   { href: "/all", name: "  ระบบออกบัตรประจำตัว" },
   { href: "/all", name: " GPS ติดตามรถยนต์" },
+  
+  
+
 ];
 
 const menu3 = [
-  { href: "/all", name: "ระบบแจ้งเตือนเพลิงใหม้" },
-  { href: "/all", name: " Video Conference" },
-  { href: "/all", name: " ระบบห้องประชุม" },
-  { href: "/all", name: " ระบบที่จอดรถ" },
-  { href: "/all", name: "  LED Display" },
-  { href: "/all", name: "  Accessories" },
+  
+  { href: "/all", name: "  ประตูอัตโนมัติ" },
+  { href: "/all", name: "Digital Door Lock" },
   { href: "/all", name: "  กริ่งสนทนา (VDO PHONE)" },
+  { href: "/all", name: "  บ้านอัจฉริยะ (HomeXpert)" },
+
+  
+ 
 ];
 
 const menu4 = [
-  { href: "/all", name: "  นาฬิกายาม (Guardtour)" },
-  { href: "/all", name: "  Network accessories" },
-  { href: "/all", name: "  ประตู" },
-  { href: "/all", name: "  ตู้สาขาโทรศัพท์" },
-  { href: "/all", name: "  ระบบ POS" },
-  { href: "/all", name: " ระบบห้องประชุม" },
-  { href: "/all", name: " ระบบที่จอดรถ" },
+ 
   { href: "/all", name: "  LED Display" },
-  { href: "/all", name: "  เครื่องบันทึกเวลา" },
+  { href: "/all", name: "  นาฬิกายาม (Guardtour)" },
+  { href: "/all", name: "  Accessories" },
+  { href: "/all", name: "  ระบบ POS" },
+  { href: "/all", name: " ระบบที่จอดรถ" },
+  { href: "/all", name: " LED Display" },
+  { href: "/all", name: " เครื่องบันทึกเวลา" },
 ];
 
 export default function Submenu() {
@@ -82,7 +92,7 @@ export default function Submenu() {
                 </li>
                 {/* menu2 */}
                 <li className="submenu-top-item ">
-                  <p className="submenu-title">menu2</p>
+                  <p className="submenu-title"> Office Automation </p>
                   {menu2.map(function (menu2, i) {
                     return (
                       <>
@@ -102,7 +112,7 @@ export default function Submenu() {
                 </li>
                 {/* menu3 */}
                 <li className="submenu-top-item ">
-                  <p className="submenu-title">menu3</p>
+                  <p className="submenu-title">Home</p>
                   {menu3.map(function (menu3, i) {
                     return (
                       <>
@@ -123,7 +133,7 @@ export default function Submenu() {
 
                 {/* menu4 */}
                 <li className="submenu-top-item ">
-                  <p className="submenu-title">menu4</p>
+                  <p className="submenu-title">อื่นๆ</p>
                   {menu4.map(function (menu4, i) {
                     return (
                       <>

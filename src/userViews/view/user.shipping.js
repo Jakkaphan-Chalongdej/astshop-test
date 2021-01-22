@@ -20,6 +20,7 @@ function UserShipping() {
           <header>
             <h1>Delivery Addresses</h1>
           </header>
+          <Maps  />
           <div
             className="info"
             style={{
@@ -65,7 +66,7 @@ function UserShipping() {
               </div>
             </div>
           </div>
-          <Maps  />
+       
         </div>
       </Setting>
     </>

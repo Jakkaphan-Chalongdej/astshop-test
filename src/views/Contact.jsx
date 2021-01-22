@@ -14,7 +14,7 @@ export default function Contact() {
               className="center"
               style={{ marginTop: "100px", marginLeft: "150px" }}
             >
-              <img src="/logo-AST.png" alt="logo-navbaer" />
+              <img src="/ast2.png" alt="logo-navbaer" />
             </div>
           </Col>
           <Col>

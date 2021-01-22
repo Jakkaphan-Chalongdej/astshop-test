@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Banner = () => {
   const banner = {
-    image: "../../../../logo-title.png",
+    image: "../../../../ast.png",
     title: "All Solution Tech ",
     text:
       "ผู้นำด้านอุปกรณ์รักษาความปลอดภัย มีสินค้าให้เลือกหลากหลาย          ส่งตรงถึงบ้านคุณ shop เลย ",
@@ -23,6 +23,8 @@ const Banner = () => {
         </div>
         <img
           className="main-banner-image"
+          height='auto'
+          width='750px'
           src={banner.image}
           alt="banner"
         />

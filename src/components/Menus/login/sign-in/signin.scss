@@ -4,10 +4,11 @@
   height: 100vh;
   position: absolute;
   left: 0;
+  
 
   // transition: all 0.32s ease-in;
 }
-.signin-wrapper{
+.signin-wrapper {
   display: none;
 }
 
@@ -25,14 +26,12 @@
   width: 100%;
   height: 100vh;
   background-color: #42424291;
-
 }
 .fullscreen .icon-wrapper {
   position: absolute;
   top: 235px !important;
   left: 56% !important;
   z-index: 1;
-  
 }
 
 .background {
@@ -128,32 +127,31 @@ h5 {
 .form-wrapper p a:hover {
   color: #009688;
 }
-.slideDown{
-	animation-name: slideDown;	
-	animation-duration: 1s;	
-	animation-timing-function: ease;	
-	visibility: visible !important;
-	-moz-animation-fill-mode:forwards;
-        animation-fill-mode:forwards;						
+.slideDown {
+  animation-name: slideDown;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  visibility: visible !important;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @keyframes slideDown {
-	0% {
-		transform: translateY(-100%);
-	}
-	50%{
-		transform: translateY(8%);
-	}
-	65%{
-		transform: translateY(-4%);
-	}
-	80%{
-		transform: translateY(4%);
-	}
-	95%{
-		transform: translateY(-2%);
-	}			
-	100% {
-		transform: translateY(0%);
-	}		
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+  65% {
+    transform: translateX(-4%);
+  }
+  80% {
+    transform: translateX(4%);
+  }
+  95% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
-

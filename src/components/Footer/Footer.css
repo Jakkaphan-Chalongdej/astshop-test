@@ -55,3 +55,35 @@
     
   }
 }
+@media (max-width: 400px) {
+  /* footer section */
+  .footer-contaner {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    justify-items: left;
+    
+  }
+  .footer-contaner p{
+    font-size: 10px;
+  }
+  .footer-contaner h3{
+    font-size: 12px;
+  }
+  .footer-contaner .col{
+    flex:auto !important;
+  }
+  
+  .footers {
+    margin-left: auto;
+    margin-right: auto; 
+    align-items: center;
+    
+  }
+  .footers img{
+    margin-bottom: 20px ;
+    margin-left: 60px;
+    width: 175px;
+    height: auto;
+    
+  }
+}

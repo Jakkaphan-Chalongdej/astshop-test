@@ -8,7 +8,7 @@ function Footer() {
         <Row className="footers ">
           <Col>
             <div >
-              <img src="/logo-AST.png" alt="logo-navbaer" />
+              <img src="/ast2.png" alt="logo-navbaer" />
             </div>
           </Col>
           <Col>

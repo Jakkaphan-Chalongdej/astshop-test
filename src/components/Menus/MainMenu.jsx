@@ -11,8 +11,8 @@ const MainMenu = (props) => {
   return (
     <>
       <Navbar expand="lg" className="navtop fixed-top">
-        <div className="container " style={{ width: "1400px" }}>
-          <Nav.Link className="ml-auto" >
+        <div className="container " style={{ width: "1500px" }}>
+          <Nav.Link className="ml-auto">
             <ul style={{ marginTop: "15px" }}>
               <Login />
             </ul>
@@ -23,28 +23,34 @@ const MainMenu = (props) => {
         collapseOnSelect
         expand="lg"
         bg="light"
-        className='fixed-top'
-        style={{ boxShadow: "0 2px 2px -2px gray",marginTop:'30px',height:'90px'}}
+        className="fixed-top"
+        style={{
+          boxShadow: "0 2px 2px -2px gray",
+          marginTop: "30px",
+          height: "90px",
+        }}
       >
-        <div className="container " style={{ width: "1400px" }}>
+        <div className="container " style={{ width: "1500px" }}>
           <NavbarBrand>
             <NavLink to={"/"} exact>
               <picture>
                 <img
-                  src="/logo-title.png"
+                  src="/ast2.png"
                   alt="AST-logo"
-                  width={80}
+                  width={90}
                   height={60}
                   quality="70%"
                 />
               </picture>
             </NavLink>
           </NavbarBrand>
-
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <button className="navbar-toggler" onClick={props.toggleSideBar}>
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link >
+              <Nav.Link>
                 <MenuComponent cartCount={props.cartItemNumber} />
               </Nav.Link>
             </Nav>

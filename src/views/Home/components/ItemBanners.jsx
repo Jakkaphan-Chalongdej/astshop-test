@@ -17,6 +17,13 @@ const ItemBanners = () => {
       link: "/category/camera",
       percentage: "30",
     },
+    {
+      image: "../../../../images/16003-ds_2ce56d8t_it3zf-640x480.jpg",
+      title: "Hikvision",
+      text: `กล้องวงจรปิด`,
+      link: "/category/camera",
+      percentage: "20",
+    },
   ];
   function generateItemBanners() {
     return itemData.map((item, index) => {
