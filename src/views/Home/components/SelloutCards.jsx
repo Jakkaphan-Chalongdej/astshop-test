@@ -1,45 +1,46 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const SelloutCards = () => {
   let cardsData = [
     {
+      parth: "cartegory/",
       image: "../../../../security.svg",
       title: "Security",
-      description: "",
     },
     {
+      parth: "cartegory/",
       image: "../../../../home.svg",
       title: "Home",
-      description: "",
     },
     {
+      parth: "cartegory/",
       image: "../../../../office.svg",
-      title: "Office Automation",
-      description: "",
+      title: "Office",
     },
     {
+      parth: "cartegory/",
       image: "../../../../other.svg",
       title: "อื่นๆ",
-      description: "",
     },
   ];
 
   function generateSelloutCards() {
     return cardsData.map((card, index) => {
       return (
-        <div className='container-card'>
-          <div className="card sellout-card card-body shadow" key={index}>
-            <img
-              className="sellout-icon mt-3"
-              src={card.image}
-              alt={card.title}
-            />
-            <div className="text-center">
-              <h5 className="sellout-title">{card.title}</h5>
-              <p className="text-muted">{card.description}</p>
+        <Link className="link-style" to={card.parth}>
+          <div className="container-card">
+            <div className="card sellout-card card-body shadow" key={index}>
+              <img
+                className="sellout-icon mt-3"
+                src={card.image}
+                alt={card.title}
+              />
+              <div className="text-center">
+                <h5 className="sellout-title">{card.title}</h5>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       );
     });
   }

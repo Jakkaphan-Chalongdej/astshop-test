@@ -62,8 +62,8 @@ export default function Submenu() {
     <>
       <ul>
         <li className="menu-item ">
-          <Link className="link-styles" to="/all">
-            Category
+          <Link className="link-styles" style={{color:'#6e6e6e'}} to="/all">
+            หมวดหมู่
           </Link>
           <i className="menu-icon fas fa-angle-down" />
           <ul className="submenu ">

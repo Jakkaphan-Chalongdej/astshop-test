@@ -32,19 +32,19 @@ const MenuComponent = (props) => {
     <React.Fragment>
       <Nav>
         <Navbar>
-          <MenuItem linkTo="/">Home</MenuItem>
+          <MenuItem linkTo="/">หน้าหลัก</MenuItem>
         </Navbar>
         <Navbar>
-          <MenuItem linkTo="/all">All</MenuItem>
+          <MenuItem linkTo="/all">สินค้าทั้งหมด</MenuItem>
         </Navbar>
-        <div className="menu-item  " style={{ marginTop: "2px" }}>
+        <div className="menu-item menu-top" >
           <SubmenuComponent />
         </div>
         <Navbar>
-          <MenuItem linkTo="/sale">Sale</MenuItem>
+          <MenuItem  linkTo="/sale">ลดราคา</MenuItem>
         </Navbar>
         <Navbar>
-          <MenuItem linkTo="/contact">Contact</MenuItem>
+          <MenuItem linkTo="/contact">ติดต่อ</MenuItem>
         </Navbar>
         <MenuItem linkTo={"/cart"}>
           <IconButton aria-label="cart">

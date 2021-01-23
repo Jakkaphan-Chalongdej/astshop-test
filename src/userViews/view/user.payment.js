@@ -12,6 +12,7 @@ function UserPayMethods() {
           },
         ]}
       >
+      <div className="container-paymant card-paymant"></div>
        
     
       </Setting>

@@ -3,16 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const server = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3001;
 const db = require("../src/model");
 
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and Resync with { force: true }");
-  console.log("Create MySQL.");
-  console.log("Connected to the MySQL server.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and Resync with { force: true }");
+//   console.log("Create MySQL.");
+//   console.log("Connected to the MySQL server.");
+// });
 
-//db.sequelize.sync(console.log("Connected to the MySQL server."));
+db.sequelize.sync(console.log("Connected to the MySQL server."));
 var corsOptions = {
   origin: ` http://localhost:${PORT}`,
   optionsSuccessStatus: 200,

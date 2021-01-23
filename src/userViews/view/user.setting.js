@@ -57,7 +57,7 @@ function UserSetting() {
                     </div>
                     <div className="form-group">
                       <label htmlFor="phone">
-                        Phone Number - <small>Optional</small>
+                        Phone Number 
                       </label>
                       <input type="text" name="phone" id="phone" />
                     </div>
@@ -81,7 +81,7 @@ function UserSetting() {
                       />
                       <span className="error" />
                     </div>
-                    <div className="CTA">
+                    <div className="CTA mb-4">
                       <input
                         type="submit"
                         defaultValue="Signup Now"

@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 import Data from "../../static/data";
 
 const initialState = Data;
+
 // const initialState = [];
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

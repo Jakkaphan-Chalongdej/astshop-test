@@ -276,3 +276,33 @@
   
   
 }
+.slide {
+  animation-name: slideDown;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  visibility: visible !important;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes slide {
+  0% {
+    transform: translateX(-30%);
+    
+  }
+  50% {
+    transform: translateX(8%);
+  }
+  65% {
+    transform: translateX(-4%);
+  }
+  80% {
+    transform: translateX(4%);
+  }
+  95% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+

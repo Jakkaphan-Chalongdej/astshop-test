@@ -19,29 +19,29 @@ db.sequelize = sequelize;
 
 // one to manny  product and  product status
 db.product = require("../model/product.mode")(sequelize, Sequelize);
-db.productStatus = require("../model/product.status.mode")(
-  sequelize,
-  Sequelize
-);
-db.productStatus.hasMany(db.product, { as: "product" });
-db.product.belongsTo(db.productStatus, {
-  foreignKey: "id",
-  as: "product_status",
-});
-// one to manny  product and  image 
-db.image = require("../model/image.mode")(sequelize, Sequelize);
-db.image.hasMany(db.product, { as: "product" });
-db.product.belongsTo(db.image, {
-  foreignKey: "id",
-  as: "image",
-});
-// one to manny  product and  category 
-db.category = require("../model/category.mode")(sequelize, Sequelize);
-db.category.hasMany(db.product, { as: "product" });
-db.product.belongsTo(db.category, {
-  foreignKey: "id",
-  as: "category",
-});
+// db.productStatus = require("../model/product.status.mode")(
+//   sequelize,
+//   Sequelize
+// );
+// db.productStatus.hasMany(db.product, { as: "product" });
+// db.product.belongsTo(db.productStatus, {
+//   foreignKey: "id",
+//   as: "product_status",
+// });
+// // one to manny  product and  image 
+// db.image = require("../model/image.mode")(sequelize, Sequelize);
+// db.image.hasMany(db.product, { as: "product" });
+// db.product.belongsTo(db.image, {
+//   foreignKey: "id",
+//   as: "image",
+// });
+// // one to manny  product and  category 
+// db.category = require("../model/category.mode")(sequelize, Sequelize);
+// db.category.hasMany(db.product, { as: "product" });
+// db.product.belongsTo(db.category, {
+//   foreignKey: "id",
+//   as: "category",
+// });
 
 
 module.exports = db;

@@ -15,16 +15,20 @@ const Banner = () => {
         <div className="main-banner-text">
           <h4 className="display-4 main-banner-title">{banner.title}</h4>
           <p className="font-p ">{banner.text}</p>
-          <p style={{marginTop:"60px"}}>
-            <NavLink className="btn btn-primary btn-lg btn-shop" to={banner.link} exact>
-             <span>Shop Now</span> 
+          <p style={{ marginTop: "60px" }}>
+            <NavLink
+              className="btn btn-primary btn-lg btn-shop"
+              to={banner.link}
+              exact
+            >
+              <span>Shop Now</span>
             </NavLink>
           </p>
         </div>
         <img
           className="main-banner-image"
-          height='auto'
-          width='750px'
+          height="auto"
+          width="750px"
           src={banner.image}
           alt="banner"
         />
