@@ -12,8 +12,7 @@ import App from "./App";
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
-      
+      <App /> 
     </BrowserRouter>
   </Provider>
 );

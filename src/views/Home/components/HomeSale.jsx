@@ -14,12 +14,12 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 2,
     paritialVisibilityGutter: 50,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
+    items: 3,
     paritialVisibilityGutter: -20,
   },
 };
@@ -28,7 +28,7 @@ const HomeSale = (props) => {
 
   let products = props.productsProps.map((product, index) => {
     return (
-      <div className="card card-body shadow" key={index}>
+      <div className="card card-body card-sale shadow" key={index}>
         <img className="card-img-top" src={product.img} alt="product" />
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">
@@ -71,7 +71,7 @@ const HomeSale = (props) => {
           itemClass="image-item"
           responsive={responsive}
           autoPlaySpeed={3000}
-          autoPlay={true}
+          // autoPlay={true}
           infinite
         >
           {products}

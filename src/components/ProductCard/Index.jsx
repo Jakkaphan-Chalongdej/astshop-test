@@ -15,18 +15,14 @@ const Index = (props) => {
   let currencyValue = currencyKeys.value;
   let currencyName = currencyKeys.name;
   let item = props.product;
-//col-sm-6 col-md-6 col-lg-4 mb-4 
+  //col-sm-6 col-md-6 col-lg-4 mb-4
   return (
     <React.Fragment>
-     
       <div className={"con col-sm-6 col-md-6 col-lg-4 mb-4 "}>
         <div className="shop-card">
           <div className="shop-card-image">
             <NavLink to={`/product/${item.slug}`} exact>
-              <img
-                src={item.img}
-                alt={item.img.split(".")[0]}
-              />
+              {/* <img src={item.img} alt={item.img.split(".")[0]} /> */}
             </NavLink>
             {item.sale ? <span className="shop-card-sale">Sale</span> : null}
             <AddToWishList
@@ -40,36 +36,31 @@ const Index = (props) => {
               </span>
             ) : null}
           </div>
-
           <div className="shop-card-content">
-            
             <h3 className="shop-card-title">{item.name}</h3>
-            <p>{item.des}</p>
-            <Ratings
+            {/* <p>{item.des}</p> */}
+            {/* <Ratings
               ratings={item.ratings}
               containerClassName={"shop-card-ratings-container"}
               fullStarIcon={"full-star-icon"}
               halfStarIcon={"half-star-icon"}
               emptyStarIcon={"empty-star-icon"}
-            />
+            /> */}
             <div className="shop-card-price-container">
               <span className="shop-card-price">
                 {currencyName}
                 {productPrice(item.price, currencyValue)}
               </span>
-              {item.discount_price ? (
+              {/* {item.discount_price ? (
                 <span className={"shop-card-discount-price"}>
                   <span style={{ textTransform: "lowercase" }}>
                     {currencyName}
                   </span>
                   {productPrice(item.discount_price, currencyValue)}
                 </span>
-              ) : null}
+              ) : null} */}
             </div>
-
-            <div className="shop-card-features-container">
-            
-            </div>
+            <div className="shop-card-features-container"></div>
             <NavLink
               className="btn shop-btn-primary btn-block"
               to={`/product/${item.slug}`}
@@ -80,7 +71,6 @@ const Index = (props) => {
           </div>
         </div>
       </div>
-      
     </React.Fragment>
   );
 };

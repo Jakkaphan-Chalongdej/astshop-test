@@ -4,12 +4,15 @@ import { Navbar } from "react-bootstrap";
 import Signup from "./sign-up/Signup";
 import Signin from "./sign-in/Signin";
 import "./sign-in/signin.scss";
+
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import MenuItem from "../../UI/MenuItem/MenuItem";
-export default function Login() {
+function Login() {
   const [showFormSignUp, setShowForm] = useState(false);
   const [showFormSignIn, setShowForm2] = useState(false);
+ 
+
   const showform = () => {
     setShowForm(!showFormSignUp);
     setShowForm2(false);
@@ -18,6 +21,12 @@ export default function Login() {
     setShowForm2(!showFormSignIn);
     setShowForm(false);
   };
+  
+
+  
+
+ 
+
   return (
     <>
       <Navbar style={{ marginTop: "-10px" }}>
@@ -31,10 +40,11 @@ export default function Login() {
           <div onClick={showform2}>
             <MenuItem linkTo="">
               <AccountCircleIcon />
-              {/* sign in */}
+             
               <span style={{ marginLeft: "5px" }}>{"Welcome jakkaphan"}</span>
             </MenuItem>
           </div>
+         
         </Navbar>
       </Navbar>
       {showFormSignUp && (
@@ -66,3 +76,5 @@ export default function Login() {
     </>
   );
 }
+
+export default Login;

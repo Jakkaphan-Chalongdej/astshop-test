@@ -10,7 +10,9 @@
  
 }
 .shop-container {
-  width: 100%;
+  /* width: 100%; */
+  width: 100vw;
+  height: auto;
 }
 
 .shop-bg-white {
@@ -560,4 +562,5 @@ input[type="radio"] {
     font-size: 12px;
   }
 }
+
 

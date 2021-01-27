@@ -9,7 +9,7 @@
 .product-card-image {
   justify-self: center;
   align-self: center;
-  height: 300px;
+  height: 200px;
 }
 
 .product-title-container {
@@ -276,21 +276,21 @@
   
   
 }
-.slide {
+.slide-product {
   animation-name: slideDown;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   animation-timing-function: ease;
   visibility: visible !important;
   -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
-@keyframes slide {
+@keyframes slide-product {
   0% {
-    transform: translateX(-30%);
+    transform: translateX(-2%);
     
   }
   50% {
-    transform: translateX(8%);
+    transform: translateX(4%);
   }
   65% {
     transform: translateX(-4%);

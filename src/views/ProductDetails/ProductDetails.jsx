@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../store/actions";
+import { addToCart } from "../../store/actions/product";
 import BreadCrumbs from "../../components/UI/BreadCrumbs/BreadCrumbs";
 import Ratings from "../../components/Ratings/Ratings";
 import AddToWishList from "../../components/AddToWishlist/AddToWishlist";
@@ -31,17 +31,14 @@ class ProductDetails extends Component {
       }));
     }
   }
-
   product = this.props.productProp;
   currencyKeys = currencyToUse(this.props.usedCurrencyProp);
-
   truncateProductName() {
     const productName = this.product.name;
     return productName.length > 45
       ? `${productName.substring(0, 45)}...`
       : productName;
   }
-
   disableAddToCartButton() {
     let prodDetails = this.state.productDetails;
     let generalValidations =
@@ -49,19 +46,15 @@ class ProductDetails extends Component {
       !prodDetails.quantity ||
       prodDetails.quantity < 1 ||
       prodDetails.quantity > this.product.quantity;
-
     return generalValidations;
   }
-
   handleAdditionSubtraction(action) {
     let stateData = this.state.productDetails;
     if (action === "subtract" && stateData.quantity < 1) {
       return;
     }
-
     let quantity = parseInt(stateData.quantity);
     let newValue = action === "subtract" ? quantity - 1 : quantity + 1;
-
     this.setState((prevState) => ({
       productDetails: {
         ...prevState.productDetails,
@@ -69,18 +62,15 @@ class ProductDetails extends Component {
       },
     }));
   }
-
   handleInputChange = (event) => {
     const target = event.target;
     let value = target.value;
     const name = target.name;
-
     if (name === "quantity") {
       if (!value.match(/^[0-9]+$/)) {
         value = 1;
       }
     }
-
     this.setState({
       productDetails: { ...this.state.productDetails, [name]: value },
     });
@@ -115,7 +105,7 @@ class ProductDetails extends Component {
               />
               <div className="product-card bg-white">
                 <img
-                  className="product-card-image slide"
+                  className="product-card-image slide-product"
                   src={this.product.img}
                   alt={this.product.name}
                 />
@@ -128,7 +118,6 @@ class ProductDetails extends Component {
                       classStyleName={"product-wishlist"}
                     />
                   </div>
-
                   <div>
                     <span>
                       <Ratings
@@ -166,7 +155,6 @@ class ProductDetails extends Component {
                       </span>
                     ) : null}
                   </div>
-
                   <div className="product-features-container">
                     <div className="product-features">
                       <p className="product-features-title text-muted">
@@ -219,7 +207,7 @@ class ProductDetails extends Component {
                     ) : null}
                   </div>
                   <div className="mt-4">
-                  <p>{this.product.des}</p>
+                    <p>{this.product.des}</p>
                   </div>
                   <div className="mt-4 btn-addcart">
                     <button
@@ -234,7 +222,6 @@ class ProductDetails extends Component {
                 </div>
               </div>
             </div>
-
             <HomeSale />
           </span>
         )}

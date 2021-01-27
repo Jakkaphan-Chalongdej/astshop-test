@@ -36,13 +36,13 @@ function UserPayMethodsEdit() {
                     className={`card-payment ${showForm && "active"}`}
                     onClick={show}
                   >
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Visa.png" />
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Visa.png" alt='' />
                   </div>
                   <div
                     className={`card-payment ${showForm2 && "active"}`}
                     onClick={show2}
                   >
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/MC.png" />
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/MC.png" alt=''/>
                   </div>
                 </div>
               </header>

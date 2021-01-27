@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 const Banner = () => {
   const banner = {
     image: "../../../../ast.png",
-    title: "All Solution Tech ",
+    title: "All Solutions Tech ",
     text:
-      "ผู้นำด้านอุปกรณ์รักษาความปลอดภัย มีสินค้าให้เลือกหลากหลาย          ส่งตรงถึงบ้านคุณ shop เลย ",
+      "ผู้นำด้านอุปกรณ์รักษาความปลอดภัย มีสินค้าให้เลือกหลากหลาย ส่งตรงถึงบ้านคุณ shop เลย ",
     link: "/all",
   };
   return (
@@ -25,13 +25,7 @@ const Banner = () => {
             </NavLink>
           </p>
         </div>
-        <img
-          className="main-banner-image"
-          height="auto"
-          width="750px"
-          src={banner.image}
-          alt="banner"
-        />
+        <img className="main-banner-image" src={banner.image} alt="banner" />
       </div>
     </div>
   );

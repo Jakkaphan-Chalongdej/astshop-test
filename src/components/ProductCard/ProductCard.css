@@ -25,9 +25,9 @@
 }
 
 .shop-card .shop-card-image img {
-    max-width: 200px;
+    max-width: 150px;
     width: auto;
-    height: 200px;
+    height: 150px;
 }
 
 .shop-card .shop-card-sale {
@@ -81,7 +81,7 @@
     -o-text-overflow: ellipsis;
     /* Opera < 11*/
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     color: #212121;
     letter-spacing: .5px;
@@ -91,7 +91,7 @@
 
 .shop-card .shop-card-ratings-container {
     margin-bottom: 5px;
-    font-size: 12px;
+   
     position: relative;
 }
 
@@ -121,7 +121,7 @@
 
 .shop-card .shop-card-price {
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: #212121;
 }

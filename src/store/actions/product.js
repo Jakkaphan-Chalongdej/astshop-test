@@ -1,79 +1,78 @@
 import * as actionTypes from "./actionTypes";
-import axios from './axios';
+import axios from "./axios";
 
 export const setProductPriceFilter = (price) => {
   return { type: actionTypes.SET_PRODUCT_PRICE_FILTER, price: price };
 };
 
-
 const _addProduct = (product) => ({
   type: actionTypes.ADD_PRODUCT,
-  product
+  product,
 });
 
-export const addProduct = (productData = {
-  title: '',
-  description: '',
-  author: '',
-  published: 0
-}) => {
+export const addProduct = (
+  productData = {
+    title: "",
+    description: "",
+    author: "",
+    published: 0,
+  }
+) => {
   return (dispatch) => {
-      const product = {
-          title: productData.title,
-          description: productData.description,
-          author: productData.author,
-          published: productData.published
-      };
-
-      return axios.post('product/create', product).then(result => {
-          dispatch(_addProduct(result.data));
-      });
+    const product = {
+      title: productData.title,
+      description: productData.description,
+      author: productData.author,
+      published: productData.published,
+    };
+    return axios.post("product/create", product).then((result) => {
+      dispatch(_addProduct(result.data));
+    });
   };
 };
 
 const _removeProduct = ({ id } = {}) => ({
   type: actionTypes.REMOVE_PRODUCT,
-  id
+  id,
 });
 
 export const removeProduct = ({ id } = {}) => {
   return (dispatch) => {
-      return axios.delete(`product/${id}`).then(() => {
-          dispatch(_removeProduct({ id }));
-      })
-  }
+    return axios.delete(`product/${id}`).then(() => {
+      dispatch(_removeProduct({ id }));
+    });
+  };
 };
 
 const _editProduct = (id, updates) => ({
   type: actionTypes.EDIT_PRODUCT,
   id,
-  updates
+  updates,
 });
 
 export const editProduct = (id, updates) => {
   return (dispatch) => {
-      return axios.put(`product/${id}`, updates).then(() => {
-          dispatch(_editProduct(id, updates));
-      });
-  }
-};
-const _getProducts = (products) => ({
-  type: actionTypes.GET_PRODUCTS,
-  products
-});
-export const getProducts = () => {
-  return (dispatch) => {
-      return axios.get('products').then(result => {
-          const products = [];
-          result.data.forEach(item => {
-            products.push(item);
-          });
-
-          dispatch(_getProducts(products));
-      });
+    return axios.put(`product/${id}`, updates).then(() => {
+      dispatch(_editProduct(id, updates));
+    });
   };
 };
 
+const _getProducts = (product) => ({
+  type: actionTypes.GET_PRODUCTS,
+  product,
+});
+export const getProducts = () => {
+  return (dispatch) => {
+    return axios.get("product").then((result) => {
+      const product = [];
+      result.data.forEach(item=> {
+        product.push(item);
+      });
+      dispatch(_getProducts(product));
+    });
+  };
+};
 
 export const addToCart = (productDetails) => {
   return {

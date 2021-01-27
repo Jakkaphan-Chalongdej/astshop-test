@@ -1,11 +1,15 @@
 import { VISIBILITY_FILTERS } from "../static/constants";
+import { getProducts } from "./actions/product";
 
-export const getProducts = (store) => store.products;
+
+// export let getProduct = getProducts();
+export const getProduct = (store) => store.products;
 export const getProductPriceFilter = (store) => store.priceFilter;
 export const getWishlist = (store) => store.wishlist;
 
 export const getProductsByFilter = (store, visibilityFilter, count = null) => {
-  const allProducts = getProducts(store);
+  const allProducts = getProduct(store);
+  // let allProducts = getProduct();
   const filterPrices = getProductPriceFilter(store);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.CAMERA:

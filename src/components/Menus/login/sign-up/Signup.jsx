@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "../sign-in/signin.scss";
 export default function Signup() {
   const [formData, updateFormData] = React.useState();
@@ -13,6 +14,15 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    axios
+    .post("/api/product", formData)
+    .then((response) => {
+      console.log(response);
+      console.log("Successfully");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
   return (
     <>
@@ -25,6 +35,7 @@ export default function Signup() {
               placeholder="Email"
               onChange={handleChange}
               className="form-field"
+              
             />
             <input
               name="first-name"
