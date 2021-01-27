@@ -190,13 +190,13 @@
 @media (max-width: 375px) {
     .shop-card {
         background-color: #fff;
+        width: 150px;
         padding: 4px;
         text-align: left;
         font-size: small;
         text-decoration: none;
         border: 1px solid #eaeaea;
         border-radius: 10px;
-       
         position: relative;
     }
     .shop-card .shop-card-image img {
@@ -341,8 +341,13 @@
         border-color: #fd5b45;
     }
     .con {
+     
        display:contents ;
       
+    }
+    .row{
+        padding-right: 5px !important;
+        padding-left: 5px !important;
     }
     
 }

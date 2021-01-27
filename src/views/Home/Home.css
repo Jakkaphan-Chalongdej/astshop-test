@@ -349,7 +349,7 @@
   /* sellout section */
   .sellout-section {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
   }
   /* deals section */
   .deals-image {
@@ -370,6 +370,30 @@
 }
 
 @media (max-width: 768px) {
+  .container-card .card {
+    background-color: #fff;
+    max-width: 200px !important;
+    max-height: 200px !important;
+    padding: 1px;
+    text-align: left;
+    height: 150px;
+    border-radius: 10px;
+    margin: 0px 3px;
+    /* width: 186px !important;
+    height: 250px !important; */
+  }
+  .card-img-top {
+    border-radius: 0;
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+  .sellout-section {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .sellout-card {
+    align-items: center;
+    padding: 0.2rem 1rem;
+  }
   /* banner section */
   .main-banner-container {
     max-height: auto;
@@ -383,9 +407,9 @@
   .lead {
     font-size: 1rem;
   }
-  .main-banner-image {
+  /* .main-banner-image {
     display: none;
-  }
+  } */
   /* item banners section */
   .item-banner-title {
     font-size: 12px;
@@ -452,7 +476,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 400px) and (min-width: 375px){
   .container-card .card {
     background-color: #fff;
     max-width: 200px !important;

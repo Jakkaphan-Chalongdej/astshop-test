@@ -37,8 +37,8 @@ const MainMenu = (props) => {
                 <img
                   src="/ast2.png"
                   alt="AST-logo"
-                  width={90}
-                  height={60}
+                  width={70}
+                  height='auto'
                   quality="70%"
                 />
               </picture>

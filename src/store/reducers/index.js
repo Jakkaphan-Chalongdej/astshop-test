@@ -1,83 +1,64 @@
 import * as actionTypes from "../actions/actionTypes";
-// import Data from "../../static/data";
+import Data from "../../static/data";
 
-// const initialState = Data;
+const initialState = Data;
 
-const initialState = {
-  cart: [],
-  wishlist: [],
-  vat: 7, //vat in percentage
-  cartTotal: 0,
-  orderSuccess: false,
-  promoCode: [
-    {
-      code: "ASTSHOP",
-      percentage: 10,
-    },
-    {
-      code: "NEWSHOP",
-      percentage: 5,
-    },
-  ],
-  usedPromoCode: null,
-  deliveryOptions: [
-    {
-      id: 1,
-      name: "standard",
-      duration: "24 - 72 hours",
-      cost: 300,
-    },
-    {
-      id: 2,
-      name: "fastest",
-      duration: "1 - 24 hours",
-      cost: 1000,
-    },
-  ],
-  productMaxShowModal: false,
-  modalMessage: null,
-  showSideNavigation: false,
-  usedCurrency: { THB: 1, symbol: "฿ " },
-  exchangeRates: {
-    base: "TH",
-    date: "2020-12-26",
-    rates: {
-      THB: 1,
-      USD: 0.033,
-    },
-  },
-  currencySymbols: {
-    TH: "฿ ",
-    USD: "$",
-  },
-  priceFilter: {
-    min: 0,
-    max: 30000,
-    pricerange: 30000,
-  },
-  products: [
-    // {
-    //   id: 1,
-    //   name: "DS-2CD2021G1-I  ",
-    //   img: "/images/DS-2CD2021G1-I.jpg",
-    //   slug: "DS-2CD2021G1-I",
-    //   price: 2000,
-    //   discount_price: 2800,
-    //   category: "Camera",
-    //   // subcategory: "",
-    //   sale: true,
-    //   // article: "watch",
-    //   quantity: 5,
-    //   // options: [1, 2, 3],
-    //   // fulfilled_by_duka: true,
-    //   // approved: true,
-    //   ratings: {
-    //     star_ratings: 4.8,
-    //     votes: 350,
-    //   },
-    // },
-  ],
-};
+// const initialState = {
+//   cart: [],
+//   wishlist: [],
+//   vat: 7, //vat in percentage
+//   cartTotal: 0,
+//   orderSuccess: false,
+//   promoCode: [
+//     {
+//       code: "ASTSHOP",
+//       percentage: 10,
+//     },
+//     {
+//       code: "NEWSHOP",
+//       percentage: 5,
+//     },
+//   ],
+//   usedPromoCode: null,
+//   deliveryOptions: [
+//     {
+//       id: 1,
+//       name: "standard",
+//       duration: "24 - 72 hours",
+//       cost: 300,
+//     },
+//     {
+//       id: 2,
+//       name: "fastest",
+//       duration: "1 - 24 hours",
+//       cost: 1000,
+//     },
+//   ],
+//   productMaxShowModal: false,
+//   modalMessage: null,
+//   showSideNavigation: false,
+//   usedCurrency: { THB: 1, symbol: "฿ " },
+//   exchangeRates: {
+//     base: "TH",
+//     date: "2020-12-26",
+//     rates: {
+//       THB: 1,
+//       USD: 0.033,
+//     },
+//   },
+//   currencySymbols: {
+//     TH: "฿ ",
+//     USD: "$",
+//   },
+//   priceFilter: {
+//     min: 0,
+//     max: 30000,
+//     pricerange: 30000,
+//   },
+//   products: [
+    
+//   ],
+// };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

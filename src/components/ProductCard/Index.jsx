@@ -22,7 +22,7 @@ const Index = (props) => {
         <div className="shop-card">
           <div className="shop-card-image">
             <NavLink to={`/product/${item.slug}`} exact>
-              {/* <img src={item.img} alt={item.img.split(".")[0]} /> */}
+              <img src={item.img} alt={item.img.split(".")[0]} />
             </NavLink>
             {item.sale ? <span className="shop-card-sale">Sale</span> : null}
             <AddToWishList
