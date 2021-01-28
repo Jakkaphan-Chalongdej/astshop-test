@@ -134,9 +134,128 @@
   
   bottom: 0 !important;
 }
+@media (min-width: 320px) {
+  .product-card {
+    padding: 1rem;
+    border-radius:10px ;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .product-card-image {
+    height: 150px;
+  }
+  
+  .product-title-container {
+   font-size: small;
+  }
+  .product-title {
+    font-size: small;
+  }
+  
+  .product-wishlist {
+    color: #e5e5e5 !important;
+    font-size: 20px !important;
+    cursor: pointer;
+  }
+  .wished {
+    color: #e40046 !important;
+  }
+  
+  .product-vendor {
+    font-weight: 600;
+  }
+  
+  .product-price-container {
+    padding: 0.5rem 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .product-price {
+    font-weight: 700;
+    font-size: small;
+  }
+  
+  .product-discount-price {
+    font-size: small;
+    margin-left: 0.5rem;
+    color: #909399;
+  }
+  .product-percentage-discount {
+    margin-left: 0.5rem;
+    font-size: small;
+    padding: 0.2rem 0.7rem;
+    border-radius: 0.2rem;
+  }
+  
+  .product-features {
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-features-title {
+    width: 150px;
+    font-size: small;
+  }
+  
+  .feature-fulfillmemt {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feature-fulfillmemt .shop-card-product-features {
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-text {
+    color: #6c757d;
+    font-weight: 400;
+  }
+  
+  .product-features svg {
+    font-size: 1.2rem;
+    color: #e40046;
+    margin-right: 0.5rem;
+  }
+  
+  .feature-color {
+    padding: 0.2rem 0.5rem;
+    height: 25px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .product-quantity {
+    display: flex;
+    font-size: small;
+  }
+  
+  .product-quantity .btn-secondary {
+    font-size: small;
+    width: 23px;
+    height: 20px !important;
+    padding: 0rem;
+    border: none;
+  }
+  .btn-border{
+    border-radius: 10px 0px 0px 10px;
+  }
+  .btn-border2{
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  .product-quantity .form-control {
+    border-radius: 0;
+    margin-left: 0px !important;
+    width: 28px !important;
+    height: 20px !important;
+  }
+  
+  
+  
+}
 
-
-@media (min-width: 375px) and (max-width: 991.98px) {
+@media (min-width: 375px) {
   .product-card {
     padding: 2rem;
     border-radius:20px ;

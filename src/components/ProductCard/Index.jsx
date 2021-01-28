@@ -38,7 +38,7 @@ const Index = (props) => {
           </div>
           <div className="shop-card-content">
             <h3 className="shop-card-title">{item.name}</h3>
-            {/* <p>{item.des}</p> */}
+            <p>{item.des}</p>
             {/* <Ratings
               ratings={item.ratings}
               containerClassName={"shop-card-ratings-container"}

@@ -14,12 +14,12 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    paritialVisibilityGutter: 50,
+    items: 3,
+    paritialVisibilityGutter: -80,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 3,
+    items: 1,
     paritialVisibilityGutter: -20,
   },
 };
@@ -75,6 +75,7 @@ const HomeSale = (props) => {
           infinite
         >
           {products}
+         
         </Carousel>
       </div>
     </div>

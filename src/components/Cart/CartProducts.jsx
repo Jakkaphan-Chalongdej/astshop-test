@@ -11,7 +11,7 @@ const cartProducts = (props) => {
     <React.Fragment>
       <div class="card wish-list mb-3">
         <div class="card-body">
-          <Row className="row mb-4">
+          <Row className="mb-4">
             <Col className="col-md-5 col-lg-5 col-xl-5">
               <img
                 className={"shop-cart-image"}
