@@ -24,9 +24,9 @@ const Index = (props) => {
             <NavLink to={`/product/${item.slug}`} exact>
               <img src={item.img} alt={item.img} />
             </NavLink>
-            {item.sale === "true"? (
-              <span className="shop-card-sale">Sale</span>
-            ) : null}
+            {
+              (item.sale ===  true ? <span className="shop-card-sale">Sale</span> : null)||(item.sale ===  "true" ? <span className="shop-card-sale">Sale</span> : null)
+            }
             <AddToWishList
               productId={item.id}
               title={"add to wishlist"}

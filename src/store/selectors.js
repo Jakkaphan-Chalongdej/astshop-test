@@ -25,15 +25,15 @@ export const getProductsByFilter = (store, visibilityFilter, count = null,getpro
     case VISIBILITY_FILTERS.SALE:
       if (count) {
         return allProducts.filter((product, index) => {
-          if (product.sale === "true" && index < 6) {
-            return "true";
+          if (product.sale === true && "true" && index < 6) {
+            return true;
           }
-          return "false";
+          return true;
         });
       } else {
         return allProducts.filter(
           (product) =>
-            product.sale === "true" && product.price < filterPrices.pricerange
+            product.sale === true && "true" && product.price < filterPrices.pricerange
         );
       }
     case VISIBILITY_FILTERS.ALL:

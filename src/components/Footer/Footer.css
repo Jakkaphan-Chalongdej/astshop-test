@@ -66,6 +66,14 @@
   
 }
 }
+@media (max-width: 320px) {
+  .footers-img{
+    width: 200px;
+    height: auto;
+    margin-left: -50px !important;
+    
+  }
+}
 @media (max-width: 425px) {
   /* footer section */
   .footer-contaner {

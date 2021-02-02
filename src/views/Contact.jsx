@@ -4,17 +4,13 @@ import "../views/Home/Home.css";
 export default function Contact() {
   return (
     <>
-      
       <div className="contact-list">
         {/* <h1>Contact</h1> */}
         <br />
         <br />
         <Row>
           <Col>
-            <div
-              className="center"
-              style={{ marginTop: "100px", marginLeft: "150px" }}
-            >
+            <div className="center">
               <img src="/ast2.png" alt="logo-navbaer" />
             </div>
           </Col>

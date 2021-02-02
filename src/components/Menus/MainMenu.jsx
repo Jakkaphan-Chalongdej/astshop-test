@@ -1,6 +1,9 @@
 import React from "react";
 // import Menu from "../UI/Menu/Menu";
 import MenuComponent from "../Menus/MenuComponent";
+
+
+
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavbarBrand } from "react-bootstrap";
@@ -38,12 +41,13 @@ const MainMenu = (props) => {
                   src="/ast2.png"
                   alt="AST-logo"
                   width={70}
-                  height='auto'
+                  height="auto"
                   quality="70%"
                 />
               </picture>
             </NavLink>
           </NavbarBrand>
+         
           <button className="navbar-toggler " onClick={props.toggleSideBar}>
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -64,6 +68,7 @@ const MainMenu = (props) => {
 MainMenu.propTypes = {
   toggleSideBar: PropTypes.func.isRequired,
   cartItemNumber: PropTypes.number.isRequired,
+  cartCount: PropTypes.number,
 };
 
 export default MainMenu;
