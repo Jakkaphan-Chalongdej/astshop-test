@@ -41,7 +41,7 @@ function Login() {
             <MenuItem linkTo="">
               <AccountCircleIcon />
              
-              <span style={{ marginLeft: "5px" }}>{"Welcome jakkaphan"}</span>
+              <span style={{ marginLeft: "5px" }}>{"sign in"}</span>
             </MenuItem>
           </div>
          

@@ -29,7 +29,7 @@ class Home extends Component {
           
         <ItemBanners />
         <Deal />
-        {/* <HomeSale /> */}
+        <HomeSale />
       
       </React.Fragment>
     );

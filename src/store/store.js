@@ -6,6 +6,7 @@ import shopReducer from "./reducers";
 // const store = createStore(
 //   shopReducer,
 // );
+
 const store = createStore(shopReducer, applyMiddleware(thunk));
 
 export default store;

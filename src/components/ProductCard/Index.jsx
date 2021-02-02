@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import AddToWishList from "../AddToWishlist/AddToWishlist";
-import Ratings from "../Ratings/Ratings";
+// import Ratings from "../Ratings/Ratings";
 import {
   currencyToUse,
   productPrice,
@@ -22,9 +22,11 @@ const Index = (props) => {
         <div className="shop-card">
           <div className="shop-card-image">
             <NavLink to={`/product/${item.slug}`} exact>
-              <img src={item.img} alt={item.img.split(".")[0]} />
+              <img src={item.img} alt={item.img} />
             </NavLink>
-            {item.sale ? <span className="shop-card-sale">Sale</span> : null}
+            {item.sale === "true"? (
+              <span className="shop-card-sale">Sale</span>
+            ) : null}
             <AddToWishList
               productId={item.id}
               title={"add to wishlist"}
@@ -36,9 +38,12 @@ const Index = (props) => {
               </span>
             ) : null}
           </div>
+
           <div className="shop-card-content">
+            <h2 className="shop-card-vendor">
+              {item.vendor ? item.vendor.name : null}
+            </h2>
             <h3 className="shop-card-title">{item.name}</h3>
-            <p>{item.des}</p>
             {/* <Ratings
               ratings={item.ratings}
               containerClassName={"shop-card-ratings-container"}
@@ -51,14 +56,17 @@ const Index = (props) => {
                 {currencyName}
                 {productPrice(item.price, currencyValue)}
               </span>
-              {/* {item.discount_price ? (
+              {item.discount_price ? (
                 <span className={"shop-card-discount-price"}>
                   <span style={{ textTransform: "lowercase" }}>
                     {currencyName}
                   </span>
                   {productPrice(item.discount_price, currencyValue)}
                 </span>
-              ) : null} */}
+              ) : null}
+              <span className="shop-card-stock">
+                มีสินค้าทั้งหมด {item.quantity} ชิ้น
+              </span>
             </div>
             <div className="shop-card-features-container"></div>
             <NavLink

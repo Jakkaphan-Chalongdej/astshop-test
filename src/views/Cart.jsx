@@ -5,7 +5,7 @@ import {
   removeFromCart,
   clearCart,
   updateCartProductCount,
-} from "../store/actions/product";
+} from "../store/actions/Action.product";
 import CartProduct from "../components/Cart/CartProducts";
 import CartProductTotals from "../components/Cart/CartProductTotals";
 import OrderSuccess from "../components/OrderSuccess";

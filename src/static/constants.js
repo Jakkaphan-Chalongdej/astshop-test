@@ -1,7 +1,5 @@
 export const VISIBILITY_FILTERS = {
   ALL: "all",
-  Camera: "camera",
-  // WOMEN: "women",
-  // KIDS: "kids",
+  CAMERA: "camera",
   SALE: "sale",
 };

@@ -44,7 +44,7 @@ const MainMenu = (props) => {
               </picture>
             </NavLink>
           </NavbarBrand>
-          <button className="navbar-toggler" onClick={props.toggleSideBar}>
+          <button className="navbar-toggler " onClick={props.toggleSideBar}>
             <span className="navbar-toggler-icon"></span>
           </button>
           {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}

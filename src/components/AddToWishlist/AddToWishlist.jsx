@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toogleItemInWishList } from "../../store/actions/product";
+import { toogleItemInWishList } from "../../store/actions/Action.product";
 import { Heart } from "../UI/Icons/Icons.jsx";
 import { getWishlist } from "../../store/selectors";
 

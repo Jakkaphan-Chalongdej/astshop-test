@@ -173,6 +173,8 @@
 
 .main-banner-image {
   max-height: 100%;
+  max-width: auto;
+
   justify-self: end;
 }
 

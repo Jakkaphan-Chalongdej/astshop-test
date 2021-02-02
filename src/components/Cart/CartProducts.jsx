@@ -16,7 +16,7 @@ const cartProducts = (props) => {
               <img
                 className={"shop-cart-image"}
                 src={props.productPhoto}
-                alt={props.productPhoto.split(".")[0]}
+                alt={props.productPhoto}
               />
             </Col>
 

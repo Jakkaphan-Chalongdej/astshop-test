@@ -4,6 +4,7 @@ import "../views/Home/Home.css";
 export default function Contact() {
   return (
     <>
+      
       <div className="contact-list">
         {/* <h1>Contact</h1> */}
         <br />
@@ -18,9 +19,9 @@ export default function Contact() {
             </div>
           </Col>
           <Col>
-            <p  style={{  marginLeft: "50px" ,fontSize:'18px' }}>
+            <p style={{ marginLeft: "50px", fontSize: "18px" }}>
               <br />
-              <b style={{fontSize:'20px' }}>
+              <b style={{ fontSize: "20px" }}>
                 สำนักงานใหญ่
                 <br />
                 <br />
@@ -33,7 +34,7 @@ export default function Contact() {
               <br />
               <br />
               <br />
-              <b style={{fontSize:'20px' }}>สำนักงานนครราชสีมา </b>
+              <b style={{ fontSize: "20px" }}>สำนักงานนครราชสีมา </b>
               <br />
               <br />
               <br />
@@ -43,7 +44,8 @@ export default function Contact() {
               <br />
               NakhonRatchasima,Thailand 30000 <br />
               <br />
-              <b style={{fontSize:'18px' }}>โทรศัพท์/แฟ็กซ์</b> 02-012-3795 / 065-969-3552 <br />
+              <b style={{ fontSize: "18px" }}>โทรศัพท์/แฟ็กซ์</b> 02-012-3795 /
+              065-969-3552 <br />
               Tel./Fax. +662-012-3795 <br />
               Mobile : +665-969-3552
               <br />

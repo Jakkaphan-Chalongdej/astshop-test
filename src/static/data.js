@@ -41,9 +41,6 @@ let data = {
     rates: {
       THB: 1,
       USD: 0.033,
-      
-      
-      
     },
   },
   // overkill but doing it for fun

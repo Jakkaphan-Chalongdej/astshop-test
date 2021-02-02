@@ -55,19 +55,23 @@ const initialState = Data;
 //     max: 30000,
 //     pricerange: 30000,
 //   },
-//   products: [
-    
-//   ],
+//   products: [],
 // };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_PRODUCTS:
-      let products = action.product;
+      let product = action.product;
       return {
         ...state,
-        products: products,
+        products: product,
       };
+    case actionTypes.EDIT_PRODUCT:
+      return {
+        ...state,
+        products: action.update,
+      };
+
     case actionTypes.SET_PRODUCT_PRICE_FILTER:
       let productPriceFilter = state.priceFilter;
       productPriceFilter = {

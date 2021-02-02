@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getUsedCurrency } from "../../store/selectors";
 import { currencyToUse, productPrice } from "../../Utility/currency";
-import { setProductPriceFilter } from "../../store/actions/product";
+import { setProductPriceFilter } from "../../store/actions/Action.product";
 import { getProductPriceFilter } from "../../store/selectors";
 import "./index.css";
 

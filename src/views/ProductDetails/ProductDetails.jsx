@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../../store/actions/product";
+import { addToCart } from "../../store/actions/Action.product";
 import BreadCrumbs from "../../components/UI/BreadCrumbs/BreadCrumbs";
-import Ratings from "../../components/Ratings/Ratings";
+// import Ratings from "../../components/Ratings/Ratings";
 import AddToWishList from "../../components/AddToWishlist/AddToWishlist";
 import {
   currencyToUse,
@@ -119,7 +119,7 @@ class ProductDetails extends Component {
                     />
                   </div>
                   <div>
-                    <span>
+                    {/* <span>
                       <Ratings
                         ratings={this.product.ratings}
                         containerClassName={"product-rating"}
@@ -127,23 +127,24 @@ class ProductDetails extends Component {
                         halfStarIcon={"half-star-icon"}
                         emptyStarIcon={"empty-star-icon"}
                       />
-                    </span>
+                    </span> */}
                   </div>
                   <div className="product-price-container">
                     <span className="product-price">
                       {this.currencyKeys.name}
                       {productPrice(
-                        this.product.price,
-                        this.currencyKeys.value
-                      )}
+                          this.product.price,
+                          this.currencyKeys.value
+                        )}
+                      
                     </span>
                     {this.product.discount_price ? (
                       <span className="product-discount-price">
                         {this.currencyKeys.name}
                         {productPrice(
-                          this.product.discount_price,
-                          this.currencyKeys.value
-                        )}
+                        this.product.discount_price,
+                        this.currencyKeys.value
+                      )}
                       </span>
                     ) : null}
                     {this.product.discount_price ? (

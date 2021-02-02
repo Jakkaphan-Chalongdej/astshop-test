@@ -124,6 +124,14 @@
     font-weight: 700;
     color: #212121;
 }
+.shop-card .shop-card-stock{
+    position: absolute;
+    color: #6e6e6e;
+    right: 0 !important;
+    padding: 0px 10px ;
+    font-size: 12px;
+    font-weight: 500;
+}
 
 .shop-card .shop-card-discount {
     position: absolute;
@@ -142,7 +150,7 @@
 }
 
 .shop-card .shop-card-discount-price {
-    color: #999;
+    color: #E40046;
     font-size: 12px;
     font-weight: 400;
     text-decoration: line-through;
@@ -205,6 +213,10 @@
         padding-right: 5px !important;
         padding-left: 5px !important;
     }
+    .shop-card .shop-card-stock{
+        margin-top: 18px;
+        font-size: 8px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -232,6 +244,10 @@
         border: 1px solid #eaeaea;
         border-radius: 10px;
         position: relative;
+    }
+    .shop-card .shop-card-stock{
+        margin-top: 18px;
+        font-size: 8px;
     }
     .shop-card .shop-card-image img {
         max-width: 100px;

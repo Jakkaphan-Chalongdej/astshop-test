@@ -13,11 +13,8 @@ const db = require("../src/model");
 // });
 
 db.sequelize.sync(console.log("Connected to the MySQL server."));
-var corsOptions = {
-  origin: ` http://localhost:${PORT}`,
-  optionsSuccessStatus: 200,
-};
-server.use(cors(corsOptions));
+
+server.use(cors());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.static(path.resolve(__dirname, "..", "build")));
@@ -26,7 +23,6 @@ server.get("/", (req, res) => {
 });
 
 require("../src/route/product_route")(server);
-require("../src/route/productStatus.route")(server);
 server.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`Server is running on port ${PORT}.`);

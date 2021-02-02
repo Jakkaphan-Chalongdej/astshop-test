@@ -11,5 +11,6 @@ export const productPrice = (price, value) => {
 };
 
 export const productDiscountPrice = (price, discountPrice) => {
+
   return `-${Math.round(((discountPrice - price) * 100) / discountPrice)}%`;
 };

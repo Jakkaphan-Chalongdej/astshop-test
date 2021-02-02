@@ -8,13 +8,15 @@ import "./index.css";
 import "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
 import App from "./App";
+import { getProducts } from "./store/actions/Action.product";
 
 const app = (
   <Provider store={store}>
     <BrowserRouter>
-      <App /> 
+      <App />
     </BrowserRouter>
   </Provider>
 );
-
-ReactDOM.render(app, document.getElementById("root"));
+store.dispatch(getProducts()).then(() => {
+  ReactDOM.render(app, document.getElementById("root"));
+});

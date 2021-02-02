@@ -13,7 +13,7 @@ const checkoutCartProduct = (props) => {
             <img
               className={"shop-checkout-image"}
               src={props.checkoutProductImage}
-              alt={props.checkoutProductImage.split(".")[0]}
+              alt={props.checkoutProductImage}
             />
           </div>
           <div className="pl-3 checkout-product-info">

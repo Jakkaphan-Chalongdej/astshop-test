@@ -17,8 +17,10 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+
+ 
+
 // one to manny  product and  product status
-db.image = require("../model/image.mode")(sequelize, Sequelize);
 db.product = require("../model/product.mode")(sequelize, Sequelize);
 // db.productStatus = require("../model/product.status.mode")(
 //   sequelize,

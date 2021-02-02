@@ -6,7 +6,28 @@ module.exports = (sequelize, Sequelize) => {
 	  price: {
 		type: Sequelize.INTEGER,
 	  },
-	  stock: {
+	  quantity: {
+		type: Sequelize.INTEGER,
+	  },
+	  img:{
+		type: Sequelize.STRING,
+	  },
+      des: {
+		type: Sequelize.STRING,
+	  },
+      slug: {
+		type: Sequelize.STRING,
+	  },
+      discount_price: {
+		type: Sequelize.INTEGER,
+	  },
+      category: {
+		type: Sequelize.STRING,
+	  },
+      subcategory: {
+		type: Sequelize.STRING,
+	  },
+      sale: {
 		type: Sequelize.STRING,
 	  },
 	  

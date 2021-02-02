@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { closeMaxProductModal, toogleSideBar } from "./store/actions/product";
+import { closeMaxProductModal, toogleSideBar } from "./store/actions/Action.product";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import AdminRoute from "./AdminViews/routers/admin.roter";
@@ -9,17 +9,16 @@ import UserRoute from "./userViews/userview.router.js/user.router";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
 
-class App extends Component {
-  render() {
+function App(props){
     return (
       <div className="App">
         <MainLayout
-          storeCartCount={this.props.storeCartItemsCount}
-          showModal={this.props.showModalProp}
-          closeModalProp={this.props.closeModalProp}
-          modalMessage={this.props.modalMessageProp}
-          showSideBar={this.props.showSideNavigationProp}
-          toggleSideBar={this.props.toggleSideBarProp}
+          storeCartCount={props.storeCartItemsCount}
+          showModal={props.showModalProp}
+          closeModalProp={props.closeModalProp}
+          modalMessage={props.modalMessageProp}
+          showSideBar={props.showSideNavigationProp}
+          toggleSideBar={props.toggleSideBarProp}
         >
           <ScrollToTop />
           <Switch>
@@ -65,7 +64,6 @@ class App extends Component {
         </MainLayout>
       </div>
     );
-  }
 }
 
 const mapStateToProps = (state) => {

@@ -17,7 +17,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "./listItems";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
-import "../style.css";
+import '../style.admin.css'
 
 const drawerWidth = 240;
 

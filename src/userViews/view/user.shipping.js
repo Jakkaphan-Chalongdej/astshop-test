@@ -61,7 +61,7 @@ function UserShipping() {
                 <label htmlFor="country">Country</label>
                 <select id="country">
                   <option value="USA">United States</option>
-                  <option value="TH">Thailang</option>
+                  <option value="TH">Thailand</option>
                 </select>
               </div>
             </div>
