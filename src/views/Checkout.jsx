@@ -336,14 +336,14 @@ Checkout.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    productsProps: state.products,
-    cartProductsProps: state.cart,
-    cartTotalProps: state.cartTotal,
-    vatProps: state.vat,
-    promoCodeProp: state.promoCode,
-    usedPromoCodeProp: state.usedPromoCode,
-    deliveryOptions: state.deliveryOptions,
-    usedCurrencyProp: state.usedCurrency,
+    productsProps: state.product.products,
+    cartProductsProps: state.product.cart,
+    cartTotalProps: state.product.cartTotal,
+    vatProps: state.product.vat,
+    promoCodeProp: state.product.promoCode,
+    usedPromoCodeProp: state.product.usedPromoCode,
+    deliveryOptions: state.product.deliveryOptions,
+    usedCurrencyProp: state.product.usedCurrency,
   };
 };
 

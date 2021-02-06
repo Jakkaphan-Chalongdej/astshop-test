@@ -38,8 +38,8 @@ CurrencyConverter.propType = {
 
 const mapStateToProps = (state) => {
   return {
-    exchangeRatesProps: state.exchangeRates,
-    usedCurrencyProp: state.usedCurrency,
+    exchangeRatesProps: state.product.exchangeRates,
+    usedCurrencyProp: state.product.usedCurrency,
   };
 };
 

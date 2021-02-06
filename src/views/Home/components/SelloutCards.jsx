@@ -1,32 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 const SelloutCards = () => {
   let cardsData = [
     {
-      parth: "cartegory/",
+      parth: "category/security",
       image: "../../../../security.svg",
       title: "Security",
     },
     {
-      parth: "cartegory/",
+      parth: "category/home",
       image: "../../../../home.svg",
       title: "Home",
     },
     {
-      parth: "cartegory/",
+      parth: "category/office",
       image: "../../../../office.svg",
       title: "Office",
     },
     {
-      parth: "cartegory/",
+      parth: "category/other",
       image: "../../../../other.svg",
       title: "อื่นๆ",
     },
   ];
-
+  
   function generateSelloutCards() {
     return cardsData.map((card, index) => {
-      return (
+      return (<>
+      
+   
         <Link className="link-style" to={card.parth}>
           <div className="container-card">
             <div className="card sellout-card card-body shadow" key={index}>
@@ -41,17 +44,23 @@ const SelloutCards = () => {
             </div>
           </div>
         </Link>
+        </>
       );
     });
   }
+  
   return (
     <div className="container">
       <div style={{ marginLeft: "5px" }}>
         <h4>หมวดหมู่</h4>
       </div>
       <div className=" sellout-section mb-4">{generateSelloutCards()}</div>
+      
     </div>
   );
 };
+
+
+
 
 export default SelloutCards;

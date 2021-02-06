@@ -50,7 +50,7 @@ export default function Adminview(props) {
                 {props.children}
               </div>
             </div>
-          </div>
+          </div>         
         </Row>
       </main>
     </div>

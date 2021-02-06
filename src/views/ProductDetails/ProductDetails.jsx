@@ -232,12 +232,12 @@ class ProductDetails extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    productProp: state.products.find(
+    productProp: state.product.products.find(
       (product) => product.slug === ownProps.match.params.productSlug
     ),
-    usedCurrencyProp: state.usedCurrency,
-    showModal: state.productMaxShowModal,
-    modalmessage: state.showModal,
+    usedCurrencyProp: state.product.usedCurrency,
+    showModal: state.product.productMaxShowModal,
+    modalmessage: state.product.showModal,
   };
 };
 

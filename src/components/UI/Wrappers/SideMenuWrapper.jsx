@@ -7,8 +7,8 @@ const SideMenuWrapper = (props) => {
       className={`side-menu-wrapper ${props.showSideBar ? "show" : "hide"}`}
       onClick={props.toggleSideMenu}
     >
-      <div className='side-img'>
-        <img src="../../../../ast2.png" width='80px'></img>
+      <div className="side-img">
+        <img src="../../../../ast2.png" alt="ast2" width="80px"></img>
       </div>
 
       {props.children}

@@ -9,18 +9,33 @@ import Carousel from "react-multi-carousel";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    items: 5,
     paritialVisibilityGutter: 60,
+  },
+  desktop2: {
+    breakpoint: { max: 1920, min: 1024 },
+    items: 5,
+    paritialVisibilityGutter: 10,
+  },
+  desktop3: {
+    breakpoint: { max: 1440, min: 1024 },
+    items: 4,
+    paritialVisibilityGutter: -20,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
+    items: 3,
+    paritialVisibilityGutter: 0,
+  },
+  tablet2: {
+    breakpoint: { max: 768, min: 464 },
     items: 3,
     paritialVisibilityGutter: -80,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
-    paritialVisibilityGutter: -20,
+    items: 2,
+    paritialVisibilityGutter: -145,
   },
 };
 const HomeSale = (props) => {
@@ -85,7 +100,7 @@ const HomeSale = (props) => {
 const mapStateToProps = (state) => {
   return {
     productsProps: getProductsByFilter(state, VISIBILITY_FILTERS.SALE, 6),
-    usedCurrencyProp: state.usedCurrency,
+    usedCurrencyProp: state.product.usedCurrency,
   };
 };
 

@@ -172,9 +172,8 @@
 }
 
 .main-banner-image {
-  max-height: 100%;
-  max-width: auto;
-
+  max-width: 600px!important;
+  max-height: auto;
   justify-self: end;
 }
 
@@ -386,6 +385,7 @@
   }
   .card-img-top {
     border-radius: 0;
+    margin-left: 80px !important;
     max-width: 100px !important;
     max-height: 100px !important;
   }
@@ -477,6 +477,7 @@
     grid-template-rows: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 320px) {
   .container-card .card {
     background-color: #fff;
@@ -487,7 +488,7 @@
     height: 60px;
     text-decoration: none;
     border: 2px solid #eaeaea;
-    border-radius: 10px;
+    border-radius: 5px;
     position: relative;
     margin: 0px 3px;
     /* width: 186px !important;
@@ -495,6 +496,7 @@
   }
   .card-img-top {
     border-radius: 0;
+    margin-left: 80px !important;
     max-width: 100px !important;
     max-height: 100px !important;
   }
@@ -510,16 +512,14 @@
   .navbar-toggler {
     margin-right: 10px;
   }
-  .navbar a{
+  .navbar a {
     font-size: 8px !important;
   }
-  .menu-item a{
+  .menu-item a {
     display: none;
-   
   }
-  .main-banner-text .btn{
+  .main-banner-text .btn {
     margin-top: -60px;
-    
   }
   .main-banner-text p {
     font-size: 8px !important;
@@ -538,13 +538,13 @@
     align-items: center;
     background: #ffffff;
     display: grid;
-    border-radius: 10px;
+    border-radius: 5px;
     grid-template-columns: repeat(2, 1fr);
     max-height: 200px;
   }
-  .main-banner-image{
+  .main-banner-image {
     display: block;
-    max-height: 100%;
+    max-width: 190px !important;
     justify-self: end;
   }
   .main-banner-content p {
@@ -557,13 +557,12 @@
   .sellout-section {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.15rem;
-    
   }
   .sellout-section h5 {
     font-size: 5px;
     margin: 5px 0 30px 0;
   }
-  .main-banner-container .btn{
+  .main-banner-container .btn {
     padding: .1rem .1rem;
     font-size: 5px;
   }
@@ -589,12 +588,164 @@
   .item-content h4 {
     font-size: 8px;
   }
-  .item-content .btn{
-  
+  .item-content .btn {
     border-radius: 10px;
   }
-  .item-content a{
-  
+  .item-content a {
+    font-size: 5px !important;
+  }
+  .item-banner-title {
+    color: #f17e0a;
+    font-size: 8px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .banner-image {
+    height: 50px;
+    justify-self: end;
+  }
+  .deals-content {
+    border-radius: 10px;
+    height: 150px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    background: #ffffff;
+  }
+  .deals-image {
+    max-height: 350px;
+    margin-left: 0px;
+    align-self: center;
+    justify-self: center;
+  }
+  .deals-title {
+    margin-top: 0.5rem;
+    font-size: 0.5rem;
+  }
+  .deals-text a {
+    font-size: 5px;
+  }
+  .main-banner-text {
+    margin-top: 40px !important;
+  }
+}
+
+@media (max-width: 425px) and (min-width: 375px) {
+  .container-card .card {
+    background-color: #fff;
+    /* max-width: 200px !important;
+    max-height: 200px !important; */
+    padding: 1px;
+    text-align: left;
+    height: 60px;
+    text-decoration: none;
+    border: 2px solid #eaeaea;
+    border-radius: 5px;
+    position: relative;
+    margin: 0px 3px;
+    /* 
+    height: 250px !important; */
+  }
+  .card-img-top {
+    border-radius: 0;
+    margin-left: 80px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+  .sellout-card {
+    align-items: center;
+    padding: 0.2rem 1rem;
+  }
+  .sellout-icon {
+    max-width: 20px !important;
+    max-height: 20px !important;
+    margin-left: 0 !important;
+  }
+  .navbar-toggler {
+    margin-right: 10px;
+  }
+  .navbar a {
+    font-size: 8px !important;
+  }
+  .menu-item a {
+    display: none;
+  }
+  .main-banner-text .btn {
+    margin-top: -60px;
+  }
+  .main-banner-text p {
+    font-size: 8px !important;
+  }
+  .main-banner-text span {
+    padding: .2rem .2rem;
+    font-size: 8px !important;
+  }
+  .main-banner-container {
+    max-height: 300px;
+    padding: 0.5rem;
+    display: grid;
+  }
+  .main-banner-content {
+    padding: 1rem;
+    align-items: center;
+    background: #ffffff;
+    display: grid;
+    border-radius: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 200px;
+  }
+  .main-banner-text {
+    margin-top: 40px !important;
+  }
+  .main-banner-image {
+    display: block;
+    max-width: 200px !important;
+    justify-self: end;
+  }
+  .main-banner-content p {
+    display: block;
+    font-size: 10px;
+  }
+  .main-banner-content h4 {
+    font-size: 16px;
+  }
+  .sellout-section {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.15rem;
+  }
+  .sellout-section h5 {
+    font-size: 5px;
+    margin: 5px 0 30px 0;
+  }
+  .main-banner-container .btn {
+    padding: .1rem .1rem;
+    font-size: 5px;
+  }
+  .item-banners {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-gap: 1rem;
+  }
+  .item-container {
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  .container h4 {
+    font-size: 10px;
+  }
+  .item-content {
+    align-self: center;
+    margin-left: 10px;
+  }
+  .item-content h4 {
+    font-size: 8px;
+  }
+  .item-content .btn {
+    border-radius: 10px;
+  }
+  .item-content a {
     font-size: 5px !important;
   }
   .item-banner-title {
@@ -629,56 +780,48 @@
   }
 }
 
-@media (max-width: 425px) and (min-width: 375px){
+@media (max-width: 1024px) and (min-width: 990px) {
   .container-card .card {
-    background-color: #fff;
-    max-width: 200px !important;
-    max-height: 200px !important;
-    padding: 1px;
+    max-width: 400px ;
+    max-height: 400px ;
+    padding: 5px;
     text-align: left;
-    height: 60px;
+    height: 100px;
     text-decoration: none;
     border: 2px solid #eaeaea;
-    border-radius: 10px;
-    position: relative;
+    border-radius: 5px;
     margin: 0px 3px;
-    /* width: 186px !important;
-    height: 250px !important; */
   }
   .card-img-top {
     border-radius: 0;
-    max-width: 100px !important;
-    max-height: 100px !important;
+    margin-left: 70px ;
+    max-width: 120px ;
+    max-height: 120px ;
   }
   .sellout-card {
     align-items: center;
-    padding: 0.2rem 1rem;
+    padding: 3rem 1rem;
   }
   .sellout-icon {
-    max-width: 20px !important;
-    max-height: 20px !important;
-    margin-left: 0 !important;
+    max-width: 40px ;
+    max-height: 40px ;
+    margin-left: 0 ;
   }
   .navbar-toggler {
     margin-right: 10px;
   }
-  .navbar a{
-    font-size: 8px !important;
+  .navbar a {
+    font-size: 10px ;
   }
-  .menu-item a{
-    display: none;
-   
-  }
-  .main-banner-text .btn{
+  .main-banner-text .btn {
     margin-top: -60px;
-    
   }
   .main-banner-text p {
-    font-size: 8px !important;
+    font-size: 14px ;
   }
   .main-banner-text span {
     padding: .2rem .2rem;
-    font-size: 8px !important;
+    font-size: 8px ;
   }
   .main-banner-container {
     max-height: 300px;
@@ -686,36 +829,28 @@
     display: grid;
   }
   .main-banner-content {
-    padding: 1rem;
+    padding: 2rem;
     align-items: center;
     background: #ffffff;
     display: grid;
     border-radius: 10px;
     grid-template-columns: repeat(2, 1fr);
-    max-height: 200px;
+    max-height: 300px;
   }
-  .main-banner-image{
+  .main-banner-image {
     display: block;
-    max-height: 100%;
+    max-width: 500px ;
     justify-self: end;
-  }
-  .main-banner-content p {
-    display: block;
-    font-size: 10px;
-  }
-  .main-banner-content h4 {
-    font-size: 16px;
   }
   .sellout-section {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.15rem;
-    
   }
   .sellout-section h5 {
-    font-size: 5px;
+    font-size: 10px;
     margin: 5px 0 30px 0;
   }
-  .main-banner-container .btn{
+  .main-banner-container .btn {
     padding: .1rem .1rem;
     font-size: 5px;
   }
@@ -729,41 +864,38 @@
     text-align: center;
     align-items: center;
     background-color: #ffffff;
-    padding: 1px;
   }
   .container h4 {
-    font-size: 10px;
+    font-size: 16px;
   }
   .item-content {
     align-self: center;
-    margin-left: 10px;
+    margin-left: 5px;
   }
   .item-content h4 {
-    font-size: 8px;
+    font-size: 14px;
   }
-  .item-content .btn{
-  
-    border-radius: 10px;
+  .item-content .btn {
+    border-radius: 14px;
   }
-  .item-content a{
-  
-    font-size: 5px !important;
+  .item-content a {
+    font-size: 5px ;
   }
   .item-banner-title {
     color: #f17e0a;
-    font-size: 8px;
+    font-size: 10px;
     text-transform: uppercase;
     font-weight: 500;
     margin-bottom: 0;
   }
   .banner-image {
-    height: 50px;
+    height: 80px;
     justify-self: end;
   }
   .deals-content {
     border-radius: 10px;
-    height: 150px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    height: 350px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     background: #ffffff;
   }
   .deals-image {
@@ -773,10 +905,18 @@
     justify-self: center;
   }
   .deals-title {
-    margin-top: 0.5rem;
-    font-size: 0.5rem;
+    margin-top: 1rem;
+    font-size: 2rem;
   }
   .deals-text a {
-    font-size: 5px;
+    font-size: 15px;
+  }
+  .main-banner-text {
+    margin-top: 40px ;
+  }
+  .products-container {
+    display: contents;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1rem;
   }
 }

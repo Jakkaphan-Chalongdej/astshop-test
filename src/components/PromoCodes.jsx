@@ -37,7 +37,7 @@ PromoCodes.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    promoCodeProps: state.promoCode,
+    promoCodeProps: state.product.promoCode,
   };
 };
 

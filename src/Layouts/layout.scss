@@ -17,3 +17,10 @@
     max-width: 1600px;
   }
 }
+
+
+@media (min-width: 1025px) {
+  .appbar-bottom {
+    display: none !important;
+  }
+}

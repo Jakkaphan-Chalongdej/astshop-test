@@ -123,5 +123,4 @@ cartProducts.propTypes = {
   removeCartProduct: PropTypes.func.isRequired,
   currency: PropTypes.object.isRequired,
 };
-
 export default cartProducts;

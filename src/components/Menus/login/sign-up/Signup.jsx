@@ -1,74 +1,110 @@
 import React from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { register } from "../../../../store/actions/actionLogin/auth";
 import "../sign-in/signin.scss";
-export default function Signup() {
-  const [formData, updateFormData] = React.useState();
+
+function Signup(props) {
+  const [handleRegister, sethandleRegister] = React.useState({
+    successful: false,
+  });
+  let [formData, setform] = React.useState([
+    {
+      username: "",
+      email: "",
+      password: "",
+    },
+  ]);
 
   const handleChange = (e) => {
-    updateFormData({
-      ...formData,
-      [e.target.name]: e.target.value.trim(),
-    });
+    setform({ ...formData, [e.target.name]: e.target.value });
+    console.log("handle Change:", e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
-    axios
-    .post("/api/product", formData)
-    .then((response) => {
-      console.log(response);
-      console.log("Successfully");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  };
+    const data = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+    };
+    console.log(data)
+    props
+      .Register(data.username, data.email, data.password)
+      .then(() => {
+        sethandleRegister({
+          ...handleRegister,
+          successful: true,
+        });
+      })
+      .catch(() => {
+        sethandleRegister({ ...handleRegister, successful: false });
+      });
+  }
+  const { message } = props;
   return (
     <>
-      <div >
+      <div>
         <div className="signin-wrapper slideDown ">
-          <div className="form-wrapper ">
-            <h5>Sign Up</h5>
-            <input
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              className="form-field"
-              
-            />
-            <input
-              name="first-name"
-              placeholder="First Name"
-              onChange={handleChange}
-              className="form-field"
-            />
-            <input
-              name="last-name"
-              placeholder="Last Name"
-              onChange={handleChange}
-              className="form-field"
-            />
+          {handleRegister && (
+            <form className="form-wrapper " >
+              <h5>Sign Up</h5>
+            
+               <input
+                onChange={handleChange}
+                value={formData.username}
+                name="username"
+                placeholder="Username"
+                className="form-field"
+              />
 
-            <input
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              className="form-field"
-            />
-            <input
-              name="repeat-password"
-              placeholder="Repeat Password"
-              onChange={handleChange}
-              className="form-field"
-            />
-            <button onClick={handleSubmit} className="button primary">
-              Sign Up
-            </button>
-          </div>
-          
+              <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                className="form-field"
+              />
+
+              <input
+                onChange={handleChange}
+                value={formData.password}
+                name="password"
+                placeholder="Password"
+                className="form-field"
+              />
+              <button onClick={handleSubmit} className="button primary">Sign Up</button>
+            </form>
+          )}
+          {message && (
+            <div className="form-group">
+              <div
+                className={
+                  handleRegister.successful
+                    ? "alert alert-success"
+                    : "alert alert-danger"
+                }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  const { message } = state.message;
+  return {
+    message,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    Register: (username, email, password) =>
+      dispatch(register(username, email, password)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

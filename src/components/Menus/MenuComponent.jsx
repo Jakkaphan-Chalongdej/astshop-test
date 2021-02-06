@@ -1,7 +1,7 @@
 import React from "react";
-
 import MenuItem from "../UI/MenuItem/MenuItem";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,13 +20,6 @@ const StyledBadge = withStyles((theme) => ({
     padding: "0 4px",
   },
 }))(Badge);
-
-// const menuName = [
-//   { href: "/", label: "Home" },
-//   { href: "/sale", label: "Sale" },
-//   { href: "/contact", label: "Contact" },
-// ];
-
 const MenuComponent = (props) => {
   return (
     <React.Fragment>
@@ -37,11 +30,13 @@ const MenuComponent = (props) => {
         <Navbar>
           <MenuItem linkTo="/all">สินค้าทั้งหมด</MenuItem>
         </Navbar>
-        <div className="menu-item menu-top" >
+        <div
+          className="menu-item menu-top" 
+        >
           <SubmenuComponent />
         </div>
         <Navbar>
-          <MenuItem  linkTo="/sale">ลดราคา</MenuItem>
+          <MenuItem linkTo="/sale">ลดราคา</MenuItem>
         </Navbar>
         <Navbar>
           <MenuItem linkTo="/contact">ติดต่อ</MenuItem>
@@ -49,7 +44,7 @@ const MenuComponent = (props) => {
         <MenuItem linkTo={"/cart"}>
           <IconButton aria-label="cart">
             <StyledBadge
-              badgeContent={props.cartCount}
+              badgeContent={props.cartTotalProp}
               style={{ color: "#6e6e6e" }}
             >
               <ShoppingCartIcon />
@@ -63,6 +58,13 @@ const MenuComponent = (props) => {
 
 MenuComponent.propTypes = {
   cartCount: PropTypes.number,
-};
 
-export default MenuComponent;
+};
+const mapStateToProps = (state) => {
+  return {
+    
+    cartTotalProp: state.product.cartTotal,
+  }
+}
+
+export default connect(mapStateToProps)(MenuComponent);

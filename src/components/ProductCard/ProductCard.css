@@ -264,13 +264,14 @@
         color: #fff;
         background-color: #E40046;
         font-size: 10px;
-        font-weight: 200;
+        font-weight: 400;
         text-transform: uppercase;
         padding: 2px 7px;
         display: block;
         position: absolute;
         top: 10px;
         left: 0
+        
     }
     .shop-card .shop-card-wishlist {
         position: absolute;

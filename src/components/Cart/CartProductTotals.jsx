@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { currencyToUse } from "../../Utility/currency";
 
-const cartProductTotals = (props) => {
+
+function cartProductTotals(props) {
+ 
   let currencyKeys = currencyToUse(props.currency);
   let currencyName = currencyKeys.name;
   let products = props.productName;
@@ -78,17 +80,18 @@ const cartProductTotals = (props) => {
             className="btn btn-block shop-btn-secondary checkout"
             to={"/checkout"}
           >
-          {/* <Link
+            {/* <Link
             className="btn btn-block shop-btn-secondary checkout"
             to={"/cart"}
           > */}
             Checkout
           </Link>
+            
         </div>
       </div>
     </React.Fragment>
   );
-};
+}
 
 cartProductTotals.propTypes = {
   productName: PropTypes.string.isRequired,

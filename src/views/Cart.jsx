@@ -24,8 +24,6 @@ const Cart = (props) => {
   if (props.cartTotalProp > 0) {
     let cartPriceCountArray = [];
     let cartProducts = props.cartProductsProp.map((productInCart, index) => {
-      // fetch product information from source based on id
-      // product information can also be stored in state
       let productFromStore = props.productProps.find(
         (product) => product.id === productInCart.id
       );
@@ -47,7 +45,9 @@ const Cart = (props) => {
           productCount={productInCart.quantity}
           productQuantity={productFromStore.quantity}
           updateProductCount={(event) =>
+            
             productCountHandler(event.target.value, productInCart)
+            
           }
           removeCartProduct={() =>
             props.removeProductFromCartProp(productInCart)
@@ -96,12 +96,12 @@ const Cart = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    productProps: state.products,
-    cartTotalProp: state.cartTotal,
-    cartProductsProp: state.cart,
-    vatProp: state.vat,
-    orderSuccessProp: state.orderSuccess,
-    usedCurrencyProp: state.usedCurrency,
+    productProps: state.product.products,
+    cartTotalProp: state.product.cartTotal,
+    cartProductsProp: state.product.cart,
+    vatProp: state.product.vat,
+    orderSuccessProp: state.product.orderSuccess,
+    usedCurrencyProp: state.product.usedCurrency,
   };
 };
 
@@ -112,7 +112,9 @@ const mapDispatchToProps = (dispatch) => {
     clearProductsFromCartProp: () => dispatch(clearCart()),
     updateCartProductCountProp: (value, productDetails) =>
       dispatch(updateCartProductCount(Number(value), productDetails)),
-  };
+      
+  }
+  
 };
 
 Cart.propTypes = {

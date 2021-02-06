@@ -51,8 +51,8 @@ let data = {
   },
   priceFilter: {
     min: 0,
-    max: 30000,
-    pricerange: 30000,
+    max: 10000,
+    pricerange: 10000,
   },
   products: [
     {

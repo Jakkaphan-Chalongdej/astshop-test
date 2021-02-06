@@ -1,39 +1,47 @@
 import { VISIBILITY_FILTERS } from "../static/constants";
 
+export const getProduct = (store) => store.product.products;
+export const getProductPriceFilter = (store) => store.product.priceFilter;
+export const getWishlist = (store) => store.product.wishlist;
+export const getUsedCurrency = (store) => store.product.usedCurrency;
 
-
-export const getProduct = (store) => store.products;
-export const getProductPriceFilter = (store) => store.priceFilter;
-export const getWishlist = (store) => store.wishlist;
-
-export const getProductsByFilter = (store, visibilityFilter, count = null,getproduct) => {
-  
-  
+export const getProductsByFilter = (store, visibilityFilter, count = null) => {
   const allProducts = getProduct(store);
   const filterPrices = getProductPriceFilter(store);
   switch (visibilityFilter) {
-    case VISIBILITY_FILTERS.CAMERA:
-      console.log("CAMERA");
-      // case VISIBILITY_FILTERS.:
-      // case VISIBILITY_FILTERS.:
+    case VISIBILITY_FILTERS.SECURITY:
+    case VISIBILITY_FILTERS.HOME:
+    case VISIBILITY_FILTERS.OFFICE:
+    case VISIBILITY_FILTERS.OTHER:
       return allProducts.filter(
         (product) =>
           product.category === visibilityFilter &&
           product.price < filterPrices.pricerange,
         console.log(visibilityFilter)
       );
+    case VISIBILITY_FILTERS.CAMERA:
+      // case VISIBILITY_FILTERS.:
+      // case VISIBILITY_FILTERS.:
+      return allProducts.filter(
+        (product) =>
+          product.subcategory === visibilityFilter &&
+          product.price < filterPrices.pricerange,
+        console.log(visibilityFilter)
+      );
     case VISIBILITY_FILTERS.SALE:
       if (count) {
         return allProducts.filter((product, index) => {
-          if (product.sale === true && "true" && index < 6) {
+          if ((product.sale === "true" || product.sale === true) && index < 20) {
             return true;
           }
-          return true;
+          return false;
         });
       } else {
         return allProducts.filter(
           (product) =>
-            product.sale === true && "true" && product.price < filterPrices.pricerange
+            (product.sale === "true" &&
+              product.price < filterPrices.pricerange) ||
+            (product.sale === true && product.price < filterPrices.pricerange)
         );
       }
     case VISIBILITY_FILTERS.ALL:
@@ -43,5 +51,3 @@ export const getProductsByFilter = (store, visibilityFilter, count = null,getpro
       });
   }
 };
-
-export const getUsedCurrency = (store) => store.usedCurrency;
