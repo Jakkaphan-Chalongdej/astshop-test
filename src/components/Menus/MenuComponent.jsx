@@ -1,7 +1,6 @@
 import React from "react";
 import MenuItem from "../UI/MenuItem/MenuItem";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
@@ -44,7 +43,7 @@ const MenuComponent = (props) => {
         <MenuItem linkTo={"/cart"}>
           <IconButton aria-label="cart">
             <StyledBadge
-              badgeContent={props.cartTotalProp}
+              badgeContent={props.cartCount}
               style={{ color: "#6e6e6e" }}
             >
               <ShoppingCartIcon />
@@ -60,11 +59,6 @@ MenuComponent.propTypes = {
   cartCount: PropTypes.number,
 
 };
-const mapStateToProps = (state) => {
-  return {
-    
-    cartTotalProp: state.product.cartTotal,
-  }
-}
 
-export default connect(mapStateToProps)(MenuComponent);
+
+export default MenuComponent;

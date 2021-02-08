@@ -1,6 +1,5 @@
 /* footer section */
 
-
 .footer-contaner {
   /* color: #ffffff;
   background: #111111; */
@@ -12,28 +11,30 @@
   grid-template-columns: repeat(1, 1fr);
   /* justify-items: center; */
 }
+
 .footers {
-  font-size: 12px ;
-  align-items: center; 
+  font-size: 12px;
+  align-items: center;
 }
+
 .footers p {
   font-size: 12px;
 }
 
-.footers img{
+.footers img {
   width: 200px;
   height: auto;
   margin-left: 150px;
-  
 }
+
 .footer-contaner a {
   color: #6c757d;
   text-decoration: none;
 }
-.footer-contaner  {
-  background-color:#ffffffc7 !important;
-}
 
+.footer-contaner {
+  background-color: #ffffffc7 !important;
+}
 
 @media (max-width: 576px) {
   /* footer section */
@@ -44,67 +45,70 @@
   }
   .footers {
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     align-items: center;
-    
   }
-  .footers img{
+  .footers img {
     margin-left: 60px;
     width: 175px;
     height: auto;
-    
   }
 }
+
 @media (max-width: 768px) {
-  .footers h3{
+  .footers h3 {
     font-size: 1rem;
   }
-.footers img{
-  width: 200px;
-  height: auto;
-  margin-left: 0px;
-  
+  .footers img {
+    width: 200px;
+    height: auto;
+    margin-left: 0px;
+  }
 }
+@media (max-width: 1024px) {
+  .footers h3 {
+    font-size: 1rem;
+  }
+  .footers img {
+    width: 200px;
+    height: auto;
+    margin-left: 20px;
+  }
 }
 @media (max-width: 320px) {
-  .footers-img{
+  .footers-img {
     width: 200px;
     height: auto;
     margin-left: -50px !important;
-    
   }
 }
+
 @media (max-width: 425px) {
   /* footer section */
   .footer-contaner {
-   
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
     justify-items: left;
-    
   }
-  .footer-contaner p{
+  .footer-contaner p {
     font-size: 10px;
   }
-  .footer-contaner h3{
+  .footer-contaner h3 {
     font-size: 12px;
   }
-  .footer-contaner .col{
-    flex:auto !important;
+  .footer-contaner .col {
+    flex: auto !important;
   }
-  
   .footers {
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     align-items: center;
-    
   }
-  .footers img{
+  .footers img {
     margin-top: -40px;
-    margin-bottom: 20px ;
+    margin-bottom: 20px;
     margin-left: 60px;
     width: 135px;
     height: auto;
-    
   }
 }

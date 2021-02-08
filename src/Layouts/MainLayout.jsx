@@ -7,9 +7,9 @@ import SideMenu from "../components/Menus/SideMenu";
 import Footer from "../components/Footer/Index";
 import Modal from "../components/UI/Modal/Modal";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./layout.scss";
+import StorefrontIcon from "@material-ui/icons/Storefront";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
   fabButton: {
     position: "absolute",
     zIndex: 1,
-    top: -20,
+    top: -10,
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -41,9 +41,11 @@ const useStyles = makeStyles(() => ({
 const StyledBadge = withStyles((theme) => ({
   badge: {
     right: -3,
-    top: 13,
+    top: -5,
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
+    backgroundColor: "#f17e0a",
+    color: "#fff",
+    padding: "0 2px",
   },
 }))(Badge);
 const MainLayout = (props) => {
@@ -92,20 +94,25 @@ const MainLayout = (props) => {
             <IconButton edge="start" color="inherit" aria-label="open drawer">
               <Link to={"/"}>
                 <HomeIcon style={{ color: "#fff" }} />
+                <p className="menu-font-bottom">หน้าหลัก</p>
               </Link>
             </IconButton>
+            <IconButton edge="end" color="inherit" aria-label="open drawer">
+              <Link to={"/all"}>
+                <StorefrontIcon style={{ color: "#fff" }} />
+                <p className="menu-font-bottom">สินค้า</p>
+              </Link>
+            </IconButton>
+
             <Fab
-              color="secondary"
+              style={{ backgroundColor: "#fff" }}
               aria-label="add"
               className={classes.fabButton}
             >
               <Link to={"/cart"}>
                 <StyledBadge
-                  badgeContent={
-                    (props.cartTotalProp,
-                    console.log("cartTotalProp", props.cartTotalProp))
-                  }
-                  style={{ color: "#fff" }}
+                  badgeContent={props.storeCartCount}
+                  style={{ color: "#6e6e6e" }}
                 >
                   <ShoppingCartIcon />
                 </StyledBadge>
@@ -115,6 +122,7 @@ const MainLayout = (props) => {
             <IconButton edge="end" color="inherit">
               <Link to={"/"}>
                 <PersonIcon style={{ color: "#fff" }} />
+                <p className="menu-font-bottom">บัญชี</p>
               </Link>
             </IconButton>
           </Toolbar>
@@ -132,10 +140,5 @@ MainLayout.propTpes = {
   showSideBar: PropTypes.bool,
   toggleSideBar: PropTypes.func.isRequired,
 };
-const mapStateToProps = (state) => {
-  return {
-    cartTotalProp: state.product.cartTotal,
-  };
-};
 
-export default connect(mapStateToProps)(MainLayout);
+export default MainLayout;
