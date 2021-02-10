@@ -22,6 +22,7 @@ const responsive = {
     items: 4,
     paritialVisibilityGutter: -20,
   },
+  
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 3,
@@ -51,13 +52,16 @@ const HomeSale = (props) => {
           {Math.round(product.price * currencyKeys.value).toLocaleString()}
           {product.discount_price ? (
             <span className={"shop-card-discount-price"}>
-              <span style={{ textTransform: "lowercase" }}>{currencyKeys.name}</span>
+              <span style={{ textTransform: "lowercase" }}>
+                {currencyKeys.name}
+              </span>
               {productPrice(product.discount_price, currencyKeys.value)}
             </span>
           ) : null}
         </p>
 
-        <NavLink style={{marginTop:'10px'}}
+        <NavLink
+          style={{ marginTop: "10px" }}
           className="btn btn-primary btn-sm"
           to={`/product/${product.slug}`}
           exact
@@ -90,7 +94,6 @@ const HomeSale = (props) => {
           infinite
         >
           {products}
-         
         </Carousel>
       </div>
     </div>

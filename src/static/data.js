@@ -14,6 +14,7 @@ let data = {
       percentage: 5,
     },
   ],
+  orders:[],
   usedPromoCode: null,
   deliveryOptions: [
     {

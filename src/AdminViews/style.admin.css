@@ -46,13 +46,32 @@
     border-color: #f17e0a;
 }
 
-.table-Row td p{
+/* .table-Row td p{
   margin-top: 10px;
+  
+  background-color: #fff;
    
+} */
+
+.table-Row {
+    position: absolute;
+    background-color: #fff;
+    width: 75vw;
+    box-shadow: #747373 1px 8px 10px 1px;
+    padding: 10px;
+
 }
 
-.con-button-update button{
+.table-Row .con-button-close {
+    position: absolute;
+    margin-left: 70px ;
+    margin-top: -75px !important;
+}
+
+.table-Row .con-button-update {
+    position: absolute;
+    margin-top: 10px;
     margin-left: 10px;
     background-color: #28a745;
-    border-color:#fff;
+    border-color: #fff;
 }

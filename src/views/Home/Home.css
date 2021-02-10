@@ -147,12 +147,12 @@
 }
 
 .font-p {
-  font-size: 1.4rem;
+ 
   font-weight: 200;
 }
 
 .main-banner-content {
-  height: 70vh;
+  height: auto;
   padding: 5rem;
   align-items: center;
   background: #ffffff;
@@ -173,7 +173,7 @@
 
 .main-banner-image {
   max-width: 600px!important;
-  max-height: auto;
+  height: auto;
   justify-self: end;
 }
 
@@ -377,7 +377,7 @@
     max-height: 200px !important;
     padding: 1px;
     text-align: left;
-    height: 150px;
+    height: auto;
     border-radius: 10px;
     margin: 0px 3px;
     /* width: 186px !important;
@@ -474,7 +474,6 @@
   /* products section */
   .products-container {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
   }
 }
 
@@ -513,7 +512,7 @@
     margin-right: 10px;
   }
   .navbar a {
-    font-size: 8px !important;
+    font-size: 0.8rem !important;
   }
   .menu-item a {
     display: none;
@@ -839,8 +838,8 @@
   }
   .main-banner-image {
     display: block;
-    max-width: 500px ;
-    justify-self: end;
+    max-width: 500px !important;
+    
   }
   .sellout-section {
     grid-template-columns: repeat(4, 1fr);

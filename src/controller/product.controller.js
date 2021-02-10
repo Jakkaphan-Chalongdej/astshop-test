@@ -24,8 +24,11 @@ exports.create = (req, res) => {
 
 // FETCH all Customers
 exports.findAll = (req, res) => {
-  Product.findAll().then((products) => {
+  Product.findAll({
+    order: [['id', 'DESC'],],
+  }).then((products) => {
     // Send all customers to Client
+
     res.send(products);
   });
 };
@@ -69,4 +72,4 @@ exports.delete = (req, res) => {
     res.status(200).send("deleted successfully a customer with id = " + id);
   });
 };
-return false
+return false;

@@ -25,22 +25,7 @@ export default function Reports() {
   return (
     <div>
       <Layout>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={8} lg={12}>
-            <Paper className={fixedHeightPaper}>
-              <Chart />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6}>
-            <Paper className={fixedHeightPaper}>
-              <Deposits />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={6}>
-            <Paper className={fixedHeightPaper}>
-              <Deposits />
-            </Paper>
-          </Grid>
+        <Grid container spacing={4}>        
           <Grid item xs={12} md={6} lg={6}>
             <Paper className={fixedHeightPaper}>
               <Deposits />

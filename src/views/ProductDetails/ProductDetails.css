@@ -139,7 +139,7 @@
   .product-card {
     padding: 1rem;
     border-radius:10px ;
-    height: 50vh;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }

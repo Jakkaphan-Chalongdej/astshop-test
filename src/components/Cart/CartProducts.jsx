@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import AddToWishList from "../../components/AddToWishlist/AddToWishlist";
 import { currencyToUse } from "../../Utility/currency";
 import { Row, Col } from "react-bootstrap";
-const cartProducts = (props) => {
+function CartProducts(props) {
   let currencyKeys = currencyToUse(props.currency);
   let currencyName = currencyKeys.name;
-
+ 
   return (
     <React.Fragment>
       <div class="card wish-list mb-3">
@@ -100,6 +100,7 @@ const cartProducts = (props) => {
                       {(
                         props.productPrice * props.productCount
                       ).toLocaleString()}
+                    
                     </strong>
                   </span>
                 </p>
@@ -110,9 +111,9 @@ const cartProducts = (props) => {
       </div>
     </React.Fragment>
   );
-};
+}
 
-cartProducts.propTypes = {
+CartProducts.propTypes = {
   productId: PropTypes.number.isRequired,
   productPhoto: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
@@ -123,4 +124,5 @@ cartProducts.propTypes = {
   removeCartProduct: PropTypes.func.isRequired,
   currency: PropTypes.object.isRequired,
 };
-export default cartProducts;
+
+export default CartProducts;

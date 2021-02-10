@@ -6,7 +6,8 @@ export const setProductPriceFilter = (price) => {
 };
 
 export const getProducts = () => async (dispatch) => {
-  axios.get("product")
+  await axios
+    .get("product")
     .then((res) => {
       const response = res.data;
       console.log("Action get Products");
@@ -20,25 +21,59 @@ export const getProducts = () => async (dispatch) => {
       console.log(error);
     });
 };
-export const UpdataProducts = (id,update) => async (dispatch) => {
-  axios.put(`product/${id}`,update)
+export const addProducts = (product) => async (dispatch) => {
+  await axios
+    .post("product/create", product)
     .then(() => {
-      console.log("Action Update Products");
-      dispatch({
-        type: actionTypes.EDIT_PRODUCT,
-        product: update,
-      });
+      console.log("Action Add Products");
+      dispatch(getProducts());
     })
     .catch(function (error) {
       console.log(error);
     });
- 
+};
+
+export const deleteProducts = (id) => async (dispatch) => {
+  axios
+    .delete(`product/${id}`)
+    .then(() => {
+      console.log("Action Delete Products");
+      dispatch(getProducts());
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const UpdataProducts = (id, update) => async (dispatch) => {
+  await axios
+    .put(`product/${id}`, update)
+    .then(() => {
+      console.log("Action Update Products");
+      // dispatch({
+      //   type: actionTypes.EDIT_PRODUCT,
+      //   product: update,
+      // });
+      dispatch(getProducts());
+
+      console.log("Action Update Products3");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 export const addToCart = (productDetails) => {
   return {
     type: actionTypes.ADD_TO_CART,
     productDetails: productDetails,
+  };
+};
+
+export const addToOrder = (OrderDetails) => {
+  return {
+    type: actionTypes.ADD_TO_ORDER,
+    OrderDetails: OrderDetails,
   };
 };
 
@@ -65,10 +100,7 @@ export const updateCartProductCount = (value, productDetails) => {
 
 export const confirmOrder = (order, ownProps) => {
   return (dispatch) => {
-    // send order object to an end point of choice
-    console.log(order);
-    // todo
-    //token to be used with stripe
+    dispatch(addToOrder(order));
     dispatch(confirmOrderSuccess());
     ownProps.history.push("/cart");
     setTimeout(() => {

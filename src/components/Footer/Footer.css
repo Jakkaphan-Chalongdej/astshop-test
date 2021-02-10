@@ -13,13 +13,11 @@
 }
 
 .footers {
-  font-size: 12px;
+  
   align-items: center;
 }
 
-.footers p {
-  font-size: 12px;
-}
+
 
 .footers img {
   width: 200px;

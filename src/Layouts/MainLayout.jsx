@@ -20,11 +20,13 @@ import HomeIcon from "@material-ui/icons/Home";
 import PersonIcon from "@material-ui/icons/Person";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
+import { Col, Row } from "react-bootstrap";
 const useStyles = makeStyles(() => ({
   appBar: {
     top: "auto",
     bottom: 0,
     background: "#57aef5",
+    padding: "auto",
   },
   grow: {
     flexGrow: 1,
@@ -91,40 +93,62 @@ const MainLayout = (props) => {
       <div className="appbar-bottom">
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="open drawer">
-              <Link to={"/"}>
-                <HomeIcon style={{ color: "#fff" }} />
-                <p className="menu-font-bottom">หน้าหลัก</p>
-              </Link>
-            </IconButton>
-            <IconButton edge="end" color="inherit" aria-label="open drawer">
-              <Link to={"/all"}>
-                <StorefrontIcon style={{ color: "#fff" }} />
-                <p className="menu-font-bottom">สินค้า</p>
-              </Link>
-            </IconButton>
-
-            <Fab
-              style={{ backgroundColor: "#fff" }}
-              aria-label="add"
-              className={classes.fabButton}
-            >
-              <Link to={"/cart"}>
-                <StyledBadge
-                  badgeContent={props.storeCartCount}
-                  style={{ color: "#6e6e6e" }}
+            <Row style={{ width: "100vw" }} >
+              <Col md={5} xs={5} sm={5}>
+                <Row className="col-center">
+                  <Col md={6} xs={6} sm={6}>
+                    <IconButton color="inherit" aria-label="open drawer">
+                      <Link to={"/"}>
+                        <HomeIcon style={{ color: "#fff" }} />
+                        <p className="menu-font-bottom">หน้าหลัก</p>
+                      </Link>
+                    </IconButton>
+                  </Col>
+                  <Col md={6} xs={6} sm={6}>
+                    <IconButton color="inherit" aria-label="open drawer">
+                      <Link to={"/all"}>
+                        <StorefrontIcon style={{ color: "#fff" }} />
+                        <p className="menu-font-bottom">สินค้า</p>
+                      </Link>
+                    </IconButton>
+                  </Col>
+                </Row>
+              </Col>
+              <Col md={2} xs={2} sm={2}>
+                <Fab
+                  style={{ backgroundColor: "#fff" }}
+                  aria-label="add"
+                  className={classes.fabButton}
                 >
-                  <ShoppingCartIcon />
-                </StyledBadge>
-              </Link>
-            </Fab>
-            <div className={classes.grow} />
-            <IconButton edge="end" color="inherit">
-              <Link to={"/"}>
-                <PersonIcon style={{ color: "#fff" }} />
-                <p className="menu-font-bottom">บัญชี</p>
-              </Link>
-            </IconButton>
+                  <Link to={"/cart"}>
+                    <StyledBadge
+                      badgeContent={props.storeCartCount}
+                      style={{ color: "#6e6e6e" }}
+                    >
+                      <ShoppingCartIcon />
+                    </StyledBadge>
+                  </Link>
+                </Fab>
+                <div className={classes.grow} />
+              </Col>
+              <Col md={5} xs={5} sm={5}>
+                <Row className="col-center">
+                  <Col md={6} xs={6} sm={6}>
+                    <IconButton color="inherit" aria-label="open drawer">
+                      <Link to={"/all"}></Link>
+                    </IconButton>
+                  </Col>
+                  <Col md={6} xs={6} sm={6}>
+                    <IconButton color="inherit">
+                      <Link to={"/"}>
+                        <PersonIcon style={{ color: "#fff" }} />
+                        <p className="menu-font-bottom">บัญชี</p>
+                      </Link>
+                    </IconButton>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
           </Toolbar>
         </AppBar>
       </div>

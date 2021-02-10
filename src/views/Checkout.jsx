@@ -6,9 +6,9 @@ import CheckoutCartProduct from "../components/Checkout/CheckoutCartProduct";
 import PromoCodeForm from "../components/Checkout/PromoCodeForm";
 import PromoCodeValue from "../components/Checkout/PromoCodeValue";
 import CheckoutCartTotals from "../components/Checkout/CheckoutCartTotals";
-// import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
+import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
 import DeliveryOptions from "../components/Checkout/Forms/DeliveryOptions";
-import PaymentOptions from "../components/Checkout/Forms/Payments/PaymentOptions";
+
 import Alert from "../components/UI/Alert/Alert";
 import PropTypes from "prop-types";
 import formValidator from "../Utility/formValidation";
@@ -26,26 +26,12 @@ class Checkout extends Component {
     usedDeliveryOption: 1,
     makeOrder: false,
     correctCardInfo: false,
-    customerInfo: {
-      firstName: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorsMsg: "",
+    customerInfo: 
+      {
+        firstName: "Mr.DDD",
+        lastName: "tester",
+        id: "1",
       },
-      secondName: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorsMsg: "",
-      },
-      email: {
-        value: "",
-        valid: false,
-        touched: false,
-        errorsMsg: "",
-      },
-    },
   };
 
   customerInfoChangeHandler = (event, identifier) => {
@@ -73,31 +59,28 @@ class Checkout extends Component {
     this.setState({ promoCode: event.target.value });
   };
 
-  paymentOptionChangeHandler = (event) => {
-    if (event.target.value === "creditCard") {
-      this.setState({ correctCardInfo: false });
-    } else {
-      this.setState({ correctCardInfo: true });
-    }
-    this.setState({ paymentMethod: event.target.value });
-  };
+  // paymentOptionChangeHandler = (event) => {
+  //   if (event.target.value === "creditCard") {
+  //     this.setState({ correctCardInfo: false });
+  //   } else {
+  //     this.setState({ correctCardInfo: true });
+  //   }
+  //   this.setState({ paymentMethod: event.target.value });
+  // };
 
   confirmOrderHandler = (event) => {
     event.preventDefault();
     let order = {};
-    order["cart"] = this.props.cartProductsProps;
+    order["product"] = this.props.cartProductsProps;
     order["user"] = {
-      firstName: this.state.customerInfo.firstName.value,
-      secondName: this.state.customerInfo.secondName.value,
-      email: this.state.customerInfo.email.value,
+      firstName: this.state.customerInfo.firstName,
+      lastName: this.state.customerInfo.lastName,
+      id: this.state.customerInfo.id,
     };
     order["usedPromoCode"] = this.state.promoCode;
     order["currency"] = this.props.usedCurrencyProp;
-    order["paymentMethod"] = this.state.paymentMethod;
+    // order["paymentMethod"] = this.state.paymentMethod;
     order["deliveryOption"] = this.state.usedDeliveryOption;
-
-    // todo
-    // create stripe token for payments
     this.props.confirmOrderProp(order);
   };
 
@@ -170,6 +153,7 @@ class Checkout extends Component {
               : 0,
           count: cartProduct.quantity,
         });
+
         return (
           <CheckoutCartProduct
             key={index}
@@ -279,12 +263,12 @@ class Checkout extends Component {
             <h4 className="mb-3">Billing Information</h4>
             <form className="shop-form shop-bg-white p-3" noValidate>
               {/* customer details form fields */}
-              {/* <CustomerInputs
+              <CustomerInputs
                 customerInfo={this.state.customerInfo}
                 inputChanged={(event, identifier) =>
                   this.customerInfoChangeHandler(event, identifier)
-                } 
-              />*/}
+                }
+              />
               {/* delivery options selection fields */}
               <h4 className="">Delivery Options</h4>
               <DeliveryOptions
@@ -296,16 +280,16 @@ class Checkout extends Component {
 
               <h4 className="mb-3">Payment Method</h4>
               {/* payment option selection field */}
-              <PaymentOptions
+              {/* <PaymentOptions
                 paymentMethod={this.state.paymentMethod}
                 paymentOptionChanged={this.paymentOptionChangeHandler}
-              />
+              /> */}
               {/* payment section */}
               <div>{chosenPaymentMethod}</div>
 
               <hr className="mb-4" />
               <button
-                disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
+                // disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
                 className="btn shop-btn-secondary btn-lg btn-block"
                 onClick={(event) => this.confirmOrderHandler(event)}
               >
@@ -349,14 +333,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    confirmOrderProp: (order) => dispatch(confirmOrder(order, ownProps)),
+    confirmOrderProp: (order) => {
+      dispatch(confirmOrder(order, ownProps));
+    },
     setPromoCodeProp: (promoCode, percentage) =>
       dispatch(setPromoCode(promoCode, percentage)),
   };
 };
 
 // inject stripe prop into the component (injectStripe(Checkout))
-export default  connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

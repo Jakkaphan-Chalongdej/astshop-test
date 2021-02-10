@@ -18,17 +18,24 @@
   }
 }
 @media (max-width: 1025px) {
-  .menu-font-bottom{
-    font-size:10px ;
+  .menu-font-bottom {
+    font-size: 10px;
     color: #fff;
   }
-  
 }
-.appbar-bottom a{
+.appbar-bottom a {
   text-decoration: none;
+}
+.appbar-bottom {
+  padding: auto;
 }
 @media (min-width: 1025px) {
   .appbar-bottom {
     display: none !important;
   }
+}
+.col-center {
+
+    text-align: center;
+
 }

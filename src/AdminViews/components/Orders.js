@@ -7,58 +7,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
+import PropTypes from "prop-types";
+import CheckoutCartProduct from "../../components/Checkout/CheckoutCartProduct";
+import { currencyToUse } from "../../Utility/currency";
+import { connect } from "react-redux";
 
 // Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(
-    0,
-    "16 Mar, 2019",
-    "Elvis Presley",
-    "Tupelo, MS",
-    "VISA ⠀•••• 3719",
-    312.44
-  ),
-  createData(
-    1,
-    "16 Mar, 2019",
-    "Paul McCartney",
-    "London, UK",
-    "VISA ⠀•••• 2574",
-    866.99
-  ),
-  createData(
-    2,
-    "16 Mar, 2019",
-    "Tom Scholz",
-    "Boston, MA",
-    "MC ⠀•••• 1253",
-    100.81
-  ),
-  createData(
-    3,
-    "16 Mar, 2019",
-    "Michael Jackson",
-    "Gary, IN",
-    "AMEX ⠀•••• 2000",
-    654.39
-  ),
-  createData(
-    4,
-    "15 Mar, 2019",
-    "Bruce Springsteen",
-    "Long Branch, NJ",
-    "VISA ⠀•••• 5919",
-    212.79
-  ),
-];
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// }
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -66,32 +20,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+function Orders(props) {
   const classes = useStyles();
+  let productsPrices = [];
+  let currencyKeys = currencyToUse(props.usedCurrencyProp);
+  let currencyValue = currencyKeys.value;
+  let currencyName = currencyKeys.name;
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
+            <TableCell>quantity</TableCell>
+            <TableCell>price</TableCell>
             <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
+            <TableCell>Payment </TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        {Object.keys(props.OrdersProducts).length > 0 &&
+          props.OrdersProducts.product.map((OrderProduct, i) => {
+            let productFromStore = props.products.find(
+              (product) => product.id === OrderProduct.id
+            );
+            productsPrices.push({
+              price:
+                productFromStore.quantity > 0
+                  ? Math.round(productFromStore.price * currencyValue)
+                  : 0,
+              count: OrderProduct.quantity,
+            });
+            return (
+              <>
+                <TableRow key={i}>
+                  <TableCell>{OrderProduct.quantity}</TableCell>
+                  <TableCell>
+                    <span style={{ textTransform: "lowercase" }}>
+                      {currencyName}
+                    </span>
+                    {productFromStore.price}
+                  </TableCell>
+                  <TableCell>{props.OrdersProducts.user.firstName}</TableCell>
+                  <TableCell>{props.OrdersProducts.user.lastName}</TableCell>
+                  <TableCell>{props.OrdersProducts.user.id}</TableCell>
+                </TableRow>
+              </>
+            );
+          })}
       </Table>
       <div className={classes.seeMore}>
         <Link to="/admin/order">See more orders</Link>
@@ -99,3 +75,19 @@ export default function Orders() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    OrdersProducts: state.product.orders,
+    products: state.product.products,
+    usedCurrencyProp: state.product.usedCurrency,
+  };
+};
+
+Orders.propTypes = {
+  products: PropTypes.array.isRequired,
+  OrdersProducts: PropTypes.object.isRequired,
+  usedCurrencyProp: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(Orders);
