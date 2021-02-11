@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { register } from "../../../../store/actions/actionLogin/auth";
 import "../sign-in/signin.scss";
-
+import VisibilityIcon from "@material-ui/icons/Visibility";
 function Signup(props) {
   const [handleRegister, sethandleRegister] = React.useState({
     successful: false,
@@ -14,7 +14,11 @@ function Signup(props) {
       password: "",
     },
   ]);
-
+  const [type, setType] = React.useState("password");
+  const showHide = (e) => {
+    e.preventDefault();
+    type === "input" ? setType("password") : setType("input");
+  };
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
     console.log("handle Change:", e.target.value);
@@ -27,9 +31,8 @@ function Signup(props) {
       email: formData.email,
       password: formData.password,
     };
-    console.log(data)
     props
-      .Register(data.username, data.email, data.password)
+      .Register(data)
       .then(() => {
         sethandleRegister({
           ...handleRegister,
@@ -46,10 +49,10 @@ function Signup(props) {
       <div>
         <div className="signin-wrapper slideDown ">
           {handleRegister && (
-            <form className="form-wrapper " >
+            <form className="form-wrapper ">
               <h5>Sign Up</h5>
-            
-               <input
+
+              <input
                 onChange={handleChange}
                 value={formData.username}
                 name="username"
@@ -66,13 +69,22 @@ function Signup(props) {
               />
 
               <input
+                type={type}
                 onChange={handleChange}
                 value={formData.password}
                 name="password"
                 placeholder="Password"
                 className="form-field"
               />
-              <button onClick={handleSubmit} className="button primary">Sign Up</button>
+              <div className="showpass-signup">
+                <VisibilityIcon
+                  style={{ color: "#57aef5" }}
+                  onClick={showHide}
+                />
+              </div>
+              <button onClick={handleSubmit} className="button primary">
+                Sign Up
+              </button>
             </form>
           )}
           {message && (
@@ -103,8 +115,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    Register: (username, email, password) =>
-      dispatch(register(username, email, password)),
+    Register: (data) => dispatch(register(data)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

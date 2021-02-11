@@ -1,33 +1,62 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import * as views from "../index";
+import PrivateRoute from "../../route/PrivateRoute";
 
-export default function UserRouter() {
+import Userpage from "../view/userpage";
+import Setting from "../view/user.setting";
+import PayMethods from "../view/user.payment";
+import PayMethodsEdit from "../view/user.payment.edit";
+import Shipping from "../view/user.shipping";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { history } from "../../helpers/history";
+function UserRouter(props) {
+  var Roles =
+    Object.keys(props.Auth.user).length > 0 &&
+    props.Auth.user.data.roles.toString();
+  console.log(Roles);
   return (
     <div>
-      <Route path={"/user"} exact component={views.userPage}></Route>
-      <Route
-        path={"/user/edit/profile"}
-        exact
-        component={views.userSettingPage}
-      ></Route>
-      <Route
-        path={"/user/payment"}
-        exact
-        component={views.UserPayMethodsPage}
-      ></Route>
-      <Route
-        path={"/user/edit/payment"}
-        exact
-        component={views.UserPayMethodsEditPage}
-      ></Route>
-       <Route
-        path={"/user/delivery-addresses"}
-        exact
-        component={views.UserShippingPage}
-      ></Route>
+      <Route history={history}>
+        <Switch>
+          <PrivateRoute
+            exact
+            path={"/user"}
+            authed={Roles}
+            component={Userpage}
+          />
 
-
+          <PrivateRoute
+            path={"/user/edit/profile"}
+            authed={Roles}
+            component={Setting}
+            exact
+          />
+          <PrivateRoute
+            path={"/user/payment"}
+            authed={Roles}
+            component={PayMethods}
+          />
+          <PrivateRoute
+            exact
+            path={"/user/edit/payment"}
+            authed={Roles}
+            component={PayMethodsEdit}
+          />
+          <PrivateRoute
+            exact
+            path={"/user/delivery-addresses"}
+            authed={Roles}
+            component={Shipping}
+          />
+        </Switch>
+      </Route>
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Auth: state.auth,
+  };
+};
+export default connect(mapStateToProps)(UserRouter);

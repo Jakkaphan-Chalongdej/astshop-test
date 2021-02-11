@@ -7,6 +7,9 @@ import shopReducer from "./reducers/index";
 //   shopReducer,
 // );
 
-const store = createStore(shopReducer, applyMiddleware(thunk));store.subscribe(()=>{console.log(store.getState())})
+const store = createStore(shopReducer, applyMiddleware(thunk));
+store.subscribe(() => {
+  console.log(store.getState());
+});
 
 export default store;

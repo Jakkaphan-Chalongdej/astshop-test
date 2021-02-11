@@ -10,7 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import AddIcon from "@material-ui/icons/Add";
 import Title from "./components/Title";
-import axios from "../store/actions/axios";
+import axios from "../config/axios";
 import { Button } from "react-bootstrap";
 import { VISIBILITY_FILTERS } from "../static/constants";
 import { getProductsByFilter } from "../store/selectors";
@@ -527,11 +527,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     EditProduct: (id, update) => dispatch(UpdataProducts(id, update)),
-
     AddProduct: (product) => dispatch(addProducts(product)),
   };
 };
-
 Stock.propTypes = {
   products: PropTypes.array.isRequired,
 };

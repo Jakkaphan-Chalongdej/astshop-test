@@ -11,6 +11,18 @@
   display: none;
 }
 
+// .icon-login{
+//   // .menu-login{
+//   //   position: absolute;
+//   // }
+// }
+// .menu-login{
+
+//   top: 0;
+//   display: flex;
+//   z-index: 9999;
+// }
+
 .box {
   flex: 1;
 }
@@ -66,8 +78,24 @@ h5 {
   flex-direction: column;
   justify-content: center;
 }
+.signin-wrapper .form-group {
+  position: absolute;
+  left: 43%;
+  top: 55%;
+}
+.signin-wrapper .showpass {
+  position: fixed;
+  z-index: 2000;
+  left: 56%;
+  top: 30%;
+}
+.signin-wrapper .showpass-signup{
+  position: fixed;
+  z-index: 2000;
+  left: 56%;
+  top: 39%;
 
-
+}
 .form-wrapper {
   background-color: white;
   width: 300px;

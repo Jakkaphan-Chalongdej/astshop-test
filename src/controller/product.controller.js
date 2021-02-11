@@ -36,7 +36,7 @@ exports.findAll = (req, res) => {
 // Find a Customer by Id
 exports.findById = (req, res) => {
   const id = req.params.productId;
-  Product.findById({ where: { id: id } }).then((product) => {
+  Product.findByPk(id).then((product) => {
     res.status(200).send(product);
   });
 };

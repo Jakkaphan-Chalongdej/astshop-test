@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PersonIcon from "@material-ui/icons/Person";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { FaBox } from "react-icons/fa";
+import { connect } from "react-redux";
 import "./style.css";
-const LeftColumn = () => {
+const LeftColumn = (props) => {
+  var Roles =
+    Object.keys(props.Auth.user).length > 0 &&
+    props.Auth.user.data.roles.toString();
+  console.log(Roles);
   return (
     <React.Fragment>
       <div className={"container shop-left-column py-4 "}>
@@ -24,14 +30,26 @@ const LeftColumn = () => {
         </Link>
         <hr />
         <Link to="/user/delivery-addresses">
-          <FaBox style={{ marginTop: "-5px" }} />
-          <span style={{ marginLeft: "20px" }}>Delivery Addresses</span>
+          <FaBox style={{ marginTop: "-2px" }} />
+          <span style={{ marginLeft: "25px" }}>Delivery Addresses</span>
         </Link>
         <hr />
+        {Roles === "ROLE_ADMIN" ? (
+          <Link to="/admin">
+            <DashboardIcon style={{ marginTop: "-5px" }} />
+            <span style={{ marginLeft: "15px" }}>Dashboard Admin</span>
+            <hr />
+          </Link>
+        ) : null}
+
         <div></div>
       </div>
     </React.Fragment>
   );
 };
-
-export default LeftColumn;
+const mapStateToProps = (state) => {
+  return {
+    Auth: state.auth,
+  };
+};
+export default connect(mapStateToProps)(LeftColumn);

@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
-import axios from "./axios";
-// const axios = require('axios');
+import axios from "../../config/axios";
+
 export const setProductPriceFilter = (price) => {
   return { type: actionTypes.SET_PRODUCT_PRICE_FILTER, price: price };
 };
@@ -71,6 +71,7 @@ export const addToCart = (productDetails) => {
 };
 
 export const addToOrder = (OrderDetails) => {
+  console.log(OrderDetails);
   return {
     type: actionTypes.ADD_TO_ORDER,
     OrderDetails: OrderDetails,
@@ -99,6 +100,7 @@ export const updateCartProductCount = (value, productDetails) => {
 };
 
 export const confirmOrder = (order, ownProps) => {
+  console.log("confirmOrder", order);
   return (dispatch) => {
     dispatch(addToOrder(order));
     dispatch(confirmOrderSuccess());
@@ -137,6 +139,13 @@ export const confirmOrderFailure = () => {
 export const toogleSideBar = () => {
   return {
     type: actionTypes.TOGGLE_SIDE_BAR,
+  };
+};
+export const toogleSideLogin = () => {
+  console.log(" action toogleSideLogin");
+  return {
+    type: actionTypes.TOGGLE_SIDE_LOGIN,
+    
   };
 };
 

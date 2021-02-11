@@ -31,7 +31,7 @@ const MainMenu = (props) => {
       >
         <div className="container " style={{ width: "1500px" }}>
           <NavbarBrand>
-            <NavLink to={"/admin/order"} exact>
+            <NavLink to={"/"} exact>
               <picture>
                 <img
                   src="/ast2.png"

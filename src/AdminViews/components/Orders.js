@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
 import PropTypes from "prop-types";
 import CheckoutCartProduct from "../../components/Checkout/CheckoutCartProduct";
+
 import { currencyToUse } from "../../Utility/currency";
 import { connect } from "react-redux";
 
@@ -40,6 +41,7 @@ function Orders(props) {
           </TableRow>
         </TableHead>
         {Object.keys(props.OrdersProducts).length > 0 &&
+          props.getUser() &&
           props.OrdersProducts.product.map((OrderProduct, i) => {
             let productFromStore = props.products.find(
               (product) => product.id === OrderProduct.id
@@ -51,6 +53,8 @@ function Orders(props) {
                   : 0,
               count: OrderProduct.quantity,
             });
+          
+
             return (
               <>
                 <TableRow key={i}>
@@ -61,7 +65,9 @@ function Orders(props) {
                     </span>
                     {productFromStore.price}
                   </TableCell>
-                  <TableCell>{props.OrdersProducts.user.firstName}</TableCell>
+
+                  <TableCell>{props.OrdersProducts.user.firstname}</TableCell>
+
                   <TableCell>{props.OrdersProducts.user.lastName}</TableCell>
                   <TableCell>{props.OrdersProducts.user.id}</TableCell>
                 </TableRow>
@@ -81,10 +87,12 @@ const mapStateToProps = (state) => {
     OrdersProducts: state.product.orders,
     products: state.product.products,
     usedCurrencyProp: state.product.usedCurrency,
+    Auth: state.auth.user.data,
   };
 };
 
 Orders.propTypes = {
+  Auth: PropTypes.object.isRequired,
   products: PropTypes.array.isRequired,
   OrdersProducts: PropTypes.object.isRequired,
   usedCurrencyProp: PropTypes.object.isRequired,

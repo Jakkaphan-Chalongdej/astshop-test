@@ -26,12 +26,6 @@ class Checkout extends Component {
     usedDeliveryOption: 1,
     makeOrder: false,
     correctCardInfo: false,
-    customerInfo: 
-      {
-        firstName: "Mr.DDD",
-        lastName: "tester",
-        id: "1",
-      },
   };
 
   customerInfoChangeHandler = (event, identifier) => {
@@ -72,11 +66,8 @@ class Checkout extends Component {
     event.preventDefault();
     let order = {};
     order["product"] = this.props.cartProductsProps;
-    order["user"] = {
-      firstName: this.state.customerInfo.firstName,
-      lastName: this.state.customerInfo.lastName,
-      id: this.state.customerInfo.id,
-    };
+    order["user"] = this.props.Auth.user.data;
+
     order["usedPromoCode"] = this.state.promoCode;
     order["currency"] = this.props.usedCurrencyProp;
     // order["paymentMethod"] = this.state.paymentMethod;
@@ -312,6 +303,7 @@ Checkout.propTypes = {
   deliveryOptions: PropTypes.array.isRequired,
   usedCurrencyProp: PropTypes.object.isRequired,
   vatProps: PropTypes.number,
+  Auth: PropTypes.object.isRequired,
 };
 
 Checkout.defaultProps = {
@@ -328,6 +320,7 @@ const mapStateToProps = (state) => {
     usedPromoCodeProp: state.product.usedPromoCode,
     deliveryOptions: state.product.deliveryOptions,
     usedCurrencyProp: state.product.usedCurrency,
+    Auth: state.auth,
   };
 };
 

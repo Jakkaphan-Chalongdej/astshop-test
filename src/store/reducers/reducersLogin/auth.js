@@ -1,13 +1,23 @@
 import * as actionTypes from "../../actions/actionLogin/types";
 
-const user = JSON.parse(localStorage.getItem("user"));
+// const user = JSON.parse(localStorage.getItem("user"));
 
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+const initialState = { users: [], user: {} ,userDetail:{}}
+  ? { isLoggedIn: true, user: {} }
+  : { isLoggedIn: false, user: {} };
 
 const Auth = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.GET_USER:
+      return {
+        ...state,
+        users: action.user,
+      };
+    case actionTypes.GET_USER_ID:
+      return {
+        ...state,
+        userDetail: action.user,
+      };
     case actionTypes.REGISTER_SUCCESS:
       return {
         ...state,
@@ -34,7 +44,7 @@ const Auth = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        user: {},
       };
     default:
       return state;

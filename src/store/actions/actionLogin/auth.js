@@ -1,23 +1,14 @@
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-  SET_MESSAGE,
-} from "./types";
+import * as actionTypes from "./types";
+import axios from "../../../config/axios";
 
-import AuthService from "../../../services/auth.service";
-
-export const register = (username, email, password) => (dispatch) => {
-  return AuthService.register(username, email, password).then(
+export const register = (data) => (dispatch) => {
+  return axios.post("auth/signup", data).then(
     (response) => {
       dispatch({
-        type: REGISTER_SUCCESS,
+        type: actionTypes.REGISTER_SUCCESS,
       });
-
       dispatch({
-        type: SET_MESSAGE,
+        type: actionTypes.SET_MESSAGE,
         payload: response.data.message,
       });
 
@@ -32,11 +23,11 @@ export const register = (username, email, password) => (dispatch) => {
         error.toString();
 
       dispatch({
-        type: REGISTER_FAIL,
+        type: actionTypes.REGISTER_FAIL,
       });
 
       dispatch({
-        type: SET_MESSAGE,
+        type: actionTypes.SET_MESSAGE,
         payload: message,
       });
 
@@ -45,14 +36,20 @@ export const register = (username, email, password) => (dispatch) => {
   );
 };
 
-export const login = (username, password) => (dispatch) => {
-  return AuthService.login(username, password).then(
-    (data) => {
+export const login = (data) => (dispatch) => {
+  return axios.post("auth/signin", data).then(
+    (response) => {
       dispatch({
-        type: LOGIN_SUCCESS,
-        payload: { user: data },
+        type: actionTypes.LOGIN_SUCCESS,
+        payload: { user: response },
       });
-
+     
+      console.log("signin reducer", response);
+      if (response.data.username === "admin") {
+        console.log(response.data.roles);
+        dispatch(getUser());
+      }
+      dispatch(getUserId(response.data.id));
       return Promise.resolve();
     },
     (error) => {
@@ -64,11 +61,11 @@ export const login = (username, password) => (dispatch) => {
         error.toString();
 
       dispatch({
-        type: LOGIN_FAIL,
+        type: actionTypes.LOGIN_FAIL,
       });
 
       dispatch({
-        type: SET_MESSAGE,
+        type: actionTypes.SET_MESSAGE,
         payload: message,
       });
 
@@ -76,11 +73,38 @@ export const login = (username, password) => (dispatch) => {
     }
   );
 };
+export const getUserId = (id) => async (dispatch) => {
+  console.log("ID", id);
+  await axios.get(`user/${id}`)
+    .then((res) => {
+      console.log("Get reducer", res);
+      // const user = res.data;
+      dispatch({
+        type: actionTypes.GET_USER_ID,
+        user: res,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
+export const getUser = () => async (dispatch) => {
+  await axios
+    .get("user")
+    .then((res) => {
+      const response = res.data;
+      dispatch({
+        type: actionTypes.GET_USER,
+        user: response,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 export const logout = () => (dispatch) => {
-  AuthService.logout();
-
   dispatch({
-    type: LOGOUT,
+    type: actionTypes.LOGOUT,
   });
 };

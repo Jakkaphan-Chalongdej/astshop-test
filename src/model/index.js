@@ -18,6 +18,20 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 
+db.user = require("./userModel/user.model")(sequelize, Sequelize);
+db.role = require("./userModel/role.model")(sequelize, Sequelize);
+db.role.belongsToMany(db.user, {
+  through: "user_roles",
+  foreignKey: "roleId",
+  otherKey: "userId",
+});
+db.user.belongsToMany(db.role, {
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId",
+});
+
+db.ROLES = ["user", "admin"];
  
 
 // one to manny  product and  product status

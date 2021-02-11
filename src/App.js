@@ -3,7 +3,6 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   closeMaxProductModal,
-  toogleSideBar,
 } from "./store/actions/Action.product";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
@@ -11,8 +10,12 @@ import AdminRoute from "./AdminViews/routers/admin.roter";
 import UserRoute from "./userViews/userview.router.js/user.router";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
-
+import PrivateRoute from "./route/PrivateRoute";
 function App(props) {
+  var Roles =
+    Object.keys(props.Auth.user).length > 0 &&
+    props.Auth.user.data.roles.toString();
+  console.log(Roles);
   return (
     <div className="App">
       <MainLayout
@@ -35,7 +38,12 @@ function App(props) {
           <Route path={"/sale"} component={Maincontainers.SalesPage} />
           <Route path={"/contact"} component={Maincontainers.ContactPage} />
           <Route path={"/cart"} component={Maincontainers.CartPage} />
-          <Route path={"/checkout"} component={Maincontainers.CheckoutPage} />
+          <PrivateRoute
+            authed={Roles}
+            path={"/checkout"}
+            exact
+            component={Maincontainers.CheckoutPage}
+          />
           <Route
             path={"/product/:productSlug"}
             render={(props) => (
@@ -59,6 +67,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
+    Auth: state.auth,
     storeCartItemsCount: state.product.cartTotal,
     showModalProp: state.product.productMaxShowModal,
     modalMessageProp: state.product.modalMessage,
@@ -69,7 +78,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     closeModalProp: () => dispatch(closeMaxProductModal()),
-    toggleSideBarProp: () => dispatch(toogleSideBar()),
   };
 };
 
