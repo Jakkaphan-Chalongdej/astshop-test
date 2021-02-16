@@ -2,6 +2,7 @@ module.exports = function (server) {
   
   const product = require("../controller/product.controller");
   const upload = require("../middleware/upload");
+  
   // Create
   server.post(
     "/api/product/create",
