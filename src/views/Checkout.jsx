@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { confirmOrder, setPromoCode } from "../store/actions/Action.product";
+import { UpdataProducts } from "../store/actions/Action.product";
 import CheckoutCartProduct from "../components/Checkout/CheckoutCartProduct";
 import PromoCodeForm from "../components/Checkout/PromoCodeForm";
 import PromoCodeValue from "../components/Checkout/PromoCodeValue";
@@ -26,6 +27,7 @@ class Checkout extends Component {
     usedDeliveryOption: 1,
     makeOrder: false,
     correctCardInfo: false,
+    newproduct: {},
   };
 
   customerInfoChangeHandler = (event, identifier) => {
@@ -61,18 +63,42 @@ class Checkout extends Component {
   //   }
   //   this.setState({ paymentMethod: event.target.value });
   // };
+  productcart = (product) => {
+    if (this.state.newproduct) {
+      this.setState({ newproduct: product });
+    }
+    console.log("newproduct product", product);
+    console.log("newproduct state product", this.state.newproduct);
+  };
 
   confirmOrderHandler = (event) => {
     event.preventDefault();
     let order = {};
-    order["product"] = this.props.cartProductsProps;
-    order["user"] = this.props.Auth.user.data;
-
+    order["product_name"] = this.state.newproduct.productName;
+    order["quantity"] = this.state.newproduct.quantity;
+    order["price"] = this.state.newproduct.price;
+    order["firstname"] = this.props.Auth.user.firstname;
+    order["lastname"] = this.props.Auth.user.lastname;
+    order["email"] = this.props.Auth.user.email;
+    order["Address"] = this.props.Auth.user.Address;
+    order["Country"] = this.props.Auth.user.Country;
+    order["city"] = this.props.Auth.user.city;
+    order["ZipCode"] = this.props.Auth.user.ZipCode;
     order["usedPromoCode"] = this.state.promoCode;
     order["currency"] = this.props.usedCurrencyProp;
-    // order["paymentMethod"] = this.state.paymentMethod;
-    order["deliveryOption"] = this.state.usedDeliveryOption;
-    this.props.confirmOrderProp(order);
+    // // order["paymentMethod"] = this.state.paymentMethod;
+    //order["deliveryOption"] = this.state.usedDeliveryOption;
+    let updateQuantity =
+      this.state.newproduct.Allquantity - this.state.newproduct.quantity;
+    const data = {
+      quantity: updateQuantity,
+    };
+    console.log("update order", data);
+    console.log("update order", order);
+    if (data.quantity > 0) {
+      this.props.UpdataProducts(this.state.newproduct.productID, data);
+      this.props.confirmOrderProp(order);
+    }
   };
 
   setPromoCode = (event) => {
@@ -130,7 +156,7 @@ class Checkout extends Component {
     let chosenPaymentMethod = null;
     let currencyKeys = currencyToUse(this.props.usedCurrencyProp);
     let currencyValue = currencyKeys.value;
-
+    let CartProducts = {};
     const cartProducts = this.props.cartProductsProps.map(
       (cartProduct, index) => {
         // fetch product information from source based on id
@@ -144,20 +170,26 @@ class Checkout extends Component {
               : 0,
           count: cartProduct.quantity,
         });
-
+        let cartProductquantity = cartProduct.quantity;
+        CartProducts["quantity"] = cartProductquantity;
+        CartProducts["productName"] = productFromStore.name;
+        CartProducts["productID"] = productFromStore.id;
+        CartProducts["Allquantity"] = productFromStore.quantity;
         return (
-          <CheckoutCartProduct
-            key={index}
-            checkoutProductName={productFromStore.name}
-            checkoutProductCategory={productFromStore.category}
-            checkoutProductPrice={Math.round(
-              productFromStore.price * currencyValue
-            )}
-            checkoutProductImage={productFromStore.img}
-            checkoutCartCount={cartProduct.quantity}
-            checkoutCartSize={cartProduct.size}
-            currency={this.props.usedCurrencyProp}
-          />
+          <>
+            <CheckoutCartProduct
+              key={index}
+              checkoutProductName={productFromStore.name}
+              checkoutProductCategory={productFromStore.category}
+              checkoutProductPrice={Math.round(
+                productFromStore.price * currencyValue
+              )}
+              checkoutProductImage={productFromStore.img}
+              checkoutCartCount={cartProduct.quantity}
+              checkoutCartSize={cartProduct.size}
+              currency={this.props.usedCurrencyProp}
+            />
+          </>
         );
       }
     );
@@ -236,9 +268,10 @@ class Checkout extends Component {
                 productTotals={productTotals}
                 vat={vat}
                 shippingPrice={shippingPrice}
-                shoppingTotal={shoppingTotal}
+                shoppingTotal={(CartProducts["price"] = shoppingTotal)}
                 currency={this.props.usedCurrencyProp}
               />
+              {/* <div>{(CartProducts["price"] = shoppingTotal)}</div> */}
             </ul>
 
             {/*promo code form */}
@@ -254,12 +287,20 @@ class Checkout extends Component {
             <h4 className="mb-3">Billing Information</h4>
             <form className="shop-form shop-bg-white p-3" noValidate>
               {/* customer details form fields */}
-              <CustomerInputs
+              {/* <CustomerInputs
                 customerInfo={this.state.customerInfo}
                 inputChanged={(event, identifier) =>
                   this.customerInfoChangeHandler(event, identifier)
                 }
-              />
+              /> */}
+              username :{this.props.Auth.user.username}
+              firstname : {this.props.Auth.user.firstname}
+              lastname : {this.props.Auth.user.lastname}
+              email :{this.props.Auth.user.email}
+              Address :{this.props.Auth.user.Address}
+              Country : {this.props.Auth.user.Country}
+              city :{this.props.Auth.user.city}
+              ZipCode : {this.props.Auth.user.ZipCode}
               {/* delivery options selection fields */}
               <h4 className="">Delivery Options</h4>
               <DeliveryOptions
@@ -268,7 +309,6 @@ class Checkout extends Component {
                 usedDeliveryOption={this.state.usedDeliveryOption}
                 deliveryOptionChanged={this.deliveryOptionChangeHandler}
               />
-
               <h4 className="mb-3">Payment Method</h4>
               {/* payment option selection field */}
               {/* <PaymentOptions
@@ -277,12 +317,17 @@ class Checkout extends Component {
               /> */}
               {/* payment section */}
               <div>{chosenPaymentMethod}</div>
-
               <hr className="mb-4" />
               <button
                 // disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
                 className="btn shop-btn-secondary btn-lg btn-block"
-                onClick={(event) => this.confirmOrderHandler(event)}
+                onClick={
+                  (event) => (
+                    this.confirmOrderHandler(event),
+                    this.setState({ newproduct: CartProducts })
+                  )
+                  // this.productcart(CartProducts);
+                }
               >
                 Confirm Order
               </button>
@@ -329,6 +374,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     confirmOrderProp: (order) => {
       dispatch(confirmOrder(order, ownProps));
     },
+    UpdataProducts: (id, update) => {
+      dispatch(UpdataProducts(id, update));
+    },
+
     setPromoCodeProp: (promoCode, percentage) =>
       dispatch(setPromoCode(promoCode, percentage)),
   };

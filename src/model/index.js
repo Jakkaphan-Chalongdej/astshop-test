@@ -33,7 +33,7 @@ db.user.belongsToMany(db.role, {
 
 db.ROLES = ["user", "admin"];
  
-
+db.order = require("../model/order.model")(sequelize, Sequelize);
 // one to manny  product and  product status
 db.product = require("../model/product.mode")(sequelize, Sequelize);
 // db.productStatus = require("../model/product.status.mode")(

@@ -1,5 +1,6 @@
 import * as actionTypes from "./types";
 import axios from "../../../config/axios";
+import { getOrder } from "../Action.product";
 
 export const register = (data) => (dispatch) => {
   return axios.post("auth/signup", data).then(
@@ -41,15 +42,19 @@ export const login = (data) => (dispatch) => {
     (response) => {
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: { user: response },
+        payload: { user: response.data },
       });
-     
-      console.log("signin reducer", response);
-      if (response.data.username === "admin") {
-        console.log(response.data.roles);
-        dispatch(getUser());
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
       }
-      dispatch(getUserId(response.data.id));
+
+      console.log("signin reducer", response);
+      if (response.data.roles.toString() === "ROLE_ADMIN") {
+        console.log(response.data.roles.toString());
+        dispatch(getUser());
+        dispatch(getOrder());
+      }
+      // dispatch(getUserId(response.data.id));
       return Promise.resolve();
     },
     (error) => {
@@ -75,7 +80,24 @@ export const login = (data) => (dispatch) => {
 };
 export const getUserId = (id) => async (dispatch) => {
   console.log("ID", id);
-  await axios.get(`user/${id}`)
+  await axios
+    .get(`user/${id}`)
+    .then((res) => {
+      console.log("Get reducer", res);
+      // const user = res.data;
+      dispatch({
+        type: actionTypes.GET_USER_ID,
+        user: res.data,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const updateUser = (id, update) => async (dispatch) => {
+  console.log("ID", id);
+  await axios
+    .put(`user/${id}`, update)
     .then((res) => {
       console.log("Get reducer", res);
       // const user = res.data;
@@ -107,4 +129,5 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: actionTypes.LOGOUT,
   });
+  localStorage.removeItem("user");
 };

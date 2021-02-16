@@ -10,8 +10,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
-
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 
@@ -26,7 +24,7 @@ function Login(props) {
 
   const showform2 = () => {
     props.showSideBar
-      ? true(setShowForm2(!showFormSignIn), setShowForm(false))
+      ? "true"(setShowForm2(!showFormSignIn), setShowForm(false))
       : setShowForm2(false);
     console.log("showMenuLogin", props.showMenuLogin);
     setShowForm2(!showFormSignIn);
@@ -53,10 +51,10 @@ function Login(props) {
         <span style={{ marginLeft: "10px" }}>|</span>
         <Navbar>
           <span style={{ marginLeft: "5px" }}>
-            {Object.keys(props.Auth.user).length > 0 ? (
+            {props.Auth.user !== null ? (
               <div>
                 <span style={{ marginLeft: "5px" }}>
-                  Hi {props.Auth.user.data.username}
+                  Hi {props.Auth.user.username}
                 </span>
                 <span>
                   <Button
@@ -74,9 +72,8 @@ function Login(props) {
                     onClose={handleClose}
                   >
                     <MenuItem onClick={handleClose}>
-                      <Link to="/user">Profile</Link>
+                      <Link to="/user">My account</Link>
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleLogout}>
                       <Link to="/">Logout</Link>
                     </MenuItem>

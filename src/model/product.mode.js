@@ -9,8 +9,14 @@ module.exports = (sequelize, Sequelize) => {
 	  quantity: {
 		type: Sequelize.INTEGER,
 	  },
-	  img:{
+	  img_type: {
 		type: Sequelize.STRING,
+	  },
+	  img_name: {
+		type: Sequelize.STRING,
+	  },
+	  img_data: {
+		type: Sequelize.BLOB("long"),
 	  },
       des: {
 		type: Sequelize.STRING,

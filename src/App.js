@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  closeMaxProductModal,
-} from "./store/actions/Action.product";
+import { closeMaxProductModal } from "./store/actions/Action.product";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import AdminRoute from "./AdminViews/routers/admin.roter";
@@ -11,11 +9,10 @@ import UserRoute from "./userViews/userview.router.js/user.router";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
 import PrivateRoute from "./route/PrivateRoute";
+import Upload from './views/uploads'
 function App(props) {
-  var Roles =
-    Object.keys(props.Auth.user).length > 0 &&
-    props.Auth.user.data.roles.toString();
-  console.log(Roles);
+  var Roles = props.Auth.user !== null && props.Auth.user.roles.toString();
+
   return (
     <div className="App">
       <MainLayout
@@ -38,6 +35,7 @@ function App(props) {
           <Route path={"/sale"} component={Maincontainers.SalesPage} />
           <Route path={"/contact"} component={Maincontainers.ContactPage} />
           <Route path={"/cart"} component={Maincontainers.CartPage} />
+          <Route path={"/upload"} component={Upload} />
           <PrivateRoute
             authed={Roles}
             path={"/checkout"}
@@ -53,10 +51,10 @@ function App(props) {
               />
             )}
           />
-          <div>
-            <AdminRoute />
-            <UserRoute />
-          </div>
+          <>
+            <AdminRoute authed={Roles} />
+            <UserRoute authed={Roles} />
+          </>
           {/*always redirect to index*/}
           <Redirect to={"/"} />
         </Switch>

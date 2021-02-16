@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 import { TablePagination } from "@material-ui/core";
 import { addProducts, UpdataProducts } from "../store/actions/Action.product";
 import { FaWindowClose } from "react-icons/fa";
-import { getUser } from "../store/actions/actionLogin/auth";
+// import { getUser } from "../store/actions/actionLogin/auth";
 import IconButton from "@material-ui/core/IconButton";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -151,7 +151,7 @@ function User(props) {
       setShowForm(true);
     } else setShowForm(false);
   };
-  
+
   const dataform = [
     {
       id: "",
@@ -231,7 +231,136 @@ function User(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  let showuser =
+    Object.keys(props.Auth).length > 0
+      ? props.Auth.users
+          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+          .map((row, i) => (
+            <>
+              <TableRow key={i}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.firstname}</TableCell>
+                <TableCell>{row.lastname}</TableCell>
+                <TableCell>{row.age}</TableCell>
+                <TableCell>{row.email}</TableCell>
+                <TableCell>{row.username}</TableCell>
+                <TableCell>{row.password}</TableCell>
 
+                <div className="con-button">
+                  <Button onClick={() => showform(i)}>Edit</Button>
+                  <Button
+                    style={{ backgroundColor: "#f50057" }}
+                    onClick={() => {
+                      deleteProduct(row.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </TableRow>
+
+              {activeTab === i ? (
+                <TableRow className="table-Row">
+                  <TableCell>
+                    <p>Id</p>
+                    <input
+                      name="id"
+                      value={formData.id}
+                      onChange={handleChange}
+                      placeholder={row.id}
+                    ></input>
+                    <p>name</p>
+                    <input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder={row.name}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <p>slug</p>
+                    <input
+                      name="slug"
+                      value={formData.slug}
+                      onChange={handleChange}
+                      placeholder={row.slug}
+                    ></input>
+                    <p>des</p>
+                    <input
+                      name="des"
+                      value={formData.des}
+                      onChange={handleChange}
+                      placeholder={row.des}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <p>quantity</p>
+                    <input
+                      name="quantity"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      placeholder={row.quantity}
+                    ></input>
+
+                    <p>price</p>
+                    <input
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                      placeholder={row.price}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <p>discount_price</p>
+                    <input
+                      name="discount_price"
+                      value={formData.discount_price}
+                      onChange={handleChange}
+                      placeholder={row.discount_price}
+                    ></input>
+                    <p>category</p>
+                    <input
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      placeholder={row.category}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <p>subcategory</p>
+                    <input
+                      name="subcategory"
+                      value={formData.subcategory}
+                      onChange={handleChange}
+                      placeholder={row.subcategory}
+                    ></input>
+                    <p>sale</p>
+                    <input
+                      name="sale"
+                      value={formData.sale}
+                      onChange={handleChange}
+                      placeholder={row.sale}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <div
+                      className="con-button-close"
+                      onClick={() => showform(-1)}
+                    >
+                      <FaWindowClose />
+                    </div>
+                    <Button
+                      className="con-button-update"
+                      onClick={handleSubmit}
+                    >
+                      Update
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ) : null}
+            </>
+          ))
+      : null;
   return (
     <div>
       <Layout>
@@ -264,135 +393,7 @@ function User(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {props.Auth.length > 0 &&
-                    props.Auth.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    ).map((row, i) => (
-                      <>
-                        <TableRow key={i}>
-                          <TableCell>{row.id}</TableCell>
-                          <TableCell>{row.firstname}</TableCell>
-                          <TableCell>{row.lastname}</TableCell>
-                          <TableCell>{row.age}</TableCell>
-                          <TableCell>{row.email}</TableCell>
-                          <TableCell>{row.username}</TableCell>
-                          <TableCell>{row.password}</TableCell>
-
-                          <div className="con-button">
-                            <Button onClick={() => showform(i)}>Edit</Button>
-                            <Button
-                              style={{ backgroundColor: "#f50057" }}
-                              onClick={() => {
-                                deleteProduct(row.id);
-                              }}
-                            >
-                              Delete
-                            </Button>
-                          </div>
-                        </TableRow>
-
-                        {activeTab === i ? (
-                          <TableRow className="table-Row">
-                            <TableCell>
-                              <p>Id</p>
-                              <input
-                                name="id"
-                                value={formData.id}
-                                onChange={handleChange}
-                                placeholder={row.id}
-                              ></input>
-                              <p>name</p>
-                              <input
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder={row.name}
-                              ></input>
-                            </TableCell>
-                            <TableCell>
-                              <p>slug</p>
-                              <input
-                                name="slug"
-                                value={formData.slug}
-                                onChange={handleChange}
-                                placeholder={row.slug}
-                              ></input>
-                              <p>des</p>
-                              <input
-                                name="des"
-                                value={formData.des}
-                                onChange={handleChange}
-                                placeholder={row.des}
-                              ></input>
-                            </TableCell>
-                            <TableCell>
-                              <p>quantity</p>
-                              <input
-                                name="quantity"
-                                value={formData.quantity}
-                                onChange={handleChange}
-                                placeholder={row.quantity}
-                              ></input>
-
-                              <p>price</p>
-                              <input
-                                name="price"
-                                value={formData.price}
-                                onChange={handleChange}
-                                placeholder={row.price}
-                              ></input>
-                            </TableCell>
-                            <TableCell>
-                              <p>discount_price</p>
-                              <input
-                                name="discount_price"
-                                value={formData.discount_price}
-                                onChange={handleChange}
-                                placeholder={row.discount_price}
-                              ></input>
-                              <p>category</p>
-                              <input
-                                name="category"
-                                value={formData.category}
-                                onChange={handleChange}
-                                placeholder={row.category}
-                              ></input>
-                            </TableCell>
-                            <TableCell>
-                              <p>subcategory</p>
-                              <input
-                                name="subcategory"
-                                value={formData.subcategory}
-                                onChange={handleChange}
-                                placeholder={row.subcategory}
-                              ></input>
-                              <p>sale</p>
-                              <input
-                                name="sale"
-                                value={formData.sale}
-                                onChange={handleChange}
-                                placeholder={row.sale}
-                              ></input>
-                            </TableCell>
-                            <TableCell>
-                              <div
-                                className="con-button-close"
-                                onClick={() => showform(-1)}
-                              >
-                                <FaWindowClose />
-                              </div>
-                              <Button
-                                className="con-button-update"
-                                onClick={handleSubmit}
-                              >
-                                Update
-                              </Button>
-                            </TableCell>
-                          </TableRow>
-                        ) : null}
-                      </>
-                    ))}
+                  {showuser}
                   {emptyRows > 0 && (
                     <TableRow style={{ height: 53 * emptyRows }}>
                       <TableCell colSpan={6} />
@@ -515,21 +516,21 @@ function User(props) {
 
 const mapStateToProps = (state) => {
   return {
-    Auth: state.auth.users,
+    Auth: state.auth,
     products: getProductsByFilter(state, VISIBILITY_FILTERS.ALL),
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     EditProduct: (id, update) => dispatch(UpdataProducts(id, update)),
-    GetUser: () => dispatch(getUser()),
+    // GetUser: () => dispatch(getUser()),
     AddProduct: (product) => dispatch(addProducts(product)),
   };
 };
 
 User.propTypes = {
   products: PropTypes.array.isRequired,
-  Auth: PropTypes.array.isRequired,
+  Auth: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

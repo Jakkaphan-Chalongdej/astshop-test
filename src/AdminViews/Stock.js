@@ -157,6 +157,7 @@ function Stock(props) {
       name: "",
       slug: "",
       des: "",
+      uploadfile: "",
       quantity: "",
       price: "",
       discount_price: "",
@@ -177,6 +178,7 @@ function Stock(props) {
     const data = {
       id: formData.id,
       name: formData.name,
+      uploadfile: formData.uploadfile,
       slug: formData.slug,
       des: formData.des,
       quantity: formData.quantity,
@@ -186,6 +188,7 @@ function Stock(props) {
       subcategory: formData.subcategory,
       sale: formData.sale,
     };
+    console.log(data);
     props.EditProduct(data.id, data);
     setform(dataform);
     setActiveTab(-1);
@@ -364,6 +367,12 @@ function Stock(props) {
                                   onChange={handleChange}
                                   placeholder={row.category}
                                 ></input>
+                                <input
+                                  type="file"
+                                  onChange={handleChange}
+                                  name="uploadfile"
+                                  value={formData.uploadfile}
+                                />
                               </TableCell>
                               <TableCell>
                                 <p>subcategory</p>

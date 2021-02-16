@@ -21,7 +21,7 @@ function Signin(props) {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    
+
     if (Object.keys(formData).length < 1) {
       updateFormData(formdefault);
     } else setiden(true);
@@ -30,7 +30,7 @@ function Signin(props) {
   function onChange(value) {
     console.log("Captcha value:", value);
   }
-  
+
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
@@ -42,10 +42,8 @@ function Signin(props) {
       username: formData.username,
       password: formData.password,
     };
-
-    {
-      Object.keys(data).length > 0 &&
-        props
+    Object.keys(data).length > 0
+      ? props
           .userLogin(data)
           .then(() => {
             sethandleLogin({
@@ -57,8 +55,8 @@ function Signin(props) {
           })
           .catch(() => {
             sethandleLogin({ ...handleLogin, successful: false });
-          });
-    }
+          })
+      : updateFormData(formdefault);
   }
   const { message } = props;
   return (

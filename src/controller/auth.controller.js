@@ -81,6 +81,14 @@ exports.signin = (req, res) => {
           email: user.email,
           roles: authorities,
           accessToken: token,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          age: user.age,
+          AddressName: user.AddressName,
+          Address: user.Address,
+          ZipCode: user.ZipCode,
+          city: user.city,
+          Country: user.Country,
         });
       });
     })
@@ -97,13 +105,34 @@ exports.findAll = (req, res) => {
 };
 exports.findById = (req, res) => {
   const id = req.params.userId;
-  console.log("findById",id)
-   User.findByPk(id).then(data => {
-    res.send(data);
-  })
-  .catch(err => {
-    res.status(500).send({
-      message: "Error retrieving Tutorial with id=" + id
+  console.log("findById", id);
+  User.findByPk(id)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving Tutorial with id=" + id,
+      });
     });
+};
+exports.update = (req, res) => {
+  const id = req.params.userId;
+  User.update(
+    {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      age: req.body.age,
+      username: req.body.username,
+      email: req.body.email,
+      AddressName: req.body.AddressName,
+      Address: req.body.Address,
+      ZipCode: req.body.ZipCode,
+      city: req.body.city,
+      Country: req.body.Country,
+    },
+    { where: { id: req.params.userId } }
+  ).then(() => {
+    res.status(200).send("updated successfully id = " + id);
   });
 };

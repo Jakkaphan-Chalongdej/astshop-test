@@ -125,8 +125,9 @@ const appReducer = (state = initialState, action) => {
         modalMessage: modalMessage,
       };
 
-    case actionTypes.ADD_TO_ORDER:
-      let order = action.OrderDetails;
+    case actionTypes.GET_ORDER:
+      let order = action.orders;
+      console.log("action.orders", order);
       return {
         ...state,
         orders: order,
@@ -204,12 +205,10 @@ const appReducer = (state = initialState, action) => {
         showSideNavigation: !state.showSideNavigation,
       };
     case actionTypes.TOGGLE_SIDE_LOGIN:
-      console.log('reducer showMenuLogin',action.show)
       return {
         ...state,
         showMenuLogin: !state.showMenuLogin,
       };
-    
 
     case actionTypes.SET_PROMO_CODE:
       return {

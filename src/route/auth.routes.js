@@ -22,4 +22,5 @@ module.exports = function (app) {
   app.post("/api/auth/signin", controller.signin);
   app.get("/api/user", controller.findAll);
   app.get("/api/user/:userId", controller.findById);
+  app.put("/api/user/:userId", controller.update);
 };

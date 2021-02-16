@@ -1,10 +1,10 @@
 import * as actionTypes from "../../actions/actionLogin/types";
 
-// const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 
-const initialState = { users: [], user: {} ,userDetail:{}}
-  ? { isLoggedIn: true, user: {} }
-  : { isLoggedIn: false, user: {} };
+const initialState = { users: [], user, userDetail: {} }
+  ? { isLoggedIn: true, user }
+  : { isLoggedIn: false, user: null };
 
 const Auth = (state = initialState, action) => {
   switch (action.type) {
@@ -44,7 +44,7 @@ const Auth = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
-        user: {},
+        user: null,
       };
     default:
       return state;

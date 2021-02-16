@@ -14,13 +14,13 @@ function Userpage(props) {
           },
         ]}
       >
-        {Object.keys(props.Auth.userDetail).length > 0 && (
+        {Object.keys(props.Auth.user).length > 0 && (
           <div className="container-user ">
             <section id="formHolder">
               <div className="row">
                 <div className="col-sm-6 brand">
                   <div className="logo">
-                    <span>MR{props.Auth.userDetail.data.firstname}</span>
+                    <span>MR.{props.Auth.user.firstname}</span>
                   </div>
                 </div>
                 {/* Form Box */}
@@ -30,18 +30,18 @@ function Userpage(props) {
                     <form className="signup-form" action="#" method="post">
                       <div className="form-group">
                         <h6 htmlFor="name">First Name</h6>
-                        <p>{props.Auth.userDetail.data.firstname}</p>
+                        <p>{props.Auth.user.firstname}</p>
                         <hr />
                       </div>
                       <div className="form-group">
                         <h6 htmlFor="name">Last Name</h6>
 
-                        <p>{props.Auth.userDetail.data.lastname}</p>
+                        <p>{props.Auth.user.lastname}</p>
                         <hr />
                       </div>
                       <div className="form-group">
                         <h6 htmlFor="email">Email Adderss</h6>
-                        <p>{props.Auth.userDetail.data.email}</p>
+                        <p>{props.Auth.user.email}</p>
                         <hr />
                         <span className="error" />
                       </div>

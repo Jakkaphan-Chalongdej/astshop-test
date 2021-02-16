@@ -3,10 +3,9 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { toogleSideLogin } from "../store/actions/Action.product";
-function PrivateRoute(props, { component: Component, authed, ...children }) {
-  // console.log("auth",auth.secret)
+function PrivateRoute( { component: Component, authed, ...children }) {
   const showlogin = () => {
-    props.toogleSideLogin();
+    children.toogleSideLogin();
   };
   if (authed === "ROLE_USER" || authed === "ROLE_ADMIN") {
     return <Route {...children} render={(props) => <Component {...props} />} />;
@@ -14,16 +13,12 @@ function PrivateRoute(props, { component: Component, authed, ...children }) {
 
   return (
     <>
-      {showlogin()}
+      {showlogin(true)}
       <Redirect to="/"></Redirect>
     </>
   );
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     showMenuLogin: state.product.showMenuLogin,
-//   };
-// };
+
 PrivateRoute.propTypes = {
   toogleSideLogin: PropTypes.func.isRequired,
 };

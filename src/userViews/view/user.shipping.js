@@ -1,8 +1,36 @@
 import React from "react";
 import Setting from "../components/setting/setting.layout";
-import Maps from "../components/Google.map/map";
-function UserShipping() {
+import { connect } from "react-redux";
+import { updateUser } from "../../store/actions/actionLogin/auth";
+function UserShipping(props) {
+  const formdefault = {
+    AddressName: "",
+    Address: "",
+    Country: "",
+    ZipCode: "",
+    city: "",
+  };
+  const [formData, updateFormData] = React.useState(formdefault);
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  function handleSubmit(e) {
+    e.preventDefault();
 
+    const data = {
+      AddressName: formData.AddressName,
+      Address: formData.Address,
+      Country: formData.Country,
+      ZipCode: formData.ZipCode,
+      city: formData.city,
+    };
+
+    props.updateUser(props.Auth.userDetail.data.id, data);
+    updateFormData(formdefault);
+  }
   return (
     <>
       <Setting
@@ -20,7 +48,17 @@ function UserShipping() {
           <header>
             <h1>Delivery Addresses</h1>
           </header>
-          <Maps  />
+
+          {Object.keys(props.Auth.user).length > 0 && (
+            <div className="logo">
+              <span>AddressName :{props.Auth.user.AddressName}</span>
+              <span>Address :{props.Auth.user.Address}</span>
+              <span>Country :{props.Auth.user.Country}</span>
+              <span>city :{props.Auth.user.city}</span>
+              <span>ZipCode :{props.Auth.user.ZipCode}</span>
+            </div>
+          )}
+
           <div
             className="info"
             style={{
@@ -34,43 +72,69 @@ function UserShipping() {
               <div>
                 <label>Address name</label>
                 <input
-                  type="text"
-                  id="full-name"
+                  name="AddressName"
+                  onChange={handleChange}
+                  value={formData.AddressName}
                   placeholder="Home , school , office"
                 />
               </div>
               <div>
                 <label>Address</label>
                 <input
-                  type="text"
-                  id="address"
+                  name="Address"
+                  onChange={handleChange}
+                  value={formData.Address}
                   placeholder="407 Evergreen Rd."
                 />
               </div>
               <div>
                 <div>
                   <label>city</label>
-                  <input type="text" id="city" placeholder="Roseville" />
+                  <input
+                    name="city"
+                    onChange={handleChange}
+                    value={formData.city}
+                    placeholder="Roseville"
+                  />
                 </div>
                 <div>
                   <label htmlFor="zip-code">Zip code</label>
-                  <input type="text" id="zip-code" placeholder={95673} />
+                  <input
+                    name="ZipCode"
+                    onChange={handleChange}
+                    value={formData.ZipCode}
+                    placeholder={9567}
+                  />
                 </div>
               </div>
               <div>
                 <label htmlFor="country">Country</label>
-                <select id="country">
-                  <option value="USA">United States</option>
-                  <option value="TH">Thailand</option>
-                </select>
+                <input
+                  name="Country"
+                  onChange={handleChange}
+                  value={formData.Country}
+                  placeholder={"Country"}
+                />
+              </div>
+              <div>
+                <button onClick={handleSubmit}>send</button>
               </div>
             </div>
           </div>
-       
         </div>
       </Setting>
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Auth: state.auth,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (id, update) => dispatch(updateUser(id, update)),
+  };
+};
 
-export default UserShipping;
+export default connect(mapStateToProps, mapDispatchToProps)(UserShipping);

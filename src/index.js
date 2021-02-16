@@ -9,6 +9,7 @@ import "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
 import App from "./App";
 import { getProducts } from "./store/actions/Action.product";
+
 const app = (
   <Provider store={store}>
     <BrowserRouter>
@@ -16,6 +17,7 @@ const app = (
     </BrowserRouter>
   </Provider>
 );
+
 store.dispatch(getProducts()).then(() => {
   ReactDOM.render(app, document.getElementById("root"));
 });

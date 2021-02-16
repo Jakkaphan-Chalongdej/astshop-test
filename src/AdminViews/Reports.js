@@ -1,5 +1,4 @@
 import React from "react";
-import Chart from "./components/Chart";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Deposits from "./components/Deposits";

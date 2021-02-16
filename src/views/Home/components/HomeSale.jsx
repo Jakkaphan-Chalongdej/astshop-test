@@ -5,7 +5,6 @@ import { currencyToUse, productPrice } from "../../../Utility/currency";
 import { VISIBILITY_FILTERS } from "../../../static/constants";
 import { getProductsByFilter } from "../../../store/selectors";
 import Carousel from "react-multi-carousel";
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -22,7 +21,7 @@ const responsive = {
     items: 4,
     paritialVisibilityGutter: -20,
   },
-  
+
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 3,
@@ -39,13 +38,19 @@ const responsive = {
     paritialVisibilityGutter: -145,
   },
 };
+
 const HomeSale = (props) => {
   let currencyKeys = currencyToUse(props.usedCurrencyProp);
 
   let products = props.productsProps.map((product, index) => {
+ 
     return (
       <div className="card card-body card-sale shadow" key={index}>
-        <img className="card-img-top" src={product.img} alt="product" />
+       { <img
+          className="card-img-top"
+          src={`../../../server/resources/static/assets/tmp/${product.img_name}`}
+          alt={product.name}
+        />}
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">
           {currencyKeys.name}

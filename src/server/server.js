@@ -4,11 +4,12 @@ const cors = require("cors");
 const path = require("path");
 const server = express();
 const PORT = process.env.PORT || 3001;
-const db = require("../src/model");
+const db = require("../model");
 const Role = db.role;
+global.__basedir = __dirname;
 //Gen database
 // db.sequelize.sync({ force: true }).then(() => {
-//  initial()
+//   initial();
 //   console.log("Drop and Resync with { force: true }");
 //   console.log("Create MySQL.");
 //   console.log("Connected to the MySQL server.");
@@ -33,9 +34,10 @@ server.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 });
 
-require("../src/route/product_route")(server);
-require("../src/route/auth.routes")(server);
-require("../src/route/user.route")(server);
+require("../route/product_route")(server);
+require("../route/auth.routes")(server);
+require("../route/user.route")(server);
+require("../route/order.route")(server);
 server.listen(PORT, (err) => {
   if (err) throw err;
   console.log(`Server is running on port ${PORT}.`);

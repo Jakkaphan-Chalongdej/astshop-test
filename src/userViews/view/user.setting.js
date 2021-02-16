@@ -1,7 +1,7 @@
 import React from "react";
 import Setting from "../components/setting/setting.layout";
-
-function UserSetting() {
+import { connect } from "react-redux";
+function UserSetting(props) {
   return (
     <>
       <Setting
@@ -12,13 +12,15 @@ function UserSetting() {
           },
         ]}
       >
-       <div className="container-user ">
+        <div className="container-user ">
           <section id="formHolder">
             <div className="row">
               <div className="col-sm-6 brand">
-                <div className="logo">
-                  <span>{"MR.Jakkaphan"}</span>
-                </div>
+                {Object.keys(props.Auth.user).length > 0 && (
+                  <div className="logo">
+                    <span>MR.{props.Auth.user.firstname}</span>
+                  </div>
+                )}
               </div>
               {/* Form Box */}
               <div className="col-sm-6 form">
@@ -56,9 +58,7 @@ function UserSetting() {
                       <span className="error" />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="phone">
-                        Phone Number 
-                      </label>
+                      <label htmlFor="phone">Phone Number</label>
                       <input type="text" name="phone" id="phone" />
                     </div>
                     <div className="form-group">
@@ -99,5 +99,9 @@ function UserSetting() {
     </>
   );
 }
-
-export default UserSetting;
+const mapStateToProps = (state) => {
+  return {
+    Auth: state.auth,
+  };
+};
+export default connect(mapStateToProps)(UserSetting);
