@@ -2,7 +2,7 @@ import React from "react";
 import Dashboard from "../components/Dashboard";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,16 +41,16 @@ export default function Adminview(props) {
     <div>
       <main className={classes.container}>
         <Row>
-          <div className="col-md-2 col-lg-2 shop-hide" >
+          <Col sm={1} md={3} xl={2} className="shop-hide">
             <Dashboard />
-          </div>
-          <div className={"col-md-10 col-lg-10"}>
+          </Col>
+          <Col sm={12} md={9} xl={10}>
             <div maxWidth="lg" className={classes.container}>
               <div style={{ marginTop: "-10px" }} className="row">
                 {props.children}
               </div>
             </div>
-          </div>         
+          </Col>
         </Row>
       </main>
     </div>

@@ -107,8 +107,30 @@ exports.findById = (req, res) => {
   const id = req.params.userId;
   console.log("findById", id);
   User.findByPk(id)
-    .then((data) => {
-      res.send(data);
+    .then((user) => {
+      console.log(user);
+      var authorities = [];
+      user.getRoles().then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        }
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: user.accessToken,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          age: user.age,
+          AddressName: user.AddressName,
+          Address: user.Address,
+          ZipCode: user.ZipCode,
+          city: user.city,
+          Country: user.Country,
+        });
+      });
+      // res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -116,6 +138,7 @@ exports.findById = (req, res) => {
       });
     });
 };
+
 exports.update = (req, res) => {
   const id = req.params.userId;
   User.update(
@@ -130,9 +153,10 @@ exports.update = (req, res) => {
       ZipCode: req.body.ZipCode,
       city: req.body.city,
       Country: req.body.Country,
+      // password: bcrypt.hashSync(req.body.password, 8),
     },
     { where: { id: req.params.userId } }
-  ).then(() => {
-    res.status(200).send("updated successfully id = " + id);
+  ).then(async () => {
+    await res.status(200).send("updated successfully id = " + id);
   });
 };

@@ -12,7 +12,7 @@ function CartProducts(props) {
       <div class="card wish-list mb-3">
         <div class="card-body">
           <Row className="mb-4">
-            <Col className="col-md-5 col-lg-5 col-xl-5">
+            <Col xs={12} md={5} lg={5} xl={5}>
               <img
                 className={"shop-cart-image"}
                 src={props.productPhoto}
@@ -20,7 +20,7 @@ function CartProducts(props) {
               />
             </Col>
 
-            <Col className="col-md-7 col-lg-7 col-xl-7">
+            <Col xs={12} md={7} lg={7} xl={7}>
               <div className="d-flex justify-content-between">
                 <div>
                   <h5> {props.productName}</h5>
@@ -53,8 +53,8 @@ function CartProducts(props) {
                   </div>
                   <div className="row">
                     <div
-                      style={{ marginTop: "10px", marginLeft: "100px" }}
-                      className="col-sm-10 text-left"
+                      
+                      className="col-sm-10 text-left select-num"
                     >
                       {props.productQuantity > 0 ? (
                         <span>

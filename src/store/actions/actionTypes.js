@@ -22,5 +22,6 @@ export const TOGGLE_SIDE_LOGIN = "TOGGLE_SIDE_LOGIN";
 
 
 export const GET_ORDER = "GET_ORDER";
+export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_ORDER = "UPDATE_ORDER";
 export const CREATE_ORDER = "CREATE_ORDER";

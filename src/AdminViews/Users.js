@@ -8,7 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import Title from "./components/Title";
 import axios from "../config/axios";
 import { Button } from "react-bootstrap";
@@ -18,7 +18,7 @@ import "./style.admin.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { TablePagination } from "@material-ui/core";
-import { addProducts, UpdataProducts } from "../store/actions/Action.product";
+import { updateUser } from "../store/actions/actionLogin/auth";
 import { FaWindowClose } from "react-icons/fa";
 // import { getUser } from "../store/actions/actionLogin/auth";
 import IconButton from "@material-ui/core/IconButton";
@@ -155,15 +155,16 @@ function User(props) {
   const dataform = [
     {
       id: "",
-      name: "",
-      slug: "",
-      des: "",
-      quantity: "",
-      price: "",
-      discount_price: "",
-      category: "",
-      subcategory: "",
-      sale: "",
+      firstname: "",
+      lastname: "",
+      age: "",
+      username: "",
+      email: "",
+      AddressName: "",
+      Address: "",
+      ZipCode: "",
+      city: "",
+      Country: "",
     },
   ];
   let [formData, setform] = React.useState(dataform);
@@ -177,37 +178,41 @@ function User(props) {
     e.preventDefault();
     const data = {
       id: formData.id,
-      name: formData.name,
-      slug: formData.slug,
-      des: formData.des,
-      quantity: formData.quantity,
-      price: formData.price,
-      discount_price: formData.discount_price,
-      category: formData.category,
-      subcategory: formData.subcategory,
-      sale: formData.sale,
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      age: formData.age,
+      username: formData.username,
+      password: formData.password,
+      email: formData.email,
+      AddressName: formData.AddressName,
+
+      Address: formData.Address,
+      ZipCode: formData.ZipCode,
+      city: formData.city,
+      Country: formData.Country,
     };
     props.EditProduct(data.id, data);
     setform(dataform);
     setActiveTab(-1);
   };
-  const handleSubmitAdd = (e) => {
-    e.preventDefault();
-    const data = {
-      id: formData.id,
-      name: formData.name,
-      slug: formData.slug,
-      des: formData.des,
-      quantity: formData.quantity,
-      price: formData.price,
-      discount_price: formData.discount_price,
-      category: formData.category,
-      subcategory: formData.subcategory,
-      sale: formData.sale,
-    };
-    props.AddProduct(data);
-    props.history.push("/admin/stock");
-  };
+  // const handleSubmitAdd = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     id: formData.id,
+  //     firstname: formData.firstname,
+  //     lastname: formData.lastname,
+  //     age: formData.age,
+  //     username: formData.username,
+  //     email: formData.email,
+  //     AddressName: formData.AddressName,
+  //     Address: formData.Address,
+  //     ZipCode: formData.ZipCode,
+  //     city: formData.city,
+  //     Country: formData.Country,
+  //   };
+  //   props.AddProduct(data);
+  //   props.history.push("/admin/stock");
+  // };
 
   const deleteProduct = (id) => {
     console.log("Delete :", id);
@@ -245,7 +250,11 @@ function User(props) {
                 <TableCell>{row.email}</TableCell>
                 <TableCell>{row.username}</TableCell>
                 <TableCell>{row.password}</TableCell>
-
+                <TableCell>{row.AddressName}</TableCell>
+                <TableCell>{row.Address}</TableCell>
+                <TableCell>{row.ZipCode}</TableCell>
+                <TableCell>{row.city}</TableCell>
+                <TableCell>{row.Country}</TableCell>
                 <div className="con-button">
                   <Button onClick={() => showform(i)}>Edit</Button>
                   <Button
@@ -269,77 +278,95 @@ function User(props) {
                       onChange={handleChange}
                       placeholder={row.id}
                     ></input>
-                    <p>name</p>
+                    <p>firstname</p>
                     <input
-                      name="name"
-                      value={formData.name}
+                      name="firstname"
+                      value={formData.firstname}
                       onChange={handleChange}
-                      placeholder={row.name}
+                      placeholder={row.firstname}
                     ></input>
                   </TableCell>
                   <TableCell>
-                    <p>slug</p>
+                    <p>lastname</p>
                     <input
-                      name="slug"
-                      value={formData.slug}
+                      name="lastname"
+                      value={formData.lastname}
                       onChange={handleChange}
-                      placeholder={row.slug}
+                      placeholder={row.lastname}
                     ></input>
-                    <p>des</p>
+                    <p>age</p>
                     <input
-                      name="des"
-                      value={formData.des}
+                      name="age"
+                      value={formData.age}
                       onChange={handleChange}
-                      placeholder={row.des}
+                      placeholder={row.age}
                     ></input>
                   </TableCell>
                   <TableCell>
-                    <p>quantity</p>
+                    <p>username</p>
                     <input
-                      name="quantity"
-                      value={formData.quantity}
+                      name="username"
+                      value={formData.username}
                       onChange={handleChange}
-                      placeholder={row.quantity}
+                      placeholder={row.username}
+                    ></input>
+                    <p>password</p>
+                    <input
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder={row.password}
+                    ></input>
+                  </TableCell>
+                  <TableCell>
+                    <p>email</p>
+                    <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={row.email}
                     ></input>
 
-                    <p>price</p>
+                    <p>AddressName</p>
                     <input
-                      name="price"
-                      value={formData.price}
+                      name="AddressName"
+                      value={formData.AddressName}
                       onChange={handleChange}
-                      placeholder={row.price}
+                      placeholder={row.AddressName}
                     ></input>
                   </TableCell>
                   <TableCell>
-                    <p>discount_price</p>
-                    <input
-                      name="discount_price"
-                      value={formData.discount_price}
-                      onChange={handleChange}
-                      placeholder={row.discount_price}
-                    ></input>
-                    <p>category</p>
+                    <p>Address</p>
                     <input
                       name="category"
-                      value={formData.category}
+                      value={formData.Address}
                       onChange={handleChange}
-                      placeholder={row.category}
+                      placeholder={row.Address}
+                    ></input>
+
+                    <p>ZipCode</p>
+                    <input
+                      name="ZipCode"
+                      value={formData.ZipCode}
+                      onChange={handleChange}
+                      placeholder={row.ZipCode}
                     ></input>
                   </TableCell>
                   <TableCell>
-                    <p>subcategory</p>
+                    <p>city</p>
                     <input
-                      name="subcategory"
-                      value={formData.subcategory}
+                      name="city"
+                      value={formData.city}
                       onChange={handleChange}
-                      placeholder={row.subcategory}
+                      placeholder={row.city}
                     ></input>
-                    <p>sale</p>
+
+                    <p>Country</p>
                     <input
-                      name="sale"
-                      value={formData.sale}
+                      name="Country"
+                      value={formData.Country}
                       onChange={handleChange}
-                      placeholder={row.sale}
+                      placeholder={row.Country}
                     ></input>
                   </TableCell>
                   <TableCell>
@@ -378,8 +405,12 @@ function User(props) {
                     <TableCell>email</TableCell>
                     <TableCell>username</TableCell>
                     <TableCell>password</TableCell>
-
-                    <div className="con-table">
+                    <TableCell>AddressName</TableCell>
+                    <TableCell>Address</TableCell>
+                    <TableCell>ZipCode</TableCell>
+                    <TableCell>city</TableCell>
+                    <TableCell>Country</TableCell>
+                    {/* <div className="con-table">
                       <span>
                         <Button
                           className="btn-add-data"
@@ -389,7 +420,7 @@ function User(props) {
                           <span>Add</span>
                         </Button>
                       </span>
-                    </div>
+                    </div> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -499,7 +530,7 @@ function User(props) {
                     </div>
                     <Button
                       className="con-button-update"
-                      onClick={handleSubmitAdd}
+                      // onClick={handleSubmitAdd}
                     >
                       Update
                     </Button>
@@ -522,9 +553,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    EditProduct: (id, update) => dispatch(UpdataProducts(id, update)),
+    EditProduct: (id, update) => dispatch(updateUser(id, update)),
     // GetUser: () => dispatch(getUser()),
-    AddProduct: (product) => dispatch(addProducts(product)),
   };
 };
 

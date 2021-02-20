@@ -26,7 +26,7 @@ const LeftColumn = (props) => {
         <hr />
         <Link to="/user/payment">
           <CreditCardIcon />{" "}
-          <span style={{ marginLeft: "10px" }}> Payment Methods</span>
+          <span style={{ marginLeft: "10px" }}> Order</span>
         </Link>
         <hr />
         <Link to="/user/delivery-addresses">

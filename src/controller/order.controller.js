@@ -3,6 +3,7 @@ const Order = db.order;
 
 exports.create = (req, res) => {
   Order.create({
+    userID: req.body.userID,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     username: req.body.username,
@@ -11,6 +12,8 @@ exports.create = (req, res) => {
     product_name: req.body.product_name,
     price: req.body.price,
     quantity: req.body.quantity,
+    shippingPrice: req.body.shippingPrice,
+    vat: req.body.vat,
     Address: req.body.Address,
     ZipCode: req.body.ZipCode,
     city: req.body.city,
@@ -30,7 +33,6 @@ exports.findAll = (req, res) => {
     order: [["id", "DESC"]],
   }).then((products) => {
     // Send all customers to Client
-
     res.send(products);
   });
 };
@@ -48,6 +50,7 @@ exports.update = (req, res) => {
   const id = req.params.productId;
   Order.update(
     {
+      userID: req.body.userID,
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       username: req.body.username,
@@ -55,6 +58,8 @@ exports.update = (req, res) => {
       img: req.body.img,
       product_name: req.body.product_name,
       price: req.body.price,
+      shippingPrice: req.body.shippingPrice,
+      vat: req.body.vat,
       quantity: req.body.quantity,
       Address: req.body.Address,
       ZipCode: req.body.ZipCode,
@@ -64,6 +69,14 @@ exports.update = (req, res) => {
     { where: { id: req.params.productId } }
   ).then(() => {
     res.status(200).send("updated successfully  = " + id);
+  });
+};
+exports.findOrder = (req, res) => {
+  console.log("username", req);
+  const userID = req.params.orderId;
+  Order.findAll({ where: { userID: userID } }).then((data) => {
+    console.log("Order.findOne", data);
+    res.send(data);
   });
 };
 

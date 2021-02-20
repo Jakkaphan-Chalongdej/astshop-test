@@ -1,14 +1,14 @@
 .signin-wrapper {
-  top: 200px;
+  top: 10vw;
   width: 100%;
-  height: 100vh;
+  height: auto;
   position: absolute;
   left: 0;
 
   // transition: all 0.32s ease-in;
 }
 .signin-wrapper {
-  display: none;
+  // display: none;
 }
 
 // .icon-login{
@@ -32,15 +32,13 @@
 }
 .fullscreen {
   position: absolute !important;
-  top: 30px;
-  left: 0 !important;
   width: 100%;
-  height: 100vh;
+  height: auto;
   background-color: #42424291;
 }
 .fullscreen .icon-wrapper {
   position: absolute;
-  top: 235px !important;
+  top: 12vw !important;
   left: 58% !important;
   z-index: 1;
 }
@@ -80,26 +78,25 @@ h5 {
 }
 .signin-wrapper .form-group {
   position: absolute;
-  left: 43%;
-  top: 55%;
+  left: 42vw;
+  top: 19vw;
 }
 .signin-wrapper .showpass {
-  position: fixed;
-  z-index: 2000;
-  left: 56%;
-  top: 30%;
+  position: absolute;
+  // z-index: 2000;
+  left: 56vw;
+  top: 12vw;
 }
-.signin-wrapper .showpass-signup{
-  position: fixed;
-  z-index: 2000;
+.signin-wrapper .showpass-signup {
+  position: absolute;
+  // z-index: 2000;
   left: 56%;
-  top: 39%;
-
+  top: 15.5vw;
 }
 .form-wrapper {
   background-color: white;
-  width: 300px;
-  height: 500px;
+  // width: 300px;
+  // height: 500px;
   padding: 20px 0;
   margin: 20px auto;
   border-radius: 15px;
@@ -181,5 +178,87 @@ h5 {
   }
   100% {
     transform: translateX(0%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .signin-wrapper .showpass {
+    position: absolute;
+    // z-index: 2000;
+    left: 58vw;
+    top: 16.5vw;
+  }
+  .signin-wrapper .showpass-signup {
+    position: absolute;
+    // z-index: 2000;
+    left: 58vw;
+    top: 22vw;
+  }
+  .fullscreen .icon-wrapper {
+    position: absolute;
+    top: 12.5vw !important;
+    left: 61vw !important;
+    z-index: 1;
+  }
+}
+@media (min-width: 1601px) and (max-width: 1920px) {
+  .signin-wrapper .showpass {
+    position: absolute;
+    // z-index: 2000;
+    left: 54vw;
+    top: 8.9vw;
+  }
+  .signin-wrapper .showpass-signup {
+    position: absolute;
+    // z-index: 2000;
+    left: 54vw;
+    top: 11.9vw;
+  }
+  .fullscreen .icon-wrapper {
+    position: absolute;
+    top: 11.5vw !important;
+    left: 56vw !important;
+    z-index: 1;
+  }
+}
+@media (min-width: 1441px) and (max-width: 1600px) {
+  .signin-wrapper .showpass {
+    position: absolute;
+    // z-index: 2000;
+    left: 55vw;
+    top: 10.9vw;
+  }
+  .signin-wrapper .showpass-signup {
+    position: absolute;
+    // z-index: 2000;
+    left: 55vw;
+    top: 13.9vw;
+  }
+  .fullscreen .icon-wrapper {
+    position: absolute;
+    top: 11.5vw !important;
+    left: 57vw !important;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .signin-wrapper .showpass {
+    position: absolute;
+    // z-index: 2000;
+    left: 53vw;
+    top: 6.6vw;
+  }
+  .signin-wrapper .showpass-signup {
+    position: absolute;
+    // z-index: 2000;
+    left: 53vw;
+    top: 8.9vw;
+  }
+  .fullscreen .icon-wrapper {
+    position: absolute;
+    top: 11vw !important;
+    left: 54vw !important;
+    z-index: 1;
   }
 }

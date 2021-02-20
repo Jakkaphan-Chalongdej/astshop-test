@@ -149,6 +149,7 @@ function Stock(props) {
   const showformAdd = (show) => {
     if (show === true) {
       setShowForm(true);
+      setActiveTab(-1);
     } else setShowForm(false);
   };
   const dataform = [
@@ -157,7 +158,6 @@ function Stock(props) {
       name: "",
       slug: "",
       des: "",
-      uploadfile: "",
       quantity: "",
       price: "",
       discount_price: "",
@@ -166,8 +166,20 @@ function Stock(props) {
       sale: "",
     },
   ];
-  let [formData, setform] = React.useState(dataform);
-
+  const [formData, setform] = React.useState(dataform);
+  const {
+    id,
+    name,
+    slug,
+    des,
+    quantity,
+    price,
+    discount_price,
+    category,
+    subcategory,
+    sale,
+  } = formData;
+  const [uploadfile, setFile] = React.useState(null);
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
     console.log("handle Change:", e.target.value);
@@ -175,39 +187,53 @@ function Stock(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      id: formData.id,
-      name: formData.name,
-      uploadfile: formData.uploadfile,
-      slug: formData.slug,
-      des: formData.des,
-      quantity: formData.quantity,
-      price: formData.price,
-      discount_price: formData.discount_price,
-      category: formData.category,
-      subcategory: formData.subcategory,
-      sale: formData.sale,
-    };
-    console.log(data);
-    props.EditProduct(data.id, data);
+    const form = new FormData();
+    form.append("uploadfile", uploadfile);
+    form.append("id", formData.id);
+    form.append("name", formData.name);
+    form.append("slug", formData.slug);
+    form.append("des", formData.des);
+    form.append("quantity", formData.quantity);
+    form.append("price", formData.price);
+    form.append("discount_price", formData.discount_price);
+    form.append("category", formData.category);
+    form.append("subcategory", formData.subcategory);
+    form.append("sale", formData.sale);
+
+    props.EditProduct(formData.id, form);
     setform(dataform);
     setActiveTab(-1);
   };
   const handleSubmitAdd = (e) => {
     e.preventDefault();
-    const data = {
-      id: formData.id,
-      name: formData.name,
-      slug: formData.slug,
-      des: formData.des,
-      quantity: formData.quantity,
-      price: formData.price,
-      discount_price: formData.discount_price,
-      category: formData.category,
-      subcategory: formData.subcategory,
-      sale: formData.sale,
-    };
-    props.AddProduct(data);
+    const form = new FormData();
+    // form.append("formData", data);
+    form.append("uploadfile", uploadfile);
+    form.append("name", formData.name);
+    form.append("slug", formData.slug);
+    form.append("des", formData.des);
+    form.append("quantity", formData.quantity);
+    form.append("price", formData.price);
+    form.append("discount_price", formData.discount_price);
+    form.append("category", formData.category);
+    form.append("subcategory", formData.subcategory);
+    form.append("sale", formData.sale);
+    // const data = {
+    //   name: formData.name,
+    //   slug: formData.slug,
+    //   des: formData.des,
+    //   quantity: formData.quantity,
+    //   price: formData.price,
+    //   discount_price: formData.discount_price,
+    //   category: formData.category,
+    //   subcategory: formData.subcategory,
+    //   sale: formData.sale,
+    // };
+
+    console.log(form);
+    props.AddProduct(form);
+    setform(dataform);
+    setShowForm(false);
     props.history.push("/admin/stock");
   };
 
@@ -306,15 +332,17 @@ function Stock(props) {
                               <TableCell>
                                 <p>Id</p>
                                 <input
+                                  type="text"
                                   name="id"
-                                  value={formData.id}
+                                  value={id}
                                   onChange={handleChange}
                                   placeholder={row.id}
                                 ></input>
                                 <p>name</p>
                                 <input
+                                  type="text"
                                   name="name"
-                                  value={formData.name}
+                                  value={name}
                                   onChange={handleChange}
                                   placeholder={row.name}
                                 ></input>
@@ -322,15 +350,17 @@ function Stock(props) {
                               <TableCell>
                                 <p>slug</p>
                                 <input
+                                  type="text"
                                   name="slug"
-                                  value={formData.slug}
+                                  value={slug}
                                   onChange={handleChange}
                                   placeholder={row.slug}
                                 ></input>
                                 <p>des</p>
                                 <input
+                                  type="text"
                                   name="des"
-                                  value={formData.des}
+                                  value={des}
                                   onChange={handleChange}
                                   placeholder={row.des}
                                 ></input>
@@ -338,16 +368,18 @@ function Stock(props) {
                               <TableCell>
                                 <p>quantity</p>
                                 <input
+                                  type="text"
                                   name="quantity"
-                                  value={formData.quantity}
+                                  value={quantity}
                                   onChange={handleChange}
                                   placeholder={row.quantity}
                                 ></input>
 
                                 <p>price</p>
                                 <input
+                                  type="text"
                                   name="price"
-                                  value={formData.price}
+                                  value={price}
                                   onChange={handleChange}
                                   placeholder={row.price}
                                 ></input>
@@ -355,37 +387,43 @@ function Stock(props) {
                               <TableCell>
                                 <p>discount_price</p>
                                 <input
+                                  type="text"
                                   name="discount_price"
-                                  value={formData.discount_price}
+                                  value={discount_price}
                                   onChange={handleChange}
                                   placeholder={row.discount_price}
                                 ></input>
                                 <p>category</p>
                                 <input
+                                  type="text"
                                   name="category"
-                                  value={formData.category}
+                                  value={category}
                                   onChange={handleChange}
                                   placeholder={row.category}
                                 ></input>
+
                                 <input
                                   type="file"
-                                  onChange={handleChange}
+                                  multiple
+                                  onChange={(e) => setFile(e.target.files[0])}
                                   name="uploadfile"
-                                  value={formData.uploadfile}
+                                  // value={formData.uploadfile}
                                 />
                               </TableCell>
                               <TableCell>
                                 <p>subcategory</p>
                                 <input
+                                  type="text"
                                   name="subcategory"
-                                  value={formData.subcategory}
+                                  value={subcategory}
                                   onChange={handleChange}
                                   placeholder={row.subcategory}
                                 ></input>
                                 <p>sale</p>
                                 <input
+                                  type="text"
                                   name="sale"
-                                  value={formData.sale}
+                                  value={sale}
                                   onChange={handleChange}
                                   placeholder={row.sale}
                                 ></input>
@@ -433,15 +471,17 @@ function Stock(props) {
                   <TableCell>
                     <p>name</p>
                     <input
+                      type="text"
                       name="name"
-                      value={formData.name}
+                      value={name}
                       onChange={handleChange}
                       placeholder={"name"}
                     ></input>
                     <p>slug</p>
                     <input
+                      type="text"
                       name="slug"
-                      value={formData.slug}
+                      value={slug}
                       onChange={handleChange}
                       placeholder={"slug"}
                     ></input>
@@ -449,15 +489,17 @@ function Stock(props) {
                   <TableCell>
                     <p>des</p>
                     <input
+                      type="text"
                       name="des"
-                      value={formData.des}
+                      value={des}
                       onChange={handleChange}
                       placeholder={"des"}
                     ></input>
                     <p>quantity</p>
                     <input
+                      type="text"
                       name="quantity"
-                      value={formData.quantity}
+                      value={quantity}
                       onChange={handleChange}
                       placeholder={"quantity"}
                     ></input>
@@ -465,15 +507,17 @@ function Stock(props) {
                   <TableCell>
                     <p>price</p>
                     <input
+                      type="text"
                       name="price"
-                      value={formData.price}
+                      value={price}
                       onChange={handleChange}
                       placeholder={"price"}
                     ></input>
                     <p>discount_price</p>
                     <input
+                      type="text"
                       name="discount_price"
-                      value={formData.discount_price}
+                      value={discount_price}
                       onChange={handleChange}
                       placeholder={"discount_price"}
                     ></input>
@@ -481,15 +525,17 @@ function Stock(props) {
                   <TableCell>
                     <p>category</p>
                     <input
+                      type="text"
                       name="category"
-                      value={formData.category}
+                      value={category}
                       onChange={handleChange}
                       placeholder={"category"}
                     ></input>
                     <p>subcategory</p>
                     <input
+                      type="text"
                       name="subcategory"
-                      value={formData.subcategory}
+                      value={subcategory}
                       onChange={handleChange}
                       placeholder={"sale"}
                     ></input>
@@ -497,11 +543,19 @@ function Stock(props) {
                   <TableCell>
                     <p>sale</p>
                     <input
+                      type="text"
                       name="sale"
-                      value={formData.sale}
+                      value={sale}
                       onChange={handleChange}
                       placeholder={"sale"}
                     ></input>
+                    <input
+                      type="file"
+                      multiple
+                      onChange={(e) => setFile(e.target.files[0])}
+                      name="uploadfile"
+                      // value={formData.uploadfile}
+                    />
                   </TableCell>
 
                   <TableCell>

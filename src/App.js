@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { closeMaxProductModal } from "./store/actions/Action.product";
+import { closeMaxProductModal,toogleSideBar } from "./store/actions/Action.product";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import AdminRoute from "./AdminViews/routers/admin.roter";
@@ -33,6 +33,8 @@ function App(props) {
             component={Maincontainers.ProductCategoriesPage}
           />
           <Route path={"/sale"} component={Maincontainers.SalesPage} />
+          <Route path={"/login"} component={Maincontainers.LoginPage} />
+          <Route path={"/register"} component={Maincontainers.RegisterPage} />
           <Route path={"/contact"} component={Maincontainers.ContactPage} />
           <Route path={"/cart"} component={Maincontainers.CartPage} />
           <Route path={"/upload"} component={Upload} />
@@ -76,6 +78,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     closeModalProp: () => dispatch(closeMaxProductModal()),
+    toggleSideBarProp: () => dispatch(toogleSideBar()),
   };
 };
 

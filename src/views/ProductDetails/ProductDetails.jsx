@@ -103,23 +103,24 @@ class ProductDetails extends Component {
                   },
                 ]}
               />
-              <div className="product-card bg-white">
-                <img
-                  className="product-card-image slide-product"
-                  src={this.product.img}
-                  alt={this.product.name}
-                />
-                <div className="product-card-details">
-                  <div className="product-title-container">
-                    <h3 className="product-title">{this.product.name}</h3>
-                    <AddToWishList
-                      productId={this.product.id}
-                      title={"add to wishlist"}
-                      classStyleName={"product-wishlist"}
-                    />
-                  </div>
-                  <div>
-                    {/* <span>
+              <div className="product-card-des bg-white">
+                <div className="product-card bg-white">
+                  <img
+                    className="product-card-image slide-product"
+                    src={`../../../../resources/static/assets/tmp/${this.product.img_name}`}
+                    alt={this.product.name}
+                  />
+                  <div className="product-card-details">
+                    <div className="product-title-container">
+                      <h3 className="product-title">{this.product.name}</h3>
+                      <AddToWishList
+                        productId={this.product.id}
+                        title={"add to wishlist"}
+                        classStyleName={"product-wishlist"}
+                      />
+                    </div>
+                    <div>
+                      {/* <span>
                       <Ratings
                         ratings={this.product.ratings}
                         containerClassName={"product-rating"}
@@ -128,98 +129,101 @@ class ProductDetails extends Component {
                         emptyStarIcon={"empty-star-icon"}
                       />
                     </span> */}
-                  </div>
-                  <div className="product-price-container">
-                    <span className="product-price">
-                      {this.currencyKeys.name}
-                      {productPrice(
+                    </div>
+                    <div className="product-price-container">
+                      <span className="product-price">
+                        {this.currencyKeys.name}
+                        {productPrice(
                           this.product.price,
                           this.currencyKeys.value
                         )}
-                      
-                    </span>
-                    {this.product.discount_price ? (
-                      <span className="product-discount-price">
-                        {this.currencyKeys.name}
-                        {productPrice(
-                        this.product.discount_price,
-                        this.currencyKeys.value
-                      )}
                       </span>
-                    ) : null}
-                    {this.product.discount_price ? (
-                      <span className="product-percentage-discount">
-                        {productDiscountPrice(
-                          this.product.price,
-                          this.product.discount_price
-                        )}
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="product-features-container">
-                    <div className="product-features">
-                      <p className="product-features-title text-muted">
-                        Stock:
-                      </p>
-                      <div className="product-quantity">
-                        <span className="product-quantity">
-                          {this.product.quantity}
+                      {this.product.discount_price ? (
+                        <span className="product-discount-price">
+                          {this.currencyKeys.name}
+                          {productPrice(
+                            this.product.discount_price,
+                            this.currencyKeys.value
+                          )}
                         </span>
-                      </div>
+                      ) : null}
+                      {this.product.discount_price ? (
+                        <span className="product-percentage-discount">
+                          {productDiscountPrice(
+                            this.product.price,
+                            this.product.discount_price
+                          )}
+                        </span>
+                      ) : null}
                     </div>
-                    {this.product.quantity ? (
+                    <div className="product-features-container">
                       <div className="product-features">
                         <p className="product-features-title text-muted">
-                          quantity:
+                          Stock:
                         </p>
                         <div className="product-quantity">
-                          <button
-                            type="button"
-                            className="btn btn-secondary btn-border"
-                            onClick={() =>
-                              this.handleAdditionSubtraction("subtract")
-                            }
-                          >
-                            -
-                          </button>
-                          <input
-                            name="quantity"
-                            type="text"
-                            className="form-control"
-                            placeholder="Qty"
-                            value={this.state.productDetails.quantity}
-                            onChange={(event) => this.handleInputChange(event)}
-                          ></input>
-                          <button
-                            type="button"
-                            className="btn btn-secondary btn-border2"
-                            onClick={() =>
-                              this.handleAdditionSubtraction("add")
-                            }
-                            disabled={
-                              this.state.productDetails.quantity >=
-                              this.product.quantity
-                            }
-                          >
-                            +
-                          </button>
+                          <span className="product-quantity">
+                            {this.product.quantity}
+                          </span>
                         </div>
                       </div>
-                    ) : null}
+                      {this.product.quantity ? (
+                        <div className="product-features">
+                          <p className="product-features-title text-muted">
+                            quantity:
+                          </p>
+                          <div className="product-quantity">
+                            <button
+                              type="button"
+                              className="btn btn-secondary btn-border"
+                              onClick={() =>
+                                this.handleAdditionSubtraction("subtract")
+                              }
+                            >
+                              -
+                            </button>
+                            <input
+                              name="quantity"
+                              type="text"
+                              className="form-control"
+                              placeholder="Qty"
+                              value={this.state.productDetails.quantity}
+                              onChange={(event) =>
+                                this.handleInputChange(event)
+                              }
+                            ></input>
+                            <button
+                              type="button"
+                              className="btn btn-secondary btn-border2"
+                              onClick={() =>
+                                this.handleAdditionSubtraction("add")
+                              }
+                              disabled={
+                                this.state.productDetails.quantity >=
+                                this.product.quantity
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="mt-4"></div>
+                    <div className="mt-4 btn-addcart">
+                      <button
+                        type="button"
+                        className="btn btn-primary btn-block btn-lg "
+                        disabled={this.disableAddToCartButton()}
+                        onClick={this.handleAddToCart}
+                      >
+                        {this.product.quantity ? "Add To Cart" : "Out of Stock"}
+                      </button>
+                    </div>
                   </div>
-                  <div className="mt-4">
-                    <p>{this.product.des}</p>
-                  </div>
-                  <div className="mt-4 btn-addcart">
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-block btn-lg "
-                      disabled={this.disableAddToCartButton()}
-                      onClick={this.handleAddToCart}
-                    >
-                      {this.product.quantity ? "Add To Cart" : "Out of Stock"}
-                    </button>
-                  </div>
+                </div>
+                <div className="product-des">
+                  <p>{this.product.des}</p>
                 </div>
               </div>
             </div>

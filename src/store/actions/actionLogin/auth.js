@@ -1,6 +1,6 @@
 import * as actionTypes from "./types";
 import axios from "../../../config/axios";
-import { getOrder } from "../Action.product";
+import { getOrder, getOrderID } from "../Action.product";
 
 export const register = (data) => (dispatch) => {
   return axios.post("auth/signup", data).then(
@@ -44,17 +44,21 @@ export const login = (data) => (dispatch) => {
         type: actionTypes.LOGIN_SUCCESS,
         payload: { user: response.data },
       });
+
       if (response.data.accessToken) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
-      console.log("signin reducer", response);
+      console.log("signin reducer", response.data);
       if (response.data.roles.toString() === "ROLE_ADMIN") {
         console.log(response.data.roles.toString());
         dispatch(getUser());
         dispatch(getOrder());
       }
       // dispatch(getUserId(response.data.id));
+      dispatch(getOrderID(response.data.id));
+      console.log("login getOrderID ", response.data.id);
+
       return Promise.resolve();
     },
     (error) => {
@@ -85,41 +89,61 @@ export const getUserId = (id) => async (dispatch) => {
     .then((res) => {
       console.log("Get reducer", res);
       // const user = res.data;
-      dispatch({
-        type: actionTypes.GET_USER_ID,
-        user: res.data,
-      });
+      // dispatch({
+      //   type: actionTypes.GET_USER_ID,
+      //   user: res.data,
+      // });
     })
     .catch(function (error) {
       console.log(error);
     });
 };
 export const updateUser = (id, update) => async (dispatch) => {
-  console.log("ID", id);
+  console.log("ID", id, update);
   await axios
     .put(`user/${id}`, update)
     .then((res) => {
       console.log("Get reducer", res);
       // const user = res.data;
-      dispatch({
-        type: actionTypes.GET_USER_ID,
-        user: res,
-      });
+      dispatch(getUserId(id));
+      // dispatch({
+      //   type: actionTypes.GET_USER_ID,
+      //   user: res,
+      // });
     })
     .catch(function (error) {
       console.log(error);
     });
 };
+// export const getOrderuser = (userID) => (dispatch) => {
+//   // console.log(user);
+//    axios
+//     .get("orderuser",userID)
+//     .then((res) => {
+//       console.log("Get Orderuser", res.data);
+//       // dispatch({
+//       //   type: actionTypes.GET_ORDERUSER,
+//       //   Orderuser: res.data,
+//       // });
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//       return Promise.reject();
+//     });
+// };
 
 export const getUser = () => async (dispatch) => {
+  console.log("getUser");
   await axios
     .get("user")
     .then((res) => {
-      const response = res.data;
+      const responses = res.data;
+
       dispatch({
         type: actionTypes.GET_USER,
-        user: response,
+        user: responses,
       });
+      // dispatch(getOrderuser(responses));
     })
     .catch(function (error) {
       console.log(error);

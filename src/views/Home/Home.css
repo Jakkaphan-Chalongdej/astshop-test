@@ -20,9 +20,8 @@
 }
 
 .card img {
-  max-width: 180px;
-  width: auto;
-  height: 140px;
+  max-width: 100%;
+  height: auto;
 }
 
 .card .card-img-top {
@@ -147,7 +146,6 @@
 }
 
 .font-p {
- 
   font-weight: 200;
 }
 
@@ -319,13 +317,27 @@
 .input-contaner {
   width: 500px;
 }
+.select-num{
+  margin-left: 6vw;
+}
 
-@media (max-width: 576px) {
+@media (max-width: 320px) {
+  /* .form-control {
+    margin-left: -50px
+  } */
+  .select-num{
+    margin-left: 28vw;
+  }
+}
+
+@media (max-width: 425px) {
   .form-control {
     border-radius: 1rem;
-    margin-left: -50px;
     position: relative;
-    width: 60px !important;
+    width: 80%!important;
+  }
+  .select-num{
+    margin-left: 24vw;
   }
   /* deals section */
   .deals-image {
@@ -477,6 +489,16 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .form-control {
+    padding: 5px;
+  }
+  .menu-item a {
+    display: none;
+  }
+  
+}
+
 @media (max-width: 320px) {
   .container-card .card {
     background-color: #fff;
@@ -514,9 +536,7 @@
   .navbar a {
     font-size: 0.8rem !important;
   }
-  .menu-item a {
-    display: none;
-  }
+  
   .main-banner-text .btn {
     margin-top: -60px;
   }
@@ -781,8 +801,8 @@
 
 @media (max-width: 1024px) and (min-width: 990px) {
   .container-card .card {
-    max-width: 400px ;
-    max-height: 400px ;
+    max-width: 400px;
+    max-height: 400px;
     padding: 5px;
     text-align: left;
     height: 100px;
@@ -793,34 +813,34 @@
   }
   .card-img-top {
     border-radius: 0;
-    margin-left: 70px ;
-    max-width: 120px ;
-    max-height: 120px ;
+    margin-left: 70px;
+    max-width: 120px;
+    max-height: 120px;
   }
   .sellout-card {
     align-items: center;
     padding: 3rem 1rem;
   }
   .sellout-icon {
-    max-width: 40px ;
-    max-height: 40px ;
-    margin-left: 0 ;
+    max-width: 40px;
+    max-height: 40px;
+    margin-left: 0;
   }
   .navbar-toggler {
-    margin-right: 10px;
+    margin-right: 20px;
   }
   .navbar a {
-    font-size: 10px ;
+    font-size: 10px;
   }
   .main-banner-text .btn {
     margin-top: -60px;
   }
   .main-banner-text p {
-    font-size: 14px ;
+    font-size: 14px;
   }
   .main-banner-text span {
     padding: .2rem .2rem;
-    font-size: 8px ;
+    font-size: 8px;
   }
   .main-banner-container {
     max-height: 300px;
@@ -839,7 +859,6 @@
   .main-banner-image {
     display: block;
     max-width: 500px !important;
-    
   }
   .sellout-section {
     grid-template-columns: repeat(4, 1fr);
@@ -878,7 +897,7 @@
     border-radius: 14px;
   }
   .item-content a {
-    font-size: 5px ;
+    font-size: 5px;
   }
   .item-banner-title {
     color: #f17e0a;
@@ -911,7 +930,7 @@
     font-size: 15px;
   }
   .main-banner-text {
-    margin-top: 40px ;
+    margin-top: 40px;
   }
   .products-container {
     display: contents;

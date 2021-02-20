@@ -1,17 +1,13 @@
-
-
-
-
 input {
   outline: none !important;
 }
 
-.container-user  h1 {
+.container-user h1 {
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 40px;
   font-weight: 700;
-  color:  #60b0f1 !important;
+  color: #60b0f1 !important;
 }
 
 section#formHolder {
@@ -30,6 +26,7 @@ section#formHolder {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 40px;
 }
 .brand {
   padding: 20px;
@@ -165,18 +162,17 @@ section#formHolder {
   margin-bottom: 5px;
   position: relative;
 }
-.form form .form-group p{
+.form form .form-group p {
   margin-bottom: 5px;
   margin-top: 15px;
   margin-left: 20px;
   font-size: 14px;
 }
-.form form .form-group hr{
- 
+.form form .form-group hr {
   margin-top: -5px;
 }
-.form form .form-group h6{
- color: #444;
+.form form .form-group h6 {
+  color: #444;
   font-size: 13px;
 }
 .form form .form-group.hasError input {
@@ -220,7 +216,7 @@ section#formHolder {
   border-color: #f95959;
 }
 
-.form button{
+.form button {
   font-size: 12px;
   text-transform: uppercase;
   padding: 5px 30px;
@@ -232,8 +228,6 @@ section#formHolder {
   font-family: "Montserrat", sans-serif;
   border-color: #f95959;
 }
-
-
 
 .form form span.error {
   color: #f95959;
@@ -259,7 +253,6 @@ section#formHolder {
   border-radius: 30px;
   margin-right: 20px;
   border: none;
-  
 }
 .form form .CTA a.switch {
   font-size: 13px;
@@ -340,12 +333,28 @@ footer p a:focus:hover {
   }
 }
 @media (max-width: 480px) {
+  .brand {
+    margin-top: 70px;
+  }
+
   section#formHolder .form {
     width: 100vw;
     margin-left: 0;
   }
+}
 
-  h2 {
-    font-size: 50px !important;
+@media (max-width: 768px) and (min-width: 750px) {
+  .brand {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
   }
+  .form-user {
+    
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  section#formHolder .form{
+    margin-left: 0 !important;
+  }
+ 
 }

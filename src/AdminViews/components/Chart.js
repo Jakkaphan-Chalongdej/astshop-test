@@ -1,30 +1,48 @@
-import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts/umd/Recharts';
-import Title from './Title';
-
+import React from "react";
+import { useTheme } from "@material-ui/core/styles";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Label,
+  ResponsiveContainer,
+} from "recharts/umd/Recharts";
+import Title from "./Title";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 // Generate Sales Data
 function createData(time, amount) {
   return { time, amount };
 }
 
 const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData("00:00", 0),
+  createData("03:00", 300),
+  createData("06:00", 600),
+  createData("09:00", 800),
+  createData("12:00", 1500),
+  createData("15:00", 2000),
+  createData("18:00", 2400),
+  createData("21:00", 2400),
+  createData("24:00", undefined),
 ];
 
-export default function Chart() {
+function Chart(props) {
+  let orders = {};
+  console.log(orders.price)
+  // const data = [createData("21:00", orders)];
   const theme = useTheme();
-
+  let order =
+    props.OrdersProducts.length > 0
+      ? props.OrdersProducts.map((OrderProduct) => {
+          orders["quantity"] = OrderProduct.quantity;
+          orders["price"] = OrderProduct.price;
+        })
+      : null;
   return (
     <React.Fragment>
+      {order}
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
@@ -41,14 +59,30 @@ export default function Chart() {
             <Label
               angle={270}
               position="left"
-              style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+              style={{ textAnchor: "middle", fill: theme.palette.text.primary }}
             >
               Sales ($)
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
+          <Line
+            type="monotone"
+            dataKey="amount"
+            stroke={theme.palette.primary.main}
+            dot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
   );
 }
+Chart.propTypes = {
+ 
+  OrdersProducts: PropTypes.array.isRequired,
+ 
+};
+const mapStateToProps = (state) => {
+  return {
+    OrdersProducts: state.product.orders,
+  };
+};
+export default connect(mapStateToProps)(Chart);

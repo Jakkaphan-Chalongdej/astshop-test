@@ -1,15 +1,17 @@
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import "./signin.scss";
+import "./login.css";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { connect } from "react-redux";
-import { login } from "../../../../store/actions/actionLogin/auth";
-import { toogleSideLogin } from "../../../../store/actions/Action.product";
+import { login } from "../store/actions/actionLogin/auth";
+import { toogleSideLogin } from "../store/actions/Action.product";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-function Signin(props) {
+function Login(props) {
   const [handleLogin, sethandleLogin] = React.useState({
     successful: false,
   });
+
   const formdefault = {
     username: null,
     password: null,
@@ -22,16 +24,19 @@ function Signin(props) {
     });
    
   };
+  console.log(formData);
+
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
     type === "input" ? setType("password") : setType("input");
   };
- 
-  const [disable, setdisabled] = React.useState(false);
   const coll = React.useCallback 
  
-
+  const [disable, setdisabled] = React.useState(false);
+ 
+  
+  
   function handleSubmit(e) {
     e.preventDefault();
     const data = {
@@ -48,6 +53,7 @@ function Signin(props) {
             });
             props.toogleSideLogin(false);
             updateFormData(formdefault);
+            props.history.push("/");
           })
           .catch(() => {
             sethandleLogin({ ...handleLogin, successful: false });
@@ -58,15 +64,15 @@ function Signin(props) {
   return (
     <>
       <div>
-        <div className="signin-wrapper slideDown">
+        <div className="signin_wrapper">
           {handleLogin && (
-            <div className="form-wrapper">
+            <div className="form_wrapper">
               <h5>Sign In</h5>
               <input
                 name="username"
                 onChange={handleChange}
                 placeholder="Username"
-                className="form-field"
+                className="form_field"
               />
               <span>
                 <input
@@ -75,11 +81,11 @@ function Signin(props) {
                   minlength="8"
                   name="password"
                   placeholder="Password"
-                  className="form-field"
+                  className="form_field"
                   required
                 />
               </span>
-              <div className="showpass">
+              <div className="showpass1">
                 <VisibilityIcon
                   style={{ color: "#57aef5" }}
                   onClick={showHide}
@@ -88,6 +94,9 @@ function Signin(props) {
               <Button onClick={handleSubmit} disabled={!disable}>
                 Sign In
               </Button>
+              <button>
+                <Link to="/register">Sign Up</Link>
+              </button>
               <ReCAPTCHA
                 sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
                 theme="dark"
@@ -97,7 +106,7 @@ function Signin(props) {
             </div>
           )}
           {message && (
-            <div className="form-group">
+            <div className="form_group">
               <div
                 className={
                   handleLogin.successful
@@ -128,4 +137,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,44 +1,21 @@
-import React from 'react'
-const axios = require("axios");
-
-class ReactUploadImage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state ={
-            file: null
-        };
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-    onFormSubmit(e){
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('myImage',this.state.file);
-        // const config = {
-        //     headers: {
-        //         'content-type': 'multipart/form-data'
-        //     }
-        // };
-        axios.post("/api/upload",formData)
-            .then((response) => {
-                alert("The file is successfully uploaded");
-            }).catch((error) => {
-        });
-    }
-    onChange(e) {
-        this.setState({file:e.target.files[0]});
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
-                <input type="file" name="myImage" onChange= {this.onChange} />
-                <button type="submit">Upload</button>
-            </form>
-        )
-    }
+import React from "react";
+import ReactToPrint from "react-to-print";
+import { ComponentToPrint } from "../components/print/FormToPrint";
+function ReactUploadImage() {
+  const componentRef = React.useRef();
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  // });
+  return (
+    <div>
+      <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => componentRef.current}
+      />
+      <ComponentToPrint ref={componentRef} />
+      {/* <button onClick={handlePrint}>Print this out!</button> */}
+    </div>
+  );
 }
 
-export default ReactUploadImage
+export default ReactUploadImage;

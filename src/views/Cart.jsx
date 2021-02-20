@@ -11,7 +11,6 @@ import CartProductTotals from "../components/Cart/CartProductTotals";
 import OrderSuccess from "../components/OrderSuccess";
 import PropTypes from "prop-types";
 import { currencyToUse } from "../Utility/currency";
-
 const Cart = (props) => {
   const productCountHandler = (field_value, product_details) => {
     props.updateCartProductCountProp(field_value, product_details);
@@ -35,25 +34,26 @@ const Cart = (props) => {
         count: productInCart.quantity,
       });
       return (
-        <CartProduct
-          key={index}
-          productId={productFromStore.id}
-          productName={productFromStore.name}
-          productCategory={productFromStore.category}
-          productPhoto={productFromStore.img}
-          productPrice={Math.round(productFromStore.price * currencyValue)}
-          productCount={productInCart.quantity}
-          productQuantity={productFromStore.quantity}
-          updateProductCount={(event) =>
-            
-            productCountHandler(event.target.value, productInCart)
-            
-          }
-          removeCartProduct={() =>
-            props.removeProductFromCartProp(productInCart)
-          }
-          currency={props.usedCurrencyProp}
-        />
+        <>
+          <CartProduct
+            key={index}
+            productId={productFromStore.id}
+            productName={productFromStore.name}
+            productCategory={productFromStore.category}
+            productPhoto={`../../../../resources/static/assets/tmp/${productFromStore.img_name}`}
+            productPrice={Math.round(productFromStore.price * currencyValue)}
+            productCount={productInCart.quantity}
+            productQuantity={productFromStore.quantity}
+            updateProductCount={(event) =>
+              productCountHandler(event.target.value, productInCart)
+            }
+            removeCartProduct={() =>
+              props.removeProductFromCartProp(productInCart)
+            }
+            currency={props.usedCurrencyProp}
+          />
+        
+        </>
       );
     });
 
@@ -112,9 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     clearProductsFromCartProp: () => dispatch(clearCart()),
     updateCartProductCountProp: (value, productDetails) =>
       dispatch(updateCartProductCount(Number(value), productDetails)),
-      
-  }
-  
+  };
 };
 
 Cart.propTypes = {

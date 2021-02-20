@@ -10,9 +10,8 @@ import PropTypes from "prop-types";
 import { getOrder } from "../../store/actions/Action.product";
 import { currencyToUse } from "../../Utility/currency";
 import { connect } from "react-redux";
-
-// Generate Order Data
-
+import { useReactToPrint } from "react-to-print";
+import { ComponentToPrint } from "../../components/print/FormToPrint";
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -23,10 +22,16 @@ function Orders(props) {
   const classes = useStyles();
   let currencyKeys = currencyToUse(props.usedCurrencyProp);
   let currencyName = currencyKeys.name;
+  const componentRef = React.useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  console.log("handlePrint", componentRef);
   // props.GetOrder();
   let ordershow =
     props.OrdersProducts.length > 0
       ? props.OrdersProducts.map((OrderProduct, i) => {
+          console.log(OrderProduct.img);
           return (
             <TableRow key={i}>
               <TableCell>{OrderProduct.id}</TableCell>
@@ -42,10 +47,29 @@ function Orders(props) {
               <TableCell>{OrderProduct.city}</TableCell>
               <TableCell>{OrderProduct.ZipCode}</TableCell>
               <TableCell>{OrderProduct.Country}</TableCell>
+              <button onClick={handlePrint}>Print this out!</button>
+
+              <div style={{display:'none'}}>
+                <ComponentToPrint
+                  ref={componentRef}
+                  id={OrderProduct.id}
+                  product_name={OrderProduct.product_name}
+                  img={OrderProduct.img}
+                  firstname={OrderProduct.firstname}
+                  quantity={OrderProduct.quantity}
+                  price={OrderProduct.price}
+                  Address={OrderProduct.Address}
+                  city={OrderProduct.city}
+                  ZipCode={OrderProduct.ZipCode}
+                  Country={OrderProduct.Country}
+                  vat={OrderProduct.vat}
+                  shippingPrice={OrderProduct.shippingPrice}
+                />
+              </div>
             </TableRow>
           );
         })
-      : props.GetOrder();
+      : null;
 
   return (
     <React.Fragment>

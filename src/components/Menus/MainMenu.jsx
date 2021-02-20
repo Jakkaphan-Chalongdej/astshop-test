@@ -10,7 +10,7 @@ const MainMenu = (props) => {
   return (
     <>
       <Navbar expand="lg" className="navtop fixed-top">
-        <div className="container " style={{ width: "1500px" }}>
+        <div className="container ">
           <Nav.Link className="ml-auto">
             <ul style={{ marginTop: "15px" }}>
               <Login />
@@ -22,14 +22,10 @@ const MainMenu = (props) => {
         collapseOnSelect
         expand="lg"
         bg="light"
-        className="fixed-top"
-        style={{
-          boxShadow: "0 2px 2px -2px gray",
-          marginTop: "30px",
-          height: "90px",
-        }}
+        className="fixed-top navtop2"
+       
       >
-        <div className="container " style={{ width: "1500px" }}>
+        <div className="container ">
           <NavbarBrand>
             <NavLink to={"/"} exact>
               <picture>

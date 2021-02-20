@@ -14,7 +14,7 @@ function PrivateRoute( { component: Component, authed, ...children }) {
   return (
     <>
       {showlogin(true)}
-      <Redirect to="/"></Redirect>
+      <Redirect to="/login"></Redirect>
     </>
   );
 }

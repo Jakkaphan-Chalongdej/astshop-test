@@ -8,3 +8,6 @@ export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const GET_USER = "GET_USER";
 export const GET_USER_ID="GET_USER_ID"
+
+
+export const GET_ORDERUSER="GET_ORDERUSER"

@@ -76,13 +76,41 @@ exports.update = (req, res) => {
       subcategory: req.body.subcategory,
       sale: req.body.sale,
     },
-    { where: { id: req.params.productId } }
-  ).then((res) => {
-    fs.writeFileSync(
-      __basedir + "/resources/static/assets/tmp/" + res.img_name,
-      res.img_data
-    );
+    { where: { id: id } }
+  ).then(async (product) => {
+    try {
+      await fs.writeFileSync(
+        __basedir + "/resources/static/assets/tmp/" + product.img_name,
+        product.img_data
+      );
+      // res.status(200).send("updated successfully  id = " + id);
+      res.json({ msg: "File uploaded successfully!", file: req.file });
+      // res.send(product);
+    } catch (e) {
+      console.log(e);
+      res.json({ err: "File uploaded" });
+    }
+  });
+};
+exports.updateQuantity = (req, res) => {
+  const id = req.params.productId;
+  Product.update(
+    {
+      name: req.body.name,
+      price: req.body.price,
+      quantity: req.body.quantity,
+
+      des: req.body.des,
+      slug: req.body.slug,
+      discount_price: req.body.discount_price,
+      category: req.body.category,
+      subcategory: req.body.subcategory,
+      sale: req.body.sale,
+    },
+    { where: { id: id } }
+  ).then(async (product) => {
     res.status(200).send("updated successfully  id = " + id);
+    res.send(product);
   });
 };
 

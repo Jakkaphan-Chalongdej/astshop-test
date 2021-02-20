@@ -55,6 +55,7 @@ const initialState = {
   },
   products: [],
   orders: [],
+  orderUser: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -126,11 +127,18 @@ const appReducer = (state = initialState, action) => {
       };
 
     case actionTypes.GET_ORDER:
-      let order = action.orders;
-      console.log("action.orders", order);
+      let getorder = action.order;
+      console.log("reducer orders", getorder);
       return {
         ...state,
-        orders: order,
+        orders: getorder,
+      };
+    case actionTypes.GET_ORDER_ID:
+      let orderUser = action.order;
+      console.log("reducer orders ID", orderUser);
+      return {
+        ...state,
+        orderUser: orderUser,
       };
 
     case actionTypes.REMOVE_FROM_CART:

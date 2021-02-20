@@ -145,7 +145,7 @@ export default function Dashboard() {
           <IconButton color="inherit">
            <AccountCircleIcon/>
           </IconButton>
-          <Link to="/" className={"link-style"}>
+          <Link to="/user" className={"link-style"}>
             <IconButton color="inherit">
               <ExitToAppIcon />
             </IconButton>

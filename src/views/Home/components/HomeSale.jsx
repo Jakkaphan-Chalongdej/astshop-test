@@ -44,7 +44,6 @@ const HomeSale = (props) => {
   let currencyKeys = currencyToUse(props.usedCurrencyProp);
 
   let products = props.productsProps.map((product, index) => {
-    console.log(product.img_name);
     return (
       <div className="card card-body card-sale shadow" key={index}>
         <img

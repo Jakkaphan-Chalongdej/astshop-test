@@ -7,7 +7,7 @@ const Banner = () => {
     title: "All Solutions Tech ",
     text:
       "ผู้นำด้านอุปกรณ์รักษาความปลอดภัย มีสินค้าให้เลือกหลากหลาย ส่งตรงถึงบ้านคุณ shop เลย ",
-    link: "/all",
+    link: "/upload",
   };
   return (
     <div className="container main-banner-container my-4 ">

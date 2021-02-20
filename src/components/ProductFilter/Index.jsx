@@ -17,7 +17,7 @@ const Index = (props) => {
 
   return (
     <div className={"container shop-left-column price-filter mt-2 py-2"}>
-      <h5>Filter by Price</h5>
+      <h5>กรอง ราคาสินค้า</h5>
       <div>
         {`Max Price : `}
         <span>

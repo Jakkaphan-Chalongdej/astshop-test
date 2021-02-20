@@ -1,6 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../config/axios";
 import { getUser } from "./actionLogin/auth";
+const user = JSON.parse(localStorage.getItem("user"));
 export const setProductPriceFilter = (price) => {
   return { type: actionTypes.SET_PRODUCT_PRICE_FILTER, price: price };
 };
@@ -10,26 +11,33 @@ export const getProducts = () => async (dispatch) => {
     .get("product")
     .then((res) => {
       const response = res.data;
-      console.log("Action get Products");
-      console.log(response);
-      console.log("Action get");
+      console.log("Action get Products", response);
       dispatch({
         type: actionTypes.GET_PRODUCTS,
         product: response,
       });
 
-      // if (users.user.roles.toString() === "ROLE_ADMIN") {
-      dispatch(getUser());
-      dispatch(getOrder());
-      // }
+      if (user.roles.toString() === "ROLE_ADMIN") {
+        console.log("user roles", user.roles.toString());
+        dispatch(getUser());
+        dispatch(getOrder());
+      }
+      dispatch(getOrderID(user.id));
     })
     .catch(function (error) {
       console.log(error);
     });
 };
 export const addProducts = (product) => async (dispatch) => {
+  console.log("product", product);
+  const config = {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  };
   await axios
-    .post("product/create", product)
+    .post("product/create", product, config)
     .then(() => {
       console.log("Action Add Products");
       dispatch(getProducts());
@@ -52,6 +60,12 @@ export const deleteProducts = (id) => async (dispatch) => {
 };
 
 export const UpdataProducts = (id, update) => async (dispatch) => {
+  // const config = {
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
   await axios
     .put(`product/${id}`, update)
     .then(() => {
@@ -63,6 +77,23 @@ export const UpdataProducts = (id, update) => async (dispatch) => {
       dispatch(getProducts());
 
       console.log("Action Update Products3");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const UpdataQuantity = (id, update) => async (dispatch) => {
+  // const config = {
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  await axios
+    .put(`update/${id}`, update)
+    .then(() => {
+      console.log("Action Update Products");
+      dispatch(getProducts());
     })
     .catch(function (error) {
       console.log(error);
@@ -84,16 +115,32 @@ export const addToCart = (productDetails) => {
 //   };
 // };
 export const getOrder = () => async (dispatch) => {
-  console.log("action.getOrder");
+  // console.log("action getOrder");
   await axios
     .get("order")
     .then((res) => {
-      const response = res.data;
-      console.log("Action get Products");
-      console.log(response);
+      const response = res;
+      console.log("Action get order", response);
+
       dispatch({
         type: actionTypes.GET_ORDER,
-        orders: response,
+        order: response.data,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const getOrderID = (userID) => async (dispatch) => {
+  console.log("action getOrder id", userID);
+  await axios
+    .get(`orderuser/${userID}`)
+    .then((res) => {
+      const response = res.data;
+      console.log("Action get order", response);
+      dispatch({
+        type: actionTypes.GET_ORDER_ID,
+        order: response,
       });
     })
     .catch(function (error) {
@@ -101,7 +148,7 @@ export const getOrder = () => async (dispatch) => {
     });
 };
 
-export const createOrder = (order) => async () => {
+export const createOrder = (order) => async (dispatch) => {
   console.log("Action createOrder", order);
   await axios
     .post("order/create", order)
@@ -109,6 +156,8 @@ export const createOrder = (order) => async () => {
       const response = res.data;
       console.log("Action createOrder");
       console.log(response);
+      dispatch(getOrder());
+      dispatch(getOrderID(response.userID));
     })
     .catch(function (error) {
       console.log(error);

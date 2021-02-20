@@ -9,12 +9,12 @@ export default function Contact() {
         <br />
         <br />
         <Row>
-          <Col>
+          <Col  sm={6} md={6} xl={6}>
             <div className="center">
               <img src="/ast2.png" alt="logo-navbaer" />
             </div>
           </Col>
-          <Col>
+          <Col sm={6} md={6} xl={6}>
             <p style={{ marginLeft: "50px", fontSize: "18px" }}>
               <br />
               <b style={{ fontSize: "20px" }}>

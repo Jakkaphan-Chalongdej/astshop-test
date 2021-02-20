@@ -12,6 +12,8 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 function Login(props) {
   const [showFormSignUp, setShowForm] = useState(false);
@@ -72,10 +74,10 @@ function Login(props) {
                     onClose={handleClose}
                   >
                     <MenuItem onClick={handleClose}>
-                      <Link to="/user">My account</Link>
+                      <Link to="/user"><AccountBoxIcon/>My account</Link>
                     </MenuItem>
                     <MenuItem onClick={handleLogout}>
-                      <Link to="/">Logout</Link>
+                      <Link to="/"><ExitToAppIcon/>Logout</Link>
                     </MenuItem>
                   </Menu>
                 </span>

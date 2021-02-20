@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { confirmOrder, setPromoCode } from "../store/actions/Action.product";
-import { UpdataProducts } from "../store/actions/Action.product";
+import { UpdataQuantity } from "../store/actions/Action.product";
 import CheckoutCartProduct from "../components/Checkout/CheckoutCartProduct";
 import PromoCodeForm from "../components/Checkout/PromoCodeForm";
 import PromoCodeValue from "../components/Checkout/PromoCodeValue";
 import CheckoutCartTotals from "../components/Checkout/CheckoutCartTotals";
-import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
+// import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
 import DeliveryOptions from "../components/Checkout/Forms/DeliveryOptions";
 
 import Alert from "../components/UI/Alert/Alert";
@@ -74,10 +74,13 @@ class Checkout extends Component {
   confirmOrderHandler = (event) => {
     event.preventDefault();
     let order = {};
+
     order["product_name"] = this.state.newproduct.productName;
     order["quantity"] = this.state.newproduct.quantity;
     order["price"] = this.state.newproduct.price;
+    order["img"] = this.state.newproduct.imgname;
     order["firstname"] = this.props.Auth.user.firstname;
+    order["userID"] = this.props.Auth.user.id;
     order["lastname"] = this.props.Auth.user.lastname;
     order["email"] = this.props.Auth.user.email;
     order["Address"] = this.props.Auth.user.Address;
@@ -86,6 +89,8 @@ class Checkout extends Component {
     order["ZipCode"] = this.props.Auth.user.ZipCode;
     order["usedPromoCode"] = this.state.promoCode;
     order["currency"] = this.props.usedCurrencyProp;
+    order["shippingPrice"] = this.state.newproduct.shippingPrice;
+    order["vat"] = this.state.newproduct.vat;
     // // order["paymentMethod"] = this.state.paymentMethod;
     //order["deliveryOption"] = this.state.usedDeliveryOption;
     let updateQuantity =
@@ -153,7 +158,7 @@ class Checkout extends Component {
 
   render() {
     let productsPrices = [];
-    let chosenPaymentMethod = null;
+    // let chosenPaymentMethod = null;
     let currencyKeys = currencyToUse(this.props.usedCurrencyProp);
     let currencyValue = currencyKeys.value;
     let CartProducts = {};
@@ -174,6 +179,7 @@ class Checkout extends Component {
         CartProducts["quantity"] = cartProductquantity;
         CartProducts["productName"] = productFromStore.name;
         CartProducts["productID"] = productFromStore.id;
+        CartProducts["imgname"] = productFromStore.img_name;
         CartProducts["Allquantity"] = productFromStore.quantity;
         return (
           <>
@@ -184,7 +190,7 @@ class Checkout extends Component {
               checkoutProductPrice={Math.round(
                 productFromStore.price * currencyValue
               )}
-              checkoutProductImage={productFromStore.img}
+              checkoutProductImage={productFromStore.img_name}
               checkoutCartCount={cartProduct.quantity}
               checkoutCartSize={cartProduct.size}
               currency={this.props.usedCurrencyProp}
@@ -246,7 +252,7 @@ class Checkout extends Component {
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Order Review</span>
               <span className="badge badge-secondary badge-pill">
-                {this.props.cartTotalProps}
+                {/* {this.props.cartTotalProps} */}
               </span>
             </h4>
 
@@ -266,22 +272,23 @@ class Checkout extends Component {
               {/* checkout totals */}
               <CheckoutCartTotals
                 productTotals={productTotals}
-                vat={vat}
-                shippingPrice={shippingPrice}
+                vat={(CartProducts["vat"] = vat)}
+                shippingPrice={(CartProducts["shippingPrice"] = shippingPrice)}
                 shoppingTotal={(CartProducts["price"] = shoppingTotal)}
                 currency={this.props.usedCurrencyProp}
               />
-              {/* <div>{(CartProducts["price"] = shoppingTotal)}</div> */}
             </ul>
 
             {/*promo code form */}
-            <PromoCodeForm
-              setPromoCode={this.setPromoCode}
-              promoCodeChangeHandler={(event) =>
-                this.promoCodeChangeHandler(event)
-              }
-              promoCode={this.state.promoCode}
-            />
+            <div className="col-md-12 col-xl-12 col-sm-12">
+              <PromoCodeForm
+                setPromoCode={this.setPromoCode}
+                promoCodeChangeHandler={(event) =>
+                  this.promoCodeChangeHandler(event)
+                }
+                promoCode={this.state.promoCode}
+              />
+            </div>
           </div>
           <div className="col-md-8 order-md-1 ">
             <h4 className="mb-3">Billing Information</h4>
@@ -293,39 +300,70 @@ class Checkout extends Component {
                   this.customerInfoChangeHandler(event, identifier)
                 }
               /> */}
-              username :{this.props.Auth.user.username}
-              firstname : {this.props.Auth.user.firstname}
-              lastname : {this.props.Auth.user.lastname}
-              email :{this.props.Auth.user.email}
-              Address :{this.props.Auth.user.Address}
-              Country : {this.props.Auth.user.Country}
-              city :{this.props.Auth.user.city}
-              ZipCode : {this.props.Auth.user.ZipCode}
-              {/* delivery options selection fields */}
-              <h4 className="">Delivery Options</h4>
-              <DeliveryOptions
-                currency={this.props.usedCurrencyProp}
-                deliveryOptions={this.props.deliveryOptions}
-                usedDeliveryOption={this.state.usedDeliveryOption}
-                deliveryOptionChanged={this.deliveryOptionChangeHandler}
-              />
-              <h4 className="mb-3">Payment Method</h4>
+              <div className="address-form ">
+                <div className="card-address ">
+                  <ul>
+                    <div className="address-input">
+                      <li>firstname :</li>
+                      <span>{this.props.Auth.user.firstname}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>lastname :</li>
+                      <span>{this.props.Auth.user.lastname}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>email :</li>
+                      <span>{this.props.Auth.user.email}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>Address :</li>
+                      <span>{this.props.Auth.user.Address}</span>
+                    </div>
+                
+                    <div className="address-input">
+                      <li>city :</li>
+                      <span>{this.props.Auth.user.city}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>ZipCode :</li>
+                      <span> {this.props.Auth.user.ZipCode}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>Country :</li>
+                      <span>{this.props.Auth.user.Country}</span>
+                    </div>
+                  </ul>
+                </div>
+
+                {/* delivery options selection fields */}
+                <div className="card-address">
+                  <h4 className="">Delivery Options</h4>
+                  <DeliveryOptions
+                    currency={this.props.usedCurrencyProp}
+                    deliveryOptions={this.props.deliveryOptions}
+                    usedDeliveryOption={this.state.usedDeliveryOption}
+                    deliveryOptionChanged={this.deliveryOptionChangeHandler}
+                  />
+                </div>
+              </div>
+
               {/* payment option selection field */}
               {/* <PaymentOptions
                 paymentMethod={this.state.paymentMethod}
                 paymentOptionChanged={this.paymentOptionChangeHandler}
               /> */}
               {/* payment section */}
-              <div>{chosenPaymentMethod}</div>
+              {/* <div>{chosenPaymentMethod}</div> */}
               <hr className="mb-4" />
               <button
                 // disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
                 className="btn shop-btn-secondary btn-lg btn-block"
                 onClick={
-                  (event) => (
-                    this.confirmOrderHandler(event),
-                    this.setState({ newproduct: CartProducts })
-                  )
+                  (event) => {
+                    this.confirmOrderHandler(event);
+                    this.setState({ newproduct: CartProducts });
+                  }
+
                   // this.productcart(CartProducts);
                 }
               >
@@ -375,7 +413,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(confirmOrder(order, ownProps));
     },
     UpdataProducts: (id, update) => {
-      dispatch(UpdataProducts(id, update));
+      dispatch(UpdataQuantity(id, update));
     },
 
     setPromoCodeProp: (promoCode, percentage) =>

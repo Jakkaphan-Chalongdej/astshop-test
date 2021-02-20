@@ -1,0 +1,56 @@
+
+.card-form {
+    background-color: #fff;
+    text-align: left;
+    padding: 100px;
+    text-decoration: none;
+    border: 2px solid #eaeaea;
+    border-radius: 10px;
+    margin: 0px 8px;
+  
+  
+}
+.card-form-border {
+    padding: 150px;
+    text-decoration: none;
+    border: 2px solid #080808;
+   
+}
+.container-form {
+    padding: 30px;
+    background-color: #fff;
+}
+
+.print-form {
+    padding: 30px;
+    text-align: left;
+    height: auto;
+}
+
+.form-print {
+    padding: 1px;
+    height: auto;
+    text-align: right;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: repeat(2, 1fr);
+} 
+.form-print-logo {
+    height: auto;
+    text-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+} 
+.form-print label{
+    text-align: left;
+} 
+
+.form-print2 {
+    padding: 1px;
+    height: auto;
+    text-align: left;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}

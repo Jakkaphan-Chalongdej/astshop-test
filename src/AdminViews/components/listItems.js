@@ -6,7 +6,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
+// import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Link } from "react-router-dom";
@@ -37,14 +37,14 @@ export const mainListItems = (
       <ListItemText primary="Users" />
     </ListItem>
     </Link>
-    <Link to="/admin/reports">
+    {/* <Link to="/admin/reports">
     <ListItem button to="/admin/reports">
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItem>
-    </Link>
+    </Link> */}
     <Link to="/admin/stock">
     <ListItem button to="/admin/stock">
       <ListItemIcon>
