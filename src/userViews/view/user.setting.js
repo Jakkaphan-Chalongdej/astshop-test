@@ -6,11 +6,11 @@ import { Row, Col } from "react-bootstrap";
 function UserSetting(props) {
   const dataform = [
     {
-      firstname: "",
-      lastname: "",
-      username: "",
-      password: "",
-      email: "",
+      firstname: null,
+      lastname: null,
+      username: null,
+      password: null,
+      email: null,
     },
   ];
   let [formData, setform] = React.useState(dataform);
@@ -21,13 +21,23 @@ function UserSetting(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      firstname: formData.firstname,
-      lastname: formData.lastname,
-      username: formData.username,
-      password: formData.password,
-      email: formData.email,
-    };
+  
+    const data = {};
+    if (formData.firstname !== null) {
+      data["firstname"] = formData.firstname;
+    }
+    if (formData.lastname !== null) {
+      data["lastname"] = formData.lastname;
+    }
+    if (formData.username !== null) {
+      data["username"] = formData.username;
+    }
+    if (formData.password !== null) {
+      data["password"] = formData.password;
+    }
+    if (formData.email !== null) {
+      data["email"] = formData.email;
+    }
     props.Edit(props.Auth.user.id, data);
     setform(dataform);
     props.history.push("/user");
@@ -58,7 +68,7 @@ function UserSetting(props) {
                 <div className="signup form-peice">
                   <form className="signup-form">
                     <div className="form-group">
-                      <label htmlFor="name">First Name</label>
+                      <label >First Name</label>
                       <input
                         type="text"
                         name="firstname"
@@ -66,11 +76,12 @@ function UserSetting(props) {
                         value={formData.firstname}
                         onChange={handleChange}
                         className="name"
+                        // placeholder='First Name'
                       />
                       <span className="error" />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="name">Last Name</label>
+                      <label >Last Name</label>
                       <input
                         type="text"
                         name="lastname"
@@ -78,6 +89,7 @@ function UserSetting(props) {
                         onChange={handleChange}
                         id="name"
                         className="name"
+                        // placeholder='Last Name'
                       />
                       <span className="error" />
                     </div>

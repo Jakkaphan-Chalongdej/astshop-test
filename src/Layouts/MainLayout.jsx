@@ -22,7 +22,6 @@ import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import { Col, Row } from "react-bootstrap";
 import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import { logout } from "../store/actions/actionLogin/auth";
 import { connect } from "react-redux";
@@ -173,7 +172,12 @@ const MainLayout = (props) => {
 
                       <ul onClick={handleClick2}>
                         <ViewListIcon style={{ color: "#fff" }} />
-                        <li className="menu-font-bottom" style={{ width: "38px" }}>หมวดหมู่</li>
+                        <li
+                          className="menu-font-bottom"
+                          style={{ width: "38px" }}
+                        >
+                          หมวดหมู่
+                        </li>
                       </ul>
 
                       <Menu
@@ -202,7 +206,6 @@ const MainLayout = (props) => {
                     <IconButton>
                       <ul onClick={handleClick}>
                         <PersonIcon style={{ color: "#fff" }} />
-
                         <li className="menu-font-bottom">บัญชี</li>
                       </ul>
 

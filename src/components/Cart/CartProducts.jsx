@@ -16,7 +16,7 @@ function CartProducts(props) {
               <img
                 className={"shop-cart-image"}
                 src={props.productPhoto}
-                alt={props.productPhoto}
+                alt={props.productName}
               />
             </Col>
 

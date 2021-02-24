@@ -22,15 +22,15 @@ function Deposits(props) {
   // let order =
   //   props.OrdersProducts.length > 0
   //     ? props.OrdersProducts.map((OrderProduct, i) => {
-  //         let numm = props.OrdersProducts.length;
+  //         const num1 = props.OrdersProducts.length;
   //         let y = OrderProduct.price;
   //         let x = 0;
-
-  //         // for (let z = 0; z !== numm; z++) {
-  //         //   x = x + y;
-  //         //   setnum(x);
-  //         //   console.log(num);
-  //         // }
+  //         // console.log(numm);
+  //         for (let z = 0; z < num1; z++) {
+  //           // x = x + y;
+  //           // setnum(x);
+  //           console.log(z);
+  //         }
   //       })
   //     : null;
 

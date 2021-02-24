@@ -53,25 +53,24 @@
    
 } */
 
-.table-Row {
-    position: absolute;
+.spacing .table-Row {
+    /* position: absolute; */
     background-color: #fff;
-    width: 75vw;
+    /* width: 75vw; */
     box-shadow: #747373 1px 8px 10px 1px;
     padding: 10px;
+   
 
 }
 
-.table-Row .con-button-close {
-    position: absolute;
-    margin-left: 70px ;
-    margin-top: -75px !important;
+.con-button-close {
+     margin-left: 4vw;
+     margin-top: -1vw;
 }
 
-.table-Row .con-button-update {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 10px;
-    background-color: #28a745;
+.con-button-update {
+    /* position: absolute; */
+    margin-top: 3vw;
+    /* background-color: #28a745; */
     border-color: #fff;
 }

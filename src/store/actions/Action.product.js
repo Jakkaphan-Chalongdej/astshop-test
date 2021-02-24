@@ -60,35 +60,24 @@ export const deleteProducts = (id) => async (dispatch) => {
 };
 
 export const UpdataProducts = (id, update) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
+  const config = {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  console.log("Action Update Products", update, config);
   await axios
-    .put(`product/${id}`, update)
+    .put(`product/${id}`, update, config)
     .then(() => {
-      console.log("Action Update Products");
-      // dispatch({
-      //   type: actionTypes.EDIT_PRODUCT,
-      //   product: update,
-      // });
+      console.log("Action Update getProducts");
       dispatch(getProducts());
-
-      console.log("Action Update Products3");
     })
     .catch(function (error) {
       console.log(error);
     });
 };
 export const UpdataQuantity = (id, update) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // };
   await axios
     .put(`update/${id}`, update)
     .then(() => {

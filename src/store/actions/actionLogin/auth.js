@@ -89,10 +89,10 @@ export const getUserId = (id) => async (dispatch) => {
     .then((res) => {
       console.log("Get reducer", res);
       // const user = res.data;
-      // dispatch({
-      //   type: actionTypes.GET_USER_ID,
-      //   user: res.data,
-      // });
+      dispatch({
+        type: actionTypes.GET_USER_ID,
+        user: res.data,
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -104,7 +104,6 @@ export const updateUser = (id, update) => async (dispatch) => {
     .put(`user/${id}`, update)
     .then((res) => {
       console.log("Get reducer", res);
-      // const user = res.data;
       dispatch(getUserId(id));
       // dispatch({
       //   type: actionTypes.GET_USER_ID,

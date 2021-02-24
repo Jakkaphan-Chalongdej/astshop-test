@@ -6,11 +6,11 @@ import { Row, Col } from "react-bootstrap";
 import "./address.css";
 function UserShipping(props) {
   const formdefault = {
-    AddressName: "",
-    Address: "",
-    Country: "",
-    ZipCode: "",
-    city: "",
+    AddressName: null,
+    Address: null,
+    Country: null,
+    ZipCode: null,
+    city: null,
   };
   const [formData, updateFormData] = React.useState(formdefault);
   const handleChange = (e) => {
@@ -21,14 +21,22 @@ function UserShipping(props) {
   };
   function handleSubmit(e) {
     e.preventDefault();
-
-    const data = {
-      AddressName: formData.AddressName,
-      Address: formData.Address,
-      Country: formData.Country,
-      ZipCode: formData.ZipCode,
-      city: formData.city,
-    };
+    const data = {};
+    if (formData.AddressName !== null) {
+      data["AddressName"] = formData.AddressName;
+    }
+    if (formData.Address !== null) {
+      data["Address"] = formData.Address;
+    }
+    if (formData.Country !== null) {
+      data["Country"] = formData.Country;
+    }
+    if (formData.ZipCode !== null) {
+      data["ZipCode"] = formData.ZipCode;
+    }
+    if (formData.city !== null) {
+      data["city"] = formData.city;
+    }
     console.log(data);
     props.updateUser(props.Auth.user.id, data);
     updateFormData(formdefault);
@@ -49,7 +57,7 @@ function UserShipping(props) {
             <h1>Delivery Addresses</h1>
           </header>
           <Row>
-            <Col sm={12} md={6} xl={6} className='address-form-col'>
+            <Col sm={12} md={6} xl={6} className="address-form-col">
               {Object.keys(props.Auth.user).length > 0 && (
                 <div className="address-form ">
                   <div className="card-address ">
@@ -79,7 +87,7 @@ function UserShipping(props) {
                 </div>
               )}
             </Col>
-            <Col sm={12} md={6} xl={6}  className='address-form-col'>
+            <Col sm={12} md={6} xl={6} className="address-form-col">
               <div className="address-form address-form-2  ">
                 <div className="address-input">
                   <label>Address name</label>

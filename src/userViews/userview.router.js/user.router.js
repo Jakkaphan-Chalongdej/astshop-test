@@ -2,7 +2,7 @@ import React from "react";
 import PrivateRoute from "../../route/PrivateRoute";
 import Userpage from "../view/userpage";
 import Setting from "../view/user.setting";
-import PayMethods from "../view/user.payment";
+import Order from "../view/user.order";
 import PayMethodsEdit from "../view/user.payment.edit";
 import Shipping from "../view/user.shipping";
 import { Switch } from "react-router-dom";
@@ -31,9 +31,9 @@ function UserRouter(props) {
         />
         <PrivateRoute
           exact
-          path={"/user/payment"}
+          path={"/user/order"}
           authed={props.authed}
-          component={PayMethods}
+          component={Order}
         />
         <PrivateRoute
           exact

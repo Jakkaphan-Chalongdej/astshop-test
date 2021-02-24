@@ -33,6 +33,9 @@ module.exports = (sequelize, Sequelize) => {
     vat: {
       type: Sequelize.STRING,
     },
+    currency:{
+      type: Sequelize.STRING,
+    },
     Address: {
       type: Sequelize.STRING,
     },

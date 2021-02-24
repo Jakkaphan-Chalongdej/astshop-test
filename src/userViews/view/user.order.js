@@ -11,7 +11,9 @@ import { currencyToUse } from "../../Utility/currency";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-
+import { useReactToPrint } from "react-to-print";
+import { ComponentToPrint } from "../../components/print/FormToPrint";
+import { Button } from "react-bootstrap";
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
@@ -22,28 +24,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 function UserPayMethods(props) {
   const classes = useStyles();
-  let currencyKeys = currencyToUse(props.usedCurrencyProp);
-  let currencyName = currencyKeys.name;
-
+  
+  const componentRef = React.useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   let ordershow =
     props.orderUser.length > 0
       ? props.orderUser.map((OrderProduct, i) => {
           return (
-            <TableRow key={i}>
-              <TableCell>{OrderProduct.id}</TableCell>
-              <TableCell>{OrderProduct.firstname}</TableCell>
-              <TableCell>{OrderProduct.quantity}</TableCell>
-              <TableCell>
-                <span style={{ textTransform: "lowercase" }}>
-                  {currencyName}
-                </span>
-                {OrderProduct.price}
-              </TableCell>
-              <TableCell>{OrderProduct.Address}</TableCell>
-              <TableCell>{OrderProduct.city}</TableCell>
-              <TableCell>{OrderProduct.ZipCode}</TableCell>
-              <TableCell>{OrderProduct.Country}</TableCell>
-            </TableRow>
+            <>
+              <TableRow key={i}>
+                <TableCell>{OrderProduct.id}</TableCell>
+                <TableCell>{OrderProduct.firstname}</TableCell>
+                <TableCell>{OrderProduct.quantity}</TableCell>
+                <TableCell>
+                  <span style={{ textTransform: "lowercase" }}>
+                    {OrderProduct.currency}
+                  </span>
+                  {OrderProduct.price}
+                </TableCell>
+                <TableCell>{OrderProduct.Address}</TableCell>
+                <TableCell>{OrderProduct.city}</TableCell>
+                <TableCell>{OrderProduct.ZipCode}</TableCell>
+                <TableCell>{OrderProduct.Country}</TableCell>
+
+                <Button onClick={handlePrint}>Print this out!</Button>
+
+                <div style={{ display: "none" }}>
+                  <ComponentToPrint
+                    ref={componentRef}
+                    id={OrderProduct.id}
+                    product_name={OrderProduct.product_name}
+                    img={OrderProduct.img}
+                    firstname={OrderProduct.firstname}
+                    quantity={OrderProduct.quantity}
+                    price={OrderProduct.price}
+                    Address={OrderProduct.Address}
+                    city={OrderProduct.city}
+                    ZipCode={OrderProduct.ZipCode}
+                    Country={OrderProduct.Country}
+                    vat={OrderProduct.vat}
+                    currency={OrderProduct.currency}
+                    shippingPrice={OrderProduct.shippingPrice}
+                  />
+                </div>
+              </TableRow>
+            </>
           );
         })
       : null;
@@ -53,8 +80,8 @@ function UserPayMethods(props) {
       <Setting
         breadCrumbs={[
           {
-            label: "payment",
-            to: "/user/payment",
+            label: "order",
+            to: "/user/order",
           },
         ]}
       >

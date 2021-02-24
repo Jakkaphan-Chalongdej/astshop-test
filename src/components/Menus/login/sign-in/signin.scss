@@ -79,7 +79,7 @@ h5 {
 .signin-wrapper .form-group {
   position: absolute;
   left: 42vw;
-  top: 19vw;
+  top: 23vw;
 }
 .signin-wrapper .showpass {
   position: absolute;
@@ -200,6 +200,11 @@ h5 {
     left: 61vw !important;
     z-index: 1;
   }
+  .signin-wrapper .form-group {
+    position: absolute;
+    left: 39vw;
+    top: 32vw;
+  }
 }
 @media (min-width: 1601px) and (max-width: 1920px) {
   .signin-wrapper .showpass {
@@ -219,6 +224,11 @@ h5 {
     top: 11.5vw !important;
     left: 56vw !important;
     z-index: 1;
+  }
+  .signin-wrapper .form-group {
+    position: absolute;
+    left: 44vw;
+    top: 17vw;
   }
 }
 @media (min-width: 1441px) and (max-width: 1600px) {
@@ -240,6 +250,11 @@ h5 {
     left: 57vw !important;
     z-index: 1;
   }
+  .signin-wrapper .form-group {
+    position: absolute;
+    left: 43vw;
+    top: 21vw;
+  }
 }
 
 @media (min-width: 1921px) and (max-width: 2560px) {
@@ -260,5 +275,10 @@ h5 {
     top: 11vw !important;
     left: 54vw !important;
     z-index: 1;
+  }
+  .signin-wrapper .form-group {
+    position: absolute;
+    left: 45vw;
+    top: 13vw;
   }
 }

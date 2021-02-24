@@ -14,7 +14,7 @@ import Badge from "@material-ui/core/Badge";
 // import MenuIcon from "@material-ui/icons/Menu";
 // import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { mainListItems } from "./listItems";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 import '../style.admin.css'
@@ -169,7 +169,7 @@ export default function Dashboard() {
         <Divider />
         <List className="link-style">{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        {/* <List>{secondaryListItems}</List> */}
       </div>
     </div>
   );

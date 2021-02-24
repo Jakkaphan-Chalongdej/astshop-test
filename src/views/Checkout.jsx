@@ -88,7 +88,7 @@ class Checkout extends Component {
     order["city"] = this.props.Auth.user.city;
     order["ZipCode"] = this.props.Auth.user.ZipCode;
     order["usedPromoCode"] = this.state.promoCode;
-    order["currency"] = this.props.usedCurrencyProp;
+    order["currency"] = this.props.usedCurrencyProp.symbol;
     order["shippingPrice"] = this.state.newproduct.shippingPrice;
     order["vat"] = this.state.newproduct.vat;
     // // order["paymentMethod"] = this.state.paymentMethod;

@@ -8,10 +8,10 @@ import TableRow from "@material-ui/core/TableRow";
 import Title from "./Title";
 import PropTypes from "prop-types";
 import { getOrder } from "../../store/actions/Action.product";
-import { currencyToUse } from "../../Utility/currency";
 import { connect } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import { ComponentToPrint } from "../../components/print/FormToPrint";
+import { Button } from "react-bootstrap";
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -20,37 +20,34 @@ const useStyles = makeStyles((theme) => ({
 
 function Orders(props) {
   const classes = useStyles();
-  let currencyKeys = currencyToUse(props.usedCurrencyProp);
-  let currencyName = currencyKeys.name;
-  const componentRef = React.useRef();
+  const componentRef= React.createRef({current:''});
+  console.log("handlePrint", componentRef);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    
   });
-  console.log("handlePrint", componentRef);
   // props.GetOrder();
   let ordershow =
     props.OrdersProducts.length > 0
       ? props.OrdersProducts.map((OrderProduct, i) => {
-          console.log(OrderProduct.img);
           return (
             <TableRow key={i}>
               <TableCell>{OrderProduct.id}</TableCell>
               <TableCell>{OrderProduct.firstname}</TableCell>
               <TableCell>{OrderProduct.quantity}</TableCell>
               <TableCell>
-                <span style={{ textTransform: "lowercase" }}>
-                  {currencyName}
-                </span>
+                <span>{OrderProduct.currency}</span>
                 {OrderProduct.price}
               </TableCell>
               <TableCell>{OrderProduct.Address}</TableCell>
               <TableCell>{OrderProduct.city}</TableCell>
               <TableCell>{OrderProduct.ZipCode}</TableCell>
               <TableCell>{OrderProduct.Country}</TableCell>
-              <button onClick={handlePrint}>Print this out!</button>
-
-              <div style={{display:'none'}}>
+              <Button onClick={handlePrint}>Print this out!</Button>
+             
+              <div style={{ display: "none" }}>
                 <ComponentToPrint
+                  current={i}
                   ref={componentRef}
                   id={OrderProduct.id}
                   product_name={OrderProduct.product_name}
@@ -63,6 +60,7 @@ function Orders(props) {
                   ZipCode={OrderProduct.ZipCode}
                   Country={OrderProduct.Country}
                   vat={OrderProduct.vat}
+                  currency={OrderProduct.currency}
                   shippingPrice={OrderProduct.shippingPrice}
                 />
               </div>

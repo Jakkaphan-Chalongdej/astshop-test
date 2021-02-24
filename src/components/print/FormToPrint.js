@@ -3,6 +3,7 @@ import "./formprint.css";
 import { Row, Col } from "react-bootstrap";
 export class ComponentToPrint extends React.PureComponent {
   render() {
+ 
     return (
       <ul className="card-form">
         <div className="card-form-border">
@@ -12,9 +13,7 @@ export class ComponentToPrint extends React.PureComponent {
             </div>
             <div>
               <span> {this.props.firstname}</span>
-              <span style={{ marginLeft: "5px" }}>
-                {this.props.lastname}
-              </span>
+              <span style={{ marginLeft: "5px" }}>{this.props.lastname}</span>
             </div>
           </div>
 
@@ -22,7 +21,7 @@ export class ComponentToPrint extends React.PureComponent {
           <Col>
             <Row>
               <Col>
-                <img
+                <img alt={this.props.img}
                   src={`../../../resources/static/assets/tmp/${this.props.img}`}
                 />
               </Col>
@@ -64,15 +63,30 @@ export class ComponentToPrint extends React.PureComponent {
                 <hr />
                 <div className="form-print">
                   <label>vat </label>
-                  <li>฿{this.props.vat}</li>
+                  <li>
+                    <span style={{ textTransform: "lowercase" }}>
+                      {this.props.currency}
+                    </span>
+                    {this.props.vat}
+                  </li>
                 </div>
                 <div className="form-print">
                   <label>shippingPrice </label>
-                  <li> ฿{this.props.shippingPrice}</li>
+                  <li>
+                    <span style={{ textTransform: "lowercase" }}>
+                      {this.props.currency}
+                    </span>
+                    {this.props.shippingPrice}
+                  </li>
                 </div>
                 <div className="form-print">
                   <label>Total price </label>
-                  <li>฿{this.props.price}</li>
+                  <li>
+                    <span style={{ textTransform: "lowercase" }}>
+                      {this.props.currency}
+                    </span>
+                    {this.props.price}
+                  </li>
                 </div>
               </Col>
             </Row>

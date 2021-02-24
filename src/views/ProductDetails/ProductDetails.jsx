@@ -224,6 +224,7 @@ class ProductDetails extends Component {
                 </div>
                 <div className="product-des">
                   <p>{this.product.des}</p>
+                  <div></div>
                 </div>
               </div>
             </div>

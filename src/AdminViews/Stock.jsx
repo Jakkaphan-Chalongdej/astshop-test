@@ -154,31 +154,20 @@ function Stock(props) {
   };
   const dataform = [
     {
-      id: "",
-      name: "",
-      slug: "",
-      des: "",
-      quantity: "",
-      price: "",
-      discount_price: "",
-      category: "",
-      subcategory: "",
-      sale: "",
+      id: null,
+      name: null,
+      slug: null,
+      des: null,
+      quantity: null,
+      price: null,
+      discount_price: null,
+      category: null,
+      subcategory: null,
+      sale: null,
     },
   ];
   const [formData, setform] = React.useState(dataform);
-  const {
-    id,
-    name,
-    slug,
-    des,
-    quantity,
-    price,
-    discount_price,
-    category,
-    subcategory,
-    sale,
-  } = formData;
+
   const [uploadfile, setFile] = React.useState(null);
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
@@ -188,47 +177,89 @@ function Stock(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData();
-    form.append("uploadfile", uploadfile);
-    form.append("id", formData.id);
-    form.append("name", formData.name);
-    form.append("slug", formData.slug);
-    form.append("des", formData.des);
-    form.append("quantity", formData.quantity);
-    form.append("price", formData.price);
-    form.append("discount_price", formData.discount_price);
-    form.append("category", formData.category);
-    form.append("subcategory", formData.subcategory);
-    form.append("sale", formData.sale);
+    const data = {};
 
+    if (uploadfile !== null) {
+      form.append("uploadfile", uploadfile);
+      console.log("uploadfile", uploadfile);
+    }
     props.EditProduct(formData.id, form);
+    if (formData.name !== undefined) {
+      // form.append("name", formData.name);
+      data["name"] = formData.name;
+    }
+    if (formData.slug !== undefined) {
+      // form.append("slug", formData.slug);
+      data["slug"] = formData.slug;
+    }
+    if (formData.des !== undefined) {
+      // form.append("des", formData.des);
+      data["des"] = formData.des;
+    }
+    if (formData.quantity !== undefined) {
+      // form.append("quantity", formData.quantity);
+      data["quantity"] = formData.quantity;
+    }
+    if (formData.price !== undefined) {
+      // form.append("price", formData.price);
+      data["price"] = formData.price;
+    }
+    if (formData.discount_price !== undefined) {
+      // form.append("discount_price", formData.discount_price);
+      data["discount_price"] = formData.discount_price;
+    }
+    if (formData.category !== undefined) {
+      form.append("category", formData.category);
+      data["category"] = formData.category;
+    }
+    if (formData.subcategory !== undefined) {
+      // form.append("subcategory", formData.subcategory);
+      data["subcategory"] = formData.subcategory;
+    }
+    if (formData.sale !== undefined) {
+      // form.append("sale", formData.sale);
+      data["sale"] = formData.sale;
+    }
+    if (Object.keys(data).length > 1) {
+      // props.EditProduct(formData.id, data);
+    }
+
     setform(dataform);
     setActiveTab(-1);
   };
   const handleSubmitAdd = (e) => {
     e.preventDefault();
     const form = new FormData();
-    // form.append("formData", data);
-    form.append("uploadfile", uploadfile);
-    form.append("name", formData.name);
-    form.append("slug", formData.slug);
-    form.append("des", formData.des);
-    form.append("quantity", formData.quantity);
-    form.append("price", formData.price);
-    form.append("discount_price", formData.discount_price);
-    form.append("category", formData.category);
-    form.append("subcategory", formData.subcategory);
-    form.append("sale", formData.sale);
-    // const data = {
-    //   name: formData.name,
-    //   slug: formData.slug,
-    //   des: formData.des,
-    //   quantity: formData.quantity,
-    //   price: formData.price,
-    //   discount_price: formData.discount_price,
-    //   category: formData.category,
-    //   subcategory: formData.subcategory,
-    //   sale: formData.sale,
-    // };
+    if (uploadfile !== null) {
+      form.append("uploadfile", uploadfile);
+    }
+    if (formData.name !== undefined) {
+      form.append("name", formData.name);
+    }
+    if (formData.slug !== undefined) {
+      form.append("slug", formData.slug);
+    }
+    if (formData.des !== undefined) {
+      form.append("des", formData.des);
+    }
+    if (formData.quantity !== undefined) {
+      form.append("quantity", formData.quantity);
+    }
+    if (formData.price !== undefined) {
+      form.append("price", formData.price);
+    }
+    if (formData.discount_price !== undefined) {
+      form.append("discount_price", formData.discount_price);
+    }
+    if (formData.category !== undefined) {
+      form.append("category", formData.category);
+    }
+    if (formData.subcategory !== undefined) {
+      form.append("subcategory", formData.subcategory);
+    }
+    if (formData.sale !== undefined) {
+      form.append("sale", formData.sale);
+    }
 
     console.log(form);
     props.AddProduct(form);
@@ -334,7 +365,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="id"
-                                  value={id}
+                                  value={formData.id}
                                   onChange={handleChange}
                                   placeholder={row.id}
                                 ></input>
@@ -342,7 +373,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="name"
-                                  value={name}
+                                  value={formData.name}
                                   onChange={handleChange}
                                   placeholder={row.name}
                                 ></input>
@@ -352,7 +383,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="slug"
-                                  value={slug}
+                                  value={formData.slug}
                                   onChange={handleChange}
                                   placeholder={row.slug}
                                 ></input>
@@ -360,7 +391,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="des"
-                                  value={des}
+                                  value={formData.des}
                                   onChange={handleChange}
                                   placeholder={row.des}
                                 ></input>
@@ -370,7 +401,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="quantity"
-                                  value={quantity}
+                                  value={formData.quantity}
                                   onChange={handleChange}
                                   placeholder={row.quantity}
                                 ></input>
@@ -379,7 +410,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="price"
-                                  value={price}
+                                  value={formData.price}
                                   onChange={handleChange}
                                   placeholder={row.price}
                                 ></input>
@@ -389,7 +420,7 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="discount_price"
-                                  value={discount_price}
+                                  value={formData.discount_price}
                                   onChange={handleChange}
                                   placeholder={row.discount_price}
                                 ></input>
@@ -397,11 +428,31 @@ function Stock(props) {
                                 <input
                                   type="text"
                                   name="category"
-                                  value={category}
+                                  value={formData.category}
                                   onChange={handleChange}
                                   placeholder={row.category}
                                 ></input>
-
+                              </TableCell>
+                              <TableCell>
+                                <p>subcategory</p>
+                                <input
+                                  type="text"
+                                  name="subcategory"
+                                  value={formData.subcategory}
+                                  onChange={handleChange}
+                                  placeholder={row.subcategory}
+                                ></input>
+                                <p>sale</p>
+                                <input
+                                  type="text"
+                                  name="sale"
+                                  value={formData.sale}
+                                  onChange={handleChange}
+                                  placeholder={row.sale}
+                                ></input>
+                              </TableCell>
+                              <TableCell>
+                                <p>file Image</p>
                                 <input
                                   type="file"
                                   multiple
@@ -411,36 +462,15 @@ function Stock(props) {
                                 />
                               </TableCell>
                               <TableCell>
-                                <p>subcategory</p>
-                                <input
-                                  type="text"
-                                  name="subcategory"
-                                  value={subcategory}
-                                  onChange={handleChange}
-                                  placeholder={row.subcategory}
-                                ></input>
-                                <p>sale</p>
-                                <input
-                                  type="text"
-                                  name="sale"
-                                  value={sale}
-                                  onChange={handleChange}
-                                  placeholder={row.sale}
-                                ></input>
-                              </TableCell>
-                              <TableCell>
                                 <div
                                   className="con-button-close"
                                   onClick={() => showform(-1)}
                                 >
                                   <FaWindowClose />
                                 </div>
-                                <Button
-                                  className="con-button-update"
-                                  onClick={handleSubmit}
-                                >
-                                  Update
-                                </Button>
+                                <div className="con-button-update">
+                                  <Button onClick={handleSubmit}>Update</Button>
+                                </div>
                               </TableCell>
                             </TableRow>
                           ) : null}
@@ -473,7 +503,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="name"
-                      value={name}
+                      value={formData.name}
                       onChange={handleChange}
                       placeholder={"name"}
                     ></input>
@@ -481,7 +511,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="slug"
-                      value={slug}
+                      value={formData.slug}
                       onChange={handleChange}
                       placeholder={"slug"}
                     ></input>
@@ -491,7 +521,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="des"
-                      value={des}
+                      value={formData.des}
                       onChange={handleChange}
                       placeholder={"des"}
                     ></input>
@@ -499,7 +529,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="quantity"
-                      value={quantity}
+                      value={formData.quantity}
                       onChange={handleChange}
                       placeholder={"quantity"}
                     ></input>
@@ -509,7 +539,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="price"
-                      value={price}
+                      value={formData.price}
                       onChange={handleChange}
                       placeholder={"price"}
                     ></input>
@@ -517,7 +547,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="discount_price"
-                      value={discount_price}
+                      value={formData.discount_price}
                       onChange={handleChange}
                       placeholder={"discount_price"}
                     ></input>
@@ -527,7 +557,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="category"
-                      value={category}
+                      value={formData.category}
                       onChange={handleChange}
                       placeholder={"category"}
                     ></input>
@@ -535,9 +565,9 @@ function Stock(props) {
                     <input
                       type="text"
                       name="subcategory"
-                      value={subcategory}
+                      value={formData.subcategory}
                       onChange={handleChange}
-                      placeholder={"sale"}
+                      placeholder={"subcategory"}
                     ></input>
                   </TableCell>
                   <TableCell>
@@ -545,7 +575,7 @@ function Stock(props) {
                     <input
                       type="text"
                       name="sale"
-                      value={sale}
+                      value={formData.sale}
                       onChange={handleChange}
                       placeholder={"sale"}
                     ></input>

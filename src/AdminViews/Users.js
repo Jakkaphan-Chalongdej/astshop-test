@@ -154,17 +154,17 @@ function User(props) {
 
   const dataform = [
     {
-      id: "",
-      firstname: "",
-      lastname: "",
-      age: "",
-      username: "",
-      email: "",
-      AddressName: "",
-      Address: "",
-      ZipCode: "",
-      city: "",
-      Country: "",
+      id: null,
+      firstname: null,
+      lastname: null,
+      age: null,
+      username: null,
+      email: null,
+      AddressName: null,
+      Address: null,
+      ZipCode: null,
+      city: null,
+      Country: null,
     },
   ];
   let [formData, setform] = React.useState(dataform);
@@ -176,22 +176,42 @@ function User(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      id: formData.id,
-      firstname: formData.firstname,
-      lastname: formData.lastname,
-      age: formData.age,
-      username: formData.username,
-      password: formData.password,
-      email: formData.email,
-      AddressName: formData.AddressName,
+    const data = {};
+    if (formData.firstname !== null) {
+      data["firstname"] = formData.firstname;
+    }
+    if (formData.lastname !== null) {
+      data["lastname"] = formData.lastname;
+    }
+    if (formData.age !== null) {
+      data["age"] = formData.age;
+    }
+    if (formData.username !== null) {
+      data["username"] = formData.username;
+    }
+    if (formData.password !== null) {
+      data["password"] = formData.password;
+    }
+    if (formData.email !== null) {
+      data["email"] = formData.email;
+    }
 
-      Address: formData.Address,
-      ZipCode: formData.ZipCode,
-      city: formData.city,
-      Country: formData.Country,
-    };
-    props.EditProduct(data.id, data);
+    if (formData.AddressName !== null) {
+      data["AddressName"] = formData.AddressName;
+    }
+    if (formData.Address !== null) {
+      data["Address"] = formData.Address;
+    }
+    if (formData.Country !== null) {
+      data["Country"] = formData.Country;
+    }
+    if (formData.ZipCode !== null) {
+      data["ZipCode"] = formData.ZipCode;
+    }
+    if (formData.city !== null) {
+      data["city"] = formData.city;
+    }
+    props.EditProduct(formData.id, data);
     setform(dataform);
     setActiveTab(-1);
   };
