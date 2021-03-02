@@ -12,12 +12,20 @@ const multer = require("multer");
 //   }
 // };
 
+const typeimage = (file) => {
+  if (file.mimetype === "image/jpeg") {
+    return "jpg";
+  } else if (file.mimetype === "image/jpg") {
+    return "jpg";
+  }
+};
+
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, __basedir + "/resources/static/assets/uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now() + "-" + file.originalname);
+    cb(null, `${Date.now()}.${typeimage(file)}`);
   },
 });
 

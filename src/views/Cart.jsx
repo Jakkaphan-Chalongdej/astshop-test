@@ -40,7 +40,7 @@ const Cart = (props) => {
             productId={productFromStore.id}
             productName={productFromStore.name}
             productCategory={productFromStore.category}
-            productPhoto={`../../../../resources/static/assets/tmp/${productFromStore.img_name}`}
+            productPhoto={productFromStore.img_name}
             productPrice={Math.round(productFromStore.price * currencyValue)}
             productCount={productInCart.quantity}
             productQuantity={productFromStore.quantity}

@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
 
 // Find a Customer by Id
 exports.findById = (req, res) => {
-  const id = req.params.productId;
+  const id = req.params.orderId;
   Order.findByPk(id).then((product) => {
     res.status(200).send(product);
   });
@@ -48,7 +48,7 @@ exports.findById = (req, res) => {
 
 // Update a Customer
 exports.update = (req, res) => {
-  const id = req.params.productId;
+  const id = req.params.orderId;
   Order.update(
     {
       userID: req.body.userID,

@@ -4,12 +4,11 @@ import Users from "../Users";
 import Orders from "../Orders";
 import Stock from "../Stock";
 import Reports from "../Reports";
+import Print from "../components/printOrderAdmin";
 import PrivateRoute from "../../route/PrivateRoute";
 import { Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 function AdminRoute(props) {
- 
-  console.log(props.authed);
   return (
     <Switch>
       <PrivateRoute
@@ -23,6 +22,12 @@ function AdminRoute(props) {
         path={"/admin/users"}
         exact
         component={Users}
+      />
+      <PrivateRoute
+        authed={props.authed}
+        path={"/admin/print"}
+        exact
+        component={Print}
       />
       <PrivateRoute
         authed={props.authed}
@@ -42,7 +47,6 @@ function AdminRoute(props) {
         exact
         component={Reports}
       />
-      {/* <Route path={"/admin"} exact component={AdminViews}></Route> */}
     </Switch>
   );
 }

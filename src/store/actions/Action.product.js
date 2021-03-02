@@ -34,6 +34,7 @@ export const addProducts = (product) => async (dispatch) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
+      // "Authorization" : `Bearer ${token}` ,
     },
   };
   await axios
@@ -121,7 +122,6 @@ export const getOrder = () => async (dispatch) => {
     });
 };
 export const getOrderID = (userID) => async (dispatch) => {
-  console.log("action getOrder id", userID);
   await axios
     .get(`orderuser/${userID}`)
     .then((res) => {
@@ -201,6 +201,22 @@ export const confirmOrder = (order, ownProps) => {
       dispatch(resetOrderSuccess());
     }, 5000);
   };
+};
+export const OrderIDPrint = (id) => async (dispatch) => {
+  console.log("action print id ", id);
+  await axios
+    .get(`order/${id}`)
+    .then((res) => {
+      const response = res.data;
+      console.log("Action get order", response);
+      dispatch({
+        type: actionTypes.PRINT_ORDER,
+        print: response,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 export const closeMaxProductModal = () => {

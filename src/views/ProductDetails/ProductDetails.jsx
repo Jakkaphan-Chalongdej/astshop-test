@@ -107,7 +107,7 @@ class ProductDetails extends Component {
                 <div className="product-card bg-white">
                   <img
                     className="product-card-image slide-product"
-                    src={`../../../../resources/static/assets/tmp/${this.product.img_name}`}
+                    src={this.product.img_name}
                     alt={this.product.name}
                   />
                   <div className="product-card-details">

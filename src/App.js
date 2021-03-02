@@ -9,7 +9,7 @@ import UserRoute from "./userViews/userview.router.js/user.router";
 import "./App.css";
 import ScrollToTop from "./Layouts/ScrollToTop";
 import PrivateRoute from "./route/PrivateRoute";
-import Upload from './views/uploads'
+
 function App(props) {
   var Roles = props.Auth.user !== null && props.Auth.user.roles.toString();
 
@@ -37,7 +37,7 @@ function App(props) {
           <Route path={"/register"} component={Maincontainers.RegisterPage} />
           <Route path={"/contact"} component={Maincontainers.ContactPage} />
           <Route path={"/cart"} component={Maincontainers.CartPage} />
-          <Route path={"/upload"} component={Upload} />
+   
           <PrivateRoute
             authed={Roles}
             path={"/checkout"}

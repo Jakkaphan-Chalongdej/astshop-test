@@ -2,23 +2,18 @@ const db = require("../model");
 const Product = db.product;
 const fs = require("fs");
 exports.create = (req, res) => {
-  let mimetype = null;
   let filename = null;
-  let originalname = null;
-  if (req.file != undefined) {
-    mimetype = req.file.mimetype;
-    filename = fs.readFileSync(
-      __basedir + "/resources/static/assets/uploads/" + req.file.filename
-    );
-    originalname = req.file.originalname;
+  console.log(typeof req.file);
+  if (typeof req.file != "undefined") {
+    console.log("filesdvdfkbdklbflgknlgfh;kmngflhm");
+    filename = "/resources/static/assets/uploads/" + req.file.filename;
   }
+  console.log("filename    :", req.file);
   Product.create({
     name: req.body.name,
     price: req.body.price,
     quantity: req.body.quantity,
-    img_type: mimetype,
-    img_name: originalname,
-    img_data: filename,
+    img_name: filename,
     des: req.body.des,
     slug: req.body.slug,
     discount_price: req.body.discount_price,
@@ -29,10 +24,11 @@ exports.create = (req, res) => {
     .then(async (product) => {
       // res.send(product);
       try {
-        await fs.writeFileSync(
-          __basedir + "/resources/static/assets/tmp/" + product.img_name,
-          product.img_data
-        );
+        // await fs.writeFileSync(
+        //   __basedir + "/resources/static/assets/tmp/" + product.img_name,
+        //   product.img_data
+        // );
+        console.log(product);
         res.json({ msg: "File uploaded successfully!", file: req.file });
         // res.send(product);
       } catch (e) {
@@ -67,25 +63,17 @@ exports.findById = (req, res) => {
 // Update
 exports.update = (req, res) => {
   const id = req.params.productId;
-  console.log("Update controller", id, req.file);
-  let mimetype = null;
+  console.log("Update controller", id, req);
   let filename = null;
-  let originalname = null;
-  if (req.file != undefined) {
-    mimetype = req.file.mimetype;
-    filename = fs.readFileSync(
-      __basedir + "/resources/static/assets/uploads/" + req.file.filename
-    );
-    originalname = req.file.originalname;
+  if (typeof req.file != "undefined") {
+    filename = "/resources/static/assets/uploads/" + req.file.filename;
   }
   Product.update(
     {
       name: req.body.name,
       price: req.body.price,
       quantity: req.body.quantity,
-      img_type: mimetype,
-      img_name: originalname,
-      img_data: filename,
+      img_name: filename,
       des: req.body.des,
       slug: req.body.slug,
       discount_price: req.body.discount_price,
@@ -98,10 +86,11 @@ exports.update = (req, res) => {
     .then(async (product) => {
       // res.send(product);
       try {
-        await fs.writeFileSync(
-          __basedir + "/resources/static/assets/tmp/" + product.img_name
-          // product.img_data
-        );
+        // await fs.writeFileSync(
+        //   __basedir + "/resources/static/assets/tmp/" + product.img_name
+        //   // product.img_data
+        // );
+        console.log(product);
         res.json({ msg: "File uploaded successfully!", file: req.file });
       } catch (e) {
         console.log(e);

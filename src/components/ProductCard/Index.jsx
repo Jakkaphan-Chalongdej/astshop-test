@@ -22,7 +22,7 @@ const Index = (props) => {
         <div className="shop-card">
           <div className="shop-card-image">
             <NavLink to={`/product/${item.slug}`} exact>
-              <img   src={`../../../../resources/static/assets/tmp/${item.img_name}`} alt={item.img} />
+              <img   src={item.img_name}alt={item.name} />
             </NavLink>
             {
               (item.sale ===  true ? <span className="shop-card-sale">Sale</span> : null)||(item.sale ===  "true" ? <span className="shop-card-sale">Sale</span> : null)

@@ -20,7 +20,7 @@ export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const ADD_TO_ORDER = "ADD_TO_ORDER";
 export const TOGGLE_SIDE_LOGIN = "TOGGLE_SIDE_LOGIN";
 
-
+export const PRINT_ORDER = "PRINT_ORDER";
 export const GET_ORDER = "GET_ORDER";
 export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_ORDER = "UPDATE_ORDER";

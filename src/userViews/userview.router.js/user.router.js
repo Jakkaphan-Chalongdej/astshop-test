@@ -5,15 +5,11 @@ import Setting from "../view/user.setting";
 import Order from "../view/user.order";
 import PayMethodsEdit from "../view/user.payment.edit";
 import Shipping from "../view/user.shipping";
-import { Switch } from "react-router-dom";
+import { Switch ,Route} from "react-router-dom";
+import PrintOrder from "../components/printOrderUser";
 import PropTypes from "prop-types";
 
 function UserRouter(props) {
-  // var Roles =
-  //   Object.keys(props.Auth.user).length > 0 &&
-  //   props.Auth.user.data.roles.toString();
-
-  console.log(props.authed);
   return (
     <>
       <Switch>
@@ -23,11 +19,17 @@ function UserRouter(props) {
           authed={props.authed}
           component={Userpage}
         />
-        <PrivateRoute
+        <Route
           exact
           path={"/user/edit/profile"}
           authed={props.authed}
           component={Setting}
+        />
+        <PrivateRoute
+          exact
+          path={"/user/print"}
+          authed={props.authed}
+          component={PrintOrder}
         />
         <PrivateRoute
           exact

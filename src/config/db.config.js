@@ -4,6 +4,7 @@ module.exports = {
   database: env.database,
   user: env.user,
   password: env.password,
+  // port: 80,
   dialect: "mysql",
   pool: {
     max: 5,

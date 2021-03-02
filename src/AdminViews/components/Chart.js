@@ -33,16 +33,16 @@ function Chart(props) {
   console.log(orders.price)
   // const data = [createData("21:00", orders)];
   const theme = useTheme();
-  let order =
-    props.OrdersProducts.length > 0
-      ? props.OrdersProducts.map((OrderProduct) => {
-          orders["quantity"] = OrderProduct.quantity;
-          orders["price"] = OrderProduct.price;
-        })
-      : null;
+  // let order =
+  //   props.OrdersProducts.length > 0
+  //     ? props.OrdersProducts.map((OrderProduct) => {
+  //         orders["quantity"] = OrderProduct.quantity;
+  //         orders["price"] = OrderProduct.price;
+  //       })
+  //     : null;
   return (
     <React.Fragment>
-      {order}
+      {/* {order} */}
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart

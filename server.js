@@ -35,6 +35,19 @@ server.use(
     path.join(__dirname, "/public", "/resources/static/assets/uploads/")
   )
 );
+// server.use(
+//   express.static(
+//     // path.resolve(
+//     //   //__dirname,
+//     //   "public",
+//     //   "resources",
+//     //   "static",
+//     //   "assets",
+//     //   "uploads"
+//     // )
+
+//   )
+// );
 // server.get("/", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 // });

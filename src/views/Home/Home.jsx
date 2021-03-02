@@ -26,11 +26,9 @@ class Home extends Component {
     
         <Banner />
         <SelloutCards />
-          
         <ItemBanners />
         <Deal />
         <HomeSale />
-      
       </React.Fragment>
     );
   }

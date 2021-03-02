@@ -53,6 +53,7 @@ const initialState = {
     max: 30000,
     pricerange: 30000,
   },
+  Print: {},
   products: [],
   orders: [],
   orderUser: [],
@@ -71,16 +72,11 @@ const appReducer = (state = initialState, action) => {
         ...state,
         products: action.product,
       };
-    // case actionTypes.EDIT_PRODUCT:
-    //   return {
-    //     ...state,
-    //     products: action.update,
-    //   };
-    // case actionTypes.REMOVE_PRODUCT:
-    //   return {
-    //     ...state,
-    //     id: action.id,
-    //   };
+    case actionTypes.PRINT_ORDER:
+      return {
+        ...state,
+        Print: action.print,
+      };
 
     case actionTypes.SET_PRODUCT_PRICE_FILTER:
       let productPriceFilter = state.priceFilter;

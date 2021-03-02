@@ -183,7 +183,7 @@ function Stock(props) {
       form.append("uploadfile", uploadfile);
       console.log("uploadfile", uploadfile);
     }
-    props.EditProduct(formData.id, form);
+   
     if (formData.name !== undefined) {
       // form.append("name", formData.name);
       data["name"] = formData.name;
@@ -223,7 +223,7 @@ function Stock(props) {
     if (Object.keys(data).length > 1) {
       // props.EditProduct(formData.id, data);
     }
-
+    props.EditProduct(formData.id, form);
     setform(dataform);
     setActiveTab(-1);
   };

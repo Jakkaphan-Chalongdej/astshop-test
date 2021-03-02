@@ -48,7 +48,7 @@ const HomeSale = (props) => {
       <div className="card card-body card-sale shadow" key={index}>
         <img
           className="card-img-top"
-          src={(`../../../../resources/static/assets/tmp/${product.img_name}`)}
+          src={product.img_name}
           alt={product.name}
         />
 

@@ -7,12 +7,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import PropTypes from "prop-types";
-import { currencyToUse } from "../../Utility/currency";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import { useReactToPrint } from "react-to-print";
-import { ComponentToPrint } from "../../components/print/FormToPrint";
+// import { useReactToPrint } from "react-to-print";
+import { OrderIDPrint } from "../../store/actions/Action.product";
+// import { ComponentToPrint } from "../../components/print/FormToPrint";
 import { Button } from "react-bootstrap";
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 function UserPayMethods(props) {
   const classes = useStyles();
-  
-  const componentRef = React.useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  const printOrder = (id) => {
+    console.log('click print')
+    props.Order(id);
+    props.history.push("/user/print");
+  };
   let ordershow =
     props.orderUser.length > 0
       ? props.orderUser.map((OrderProduct, i) => {
@@ -49,26 +49,13 @@ function UserPayMethods(props) {
                 <TableCell>{OrderProduct.ZipCode}</TableCell>
                 <TableCell>{OrderProduct.Country}</TableCell>
 
-                <Button onClick={handlePrint}>Print this out!</Button>
-
-                <div style={{ display: "none" }}>
-                  <ComponentToPrint
-                    ref={componentRef}
-                    id={OrderProduct.id}
-                    product_name={OrderProduct.product_name}
-                    img={OrderProduct.img}
-                    firstname={OrderProduct.firstname}
-                    quantity={OrderProduct.quantity}
-                    price={OrderProduct.price}
-                    Address={OrderProduct.Address}
-                    city={OrderProduct.city}
-                    ZipCode={OrderProduct.ZipCode}
-                    Country={OrderProduct.Country}
-                    vat={OrderProduct.vat}
-                    currency={OrderProduct.currency}
-                    shippingPrice={OrderProduct.shippingPrice}
-                  />
-                </div>
+                <Button
+                  onClick={() => {
+                    printOrder(OrderProduct.id);
+                  }}
+                >
+                  Print
+                </Button>
               </TableRow>
             </>
           );
@@ -85,8 +72,6 @@ function UserPayMethods(props) {
           },
         ]}
       >
-        {/* <div className="container-paymant card-paymant"></div> */}
-
         <React.Fragment>
           <Paper className={classes.paper}>
             <title>Recent Orders</title>
@@ -113,22 +98,19 @@ function UserPayMethods(props) {
 }
 
 UserPayMethods.propTypes = {
-  // Auth: PropTypes.object.isRequired,
   orderUser: PropTypes.array.isRequired,
-  // OrdersProducts: PropTypes.array.isRequired,
   usedCurrencyProp: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => {
   return {
     orderUser: state.product.orderUser,
     usedCurrencyProp: state.product.usedCurrency,
-    // Auth: state.auth,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     GetOrder: () => dispatch(getOrder()),
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    Order: (id) => dispatch(OrderIDPrint(id)),
+  };
+};
 
-export default connect(mapStateToProps)(UserPayMethods);
+export default connect(mapStateToProps, mapDispatchToProps)(UserPayMethods);

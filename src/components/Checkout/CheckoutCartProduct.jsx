@@ -12,7 +12,7 @@ const checkoutCartProduct = (props) => {
           <div>
             <img
               className={"shop-checkout-image"}
-              src={`../../../resources/static/assets/tmp/${props.checkoutProductImage}`}
+              src={props.checkoutProductImage}
               alt={props.checkoutProductName}
             />
           </div>
