@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { Navbar } from "react-bootstrap";
 import Signup from "./sign-up/Signup";
@@ -12,26 +12,14 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import {
+  toogleSideLogin,
+  toogleSideSignup,
+} from "../../../store/actions/Action.product";
 
 function Login(props) {
-  const [showFormSignUp, setShowForm] = useState(false);
-  const [showFormSignIn, setShowForm2] = useState(false);
-
-  const showform = () => {
-    setShowForm(!showFormSignUp);
-    setShowForm2(false);
-  };
-
-  const showform2 = () => {
-    props.showSideBar
-      ? "true"(setShowForm2(!showFormSignIn), setShowForm(false))
-      : setShowForm2(false);
-    console.log("showMenuLogin", props.showMenuLogin);
-    setShowForm2(!showFormSignIn);
-    setShowForm(false);
-  };
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -48,22 +36,28 @@ function Login(props) {
     <>
       <Navbar style={{ marginTop: "-10px" }}>
         <Navbar>
-          <div onClick={showform}>sign up</div>
+          <div onClick={props.toogleSideSignupProp}>sign up</div>
         </Navbar>
         <span style={{ marginLeft: "10px" }}>|</span>
         <Navbar>
           <span style={{ marginLeft: "5px" }}>
             {props.Auth.user !== null ? (
               <div>
-                <span style={{ marginLeft: "5px" }}>
-                  Hi {props.Auth.user.username}
-                </span>
                 <span>
                   <Button
                     // aria-controls="simple-menu"
                     // aria-haspopup="true"
                     onClick={handleClick}
                   >
+                    <span
+                      style={{
+                        marginLeft: "-4px",
+                        marginRight: "5px",
+                        color: "#fff",
+                      }}
+                    >
+                      {`สวัสดี ${props.Auth.user.username}`}
+                    </span>
                     <AccountCircleIcon style={{ color: "#fff" }} />
                   </Button>
                   <Menu
@@ -74,65 +68,70 @@ function Login(props) {
                     onClose={handleClose}
                   >
                     <MenuItem onClick={handleClose}>
-                      <Link to="/user"><AccountBoxIcon/>My account</Link>
+                      <Link to="/user">
+                        <AccountBoxIcon />
+                        My account
+                      </Link>
                     </MenuItem>
                     <MenuItem onClick={handleLogout}>
-                      <Link to="/"><ExitToAppIcon/>Logout</Link>
+                      <Link to="/">
+                        <ExitToAppIcon />
+                        Logout
+                      </Link>
                     </MenuItem>
                   </Menu>
                 </span>
               </div>
             ) : (
-              <div onClick={showform2}> sign in</div>
+              <div onClick={props.toogleSideLoginProp}> sign in</div>
             )}
           </span>
         </Navbar>
       </Navbar>
-      {showFormSignUp && (
-        <>
-          <div className="box">
-            <div className="fullscreen">
-              <Signup />
-              <div onClick={showform}>
-                <div className="icon-wrapper ">
-                  <CancelIcon style={{ color: "#57aef5" }} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-      {showFormSignIn && (
-        <div className="box">
-          <div className="fullscreen">
-            <Signin />
-            <div onClick={showform2}>
-              <div className="icon-wrapper ">
-                <CancelIcon style={{ color: "#57aef5" }} />
-              </div>
+      <div className={`box ${props.showMenuSignupProp ? "show" : "hide"}`}>
+        <div className="fullscreen">
+          <Signup />
+          <div onClick={props.toogleSideSignupProp}>
+            <div className="icon-wrapper ">
+              <CancelIcon style={{ color: "#57aef5" }} />
             </div>
           </div>
         </div>
-      )}
+      </div>
+
+      <div className={`box ${props.showMenuLoginProp ? "show" : "hide"}`}>
+        <div className="fullscreen">
+          <Signin />
+          <div onClick={props.toogleSideLoginProp}>
+            <div className="icon-wrapper ">
+              <CancelIcon style={{ color: "#57aef5" }} />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
 Login.propTypes = {
   Auth: PropTypes.object.isRequired,
-  showMenuLogin: PropTypes.bool.isRequired,
+  showMenuLogin: PropTypes.bool,
+  toggleMenuLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     Auth: state.auth,
-    showMenuLogin: state.product.showMenuLogin,
+    showMenuLoginProp: state.product.showMenuLogin,
+    showMenuSignupProp: state.product.showMenuSignup,
   };
 };
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     Logout: () => {
       dispatch(logout());
     },
+    toogleSideSignupProp: () => dispatch(toogleSideSignup()),
+    toogleSideLoginProp: () => dispatch(toogleSideLogin()),
   };
 };
 

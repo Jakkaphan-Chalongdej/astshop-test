@@ -8,6 +8,7 @@ import Print from "../components/printOrderAdmin";
 import PrivateRoute from "../../route/PrivateRoute";
 import { Switch } from "react-router-dom";
 import PropTypes from "prop-types";
+import PrintOrderAdmin from "../components/printOrderAdmin";
 function AdminRoute(props) {
   return (
     <Switch>
@@ -23,6 +24,12 @@ function AdminRoute(props) {
         exact
         component={Users}
       />
+       <PrivateRoute
+          exact
+          path={"/admin/print"}
+          authed={props.authed}
+          component={PrintOrderAdmin}
+        />
       <PrivateRoute
         authed={props.authed}
         path={"/admin/print"}

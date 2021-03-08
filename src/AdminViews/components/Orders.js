@@ -9,7 +9,7 @@ import Title from "./Title";
 import PropTypes from "prop-types";
 import { getOrder } from "../../store/actions/Action.product";
 import { connect } from "react-redux";
-import { OrderIDPrint } from "../../store/actions/Action.product";
+import { OrderIDPrintAdmin } from "../../store/actions/Action.product";
 import { Button } from "react-bootstrap";
 import "../../components/print/formprint.css";
 const useStyles = makeStyles((theme) => ({
@@ -31,16 +31,16 @@ function Orders(props) {
           return (
             <TableRow key={i}>
               <TableCell>{OrderProduct.id}</TableCell>
-              <TableCell>{OrderProduct.firstname}</TableCell>
-              <TableCell>{OrderProduct.quantity}</TableCell>
+              {/* <TableCell>{OrderProduct.firstname}</TableCell>
+              <TableCell>{OrderProduct.quantity}</TableCell> */}
               <TableCell>
                 <span>{OrderProduct.currency}</span>
                 {OrderProduct.price}
               </TableCell>
-              <TableCell>{OrderProduct.Address}</TableCell>
+              {/* <TableCell>{OrderProduct.Address}</TableCell>
               <TableCell>{OrderProduct.city}</TableCell>
               <TableCell>{OrderProduct.ZipCode}</TableCell>
-              <TableCell>{OrderProduct.Country}</TableCell>
+              <TableCell>{OrderProduct.Country}</TableCell> */}
               <Link to="/admin/print">
                 <Button
                   onClick={() => {
@@ -62,13 +62,13 @@ function Orders(props) {
         <TableHead>
           <TableRow>
             <TableCell>ID Order</TableCell>
-            <TableCell>firstname</TableCell>
-            <TableCell>quantity</TableCell>
+            {/* <TableCell>firstname</TableCell>
+            <TableCell>quantity</TableCell> */}
             <TableCell>price </TableCell>
-            <TableCell>Address</TableCell>
+            {/* <TableCell>Address</TableCell>
             <TableCell>city </TableCell>
             <TableCell>ZipCode</TableCell>
-            <TableCell>Country</TableCell>
+            <TableCell>Country</TableCell> */}
           </TableRow>
         </TableHead>
         {ordershow}
@@ -94,10 +94,10 @@ const mapStateToProps = (state) => {
     Auth: state.auth.user,
   };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,props) => {
   return {
     GetOrder: () => dispatch(getOrder()),
-    Order: (id) => dispatch(OrderIDPrint(id)),
+    Order: (id) => dispatch(OrderIDPrintAdmin(id,props)),
   };
 };
 

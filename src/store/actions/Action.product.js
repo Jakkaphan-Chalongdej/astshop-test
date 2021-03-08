@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../config/axios";
-import { getUser } from "./actionLogin/auth";
+import { getUser, getUserId } from "./actionLogin/auth";
 const user = JSON.parse(localStorage.getItem("user"));
 export const setProductPriceFilter = (price) => {
   return { type: actionTypes.SET_PRODUCT_PRICE_FILTER, price: price };
@@ -22,6 +22,7 @@ export const getProducts = () => async (dispatch) => {
         dispatch(getUser());
         dispatch(getOrder());
       }
+      dispatch(getUserId(user.id));
       dispatch(getOrderID(user.id));
     })
     .catch(function (error) {
@@ -116,6 +117,7 @@ export const getOrder = () => async (dispatch) => {
         type: actionTypes.GET_ORDER,
         order: response.data,
       });
+      return Promise.resolve();
     })
     .catch(function (error) {
       console.log(error);
@@ -131,6 +133,7 @@ export const getOrderID = (userID) => async (dispatch) => {
         type: actionTypes.GET_ORDER_ID,
         order: response,
       });
+      return Promise.resolve();
     })
     .catch(function (error) {
       console.log(error);
@@ -139,14 +142,20 @@ export const getOrderID = (userID) => async (dispatch) => {
 
 export const createOrder = (order) => async (dispatch) => {
   console.log("Action createOrder", order);
+
   await axios
     .post("order/create", order)
     .then((res) => {
       const response = res.data;
       console.log("Action createOrder");
       console.log(response);
-      dispatch(getOrder());
+      if (user.roles.toString() === "ROLE_ADMIN") {
+        dispatch(getOrder());
+      }
+
       dispatch(getOrderID(response.userID));
+
+      return Promise.resolve();
     })
     .catch(function (error) {
       console.log(error);
@@ -191,18 +200,36 @@ export const updateCartProductCount = (value, productDetails) => {
   };
 };
 
-export const confirmOrder = (order, ownProps) => {
+export const confirmOrder = (order, props) => {
   console.log("confirmOrder", order);
   return (dispatch) => {
     dispatch(createOrder(order));
     dispatch(confirmOrderSuccess());
-    ownProps.history.push("/cart");
+    // props.history.push("/")
     setTimeout(() => {
       dispatch(resetOrderSuccess());
     }, 5000);
   };
 };
-export const OrderIDPrint = (id) => async (dispatch) => {
+export const OrderIDPrint = (id, props) => async (dispatch) => {
+  console.log("action print id ", id);
+  await axios
+    .get(`order/${id}`)
+    .then((res) => {
+      const response = res.data;
+      console.log("Action get order", response);
+
+      dispatch({
+        type: actionTypes.PRINT_ORDER,
+        print: response,
+      });
+      props.history.push("/user/print");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+export const OrderIDPrintAdmin = (id, props) => async (dispatch) => {
   console.log("action print id ", id);
   await axios
     .get(`order/${id}`)
@@ -213,6 +240,7 @@ export const OrderIDPrint = (id) => async (dispatch) => {
         type: actionTypes.PRINT_ORDER,
         print: response,
       });
+      props.history.push("/admin/print");
     })
     .catch(function (error) {
       console.log(error);
@@ -255,7 +283,12 @@ export const toogleSideLogin = () => {
     type: actionTypes.TOGGLE_SIDE_LOGIN,
   };
 };
-
+export const toogleSideSignup = () => {
+  console.log(" action toogleSideSignup");
+  return {
+    type: actionTypes.TOGGLE_SIDE_SIGNUP,
+  };
+};
 export const setPromoCode = (promoCodeObject) => {
   return {
     type: actionTypes.SET_PROMO_CODE,

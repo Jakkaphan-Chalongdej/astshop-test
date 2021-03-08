@@ -13,7 +13,8 @@ const MainMenu = (props) => {
         <div className="container ">
           <Nav.Link className="ml-auto">
             <ul style={{ marginTop: "15px" }}>
-              <Login />
+              <Login         
+              />
             </ul>
           </Nav.Link>
         </div>
@@ -23,7 +24,6 @@ const MainMenu = (props) => {
         expand="lg"
         bg="light"
         className="fixed-top navtop2"
-       
       >
         <div className="container ">
           <NavbarBrand>

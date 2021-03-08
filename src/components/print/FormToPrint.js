@@ -4,6 +4,28 @@ import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 function ComponentToPrint(props) {
+  let Orderproduct = props.products.map((productmap, i) => {
+    return (
+      <Col key={i}>
+        <Row>
+          <Col>
+            <img alt={productmap.name} src={productmap.img_name} />
+          </Col>
+
+          <Col>
+            <p>Product Name</p>
+
+            {/* <li>{props.product_name}</li> */}
+            <li>{productmap.name}</li>
+          </Col>
+          <Col style={{ textAlign: "center" }}>
+            <p>Quantity</p>
+            <li>{productmap.order_detail.quantity}</li>
+          </Col>
+        </Row>
+      </Col>
+    );
+  });
   return (
     <ul className="card-form">
       <div className="card-form-border">
@@ -18,24 +40,7 @@ function ComponentToPrint(props) {
         </div>
 
         <hr style={{ marginTop: "200px" }} />
-        <Col>
-          <Row>
-            <Col>
-              <img
-                alt={props.product_name}
-                src={props.img}
-              />
-            </Col>
-            <Col>
-              <p>Product Name</p>
-              <li>{props.product_name}</li>
-            </Col>
-            <Col style={{ textAlign: "center" }}>
-              <p>Quantity</p>
-              <li>{props.quantity}</li>
-            </Col>
-          </Row>
-        </Col>
+        {Orderproduct}
         <hr />
         <Col style={{ marginTop: "300px" }}>
           <Row>

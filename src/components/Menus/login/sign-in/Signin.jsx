@@ -20,17 +20,15 @@ function Signin(props) {
       ...formData,
       [e.target.name]: e.target.value,
     });
-   
   };
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
     type === "input" ? setType("password") : setType("input");
   };
- 
+
   const [disable, setdisabled] = React.useState(false);
-  const coll = React.useCallback 
- 
+  const coll = React.useCallback;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -38,7 +36,7 @@ function Signin(props) {
       username: formData.username,
       password: formData.password,
     };
-    Object.keys(data).length > 0
+    formData.username != null && formData.password != null
       ? props
           .userLogin(data)
           .then(() => {
@@ -46,15 +44,16 @@ function Signin(props) {
               ...handleLogin,
               successful: true,
             });
-            props.toogleSideLogin(false);
             updateFormData(formdefault);
+            props.toogleSideLoginProp();
+            props.history.push("/");
           })
           .catch(() => {
             sethandleLogin({ ...handleLogin, successful: false });
           })
       : updateFormData(formdefault);
   }
-  const { message } = props;
+  // const { message } = props;
   return (
     <>
       <div>
@@ -92,11 +91,11 @@ function Signin(props) {
                 sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
                 theme="dark"
                 name="recaptcha"
-                onChange={coll(()=>setdisabled(true))}
+                onChange={coll(() => setdisabled(true))}
               ></ReCAPTCHA>
             </div>
           )}
-          {message && (
+          {/* {message && (
             <div className="form-group">
               <div
                 className={
@@ -109,7 +108,7 @@ function Signin(props) {
                 {message}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>
@@ -124,7 +123,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userLogin: (data) => dispatch(login(data)),
-    toogleSideLogin: (data) => dispatch(toogleSideLogin(data)),
+    toogleSideLoginProp: () => dispatch(toogleSideLogin()),
   };
 };
 

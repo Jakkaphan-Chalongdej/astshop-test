@@ -3,17 +3,20 @@ import { connect } from "react-redux";
 import { register } from "../store/actions/actionLogin/auth";
 import "./login.css";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Button } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 function Register(props) {
   const [handleRegister, sethandleRegister] = React.useState({
     successful: false,
   });
-  let [formData, setform] = React.useState([
-    {
-      username: "",
-      email: "",
-      password: "",
-    },
-  ]);
+  const formdefault = {
+    username: null,
+    email: null,
+    password: null,
+  };
+  let [formData, setform] = React.useState(formdefault);
+  const [disable, setdisabled] = React.useState(false);
+  const coll = React.useCallback;
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
@@ -31,18 +34,22 @@ function Register(props) {
       email: formData.email,
       password: formData.password,
     };
-    props
-      .Register(data)
-      .then(() => {
-        sethandleRegister({
-          ...handleRegister,
-          successful: true,
-        });
-        props.history.push("/user");
-      })
-      .catch(() => {
-        sethandleRegister({ ...handleRegister, successful: false });
-      });
+    formData.email != null &&
+    formData.username != null &&
+    formData.password != null
+      ? props
+          .Register(data)
+          .then(() => {
+            sethandleRegister({
+              ...handleRegister,
+              successful: true,
+            });
+            props.history.push("/user");
+          })
+          .catch(() => {
+            sethandleRegister({ ...handleRegister, successful: false });
+          })
+      : setform(formdefault);
   }
   const { message } = props;
   return (
@@ -62,6 +69,7 @@ function Register(props) {
               />
               <input
                 name="email"
+                type="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
@@ -81,9 +89,19 @@ function Register(props) {
                   onClick={showHide}
                 />
               </div>
-              <button onClick={handleSubmit} className="button primary">
+              <Button
+                onClick={handleSubmit}
+                className="button primary"
+                disabled={!disable}
+              >
                 Sign Up
-              </button>
+              </Button>
+              <ReCAPTCHA
+                sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
+                theme="dark"
+                name="recaptcha"
+                onChange={coll(() => setdisabled(true))}
+              ></ReCAPTCHA>
             </form>
           )}
           {message && (

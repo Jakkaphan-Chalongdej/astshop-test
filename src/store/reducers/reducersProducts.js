@@ -35,6 +35,8 @@ const initialState = {
   productMaxShowModal: false,
   modalMessage: null,
   showSideNavigation: false,
+  showMenuLogin: false,
+  showMenuSignup: false,
   usedCurrency: { THB: 1, symbol: "฿ " },
   exchangeRates: {
     base: "TH",
@@ -76,6 +78,7 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         Print: action.print,
+        
       };
 
     case actionTypes.SET_PRODUCT_PRICE_FILTER:
@@ -209,9 +212,16 @@ const appReducer = (state = initialState, action) => {
         showSideNavigation: !state.showSideNavigation,
       };
     case actionTypes.TOGGLE_SIDE_LOGIN:
+      console.log("reducer showMenuLogin", state.showMenuLogin);
       return {
         ...state,
         showMenuLogin: !state.showMenuLogin,
+      };
+    case actionTypes.TOGGLE_SIDE_SIGNUP:
+      console.log("reducer showMenuSignup", state.showMenuLogin);
+      return {
+        ...state,
+        showMenuSignup: !state.showMenuSignup,
       };
 
     case actionTypes.SET_PROMO_CODE:

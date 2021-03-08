@@ -141,6 +141,10 @@ exports.findById = (req, res) => {
 
 exports.update = (req, res) => {
   const id = req.params.userId;
+  // let password = null;
+  if (req.body.password !== undefined) {
+    password = bcrypt.hashSync(req.body.password, 8);
+  }
   User.update(
     {
       firstname: req.body.firstname,
@@ -153,9 +157,9 @@ exports.update = (req, res) => {
       ZipCode: req.body.ZipCode,
       city: req.body.city,
       Country: req.body.Country,
-      // password: bcrypt.hashSync(req.body.password, 8),
+      // password: password,
     },
-    { where: { id: req.params.userId } }
+    { where: { id: id } }
   ).then(async () => {
     await res.status(200).send("updated successfully id = " + id);
   });

@@ -4,9 +4,9 @@ import "./login.css";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { connect } from "react-redux";
 import { login } from "../store/actions/actionLogin/auth";
-import { toogleSideLogin } from "../store/actions/Action.product";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+
 function Login(props) {
   const [handleLogin, sethandleLogin] = React.useState({
     successful: false,
@@ -22,28 +22,23 @@ function Login(props) {
       ...formData,
       [e.target.name]: e.target.value,
     });
-   
   };
   console.log(formData);
-
+  const [disable, setdisabled] = React.useState(false);
+  const coll = React.useCallback;
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
     type === "input" ? setType("password") : setType("input");
   };
-  const coll = React.useCallback 
- 
-  const [disable, setdisabled] = React.useState(false);
- 
-  
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     const data = {
       username: formData.username,
       password: formData.password,
     };
-    Object.keys(data).length > 0
+    formData.username != null && formData.password != null
       ? props
           .userLogin(data)
           .then(() => {
@@ -94,14 +89,15 @@ function Login(props) {
               <Button onClick={handleSubmit} disabled={!disable}>
                 Sign In
               </Button>
-              <button>
-                <Link to="/register">Sign Up</Link>
-              </button>
+              <Link to="/register">
+                <Button>Sign Up</Button>
+              </Link>
+
               <ReCAPTCHA
                 sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
                 theme="dark"
                 name="recaptcha"
-                onChange={coll(()=>setdisabled(true))}
+                onChange={coll(() => setdisabled(true))}
               ></ReCAPTCHA>
             </div>
           )}
@@ -133,7 +129,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userLogin: (data) => dispatch(login(data)),
-    toogleSideLogin: (data) => dispatch(toogleSideLogin(data)),
   };
 };
 

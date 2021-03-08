@@ -16,7 +16,7 @@ const Auth = (state = initialState, action) => {
     case actionTypes.GET_USER_ID:
       return {
         ...state,
-        user: action.user,
+        userDetail: action.user,
       };
     case actionTypes.REGISTER_SUCCESS:
       return {

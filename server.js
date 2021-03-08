@@ -14,6 +14,8 @@ global.__basedir = path.join(__dirname, "/public");
 //   console.log("Create MySQL.");
 //   console.log("Connected to the MySQL server.");
 // });
+
+db.sequelize.sync(console.log("Connected to the MySQL server."));
 function initial() {
   Role.create({
     id: 1,
@@ -24,7 +26,6 @@ function initial() {
     name: "admin",
   });
 }
-db.sequelize.sync(console.log("Connected to the MySQL server."));
 
 server.use(cors());
 server.use(bodyParser.json());

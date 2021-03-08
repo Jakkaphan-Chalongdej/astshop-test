@@ -1,7 +1,11 @@
 import React from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { closeMaxProductModal,toogleSideBar } from "./store/actions/Action.product";
+import {
+  closeMaxProductModal,
+  toogleSideBar,
+
+} from "./store/actions/Action.product";
 import MainLayout from "./Layouts/MainLayout";
 import * as Maincontainers from "./views";
 import AdminRoute from "./AdminViews/routers/admin.roter";
@@ -22,6 +26,7 @@ function App(props) {
         modalMessage={props.modalMessageProp}
         showSideBar={props.showSideNavigationProp}
         toggleSideBar={props.toggleSideBarProp}
+
       >
         <ScrollToTop />
         <Switch>
@@ -37,7 +42,7 @@ function App(props) {
           <Route path={"/register"} component={Maincontainers.RegisterPage} />
           <Route path={"/contact"} component={Maincontainers.ContactPage} />
           <Route path={"/cart"} component={Maincontainers.CartPage} />
-   
+
           <PrivateRoute
             authed={Roles}
             path={"/checkout"}
@@ -79,6 +84,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     closeModalProp: () => dispatch(closeMaxProductModal()),
     toggleSideBarProp: () => dispatch(toogleSideBar()),
+  
   };
 };
 

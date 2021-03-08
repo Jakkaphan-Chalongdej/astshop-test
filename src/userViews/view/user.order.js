@@ -25,29 +25,29 @@ const useStyles = makeStyles((theme) => ({
 function UserPayMethods(props) {
   const classes = useStyles();
   const printOrder = (id) => {
-    console.log('click print')
+    console.log("click print");
     props.Order(id);
-    props.history.push("/user/print");
+    
   };
+
   let ordershow =
     props.orderUser.length > 0
       ? props.orderUser.map((OrderProduct, i) => {
+          let products = OrderProduct.products.map((productmap) => {
+            console.log(productmap.name);
+            return productmap.name;
+          });
           return (
             <>
               <TableRow key={i}>
                 <TableCell>{OrderProduct.id}</TableCell>
-                <TableCell>{OrderProduct.firstname}</TableCell>
-                <TableCell>{OrderProduct.quantity}</TableCell>
                 <TableCell>
                   <span style={{ textTransform: "lowercase" }}>
                     {OrderProduct.currency}
                   </span>
                   {OrderProduct.price}
                 </TableCell>
-                <TableCell>{OrderProduct.Address}</TableCell>
-                <TableCell>{OrderProduct.city}</TableCell>
-                <TableCell>{OrderProduct.ZipCode}</TableCell>
-                <TableCell>{OrderProduct.Country}</TableCell>
+                <TableCell>{products}</TableCell>
 
                 <Button
                   onClick={() => {
@@ -79,13 +79,9 @@ function UserPayMethods(props) {
               <TableHead>
                 <TableRow>
                   <TableCell>ID Order</TableCell>
-                  <TableCell>firstname</TableCell>
-                  <TableCell>quantity</TableCell>
+
                   <TableCell>price </TableCell>
-                  <TableCell>Address</TableCell>
-                  <TableCell>city </TableCell>
-                  <TableCell>ZipCode</TableCell>
-                  <TableCell>Country</TableCell>
+                  <TableCell>product id</TableCell>
                 </TableRow>
               </TableHead>
               {ordershow}
@@ -107,9 +103,9 @@ const mapStateToProps = (state) => {
     usedCurrencyProp: state.product.usedCurrency,
   };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,props) => {
   return {
-    Order: (id) => dispatch(OrderIDPrint(id)),
+    Order: (id) => dispatch(OrderIDPrint(id,props)),
   };
 };
 

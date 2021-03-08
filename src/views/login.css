@@ -70,7 +70,7 @@ h5 {
 .signin_wrapper .showpass_signup {
   position: absolute;
   left: 56vw;
-  top: 31vw;
+  top: 29vw;
 }
 .form_wrapper {
   background-color: white;
@@ -141,7 +141,7 @@ h5 {
   .signin_wrapper .showpass_signup {
     position: absolute;
     left: 77vw;
-    top: 118vw;
+    top: 108vw;
   }
 }
 @media (min-width: 321px) and (max-width: 375px) {
@@ -152,8 +152,8 @@ h5 {
   }
   .signin_wrapper .showpass_signup {
     position: absolute;
-    left: 69vw;
-    top: 100vw;
+    left: 70vw;
+    top: 91vw;
   }
 }
 @media (min-width: 376px) and (max-width: 425px) {
@@ -165,7 +165,7 @@ h5 {
   .signin_wrapper .showpass_signup {
     position: absolute;
     left: 70vw;
-    top: 88.5vw;
+    top: 80.5vw;
   }
 }
 @media (min-width: 426px) and (max-width: 768px) {
@@ -178,7 +178,7 @@ h5 {
     position: absolute;
 
     left: 61vw;
-    top: 58vw;
+    top: 54vw;
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -190,10 +190,15 @@ h5 {
   .signin_wrapper .showpass_signup {
     position: absolute;
     left: 58vw;
-    top: 43.5vw;
+    top: 40.5vw;
   }
 }
-@media (min-width: 1601px) and (max-width: 1920px) {
+@media (min-width: 1025px)  {
+.signin_wrapper{
+  display: none;
+}
+}
+/* @media (min-width: 1601px) and (max-width: 1920px) {
   .signin_wrapper .showpass1 {
     position: absolute;
     left: 54vw;
@@ -205,8 +210,8 @@ h5 {
     left: 54vw;
     top: 23vw;
   }
-}
-@media (min-width: 1441px) and (max-width: 1600px) {
+} */
+/* @media (min-width: 1441px) and (max-width: 1600px) {
   .signin_wrapper .showpass1 {
     position: absolute;
     left: 55vw;
@@ -216,7 +221,7 @@ h5 {
     position: absolute;
 
     left: 55vw;
-    top: 27.5vw;
+    top: 25.5vw;
   }
 }
 
@@ -232,4 +237,4 @@ h5 {
     left: 53vw;
     top: 17.2vw;
   }
-}
+} */

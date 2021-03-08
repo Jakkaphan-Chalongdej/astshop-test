@@ -167,7 +167,7 @@ function Stock(props) {
     },
   ];
   const [formData, setform] = React.useState(dataform);
-
+  const [errors, setError] = React.useState();
   const [uploadfile, setFile] = React.useState(null);
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
@@ -178,54 +178,48 @@ function Stock(props) {
     e.preventDefault();
     const form = new FormData();
     const data = {};
-
-    if (uploadfile !== null) {
+    if (uploadfile !== undefined) {
       form.append("uploadfile", uploadfile);
-      console.log("uploadfile", uploadfile);
     }
-   
     if (formData.name !== undefined) {
-      // form.append("name", formData.name);
-      data["name"] = formData.name;
+      form.append("name", formData.name);
     }
     if (formData.slug !== undefined) {
-      // form.append("slug", formData.slug);
-      data["slug"] = formData.slug;
+      form.append("slug", formData.slug);
     }
     if (formData.des !== undefined) {
-      // form.append("des", formData.des);
-      data["des"] = formData.des;
+      form.append("des", formData.des);
     }
     if (formData.quantity !== undefined) {
-      // form.append("quantity", formData.quantity);
-      data["quantity"] = formData.quantity;
+      form.append("quantity", formData.quantity);
     }
     if (formData.price !== undefined) {
-      // form.append("price", formData.price);
-      data["price"] = formData.price;
+      form.append("price", formData.price);
     }
     if (formData.discount_price !== undefined) {
-      // form.append("discount_price", formData.discount_price);
-      data["discount_price"] = formData.discount_price;
+      form.append("discount_price", formData.discount_price);
     }
     if (formData.category !== undefined) {
       form.append("category", formData.category);
-      data["category"] = formData.category;
     }
     if (formData.subcategory !== undefined) {
-      // form.append("subcategory", formData.subcategory);
-      data["subcategory"] = formData.subcategory;
+      form.append("subcategory", formData.subcategory);
     }
     if (formData.sale !== undefined) {
-      // form.append("sale", formData.sale);
-      data["sale"] = formData.sale;
+      form.append("sale", formData.sale);
     }
     if (Object.keys(data).length > 1) {
-      // props.EditProduct(formData.id, data);
+      props.EditProduct(formData.id, data);
     }
-    props.EditProduct(formData.id, form);
-    setform(dataform);
-    setActiveTab(-1);
+    if (formData.id !== undefined) {
+      
+      props.EditProduct(formData.id, form);
+      setform(dataform);
+      setActiveTab(-1);
+    } else {
+      setError("ID is not valid");
+      console.log("error form");
+    }
   };
   const handleSubmitAdd = (e) => {
     e.preventDefault();
@@ -325,6 +319,114 @@ function Stock(props) {
                     </div>
                   </TableRow>
                 </TableHead>
+                {showForm === true ? (
+                  <TableRow className="table-Row">
+                    <TableCell>
+                      <p>name</p>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder={"name"}
+                      ></input>
+                      <p>slug</p>
+                      <input
+                        type="text"
+                        name="slug"
+                        value={formData.slug}
+                        onChange={handleChange}
+                        placeholder={"slug"}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <p>des</p>
+                      <input
+                        type="text"
+                        name="des"
+                        value={formData.des}
+                        onChange={handleChange}
+                        placeholder={"des"}
+                      ></input>
+                      <p>quantity</p>
+                      <input
+                        type="text"
+                        name="quantity"
+                        value={formData.quantity}
+                        onChange={handleChange}
+                        placeholder={"quantity"}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <p>price</p>
+                      <input
+                        type="text"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
+                        placeholder={"price"}
+                      ></input>
+                      <p>discount_price</p>
+                      <input
+                        type="text"
+                        name="discount_price"
+                        value={formData.discount_price}
+                        onChange={handleChange}
+                        placeholder={"discount_price"}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <p>category</p>
+                      <input
+                        type="text"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        placeholder={"category"}
+                      ></input>
+                      <p>subcategory</p>
+                      <input
+                        type="text"
+                        name="subcategory"
+                        value={formData.subcategory}
+                        onChange={handleChange}
+                        placeholder={"subcategory"}
+                      ></input>
+                    </TableCell>
+                    <TableCell>
+                      <p>sale</p>
+                      <input
+                        type="text"
+                        name="sale"
+                        value={formData.sale}
+                        onChange={handleChange}
+                        placeholder={"sale"}
+                      ></input>
+                      <input
+                        type="file"
+                        multiple
+                        onChange={(e) => setFile(e.target.files[0])}
+                        name="uploadfile"
+                        // value={formData.uploadfile}
+                      />
+                    </TableCell>
+
+                    <TableCell>
+                      <div
+                        className="con-button-close"
+                        onClick={() => showformAdd(false)}
+                      >
+                        <FaWindowClose />
+                      </div>
+                      <Button
+                        className="con-button-update"
+                        onClick={handleSubmitAdd}
+                      >
+                        ADD
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ) : null}
                 <TableBody>
                   {props.products.length > 0 &&
                     props.products
@@ -363,12 +465,14 @@ function Stock(props) {
                               <TableCell>
                                 <p>Id</p>
                                 <input
+                                  required
                                   type="text"
                                   name="id"
                                   value={formData.id}
                                   onChange={handleChange}
                                   placeholder={row.id}
                                 ></input>
+                                <span style={{ color: "red" }}>{errors}</span>
                                 <p>name</p>
                                 <input
                                   type="text"
@@ -496,114 +600,6 @@ function Stock(props) {
                   />
                 </TableBody>
               </Table>
-              {showForm === true ? (
-                <TableRow className="table-Row">
-                  <TableCell>
-                    <p>name</p>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder={"name"}
-                    ></input>
-                    <p>slug</p>
-                    <input
-                      type="text"
-                      name="slug"
-                      value={formData.slug}
-                      onChange={handleChange}
-                      placeholder={"slug"}
-                    ></input>
-                  </TableCell>
-                  <TableCell>
-                    <p>des</p>
-                    <input
-                      type="text"
-                      name="des"
-                      value={formData.des}
-                      onChange={handleChange}
-                      placeholder={"des"}
-                    ></input>
-                    <p>quantity</p>
-                    <input
-                      type="text"
-                      name="quantity"
-                      value={formData.quantity}
-                      onChange={handleChange}
-                      placeholder={"quantity"}
-                    ></input>
-                  </TableCell>
-                  <TableCell>
-                    <p>price</p>
-                    <input
-                      type="text"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleChange}
-                      placeholder={"price"}
-                    ></input>
-                    <p>discount_price</p>
-                    <input
-                      type="text"
-                      name="discount_price"
-                      value={formData.discount_price}
-                      onChange={handleChange}
-                      placeholder={"discount_price"}
-                    ></input>
-                  </TableCell>
-                  <TableCell>
-                    <p>category</p>
-                    <input
-                      type="text"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                      placeholder={"category"}
-                    ></input>
-                    <p>subcategory</p>
-                    <input
-                      type="text"
-                      name="subcategory"
-                      value={formData.subcategory}
-                      onChange={handleChange}
-                      placeholder={"subcategory"}
-                    ></input>
-                  </TableCell>
-                  <TableCell>
-                    <p>sale</p>
-                    <input
-                      type="text"
-                      name="sale"
-                      value={formData.sale}
-                      onChange={handleChange}
-                      placeholder={"sale"}
-                    ></input>
-                    <input
-                      type="file"
-                      multiple
-                      onChange={(e) => setFile(e.target.files[0])}
-                      name="uploadfile"
-                      // value={formData.uploadfile}
-                    />
-                  </TableCell>
-
-                  <TableCell>
-                    <div
-                      className="con-button-close"
-                      onClick={() => showformAdd(false)}
-                    >
-                      <FaWindowClose />
-                    </div>
-                    <Button
-                      className="con-button-update"
-                      onClick={handleSubmitAdd}
-                    >
-                      Update
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ) : null}
             </Paper>
           </Grid>
         </Grid>

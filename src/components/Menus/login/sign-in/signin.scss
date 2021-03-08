@@ -27,7 +27,7 @@
   flex: 1;
 }
 
-.box .signin-wrapper {
+.box.show .signin-wrapper {
   display: flex;
 }
 .fullscreen {
@@ -41,6 +41,14 @@
   top: 12vw !important;
   left: 58% !important;
   z-index: 1;
+}
+
+.box.show {
+  flex: 1;
+  display: block;
+}
+.box.hide {
+  display: none !important;
 }
 
 .background {

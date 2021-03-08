@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { confirmOrder, setPromoCode } from "../store/actions/Action.product";
 import { UpdataQuantity } from "../store/actions/Action.product";
@@ -9,372 +9,383 @@ import PromoCodeValue from "../components/Checkout/PromoCodeValue";
 import CheckoutCartTotals from "../components/Checkout/CheckoutCartTotals";
 // import CustomerInputs from "../components/Checkout/Forms/CustomerInputs";
 import DeliveryOptions from "../components/Checkout/Forms/DeliveryOptions";
-
 import Alert from "../components/UI/Alert/Alert";
 import PropTypes from "prop-types";
 import formValidator from "../Utility/formValidation";
 // import { CardElement, injectStripe } from "react-stripe-elements";
 import { currencyToUse } from "../Utility/currency";
 
-class Checkout extends Component {
-  state = {
-    promoCode: "",
-    showAlert: false,
-    alertType: "",
-    alertMessage: "",
-    paymentMethod: "creditCard",
-    shippingPrice: 300,
-    usedDeliveryOption: 1,
-    makeOrder: false,
-    correctCardInfo: false,
-    newproduct: {},
+function Checkout(props) {
+  const defaultError = {
+    firstname: null,
+    lastname: null,
+    email: null,
+    Address: null,
+    city: null,
+    ZipCode: null,
+    Country: null,
   };
 
-  customerInfoChangeHandler = (event, identifier) => {
-    // use deep cloning to be able to get the values of nested objects
-    const customerInfo = { ...this.state.customerInfo };
-    const customerInfoField = { ...customerInfo[identifier] };
-    customerInfoField.value = event.target.value;
-    const validationResults = formValidator(
-      identifier,
-      customerInfoField.value
-    );
-    customerInfoField.valid = validationResults.isValid;
-    customerInfoField.errorsMsg = validationResults.errorsMsg;
-    customerInfoField.touched = true;
-    customerInfo[identifier] = customerInfoField;
+  const [errors, seterrors] = React.useState({});
+  const [promoCodes, setpromoCode] = React.useState("");
+  const [showAlert, setshowAlert] = React.useState(false);
+  const [alertType, setalertType] = React.useState();
+  const [alertMessage, setalertMessage] = React.useState();
+  const [shippingPrices, setshippingPrice] = React.useState(300);
+  const [usedDeliveryOption, setusedDeliveryOption] = React.useState(1);
+  const [newproduct, setnewproduct] = React.useState([]);
+  const [order, setorder] = React.useState({});
+  const [orders, setorders] = React.useState([]);
+  const [newproductarray, setnewproductarray] = React.useState([]);
 
-    let makeOrder = true;
-    for (let identifier in customerInfo) {
-      makeOrder = customerInfo[identifier].valid && makeOrder;
-    }
-    this.setState({ customerInfo: customerInfo, makeOrder: makeOrder });
+  const promoCodeChangeHandlers = (event) => {
+    setpromoCode(event.target.value);
   };
 
-  promoCodeChangeHandler = (event) => {
-    this.setState({ promoCode: event.target.value });
-  };
-
-  // paymentOptionChangeHandler = (event) => {
-  //   if (event.target.value === "creditCard") {
-  //     this.setState({ correctCardInfo: false });
-  //   } else {
-  //     this.setState({ correctCardInfo: true });
+  // const productcart = (product) => {
+  //   if (newproduct) {
+  //     setnewproduct(product);
   //   }
-  //   this.setState({ paymentMethod: event.target.value });
+  //   console.log("newproduct state product", newproduct);
   // };
-  productcart = (product) => {
-    if (this.state.newproduct) {
-      this.setState({ newproduct: product });
-    }
-    console.log("newproduct product", product);
-    console.log("newproduct state product", this.state.newproduct);
-  };
 
-  confirmOrderHandler = (event) => {
+  const confirmOrderHandler = (event) => {
     event.preventDefault();
-    let order = {};
-
-    order["product_name"] = this.state.newproduct.productName;
-    order["quantity"] = this.state.newproduct.quantity;
-    order["price"] = this.state.newproduct.price;
-    order["img"] = this.state.newproduct.imgname;
-    order["firstname"] = this.props.Auth.user.firstname;
-    order["userID"] = this.props.Auth.user.id;
-    order["lastname"] = this.props.Auth.user.lastname;
-    order["email"] = this.props.Auth.user.email;
-    order["Address"] = this.props.Auth.user.Address;
-    order["Country"] = this.props.Auth.user.Country;
-    order["city"] = this.props.Auth.user.city;
-    order["ZipCode"] = this.props.Auth.user.ZipCode;
-    order["usedPromoCode"] = this.state.promoCode;
-    order["currency"] = this.props.usedCurrencyProp.symbol;
-    order["shippingPrice"] = this.state.newproduct.shippingPrice;
-    order["vat"] = this.state.newproduct.vat;
-    // // order["paymentMethod"] = this.state.paymentMethod;
-    //order["deliveryOption"] = this.state.usedDeliveryOption;
-    let updateQuantity =
-      this.state.newproduct.Allquantity - this.state.newproduct.quantity;
-    const data = {
-      quantity: updateQuantity,
+    const orderArrary = [];
+    let newproductarrays = newproductarray;
+    newproductarrays.map((productstate2) => {
+      let ordersmap = {
+        shippingPrice: productstate2.shippingPrice,
+        vat: productstate2.vat,
+        quantityCart: productstate2.quantityCart,
+        price: productstate2.price,
+      };
+      orderArrary.push(ordersmap);
+    });
+    orders.map((productstate) => {
+      let ordersmap = {
+        product_name: productstate.name,
+        quantity: productstate.quantity,
+        img: productstate.imgname,
+        productID: productstate.id,
+      };
+      orderArrary.push(ordersmap);
+    });
+    setnewproduct(orderArrary);
+    console.log("Show order map", orderArrary);
+    let Orderuser = {
+      userID: props.Auth.user.id,
+      product: newproductarray,
+      shippingPrice: newproduct.shippingPrice,
+      vat: newproduct.vat,
+      price: newproduct.price,
+      currency: props.usedCurrencyProp.symbol,
     };
-    console.log("update order", data);
-    console.log("update order", order);
-    if (data.quantity > 0) {
-      this.props.UpdataProducts(this.state.newproduct.productID, data);
-      this.props.confirmOrderProp(order);
+    setorder(Orderuser);
+    console.log("order", order);
+    // console.log("update orders", newproduct);
+    // console.log("update newproductarray", newproductarray);
+    if (
+      order.shippingPrice !== undefined &&
+      props.Auth.user.firstname != null &&
+      props.Auth.user.lastname != null &&
+      props.Auth.user.email != null &&
+      props.Auth.user.Address != null &&
+      props.Auth.user.city != null &&
+      props.Auth.user.ZipCode != null &&
+      props.Auth.user.Country != null
+    ) {
+      for (let i = 0; i < newproductarray.length; i++) {
+        let updateQuantity = orders[i].quantity - newproductarray[i].quantity;
+        const data = {
+          quantity: updateQuantity,
+        };
+        console.log("test update", newproductarray[i].id, data);
+        props.UpdataProducts(newproductarray[i].id, data);
+        if (
+          newproductarray.length === Object.keys(data).length ||
+          i === Object.keys(data).length
+        ) {
+          props.confirmOrderProp(order);
+          console.log("test update");
+        }
+      }
     }
-  };
 
-  setPromoCode = (event) => {
+    // console.log("update order", data);
+    let data = [];
+    if (props.Auth.user.firstname === null) {
+      data["firstname"] = "is not valid";
+    }
+    if (props.Auth.user.lastname === null) {
+      data["lastname"] = "is not valid";
+    }
+    if (props.Auth.user.email === null) {
+      data["email"] = "is not valid";
+    }
+    if (props.Auth.user.Address === null) {
+      data["Address"] = "is not valid";
+    }
+    if (props.Auth.user.city === null) {
+      data["city"] = "is not valid";
+    }
+    if (props.Auth.user.ZipCode === null) {
+      data["ZipCode"] = "is not valid";
+    }
+    if (props.Auth.user.Country === null) {
+      data["Country"] = "is not valid";
+    }
+    seterrors(data);
+  };
+  console.log(errors);
+  const setPromoCodes = (event) => {
     event.preventDefault();
-    // check promo code in state
-    let getPromoCode = this.props.promoCodeProp.filter(
-      (codeName) => codeName.code === this.state.promoCode
+    let getPromoCode = props.promoCodeProp.filter(
+      (codeName) => codeName.code === promoCodes
     );
 
     if (getPromoCode.length > 0) {
-      this.props.setPromoCodeProp(getPromoCode[0]);
-      this.setState({
-        showAlert: true,
-        alertType: "alert-success",
-        alertMessage: `The promo code you entered has given you a ${getPromoCode[0].percentage}% discount on the total price.`,
-      });
+      props.setPromoCodeProp(getPromoCode[0]);
+      setshowAlert(true);
+      setalertType("alert-success");
+      setalertMessage(
+        `The promo code you entered has given you a ${getPromoCode[0].percentage}% discount on the total price.`
+      );
     } else {
-      this.setState({
-        showAlert: true,
-        alertType: "alert alert-danger",
-        alertMessage: "The Promo code you entered does not have discounts",
-      });
+      setshowAlert(true);
+      setalertType("alert alert-danger");
+      setalertMessage("The Promo code you entered does not have discounts");
     }
   };
 
-  closeAlertHandler = () => {
-    this.setState({
-      showAlert: !this.state.showAlert,
-      alertType: "",
-      alertMessage: "",
-    });
+  const closeAlertHandler = () => {
+    setshowAlert(!showAlert);
+    setalertType("");
+    setalertMessage("");
   };
 
-  deliveryOptionChangeHandler = (event) => {
+  const deliveryOptionChangeHandler = (event) => {
     //get used delivery option from the state
-    let deliveryOption = this.props.deliveryOptions.find(
+    let deliveryOption = usedDeliveryOption.find(
       (option) => option.id === parseInt(event.target.value)
     );
     if (deliveryOption) {
-      this.setState({
+      setusedDeliveryOption({
         usedDeliveryOption: parseInt(event.target.value),
-        shippingPrice: deliveryOption.cost,
       });
+      setshippingPrice({ shippingPrices: deliveryOption.cost });
     }
   };
 
-  creditCardHandler = (element) => {
-    if (element.complete) {
-      this.setState({ correctCardInfo: true });
-    }
-  };
+  let productsPrices = [];
+  // let chosenPaymentMethod = null;
+  let currencyKeys = currencyToUse(props.usedCurrencyProp);
+  let currencyValue = currencyKeys.value;
+  let CartProducts = [];
+  let arrayproduct = [];
+  let arrayCartproduct = [];
 
-  render() {
-    let productsPrices = [];
-    // let chosenPaymentMethod = null;
-    let currencyKeys = currencyToUse(this.props.usedCurrencyProp);
-    let currencyValue = currencyKeys.value;
-    let CartProducts = {};
-    const cartProducts = this.props.cartProductsProps.map(
-      (cartProduct, index) => {
-        // fetch product information from source based on id
-        let productFromStore = this.props.productsProps.find(
-          (product) => product.id === cartProduct.id
-        );
-        productsPrices.push({
-          price:
-            productFromStore.quantity > 0
-              ? Math.round(productFromStore.price * currencyValue)
-              : 0,
-          count: cartProduct.quantity,
-        });
-        let cartProductquantity = cartProduct.quantity;
-        CartProducts["quantity"] = cartProductquantity;
-        CartProducts["productName"] = productFromStore.name;
-        CartProducts["productID"] = productFromStore.id;
-        CartProducts["imgname"] = productFromStore.img_name;
-        CartProducts["Allquantity"] = productFromStore.quantity;
-        return (
-          <>
-            <CheckoutCartProduct
-              key={index}
-              checkoutProductName={productFromStore.name}
-              checkoutProductCategory={productFromStore.category}
-              checkoutProductPrice={Math.round(
-                productFromStore.price * currencyValue
-              )}
-              checkoutProductImage={productFromStore.img_name}
-              checkoutCartCount={cartProduct.quantity}
-              checkoutCartSize={cartProduct.size}
-              currency={this.props.usedCurrencyProp}
-            />
-          </>
-        );
-      }
+  const cartProduct = props.cartProductsProps.map((cartProduct, index) => {
+    let productFromStore = props.productsProps.find(
+      (product) => product.id === cartProduct.id
     );
-
-    let shippingPrice = this.state.shippingPrice
-      ? Math.round(this.state.shippingPrice * currencyValue)
-      : 0;
-    let productTotals = productsPrices.reduce(
-      (acc, el) => acc + el.price * el.count,
-      0
-    );
-    let vatPercentage = this.props.vatProps > 0 ? this.props.vatProps / 100 : 0;
-    let vat = productTotals > 0 ? Math.round(productTotals * vatPercentage) : 0;
-    let percentageDiscount = this.props.usedPromoCodeProp
-      ? this.props.usedPromoCodeProp.percentage / 100
-      : 0;
-    let discountAmount = productTotals * percentageDiscount;
-    let shoppingTotal =
-      productTotals > 0
-        ? productTotals + vat + shippingPrice - discountAmount
-        : 0;
-
-    // if (this.state.paymentMethod === "creditCard") {
-    //   chosenPaymentMethod = (
-    //     <div className={"ml-4 p-3 shop-card-field"}>
-    //       <CardElement
-    //         onChange={(element) => this.creditCardHandler(element)}
-    //       />
-    //     </div>
-    //   );
-    // } else if (this.state.paymentMethod === "onDelivery") {
-    //   chosenPaymentMethod = (
-    //     <div className={"ml-4 p-3"}>
-    //       You will pay when the product is delivered to you.
-    //     </div>
-    //   );
-    // }
-
+    productsPrices.push({
+      price:
+        productFromStore.quantity > 0
+          ? Math.round(productFromStore.price * currencyValue)
+          : 0,
+      count: cartProduct.quantity,
+    });
+    arrayCartproduct.push(props.cartProductsProps[index]);
+    arrayproduct.push(productFromStore);
     return (
-      <div className="container py-4">
-        {this.props.cartTotalProps <= 0 ? <Redirect to="/cart" /> : null}
+      <>
+        <CheckoutCartProduct
+          key={index}
+          checkoutProductName={productFromStore.name}
+          checkoutProductCategory={productFromStore.category}
+          checkoutProductPrice={Math.round(
+            productFromStore.price * currencyValue
+          )}
+          checkoutProductImage={productFromStore.img_name}
+          checkoutCartCount={cartProduct.quantity}
+          currency={props.usedCurrencyProp}
+        />
+      </>
+    );
+  });
 
-        {this.state.showAlert ? (
-          <Alert
-            alertType={this.state.alertType}
-            closeAlert={this.closeAlertHandler}
-          >
-            {this.state.alertMessage}
-          </Alert>
-        ) : null}
+  let shippingPrice = shippingPrices
+    ? Math.round(shippingPrices * currencyValue)
+    : 0;
+  let productTotals = productsPrices.reduce(
+    (acc, el) => acc + el.price * el.count,
+    0
+  );
+  let vatPercentage = props.vatProps > 0 ? props.vatProps / 100 : 0;
+  let vat = productTotals > 0 ? Math.round(productTotals * vatPercentage) : 0;
+  let percentageDiscount = props.usedPromoCodeProp
+    ? props.usedPromoCodeProp.percentage / 100
+    : 0;
+  let discountAmount = productTotals * percentageDiscount;
+  let shoppingTotal =
+    productTotals > 0
+      ? productTotals + vat + shippingPrice - discountAmount
+      : 0;
+  return (
+    <div className="container py-4">
+      {props.cartTotalProps <= 0 ? <Redirect to="/cart" /> : null}
 
-        <div className="row">
-          <div className="col-md-4 order-md-2 mb-4">
-            <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-muted">Order Review</span>
-              <span className="badge badge-secondary badge-pill">
-                {/* {this.props.cartTotalProps} */}
-              </span>
-            </h4>
+      {showAlert ? (
+        <Alert alertType={alertType} closeAlert={closeAlertHandler}>
+          {alertMessage}
+        </Alert>
+      ) : null}
 
-            <ul className="list-group mb-3 card-checkout">
-              {/* items in cart */}
-              {cartProducts}
+      <div className="row">
+        <div className="col-md-4 order-md-2 mb-4">
+          <h4 className="d-flex justify-content-between align-items-center mb-3">
+            <span className="text-muted">Order Review</span>
+            <span className="badge badge-secondary badge-pill">
+              {/* {this.props.cartTotalProps} */}
+            </span>
+          </h4>
 
-              {/* used promo codes */}
-              {this.props.usedPromoCodeProp ? (
-                <PromoCodeValue
-                  currency={this.props.usedCurrencyProp}
-                  usedPromoCode={this.props.usedPromoCodeProp}
-                  discountAmount={discountAmount}
-                />
-              ) : null}
+          <ul className="list-group mb-3 card-checkout">
+            {/* items in cart */}
+            {cartProduct}
 
-              {/* checkout totals */}
-              <CheckoutCartTotals
-                productTotals={productTotals}
-                vat={(CartProducts["vat"] = vat)}
-                shippingPrice={(CartProducts["shippingPrice"] = shippingPrice)}
-                shoppingTotal={(CartProducts["price"] = shoppingTotal)}
-                currency={this.props.usedCurrencyProp}
+            {/* used promo codes */}
+            {props.usedPromoCodeProp ? (
+              <PromoCodeValue
+                currency={props.usedCurrencyProp}
+                usedPromoCode={props.usedPromoCodeProp}
+                discountAmount={discountAmount}
               />
-            </ul>
+            ) : null}
 
-            {/*promo code form */}
-            <div className="col-md-12 col-xl-12 col-sm-12">
-              <PromoCodeForm
-                setPromoCode={this.setPromoCode}
-                promoCodeChangeHandler={(event) =>
-                  this.promoCodeChangeHandler(event)
-                }
-                promoCode={this.state.promoCode}
-              />
-            </div>
+            {/* checkout totals */}
+            <CheckoutCartTotals
+              productTotals={productTotals}
+              vat={(CartProducts["vat"] = vat)}
+              shippingPrice={(CartProducts["shippingPrice"] = shippingPrice)}
+              shoppingTotal={(CartProducts["price"] = shoppingTotal)}
+              currency={props.usedCurrencyProp}
+            />
+          </ul>
+
+          {/*promo code form */}
+          <div className="col-md-12 col-xl-12 col-sm-12">
+            <PromoCodeForm
+              setPromoCode={setPromoCodes}
+              promoCodeChangeHandler={(event) => promoCodeChangeHandlers(event)}
+              promoCode={promoCodes}
+            />
           </div>
-          <div className="col-md-8 order-md-1 ">
-            <h4 className="mb-3">Billing Information</h4>
-            <form className="shop-form shop-bg-white p-3" noValidate>
-              {/* customer details form fields */}
-              {/* <CustomerInputs
-                customerInfo={this.state.customerInfo}
-                inputChanged={(event, identifier) =>
-                  this.customerInfoChangeHandler(event, identifier)
-                }
-              /> */}
-              <div className="address-form ">
-                <div className="card-address ">
-                  <ul>
-                    <div className="address-input">
-                      <li>firstname :</li>
-                      <span>{this.props.Auth.user.firstname}</span>
-                    </div>
-                    <div className="address-input">
-                      <li>lastname :</li>
-                      <span>{this.props.Auth.user.lastname}</span>
-                    </div>
-                    <div className="address-input">
-                      <li>email :</li>
-                      <span>{this.props.Auth.user.email}</span>
-                    </div>
-                    <div className="address-input">
-                      <li>Address :</li>
-                      <span>{this.props.Auth.user.Address}</span>
-                    </div>
-                
-                    <div className="address-input">
-                      <li>city :</li>
-                      <span>{this.props.Auth.user.city}</span>
-                    </div>
-                    <div className="address-input">
-                      <li>ZipCode :</li>
-                      <span> {this.props.Auth.user.ZipCode}</span>
-                    </div>
-                    <div className="address-input">
-                      <li>Country :</li>
-                      <span>{this.props.Auth.user.Country}</span>
-                    </div>
-                  </ul>
-                </div>
+        </div>
+        <div className="col-md-8 order-md-1 ">
+          <h4 className="mb-3">Billing Information</h4>
+          <form className="shop-form shop-bg-white p-3" noValidate>
+            <div className="address-form ">
+              <div className="card-address ">
+                <ul>
+                  <div className="address-input">
+                    <li>ชื่อ :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.firstname}</p>
+                      {props.Auth.user.firstname}
+                    </span>
+                  </div>
+                  <div className="address-input">
+                    <li>สกุล :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.lastname}</p>
+                      {props.Auth.user.lastname}
+                    </span>
+                  </div>
+                  <div className="address-input">
+                    <li>email :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.email}</p>
+                      {props.Auth.user.email}
+                    </span>
+                  </div>
+                  <div className="address-input">
+                    <li>ที่อยู่ :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.Address}</p>
+                      {props.Auth.user.Address}
+                    </span>
+                  </div>
 
-                {/* delivery options selection fields */}
-                <div className="card-address">
-                  <h4 className="">Delivery Options</h4>
-                  <DeliveryOptions
-                    currency={this.props.usedCurrencyProp}
-                    deliveryOptions={this.props.deliveryOptions}
-                    usedDeliveryOption={this.state.usedDeliveryOption}
-                    deliveryOptionChanged={this.deliveryOptionChangeHandler}
-                  />
-                </div>
+                  <div className="address-input">
+                    <li>จังหวัด :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.city}</p>
+                      {props.Auth.user.city}
+                    </span>
+                  </div>
+                  <div className="address-input">
+                    <li>รหัสไปรษณีย์ :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.ZipCode}</p>
+                      {props.Auth.user.ZipCode}
+                    </span>
+                  </div>
+                  <div className="address-input">
+                    <li>ประเทศ :</li>
+                    <span>
+                      <p style={{ color: "red" }}>{errors.Country}</p>
+                      {props.Auth.user.Country}
+                    </span>
+                  </div>
+                </ul>
+                <Link to={"/user/"}>
+                  <button>Edit</button>
+                </Link>
               </div>
 
-              {/* payment option selection field */}
-              {/* <PaymentOptions
+              {/* delivery options selection fields */}
+              <div className="card-address">
+                <h4 className="">Delivery Options</h4>
+                <DeliveryOptions
+                  currency={props.usedCurrencyProp}
+                  deliveryOptions={props.deliveryOptions}
+                  usedDeliveryOption={usedDeliveryOption}
+                  deliveryOptionChanged={deliveryOptionChangeHandler}
+                />
+              </div>
+            </div>
+
+            {/* payment option selection field */}
+            {/* <PaymentOptions
                 paymentMethod={this.state.paymentMethod}
                 paymentOptionChanged={this.paymentOptionChangeHandler}
               /> */}
-              {/* payment section */}
-              {/* <div>{chosenPaymentMethod}</div> */}
-              <hr className="mb-4" />
-              <button
-                // disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
-                className="btn shop-btn-secondary btn-lg btn-block"
-                onClick={
-                  (event) => {
-                    this.confirmOrderHandler(event);
-                    this.setState({ newproduct: CartProducts });
-                  }
-
-                  // this.productcart(CartProducts);
+            {/* payment section */}
+            {/* <div>{chosenPaymentMethod}</div> */}
+            <hr className="mb-4" />
+            <button
+              // disabled={!(this.state.makeOrder && this.state.correctCardInfo)}
+              className="btn shop-btn-secondary btn-lg btn-block"
+              onClick={
+                (event) => {
+                  confirmOrderHandler(event);
+                  setorders(arrayproduct);
+                  setnewproductarray(arrayCartproduct);
+                  setnewproduct(CartProducts);
                 }
-              >
-                Confirm Order
-              </button>
-            </form>
-          </div>
+
+                // this.productcart(CartProducts);
+              }
+            >
+              Confirm Order
+            </button>
+          </form>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Checkout.propTypes = {
@@ -407,10 +418,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, props) => {
   return {
     confirmOrderProp: (order) => {
-      dispatch(confirmOrder(order, ownProps));
+      dispatch(confirmOrder(order, props));
     },
     UpdataProducts: (id, update) => {
       dispatch(UpdataQuantity(id, update));
@@ -421,5 +432,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-// inject stripe prop into the component (injectStripe(Checkout))
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

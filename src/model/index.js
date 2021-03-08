@@ -17,7 +17,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-
 db.user = require("./userModel/user.model")(sequelize, Sequelize);
 db.role = require("./userModel/role.model")(sequelize, Sequelize);
 db.role.belongsToMany(db.user, {
@@ -32,33 +31,29 @@ db.user.belongsToMany(db.role, {
 });
 
 db.ROLES = ["user", "admin"];
- 
 db.order = require("../model/order.model")(sequelize, Sequelize);
-// one to manny  product and  product status
 db.product = require("../model/product.mode")(sequelize, Sequelize);
-// db.productStatus = require("../model/product.status.mode")(
-//   sequelize,
-//   Sequelize
-// );
-// db.productStatus.hasMany(db.product, { as: "product" });
-// db.product.belongsTo(db.productStatus, {
-//   foreignKey: "id",
-//   as: "product_status",
-// });
-// // one to manny  product and  image 
-// db.image = require("../model/image.mode")(sequelize, Sequelize);
-// db.image.hasMany(db.product, { as: "product" });
-// db.product.belongsTo(db.image, {
-//   foreignKey: "id",
-//   as: "image",
-// });
-// // one to manny  product and  category 
-// db.category = require("../model/category.mode")(sequelize, Sequelize);
-// db.category.hasMany(db.product, { as: "product" });
-// db.product.belongsTo(db.category, {
-//   foreignKey: "id",
-//   as: "category",
+
+// db.product.hasMany(db.order, { as: "order" });
+// db.order.belongsTo(db.product, {
+//   foreignKey: "productId",
+//   as: "products",
 // });
 
+// db.user.hasMany(db.order, { as: "user" });
+// db.order.belongsTo(db.user, {
+//   foreignKey: "userId",
+//   as: "user",
+// });
+db.order_detail = require("../model/order_detail")(sequelize, Sequelize);
+db.order.belongsToMany(db.product, {
+  through: db.order_detail,
+  foreignKey: "orderId",
+});
+db.product.belongsToMany(db.order, {
+  through: db.order_detail,
+  foreignKey: "productId",
+  otherKey: "orderId",
+});
 
 module.exports = db;

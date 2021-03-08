@@ -1,9 +1,8 @@
 const db = require("../model");
 const Product = db.product;
-const fs = require("fs");
+// const fs = require("fs");
 exports.create = (req, res) => {
   let filename = null;
-  console.log(typeof req.file);
   if (typeof req.file != "undefined") {
     console.log("filesdvdfkbdklbflgknlgfh;kmngflhm");
     filename = "/resources/static/assets/uploads/" + req.file.filename;
@@ -63,9 +62,10 @@ exports.findById = (req, res) => {
 // Update
 exports.update = (req, res) => {
   const id = req.params.productId;
-  console.log("Update controller", id, req);
+  console.log("<-- Update controller -->", req.file);
   let filename = null;
-  if (typeof req.file != "undefined") {
+  if (typeof req.file !== undefined) {
+    console.log("<-- Update controller 2 -->", req.file.filename);
     filename = "/resources/static/assets/uploads/" + req.file.filename;
   }
   Product.update(

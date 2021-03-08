@@ -15,13 +15,13 @@ function Userpage(props) {
           },
         ]}
       >
-        {Object.keys(props.Auth.user).length > 0 && (
+        {Object.keys(props.Auth).length > 0 && (
           <div className="container-user ">
             <section id="formHolder">
               <Row>
                 <Col sm={0} md={6} xl={6} className=" brand">
                   <div className="logo">
-                    <span>MR.{props.Auth.user.firstname}</span>
+                    <span>{props.Auth.firstname}</span>
                   </div>
                 </Col>
                 {/* Form Box */}
@@ -29,25 +29,25 @@ function Userpage(props) {
                   {/* Signup Form */}
                   <div className="signup form-peice">
                     <form className="signup-form" action="#" method="post">
-                    <div className="form-group">
+                      <div className="form-group">
                         <h6 htmlFor="name">User Name</h6>
-                        <p>{props.Auth.user.username}</p>
+                        <p>{props.Auth.username}</p>
                         <hr />
                       </div>
                       <div className="form-group">
                         <h6 htmlFor="name">First Name</h6>
-                        <p>{props.Auth.user.firstname}</p>
+                        <p>{props.Auth.firstname}</p>
                         <hr />
                       </div>
                       <div className="form-group">
                         <h6 htmlFor="name">Last Name</h6>
 
-                        <p>{props.Auth.user.lastname}</p>
+                        <p>{props.Auth.lastname}</p>
                         <hr />
                       </div>
                       <div className="form-group">
                         <h6 htmlFor="email">Email Adderss</h6>
-                        <p>{props.Auth.user.email}</p>
+                        <p>{props.Auth.email}</p>
                         <hr />
                         <span className="error" />
                       </div>
@@ -86,7 +86,7 @@ function Userpage(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    Auth: state.auth,
+    Auth: state.auth.userDetail,
   };
 };
 export default connect(mapStateToProps)(Userpage);

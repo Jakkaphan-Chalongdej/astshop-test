@@ -58,7 +58,7 @@ function UserSetting(props) {
               <Col sm={6} md={6} xl={6}  className="brand">
                 {Object.keys(props.Auth.user).length > 0 && (
                   <div className="logo">
-                    <span>MR.{props.Auth.user.firstname}</span>
+                    <span>{props.Auth.user.firstname}</span>
                   </div>
                 )}
               </Col>

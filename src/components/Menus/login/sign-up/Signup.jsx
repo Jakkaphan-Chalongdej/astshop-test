@@ -3,17 +3,21 @@ import { connect } from "react-redux";
 import { register } from "../../../../store/actions/actionLogin/auth";
 import "../sign-in/signin.scss";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { toogleSideSignup } from "../../../../store/actions/Action.product";
+import { Button } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 function Signup(props) {
   const [handleRegister, sethandleRegister] = React.useState({
     successful: false,
   });
-  let [formData, setform] = React.useState([
-    {
-      username: "",
-      email: "",
-      password: "",
-    },
-  ]);
+  const formdefault = {
+    username: null,
+    email: null,
+    password: null,
+  };
+  let [formData, setform] = React.useState(formdefault);
+  const [disable, setdisabled] = React.useState(false);
+  const coll = React.useCallback;
   const [type, setType] = React.useState("password");
   const showHide = (e) => {
     e.preventDefault();
@@ -31,17 +35,22 @@ function Signup(props) {
       email: formData.email,
       password: formData.password,
     };
-    props
-      .Register(data)
-      .then(() => {
-        sethandleRegister({
-          ...handleRegister,
-          successful: true,
-        });
-      })
-      .catch(() => {
-        sethandleRegister({ ...handleRegister, successful: false });
-      });
+    formData.email != null &&
+    formData.username != null &&
+    formData.password != null
+      ? props
+          .Register(data)
+          .then(() => {
+            sethandleRegister({
+              ...handleRegister,
+              successful: true,
+            });
+            props.toogleSideSignupProp();
+          })
+          .catch(() => {
+            sethandleRegister({ ...handleRegister, successful: false });
+          })
+      : setform(formdefault);
   }
   const { message } = props;
   return (
@@ -62,6 +71,7 @@ function Signup(props) {
 
               <input
                 name="email"
+                type="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Email"
@@ -82,9 +92,15 @@ function Signup(props) {
                   onClick={showHide}
                 />
               </div>
-              <button onClick={handleSubmit} className="button primary">
+              <Button onClick={handleSubmit} disabled={!disable}>
                 Sign Up
-              </button>
+              </Button>
+              <ReCAPTCHA
+                sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
+                theme="dark"
+                name="recaptcha"
+                onChange={coll(() => setdisabled(true))}
+              ></ReCAPTCHA>
             </form>
           )}
           {message && (
@@ -116,6 +132,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     Register: (data) => dispatch(register(data)),
+    toogleSideSignupProp: () => dispatch(toogleSideSignup()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

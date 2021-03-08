@@ -9,28 +9,27 @@ function PrintOrder(props) {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
+console.log('order',props.auth.username)
   return (
-    <div>
-       <Button onClick={handlePrint}>Print this out!</Button>
+    <>
+      <Button onClick={handlePrint}>Print this out!</Button>
       <ComponentToPrint
         ref={componentRef}
         id={props.Print.id}
-        product_name={props.Print.product_name}
-        img={props.Print.img}
-        firstname={props.Print.firstname}
+        // product_name={product.name}
+        products={props.Print.products}
+        firstname={props.auth.firstname}
         quantity={props.Print.quantity}
         price={props.Print.price}
-        Address={props.Print.Address}
-        city={props.Print.city}
-        ZipCode={props.Print.ZipCode}
-        Country={props.Print.Country}
+        Address={props.auth.Address}
+        city={props.auth.city}
+        ZipCode={props.auth.ZipCode}
+        Country={props.auth.Country}
         vat={props.Print.vat}
         currency={props.Print.currency}
         shippingPrice={props.Print.shippingPrice}
       />
-     
-    </div>
+    </>
   );
 }
 PrintOrder.propTypes = {
@@ -41,6 +40,7 @@ PrintOrder.propTypes = {
 const mapStateToProps = (state) => {
   return {
     orderUser: state.product.orderUser,
+    auth: state.auth.userDetail,
     usedCurrencyProp: state.product.usedCurrency,
     Print: state.product.Print,
   };

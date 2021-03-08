@@ -22,22 +22,22 @@ function UserShipping(props) {
   function handleSubmit(e) {
     e.preventDefault();
     const data = {};
-    if (formData.AddressName !== null) {
+    if (formData.AddressName !== null && formData.AddressName !== "") {
       data["AddressName"] = formData.AddressName;
     }
-    if (formData.Address !== null) {
+    if (formData.Address !== null && formData.Address !== "") {
       data["Address"] = formData.Address;
     }
-    if (formData.Country !== null) {
+    if (formData.Country !== null && formData.Country !== "") {
       data["Country"] = formData.Country;
     }
-    if (formData.ZipCode !== null) {
+    if (formData.ZipCode !== null && formData.ZipCode !== "") {
       data["ZipCode"] = formData.ZipCode;
     }
-    if (formData.city !== null) {
+    if (formData.city !== null && formData.city !== "") {
       data["city"] = formData.city;
     }
-    console.log(data);
+    console.log(props.Auth.user.id, data);
     props.updateUser(props.Auth.user.id, data);
     updateFormData(formdefault);
     props.history.push("/user/delivery-addresses");
@@ -54,7 +54,7 @@ function UserShipping(props) {
       >
         <div className="container-paymant container-address">
           <header>
-            <h1>Delivery Addresses</h1>
+            <h1>ที่จัดส่ง</h1>
           </header>
           <Row>
             <Col sm={12} md={6} xl={6} className="address-form-col">
@@ -63,23 +63,24 @@ function UserShipping(props) {
                   <div className="card-address ">
                     <ul>
                       <div className="address-input">
-                        <li>AddressName :</li>
+                        <li>ชื่อที่อยู่ :</li>
                         <span>{props.Auth.user.AddressName}</span>
                       </div>
                       <div className="address-input">
-                        <li>Address :</li>
+                        <li>เลขที่ :</li>
                         <span>{props.Auth.user.Address}</span>
                       </div>
                       <div className="address-input">
-                        <li>ZipCode :</li>
-                        <span>{props.Auth.user.ZipCode}</span>
-                      </div>
-                      <div className="address-input">
-                        <li>city :</li>
+                        <li>จังหวัด :</li>
                         <span>{props.Auth.user.city}</span>
                       </div>
                       <div className="address-input">
-                        <li>Country :</li>
+                        <li>รหัสไปรษณีย์ :</li>
+                        <span>{props.Auth.user.ZipCode}</span>
+                      </div>
+
+                      <div className="address-input">
+                        <li>ประเทศ :</li>
                         <span>{props.Auth.user.Country}</span>
                       </div>
                     </ul>
@@ -90,7 +91,7 @@ function UserShipping(props) {
             <Col sm={12} md={6} xl={6} className="address-form-col">
               <div className="address-form address-form-2  ">
                 <div className="address-input">
-                  <label>Address name</label>
+                  <label>ชื่อที่อยู่</label>
                   <input
                     name="AddressName"
                     onChange={handleChange}
@@ -99,7 +100,7 @@ function UserShipping(props) {
                   />
                 </div>
                 <div className="address-input">
-                  <label>Address</label>
+                  <label>เลขที่</label>
                   <input
                     name="Address"
                     onChange={handleChange}
@@ -109,7 +110,7 @@ function UserShipping(props) {
                 </div>
                 <div>
                   <div className="address-input">
-                    <label>city</label>
+                    <label>จังหวัด</label>
                     <input
                       name="city"
                       onChange={handleChange}
@@ -118,7 +119,7 @@ function UserShipping(props) {
                     />
                   </div>
                   <div className="address-input">
-                    <label htmlFor="zip-code">Zip code</label>
+                    <label htmlFor="zip-code">รหัสไปรษณีย์</label>
                     <input
                       name="ZipCode"
                       onChange={handleChange}
@@ -128,7 +129,7 @@ function UserShipping(props) {
                   </div>
                 </div>
                 <div className="address-input">
-                  <label htmlFor="country">Country</label>
+                  <label htmlFor="country">ประเทศ</label>
                   <input
                     name="Country"
                     onChange={handleChange}

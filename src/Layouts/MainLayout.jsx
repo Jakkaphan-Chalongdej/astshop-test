@@ -94,6 +94,8 @@ const MainLayout = (props) => {
               <MainMenu
                 cartItemNumber={props.storeCartCount}
                 toggleSideBar={props.toggleSideBar}
+                showMenuLogin={props.showMenuLogin}
+                toggleMenuLogin={props.toggleMenuLogin}
               />
             </header>
             <main className="main-top">
@@ -248,12 +250,14 @@ MainLayout.propTpes = {
   modalMessage: PropTypes.string,
   showSideBar: PropTypes.bool,
   toggleSideBar: PropTypes.func.isRequired,
+ 
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     Logout: () => {
       dispatch(logout());
     },
+    
   };
 };
 

@@ -55,7 +55,7 @@ export const login = (data) => (dispatch) => {
         dispatch(getUser());
         dispatch(getOrder());
       }
-      // dispatch(getUserId(response.data.id));
+      dispatch(getUserId(response.data.id));
       dispatch(getOrderID(response.data.id));
       console.log("login getOrderID ", response.data.id);
 
