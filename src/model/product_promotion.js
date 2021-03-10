@@ -1,19 +1,19 @@
 module.exports = (sequelize, Sequelize) => {
   const promotion = sequelize.define("promotion", {
     image: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     title: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     text: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     link: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     percentage: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
   });
 
