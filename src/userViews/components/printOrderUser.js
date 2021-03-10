@@ -9,16 +9,17 @@ function PrintOrder(props) {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-console.log('order',props.auth.username)
+
   return (
     <>
       <Button onClick={handlePrint}>Print this out!</Button>
       <ComponentToPrint
         ref={componentRef}
         id={props.Print.id}
-        // product_name={product.name}
+        phone={props.auth.phone}
         products={props.Print.products}
         firstname={props.auth.firstname}
+        lastname={props.auth.lastname}
         quantity={props.Print.quantity}
         price={props.Print.price}
         Address={props.auth.Address}

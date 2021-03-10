@@ -171,7 +171,6 @@ function Stock(props) {
   const [uploadfile, setFile] = React.useState(null);
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
-    console.log("handle Change:", e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -212,13 +211,11 @@ function Stock(props) {
       props.EditProduct(formData.id, data);
     }
     if (formData.id !== undefined) {
-      
       props.EditProduct(formData.id, form);
       setform(dataform);
       setActiveTab(-1);
     } else {
       setError("ID is not valid");
-      console.log("error form");
     }
   };
   const handleSubmitAdd = (e) => {
@@ -255,7 +252,6 @@ function Stock(props) {
       form.append("sale", formData.sale);
     }
 
-    console.log(form);
     props.AddProduct(form);
     setform(dataform);
     setShowForm(false);
@@ -263,10 +259,7 @@ function Stock(props) {
   };
 
   const deleteProduct = (id) => {
-    console.log("Delete :", id);
-    axios.delete(`product/${id}`).then((res) => {
-      console.log(res);
-    });
+    axios.delete(`product/${id}`);
   };
 
   const [page, setPage] = React.useState(0);
@@ -438,7 +431,10 @@ function Stock(props) {
                         <>
                           <TableRow key={i}>
                             <TableCell>{row.id}</TableCell>
-                            <TableCell>{row.name}</TableCell>
+                            <TableCell>
+                              <img src={row.img_name} alt={row.name} />
+                              <span> {row.name}</span>
+                            </TableCell>
                             <TableCell>{row.slug}</TableCell>
                             <TableCell>{row.des}</TableCell>
                             <TableCell>{row.quantity}</TableCell>

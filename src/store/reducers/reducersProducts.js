@@ -127,14 +127,12 @@ const appReducer = (state = initialState, action) => {
 
     case actionTypes.GET_ORDER:
       let getorder = action.order;
-      console.log("reducer orders", getorder);
       return {
         ...state,
         orders: getorder,
       };
     case actionTypes.GET_ORDER_ID:
       let orderUser = action.order;
-      console.log("reducer orders ID", orderUser);
       return {
         ...state,
         orderUser: orderUser,
@@ -212,13 +210,11 @@ const appReducer = (state = initialState, action) => {
         showSideNavigation: !state.showSideNavigation,
       };
     case actionTypes.TOGGLE_SIDE_LOGIN:
-      console.log("reducer showMenuLogin", state.showMenuLogin);
       return {
         ...state,
         showMenuLogin: !state.showMenuLogin,
       };
     case actionTypes.TOGGLE_SIDE_SIGNUP:
-      console.log("reducer showMenuSignup", state.showMenuLogin);
       return {
         ...state,
         showMenuSignup: !state.showMenuSignup,

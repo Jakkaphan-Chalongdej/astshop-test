@@ -15,7 +15,7 @@ function Userpage(props) {
           },
         ]}
       >
-        {Object.keys(props.Auth).length > 0 && (
+        {props.Auth !== undefined && (
           <div className="container-user ">
             <section id="formHolder">
               <Row>
@@ -28,19 +28,19 @@ function Userpage(props) {
                 <Col sm={6} md={6} xl={6} className="form-user form ">
                   {/* Signup Form */}
                   <div className="signup form-peice">
-                    <form className="signup-form" action="#" method="post">
+                    <form className="signup-form" >
                       <div className="form-group">
                         <h6 htmlFor="name">User Name</h6>
                         <p>{props.Auth.username}</p>
                         <hr />
                       </div>
                       <div className="form-group">
-                        <h6 htmlFor="name">First Name</h6>
+                        <h6 htmlFor="name">ชื่อ / First Name</h6>
                         <p>{props.Auth.firstname}</p>
                         <hr />
                       </div>
                       <div className="form-group">
-                        <h6 htmlFor="name">Last Name</h6>
+                        <h6 htmlFor="name">สกุล / Last Name</h6>
 
                         <p>{props.Auth.lastname}</p>
                         <hr />
@@ -51,22 +51,11 @@ function Userpage(props) {
                         <hr />
                         <span className="error" />
                       </div>
-                      {/* <div className="form-group">
-                        <h6 htmlFor="phone">Phone Number</h6>
-                        <span>
-                          <p>{"062-xxxxxxx"}</p>
-                        </span>
+                      <div className="form-group">
+                        <h6 >เบอร์โทร / Phone Number</h6>
+                        <p>{`0${props.Auth.phone}`}</p>
                         <hr />
-                      </div> */}
-                      {/* <div className="form-group">
-                        <h6 htmlFor="password">Password</h6>
-                        <p>{"********"}</p>
-
-                        <hr />
-
-                        <span className="error" />
-                      </div> */}
-
+                      </div>                
                       <div className="CTA">
                         <Link to="/user/edit/profile">
                           <button>EDIT</button>

@@ -11,17 +11,17 @@ function UserSetting(props) {
       username: null,
       password: null,
       email: null,
+      phone: null,
     },
   ];
   let [formData, setform] = React.useState(dataform);
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
-    console.log("handle Change:", e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const data = {};
     if (formData.firstname !== null) {
       data["firstname"] = formData.firstname;
@@ -37,6 +37,12 @@ function UserSetting(props) {
     }
     if (formData.email !== null) {
       data["email"] = formData.email;
+    }
+    if (formData.phone !== null && Object.keys(formData.phone).length === 10) {
+      data["phone"] = formData.phone;
+    }
+    if (formData.phone !== null && Object.keys(formData.phone).length < 10) {
+      props.history.push("/user/edit/profile");
     }
     props.Edit(props.Auth.user.id, data);
     setform(dataform);
@@ -55,7 +61,7 @@ function UserSetting(props) {
         <div className="container-user ">
           <section id="formHolder">
             <Row>
-              <Col sm={6} md={6} xl={6}  className="brand">
+              <Col sm={6} md={6} xl={6} className="brand">
                 {Object.keys(props.Auth.user).length > 0 && (
                   <div className="logo">
                     <span>{props.Auth.user.firstname}</span>
@@ -68,7 +74,7 @@ function UserSetting(props) {
                 <div className="signup form-peice">
                   <form className="signup-form">
                     <div className="form-group">
-                      <label >First Name</label>
+                      <label>ชื่อ / First Name</label>
                       <input
                         type="text"
                         name="firstname"
@@ -81,7 +87,7 @@ function UserSetting(props) {
                       <span className="error" />
                     </div>
                     <div className="form-group">
-                      <label >Last Name</label>
+                      <label>สกุล / Last Name</label>
                       <input
                         type="text"
                         name="lastname"
@@ -104,6 +110,18 @@ function UserSetting(props) {
                         className="email"
                       />
                       <span className="error" />
+                    </div>
+                    <div className="form-group">
+                      <label>เบอร์โทร / Phone Number</label>
+                      <input
+                        type="phone"
+                        name="phone"
+                        value={formData.phone}
+                        maxLength="10"
+                        pattern="[0-9]*"
+                        onChange={handleChange}
+                        placeholder=""
+                      />
                     </div>
                     <div className="form-group">
                       <label>Username</label>

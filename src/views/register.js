@@ -24,7 +24,6 @@ function Register(props) {
   };
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
-    console.log("handle Change:", e.target.value);
   };
 
   function handleSubmit(e) {

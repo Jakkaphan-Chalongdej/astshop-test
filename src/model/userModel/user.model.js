@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
     age: {
       type: Sequelize.INTEGER,
     },
+    phone: {
+      type: Sequelize.INTEGER,
+    },
     username: {
       type: Sequelize.STRING,
     },

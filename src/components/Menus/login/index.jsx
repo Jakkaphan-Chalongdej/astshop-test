@@ -32,11 +32,25 @@ function Login(props) {
   const handleLogout = () => {
     props.Logout();
   };
+  const handleClickSignup = (e) => {
+    e.preventDefault();
+    if (props.showMenuLoginProp === true) {
+      props.toogleSideLoginProp();
+    }
+    props.toogleSideSignupProp();
+  };
+  const handleClickSignin = (e) => {
+    e.preventDefault();
+    props.toogleSideLoginProp();
+    if (props.showMenuSignupProp === true) {
+      props.toogleSideSignupProp();
+    }
+  };
   return (
     <>
       <Navbar style={{ marginTop: "-10px" }}>
         <Navbar>
-          <div onClick={props.toogleSideSignupProp}>sign up</div>
+          <div onClick={(e) => handleClickSignup(e)}>สร้างบัญชีใหม่</div>
         </Navbar>
         <span style={{ marginLeft: "10px" }}>|</span>
         <Navbar>
@@ -70,20 +84,20 @@ function Login(props) {
                     <MenuItem onClick={handleClose}>
                       <Link to="/user">
                         <AccountBoxIcon />
-                        My account
+                        บัญชี
                       </Link>
                     </MenuItem>
                     <MenuItem onClick={handleLogout}>
                       <Link to="/">
                         <ExitToAppIcon />
-                        Logout
+                        ออกจากระบบ
                       </Link>
                     </MenuItem>
                   </Menu>
                 </span>
               </div>
             ) : (
-              <div onClick={props.toogleSideLoginProp}> sign in</div>
+              <div onClick={(e) => handleClickSignin(e)}>เข้าสู่ระบบ</div>
             )}
           </span>
         </Navbar>

@@ -1,21 +1,52 @@
-
 .card-form {
     background-color: #fff;
     text-align: left;
+    padding: 10px;
+    text-decoration: none;
+    /* border: 2px solid #eaeaea;
+    border-radius: 10px; */
+    margin: 0px 8px;
+} 
+
+/* .page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+} */
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}
+
+.print-header {
+    text-align: center;
+}
+
+/* .card-form-border {
     padding: 100px;
     text-decoration: none;
-    border: 2px solid #eaeaea;
-    border-radius: 10px;
-    margin: 0px 8px;
-  
-  
-}
-.card-form-border {
-    padding: 150px;
-    text-decoration: none;
     border: 2px solid #080808;
-   
-}
+} */
+
 .container-form {
     padding: 30px;
     background-color: #fff;
@@ -34,17 +65,20 @@
     display: grid;
     border-radius: 20px;
     grid-template-columns: repeat(2, 1fr);
-} 
+}
+
 .form-print-logo {
+    margin-top: 10vw;
     height: auto;
     text-align: center;
     align-items: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-} 
-.form-print label{
+}
+
+.form-print label {
     text-align: left;
-} 
+}
 
 .form-print2 {
     padding: 1px;

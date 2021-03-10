@@ -17,7 +17,7 @@ export const getProductsByFilter = (store, visibilityFilter, count = null) => {
         (product) =>
           product.category === visibilityFilter &&
           product.price < filterPrices.pricerange,
-        console.log(visibilityFilter)
+        
       );
     case VISIBILITY_FILTERS.CAMERA:
       // case VISIBILITY_FILTERS.:
@@ -26,7 +26,7 @@ export const getProductsByFilter = (store, visibilityFilter, count = null) => {
         (product) =>
           product.subcategory === visibilityFilter &&
           product.price < filterPrices.pricerange,
-        console.log(visibilityFilter)
+        
       );
     case VISIBILITY_FILTERS.SALE:
       if (count) {

@@ -5,6 +5,7 @@ import BreadCrumbs from "../../components/BreadCrumbs/BreadCrumbs.jsx";
 
 const Setting = (props) => {
   return (
+    
     <div className={`container ${props.breadCrumbs ? "py-2" : "py-4"}`}>
       {props.breadCrumbs ? (
         <div className="row">

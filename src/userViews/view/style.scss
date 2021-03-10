@@ -18,7 +18,10 @@ section#formHolder {
     max-width: 1400px;
   }
 }
-
+.form .form-peice .signup-form {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 .container-user {
   margin-top: -50px;
   width: 100%;
@@ -349,12 +352,10 @@ footer p a:focus:hover {
     max-width: 100% !important;
   }
   .form-user {
-    
     flex: 0 0 100% !important;
     max-width: 100% !important;
   }
-  section#formHolder .form{
+  section#formHolder .form {
     margin-left: 0 !important;
   }
- 
 }

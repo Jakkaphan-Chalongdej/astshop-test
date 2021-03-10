@@ -37,7 +37,6 @@ function UserShipping(props) {
     if (formData.city !== null && formData.city !== "") {
       data["city"] = formData.city;
     }
-    console.log(props.Auth.user.id, data);
     props.updateUser(props.Auth.user.id, data);
     updateFormData(formdefault);
     props.history.push("/user/delivery-addresses");
@@ -58,30 +57,30 @@ function UserShipping(props) {
           </header>
           <Row>
             <Col sm={12} md={6} xl={6} className="address-form-col">
-              {Object.keys(props.Auth.user).length > 0 && (
+              {Object.keys(props.Auth.userDetail).length > 0 && (
                 <div className="address-form ">
                   <div className="card-address ">
                     <ul>
                       <div className="address-input">
                         <li>ชื่อที่อยู่ :</li>
-                        <span>{props.Auth.user.AddressName}</span>
+                        <span>{props.Auth.userDetail.AddressName}</span>
                       </div>
                       <div className="address-input">
-                        <li>เลขที่ :</li>
-                        <span>{props.Auth.user.Address}</span>
+                        <li>ที่อยู่ :</li>
+                        <span>{props.Auth.userDetail.Address}</span>
                       </div>
                       <div className="address-input">
                         <li>จังหวัด :</li>
-                        <span>{props.Auth.user.city}</span>
+                        <span>{props.Auth.userDetail.city}</span>
                       </div>
                       <div className="address-input">
                         <li>รหัสไปรษณีย์ :</li>
-                        <span>{props.Auth.user.ZipCode}</span>
+                        <span>{props.Auth.userDetail.ZipCode}</span>
                       </div>
 
                       <div className="address-input">
                         <li>ประเทศ :</li>
-                        <span>{props.Auth.user.Country}</span>
+                        <span>{props.Auth.userDetail.Country}</span>
                       </div>
                     </ul>
                   </div>
@@ -100,7 +99,7 @@ function UserShipping(props) {
                   />
                 </div>
                 <div className="address-input">
-                  <label>เลขที่</label>
+                  <label>ที่อยู่</label>
                   <input
                     name="Address"
                     onChange={handleChange}

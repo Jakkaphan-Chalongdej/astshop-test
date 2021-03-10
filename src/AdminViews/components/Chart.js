@@ -31,7 +31,8 @@ function Chart(props) {
     const num1 = props.OrdersProducts.length;
     let x = [];
     for (let z = 0; z < num1; z++) {
-      x.push(props.OrdersProducts[z].createdAt);
+      const d = new Date(props.OrdersProducts[z].createdAt);
+      x.push(`${d.getHours()}:${d.getMinutes()}`);
     }
     return x;
   };
@@ -39,19 +40,31 @@ function Chart(props) {
     return { time, amount };
   }
 
-  const data = [
-    createData(showcreatedAt()[0], showprice()[0]),
-    createData(showcreatedAt()[1], showprice()[1]),
+  const showdata = () => {
+    const num1 = props.OrdersProducts.length;
+    const data = [];
+    const dataChart = [];
+    for (let z = 0; z < num1; z++) {
+      dataChart.push(createData(showcreatedAt()[z], showprice()[z]));
+    }
+    dataChart.push(data);
+    return dataChart;
+  };
+  const d = new Date("2021-03-10T07:23:47.000Z");
+  console.log(d.getHours());
+  console.log(d.getMinutes()); // Hours
 
-    // createData("03:00", 300),
-    // createData("06:00", 600),
-    // createData("09:00", 800),
-    // createData("12:00", 1500),
-    // createData("15:00", 2000),
-    // createData("18:00", 2400),
-    // createData("21:00", 2400),
-    // createData("24:00", undefined),
-  ];
+ 
+  //const data = [
+  // createData("03:00", 300),
+  // createData("06:00", 600),
+  // createData("09:00", 800),
+  // createData("12:00", 1500),
+  // createData("15:00", 2000),
+  // createData("18:00", 2400),
+  // createData("21:00", 2400),
+  // createData("24:00", undefined),
+  //];
 
   return (
     <React.Fragment>
@@ -59,7 +72,7 @@ function Chart(props) {
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
-          data={data}
+          data={showdata()}
           margin={{
             top: 16,
             right: 16,

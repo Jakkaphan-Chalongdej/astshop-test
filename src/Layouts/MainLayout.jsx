@@ -221,13 +221,13 @@ const MainLayout = (props) => {
                         <MenuItem onClick={handleClose}>
                           <Link to="/user">
                             <AccountBoxIcon />
-                            My account
+                            บัญชี
                           </Link>
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>
                           <Link to="/">
                             <ExitToAppIcon />
-                            Logout
+                            ออกจากระบบ
                           </Link>
                         </MenuItem>
                       </Menu>

@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3001;
 const db = require("./src/model");
 const Role = db.role;
 global.__basedir = path.join(__dirname, "/public");
-//Gen database
+//open comment for Gen database
+
 // db.sequelize.sync({ force: true }).then(() => {
 //   initial();
 //   console.log("Drop and Resync with { force: true }");
@@ -15,6 +16,7 @@ global.__basedir = path.join(__dirname, "/public");
 //   console.log("Connected to the MySQL server.");
 // });
 
+//----<> sync database <>----
 db.sequelize.sync(console.log("Connected to the MySQL server."));
 function initial() {
   Role.create({
@@ -36,19 +38,7 @@ server.use(
     path.join(__dirname, "/public", "/resources/static/assets/uploads/")
   )
 );
-// server.use(
-//   express.static(
-//     // path.resolve(
-//     //   //__dirname,
-//     //   "public",
-//     //   "resources",
-//     //   "static",
-//     //   "assets",
-//     //   "uploads"
-//     // )
 
-//   )
-// );
 // server.get("/", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 // });

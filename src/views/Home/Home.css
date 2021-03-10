@@ -322,22 +322,24 @@
 }
 
 @media (max-width: 320px) {
-  /* .form-control {
-    margin-left: -50px
-  } */
+  .form-control {
+    padding: 0;
+  }
+  
   .select-num{
-    margin-left: 28vw;
+    margin-left: 21vw;
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 425px) and (min-width:321px) {
   .form-control {
-    border-radius: 1rem;
+    padding: 0 ;
+    border-radius: 0.5rem;
     position: relative;
     width: 80%!important;
   }
   .select-num{
-    margin-left: 24vw;
+    margin-left: 13vw;
   }
   /* deals section */
   .deals-image {
@@ -490,9 +492,9 @@
 }
 
 @media (max-width: 1024px) {
-  .form-control {
+  /* .form-control {
     padding: 5px;
-  }
+  } */
   .menu-item a {
     display: none;
   }

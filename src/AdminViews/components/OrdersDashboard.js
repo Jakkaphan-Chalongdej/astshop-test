@@ -13,13 +13,12 @@ import { OrderIDPrintAdmin } from "../../store/actions/Action.product";
 import { Button } from "react-bootstrap";
 import "../../components/print/formprint.css";
 
-import TableBody from "@material-ui/core/TableBody";
 import IconButton from "@material-ui/core/IconButton";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import { TablePagination } from "@material-ui/core";
+
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -109,18 +108,6 @@ function Orders(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const emptyRows =
-    rowsPerPage -
-    Math.min(rowsPerPage, props.OrdersProducts.length - page * rowsPerPage);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
   let ordershow =
     props.OrdersProducts.length > 0
       ? props.OrdersProducts.slice(
@@ -139,7 +126,6 @@ function Orders(props) {
           let products_quantity =
             OrderProduct.products !== undefined &&
             OrderProduct.products.map((quantity, i) => {
-              console.log(quantity.order_detail.quantity);
               return (
                 <ul key={i}>
                   <li>{quantity.order_detail.quantity}</li>
@@ -196,30 +182,10 @@ function Orders(props) {
           </TableRow>
         </TableHead>
         {ordershow}
-        <TableBody>
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-          <TablePagination
-            rowsPerPageOptions={[5, 15, 25, 50, 100]}
-            count={props.OrdersProducts.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            SelectProps={{
-              inputProps: { "aria-label": "rows per page" },
-              native: true,
-            }}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-            ActionsComponent={TablePaginationActions}
-          />
-        </TableBody>
       </Table>
-      {/* <div className={classes.seeMore}>
+      <div className={classes.seeMore}>
         <Link to="/admin/order">See more orders</Link>
-      </div> */}
+      </div>
     </React.Fragment>
   );
 }

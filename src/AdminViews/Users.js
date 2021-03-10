@@ -20,7 +20,7 @@ import { connect } from "react-redux";
 import { TablePagination } from "@material-ui/core";
 import { updateUser } from "../store/actions/actionLogin/auth";
 import { FaWindowClose } from "react-icons/fa";
-// import { getUser } from "../store/actions/actionLogin/auth";
+
 import IconButton from "@material-ui/core/IconButton";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -171,7 +171,7 @@ function User(props) {
 
   const handleChange = (e) => {
     setform({ ...formData, [e.target.name]: e.target.value });
-    console.log("handle Change:", e.target.value);
+    
   };
 
   const handleSubmit = (e) => {
@@ -235,10 +235,7 @@ function User(props) {
   // };
 
   const deleteProduct = (id) => {
-    console.log("Delete :", id);
-    axios.delete(`product/${id}`).then((res) => {
-      console.log(res);
-    });
+    axios.delete(`product/${id}`)
   };
 
   const [page, setPage] = React.useState(0);

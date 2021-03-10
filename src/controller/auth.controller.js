@@ -14,6 +14,7 @@ exports.signup = (req, res) => {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     age: req.body.age,
+    phone: req.body.phone,
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
@@ -81,14 +82,7 @@ exports.signin = (req, res) => {
           email: user.email,
           roles: authorities,
           accessToken: token,
-          firstname: user.firstname,
-          lastname: user.lastname,
-          age: user.age,
-          AddressName: user.AddressName,
-          Address: user.Address,
-          ZipCode: user.ZipCode,
-          city: user.city,
-          Country: user.Country,
+          
         });
       });
     })
@@ -105,10 +99,8 @@ exports.findAll = (req, res) => {
 };
 exports.findById = (req, res) => {
   const id = req.params.userId;
-  console.log("findById", id);
   User.findByPk(id)
     .then((user) => {
-      console.log(user);
       var authorities = [];
       user.getRoles().then((roles) => {
         for (let i = 0; i < roles.length; i++) {
@@ -123,6 +115,7 @@ exports.findById = (req, res) => {
           firstname: user.firstname,
           lastname: user.lastname,
           age: user.age,
+          phone: user.phone,
           AddressName: user.AddressName,
           Address: user.Address,
           ZipCode: user.ZipCode,
@@ -141,9 +134,26 @@ exports.findById = (req, res) => {
 
 exports.update = (req, res) => {
   const id = req.params.userId;
-  // let password = null;
   if (req.body.password !== undefined) {
+    let password = null;
     password = bcrypt.hashSync(req.body.password, 8);
+    User.update(
+      {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        age: req.body.age,
+        username: req.body.username,
+        email: req.body.email,
+        phone: req.body.phone,
+        AddressName: req.body.AddressName,
+        Address: req.body.Address,
+        ZipCode: req.body.ZipCode,
+        city: req.body.city,
+        Country: req.body.Country,
+        password: password,
+      },
+      { where: { id: id } }
+    );
   }
   User.update(
     {
@@ -152,12 +162,12 @@ exports.update = (req, res) => {
       age: req.body.age,
       username: req.body.username,
       email: req.body.email,
+      phone: req.body.phone,
       AddressName: req.body.AddressName,
       Address: req.body.Address,
       ZipCode: req.body.ZipCode,
       city: req.body.city,
       Country: req.body.Country,
-      // password: password,
     },
     { where: { id: id } }
   ).then(async () => {

@@ -4,7 +4,10 @@ import "./signin.scss";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { connect } from "react-redux";
 import { login } from "../../../../store/actions/actionLogin/auth";
-import { toogleSideLogin } from "../../../../store/actions/Action.product";
+import {
+  toogleSideLogin,
+  toogleSideSignup,
+} from "../../../../store/actions/Action.product";
 import { Button } from "react-bootstrap";
 function Signin(props) {
   const [handleLogin, sethandleLogin] = React.useState({
@@ -30,6 +33,14 @@ function Signin(props) {
   const [disable, setdisabled] = React.useState(false);
   const coll = React.useCallback;
 
+  function onCilck(e) {
+    e.preventDefault();
+    props.toogleSideSignupProp();
+    console.log(props.showMenuSignupProp);
+    if (props.showMenuSignupProp === false) {
+      props.toogleSideLoginProp();
+    }
+  }
   function handleSubmit(e) {
     e.preventDefault();
     const data = {
@@ -60,7 +71,7 @@ function Signin(props) {
         <div className="signin-wrapper slideDown">
           {handleLogin && (
             <div className="form-wrapper">
-              <h5>Sign In</h5>
+              <h5> เข้าสู่ระบบ</h5>
               <input
                 name="username"
                 onChange={handleChange}
@@ -85,8 +96,9 @@ function Signin(props) {
                 />
               </div>
               <Button onClick={handleSubmit} disabled={!disable}>
-                Sign In
+                เข้าสู่ระบบ
               </Button>
+              <Button onClick={(e) => onCilck(e)}>สร้างบัญชีใหม่</Button>
               <ReCAPTCHA
                 sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"
                 theme="dark"
@@ -118,12 +130,14 @@ const mapStateToProps = (state) => {
   const { message } = state.message;
   return {
     message,
+    showMenuSignupProp: state.product.showMenuSignup,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     userLogin: (data) => dispatch(login(data)),
     toogleSideLoginProp: () => dispatch(toogleSideLogin()),
+    toogleSideSignupProp: () => dispatch(toogleSideSignup()),
   };
 };
 

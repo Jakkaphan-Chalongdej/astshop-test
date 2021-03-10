@@ -45,6 +45,7 @@ function Signup(props) {
               ...handleRegister,
               successful: true,
             });
+            setform(formdefault);
             props.toogleSideSignupProp();
           })
           .catch(() => {
@@ -59,7 +60,7 @@ function Signup(props) {
         <div className="signin-wrapper slideDown ">
           {handleRegister && (
             <form className="form-wrapper ">
-              <h5>Sign Up</h5>
+              <h5>สร้างบัญชีใหม่</h5>
 
               <input
                 onChange={handleChange}
@@ -93,7 +94,7 @@ function Signup(props) {
                 />
               </div>
               <Button onClick={handleSubmit} disabled={!disable}>
-                Sign Up
+                สร้างบัญชีใหม่
               </Button>
               <ReCAPTCHA
                 sitekey="6Lcz7UoaAAAAANMZ9666YHkY4_Hc95wdTJZDWtMm"

@@ -23,7 +23,6 @@ function Login(props) {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formData);
   const [disable, setdisabled] = React.useState(false);
   const coll = React.useCallback;
   const [type, setType] = React.useState("password");

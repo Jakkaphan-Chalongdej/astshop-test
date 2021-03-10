@@ -4,38 +4,47 @@ import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 function ComponentToPrint(props) {
-  let Orderproduct = props.products.map((productmap, i) => {
-    return (
-      <Col key={i}>
-        <Row>
-          <Col>
-            <img alt={productmap.name} src={productmap.img_name} />
-          </Col>
+  let Orderproduct =
+    props.products !== undefined &&
+    props.products.map((productmap, i) => {
+      return (
+        <Col key={i}>
+          <Row>
+            <Col>
+              <img alt={productmap.name} src={productmap.img_name} />
+            </Col>
 
-          <Col>
-            <p>Product Name</p>
+            <Col>
+              <p>Product Name</p>
 
-            {/* <li>{props.product_name}</li> */}
-            <li>{productmap.name}</li>
-          </Col>
-          <Col style={{ textAlign: "center" }}>
-            <p>Quantity</p>
-            <li>{productmap.order_detail.quantity}</li>
-          </Col>
-        </Row>
-      </Col>
-    );
-  });
+              {/* <li>{props.product_name}</li> */}
+              <li>{productmap.name}</li>
+            </Col>
+            <Col style={{ textAlign: "center" }}>
+              <p>Quantity</p>
+              <li>{productmap.order_detail.quantity}</li>
+            </Col>
+          </Row>
+        </Col>
+      );
+    });
   return (
     <ul className="card-form">
       <div className="card-form-border">
+        <div className="print-header">
+          <h3>บริษัท ออลล์โซลูชั่นส์เทค จำกัด </h3>
+          <h3>ALL SOLUTIONS TECH CO.,LTD.</h3>
+          <h6>3279/25 ถ.สืบศิริ ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000</h6>
+        </div>
         <div className="form-print-logo">
           <div>
             <img src="../../../ast2.png" alt="logo ast" width="100px" />
           </div>
           <div>
-            <span> {props.firstname}</span>
-            <span style={{ marginLeft: "5px" }}>{props.lastname}</span>
+            <span>{`ชื่อ ${props.firstname}`}</span>
+            <span
+              style={{ marginLeft: "5px" }}
+            >{`สกุล ${props.lastname}`}</span>
           </div>
         </div>
 
@@ -48,20 +57,24 @@ function ComponentToPrint(props) {
               <label>BILLING INFORMATION </label>
               <hr />
               <div className="form-print2">
-                <label>Address </label>
+                <label>ที่อยู่ </label>
                 <li>{props.Address}</li>
               </div>
               <div className="form-print2">
-                <label>City </label>
+                <label>จังหวัด </label>
                 <li>{props.city}</li>
               </div>
               <div className="form-print2">
-                <label>ZipCode </label>
+                <label>รหัสไปรษณีย์ </label>
                 <li>{props.ZipCode}</li>
               </div>
               <div className="form-print2">
-                <label>Country </label>
+                <label>ประเทศ </label>
                 <li>{props.Country}</li>
+              </div>
+              <div className="form-print2">
+                <label>เบอร์โทร </label>
+                <li>{`0${props.phone}`}</li>
               </div>
             </Col>
             <Col>

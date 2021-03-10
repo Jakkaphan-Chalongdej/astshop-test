@@ -3,18 +3,15 @@ const Order_detail = db.order_detail;
 const Order = db.order;
 const User = db.user;
 const Products = db.product;
-const Op = db.Sequelize.Op;
+
 exports.create = (req, res) => {
-  // console.log("req  order ------->>>>>>", req.body.product);
   const id_p = req.body.product;
 
   Order.create({
     price: req.body.price,
-    // quantity: req.body.quantity,
     shippingPrice: req.body.shippingPrice,
     vat: req.body.vat,
     currency: req.body.currency,
-    userId: req.body.userID,
   })
     .then(async (order) => {
       if (id_p) {
@@ -22,23 +19,12 @@ exports.create = (req, res) => {
           if (product_map.id) {
             Order_detail.create({
               orderId: order.id,
+              userId: req.body.userID,
               productId: product_map.id,
               quantity: product_map.quantity,
             }).then(() => {
               res.send({ message: "User was registered successfully!" });
             });
-            // order
-            //   .setProducts(product_map.quantity, {
-            //     through: { attributes: "quantity" },
-            //   })
-            //   .then(() => {
-            //     console.log("req  order ------->>>>>>");
-            //     res.send({ message: "User was registered successfully!" });
-            //   });
-            // order.setProducts(product_map.id).then((product) => {
-            //   console.log("req  order ------->>>>>>", product);
-            //   res.send({ message: "User was registered successfully!" });
-            // });
           }
         });
       }
@@ -53,6 +39,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Order.findAll({
     // order: [["id", "DESC"]],
+   
     include: [
       {
         model: Products,
@@ -62,31 +49,14 @@ exports.findAll = (req, res) => {
           attributes: ["quantity"],
         },
       },
+      { model: User },
     ],
   }).then((order) => {
-    var product = [];
-    console.log(" <------- Get order product ------->");
-    // order.getProducts().then((data) => {
-    //   for (let i = 0; i < data.length; i++) {
-    //     product.push(order[i].name);
-    //   }
-    //   console.log("getProducts ---->>>", data);
-    //   res.status(200).send({
-    //     id: order.id,
-    //     price: order.price,
-    //     quantity: order.quantity,
-    //     shippingPrice: order.shippingPrice,
-    //     vat: order.vat,
-    //     currency: order.currency,
-    //     userId: order.userID,
-    //     productId: product,
-    //   });
-    // });
     res.send(order);
   });
 };
 
-// Find a Customer by Id
+// Find a Order by Id
 exports.findById = (req, res) => {
   const id = req.params.orderId;
   Order.findByPk(id, {
@@ -99,22 +69,19 @@ exports.findById = (req, res) => {
           attributes: ["quantity"],
         },
       },
+      { model: User },
     ],
   }).then((product) => {
     res.status(200).send(product);
   });
 };
 
-// Update a Customer
+// Update a Order
 exports.update = (req, res) => {
   const id = req.params.orderId;
   Order.update(
     {
       userID: req.body.userID,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      email: req.body.email,
       img: req.body.img,
       product_name: req.body.product_name,
       price: req.body.price,
@@ -122,49 +89,38 @@ exports.update = (req, res) => {
       vat: req.body.vat,
       currency: req.body.currency,
       quantity: req.body.quantity,
-      Address: req.body.Address,
-      ZipCode: req.body.ZipCode,
-      city: req.body.city,
-      Country: req.body.Country,
     },
     { where: { id: req.params.productId } }
   ).then(() => {
     res.status(200).send("updated successfully  = " + id);
   });
 };
+// Find a Order by Id user
 exports.findOrder = (req, res) => {
-  console.log("username", req);
   const userID = req.params.orderId;
+  console.log("userID------->>", userID);
   Order.findAll({
-    where: { userID: userID },
+    // where: { userID: userID },
     include: [
       {
         model: Products,
         attributes: ["name", "img_name"],
+        through: {
+          model: Order_detail,
+          attributes: ["quantity"],
+        },
+      },
+      {
+        model: User,
+        where: { id: userID },
       },
     ],
   }).then((order) => {
-    // order.getProducts().then((data) => {
-    //   for (let i = 0; i < data.length; i++) {
-    //     product.push(order[i].name);
-    //   }
-    //   console.log("getProducts ---->>>", product);
-    //   res.status(200).send({
-    //     id: order.id,
-    //     price: order.price,
-    //     quantity: order.quantity,
-    //     shippingPrice: order.shippingPrice,
-    //     vat: order.vat,
-    //     currency: order.currency,
-    //     userId: order.userID,
-    //     productId: order.product,
-    //   });
-    // });
     res.send(order);
   });
 };
 
-// Delete a Customer by Id
+// Delete a Order by Id
 exports.delete = (req, res) => {
   const id = req.params.productId;
   Order.destroy({

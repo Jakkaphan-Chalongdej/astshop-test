@@ -10,24 +10,30 @@ function PrintOrder(props) {
     content: () => componentRef.current,
   });
 
+  console.log("Print", props.Print.users);
+
   return (
     <div>
       <Button onClick={handlePrint}>Print this out!</Button>
-      <ComponentToPrint
-        ref={componentRef}
-        id={props.Print.id}
-        products={props.Print.products}
-        firstname={props.auth.firstname}
-        quantity={props.Print.quantity}
-        price={props.Print.price}
-        Address={props.auth.Address}
-        city={props.auth.city}
-        ZipCode={props.auth.ZipCode}
-        Country={props.auth.Country}
-        vat={props.Print.vat}
-        currency={props.Print.currency}
-        shippingPrice={props.Print.shippingPrice}
-      />
+      {props.Print.users !== undefined && (
+        <ComponentToPrint
+          ref={componentRef}
+          id={props.Print.id}
+          products={props.Print.products}
+          quantity={props.Print.quantity}
+          price={props.Print.price}
+          phone={props.Print.users[0].phone}
+          firstname={props.Print.users[0].firstname}
+          lastname={props.Print.users[0].lastname}
+          Address={props.Print.users[0].Address}
+          city={props.Print.users[0].city}
+          ZipCode={props.Print.users[0].ZipCode}
+          Country={props.Print.users[0].Country}
+          vat={props.Print.vat}
+          currency={props.Print.currency}
+          shippingPrice={props.Print.shippingPrice}
+        />
+      )}
     </div>
   );
 }

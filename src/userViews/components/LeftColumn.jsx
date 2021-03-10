@@ -10,7 +10,7 @@ const LeftColumn = (props) => {
   var Roles =
     Object.keys(props.Auth.user).length > 0 &&
     props.Auth.user.roles.toString();
-  console.log(Roles);
+  
   return (
     <React.Fragment>
       <div className={"container shop-left-column py-4 "}>

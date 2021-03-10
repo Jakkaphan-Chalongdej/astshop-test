@@ -111,8 +111,6 @@ export const getOrder = () => async (dispatch) => {
     .get("order")
     .then((res) => {
       const response = res;
-      console.log("Action get order", response);
-
       dispatch({
         type: actionTypes.GET_ORDER,
         order: response.data,
@@ -128,7 +126,6 @@ export const getOrderID = (userID) => async (dispatch) => {
     .get(`orderuser/${userID}`)
     .then((res) => {
       const response = res.data;
-      console.log("Action get order", response);
       dispatch({
         type: actionTypes.GET_ORDER_ID,
         order: response,
@@ -141,19 +138,13 @@ export const getOrderID = (userID) => async (dispatch) => {
 };
 
 export const createOrder = (order) => async (dispatch) => {
-  console.log("Action createOrder", order);
-
   await axios
     .post("order/create", order)
-    .then((res) => {
-      const response = res.data;
-      console.log("Action createOrder");
-      console.log(response);
+    .then(() => {
       if (user.roles.toString() === "ROLE_ADMIN") {
         dispatch(getOrder());
       }
-
-      dispatch(getOrderID(response.userID));
+      dispatch(getOrderID(user.id));
 
       return Promise.resolve();
     })
@@ -163,12 +154,9 @@ export const createOrder = (order) => async (dispatch) => {
 };
 
 export const updateOrder = (id, update) => async (dispatch) => {
-  console.log("ID", id);
   await axios
     .put(`order/${id}`, update)
     .then((res) => {
-      console.log("Get reducer", res);
-      // const user = res.data;
       dispatch({
         type: actionTypes.UPDATE_ORDER,
         order: res,
@@ -201,24 +189,20 @@ export const updateCartProductCount = (value, productDetails) => {
 };
 
 export const confirmOrder = (order, props) => {
-  console.log("confirmOrder", order);
   return (dispatch) => {
     dispatch(createOrder(order));
     dispatch(confirmOrderSuccess());
-    // props.history.push("/")
     setTimeout(() => {
       dispatch(resetOrderSuccess());
     }, 5000);
   };
 };
 export const OrderIDPrint = (id, props) => async (dispatch) => {
-  console.log("action print id ", id);
   await axios
     .get(`order/${id}`)
     .then((res) => {
       const response = res.data;
-      console.log("Action get order", response);
-
+      console.log("OrderIDPrint", response);
       dispatch({
         type: actionTypes.PRINT_ORDER,
         print: response,
@@ -230,12 +214,10 @@ export const OrderIDPrint = (id, props) => async (dispatch) => {
     });
 };
 export const OrderIDPrintAdmin = (id, props) => async (dispatch) => {
-  console.log("action print id ", id);
   await axios
     .get(`order/${id}`)
     .then((res) => {
       const response = res.data;
-      console.log("Action get order", response);
       dispatch({
         type: actionTypes.PRINT_ORDER,
         print: response,
@@ -278,13 +260,11 @@ export const toogleSideBar = () => {
   };
 };
 export const toogleSideLogin = () => {
-  console.log(" action toogleSideLogin");
   return {
     type: actionTypes.TOGGLE_SIDE_LOGIN,
   };
 };
 export const toogleSideSignup = () => {
-  console.log(" action toogleSideSignup");
   return {
     type: actionTypes.TOGGLE_SIDE_SIGNUP,
   };

@@ -11,21 +11,11 @@ import CheckoutCartTotals from "../components/Checkout/CheckoutCartTotals";
 import DeliveryOptions from "../components/Checkout/Forms/DeliveryOptions";
 import Alert from "../components/UI/Alert/Alert";
 import PropTypes from "prop-types";
-import formValidator from "../Utility/formValidation";
+// import formValidator from "../Utility/formValidation";
 // import { CardElement, injectStripe } from "react-stripe-elements";
 import { currencyToUse } from "../Utility/currency";
 
 function Checkout(props) {
-  const defaultError = {
-    firstname: null,
-    lastname: null,
-    email: null,
-    Address: null,
-    city: null,
-    ZipCode: null,
-    Country: null,
-  };
-
   const [errors, seterrors] = React.useState({});
   const [promoCodes, setpromoCode] = React.useState("");
   const [showAlert, setshowAlert] = React.useState(false);
@@ -33,7 +23,7 @@ function Checkout(props) {
   const [alertMessage, setalertMessage] = React.useState();
   const [shippingPrices, setshippingPrice] = React.useState(300);
   const [usedDeliveryOption, setusedDeliveryOption] = React.useState(1);
-  const [newproduct, setnewproduct] = React.useState([]);
+  const [newproduct, setnewproduct] = React.useState({});
   const [order, setorder] = React.useState({});
   const [orders, setorders] = React.useState([]);
   const [newproductarray, setnewproductarray] = React.useState([]);
@@ -46,33 +36,11 @@ function Checkout(props) {
   //   if (newproduct) {
   //     setnewproduct(product);
   //   }
-  //   console.log("newproduct state product", newproduct);
   // };
 
   const confirmOrderHandler = (event) => {
     event.preventDefault();
-    const orderArrary = [];
-    let newproductarrays = newproductarray;
-    newproductarrays.map((productstate2) => {
-      let ordersmap = {
-        shippingPrice: productstate2.shippingPrice,
-        vat: productstate2.vat,
-        quantityCart: productstate2.quantityCart,
-        price: productstate2.price,
-      };
-      orderArrary.push(ordersmap);
-    });
-    orders.map((productstate) => {
-      let ordersmap = {
-        product_name: productstate.name,
-        quantity: productstate.quantity,
-        img: productstate.imgname,
-        productID: productstate.id,
-      };
-      orderArrary.push(ordersmap);
-    });
-    setnewproduct(orderArrary);
-    console.log("Show order map", orderArrary);
+
     let Orderuser = {
       userID: props.Auth.user.id,
       product: newproductarray,
@@ -82,62 +50,59 @@ function Checkout(props) {
       currency: props.usedCurrencyProp.symbol,
     };
     setorder(Orderuser);
-    console.log("order", order);
-    // console.log("update orders", newproduct);
-    // console.log("update newproductarray", newproductarray);
     if (
       order.shippingPrice !== undefined &&
-      props.Auth.user.firstname != null &&
-      props.Auth.user.lastname != null &&
-      props.Auth.user.email != null &&
-      props.Auth.user.Address != null &&
-      props.Auth.user.city != null &&
-      props.Auth.user.ZipCode != null &&
-      props.Auth.user.Country != null
+      props.Auth.userDetail.firstname != null &&
+      props.Auth.userDetail.lastname != null &&
+      props.Auth.userDetail.email != null &&
+      props.Auth.userDetail.Address != null &&
+      props.Auth.userDetail.city != null &&
+      props.Auth.userDetail.ZipCode != null &&
+      props.Auth.userDetail.Country != null &&
+      props.Auth.userDetail.phone != null
     ) {
       for (let i = 0; i < newproductarray.length; i++) {
         let updateQuantity = orders[i].quantity - newproductarray[i].quantity;
         const data = {
           quantity: updateQuantity,
         };
-        console.log("test update", newproductarray[i].id, data);
         props.UpdataProducts(newproductarray[i].id, data);
         if (
           newproductarray.length === Object.keys(data).length ||
           i === Object.keys(data).length
         ) {
           props.confirmOrderProp(order);
-          console.log("test update");
         }
       }
     }
 
-    // console.log("update order", data);
     let data = [];
-    if (props.Auth.user.firstname === null) {
+    if (props.Auth.userDetail.firstname === null) {
       data["firstname"] = "is not valid";
     }
-    if (props.Auth.user.lastname === null) {
+    if (props.Auth.userDetail.lastname === null) {
       data["lastname"] = "is not valid";
     }
-    if (props.Auth.user.email === null) {
+    if (props.Auth.userDetail.email === null) {
       data["email"] = "is not valid";
     }
-    if (props.Auth.user.Address === null) {
+    if (props.Auth.userDetail.Address === null) {
       data["Address"] = "is not valid";
     }
-    if (props.Auth.user.city === null) {
+    if (props.Auth.userDetail.city === null) {
       data["city"] = "is not valid";
     }
-    if (props.Auth.user.ZipCode === null) {
+    if (props.Auth.userDetail.ZipCode === null) {
       data["ZipCode"] = "is not valid";
     }
-    if (props.Auth.user.Country === null) {
+    if (props.Auth.userDetail.Country === null) {
       data["Country"] = "is not valid";
+    }
+    if (props.Auth.userDetail.phone === null) {
+      data["phone"] = "is not valid";
     }
     seterrors(data);
   };
-  console.log(errors);
   const setPromoCodes = (event) => {
     event.preventDefault();
     let getPromoCode = props.promoCodeProp.filter(
@@ -181,39 +146,41 @@ function Checkout(props) {
   // let chosenPaymentMethod = null;
   let currencyKeys = currencyToUse(props.usedCurrencyProp);
   let currencyValue = currencyKeys.value;
-  let CartProducts = [];
+  let CartProducts = {};
   let arrayproduct = [];
   let arrayCartproduct = [];
 
-  const cartProduct = props.cartProductsProps.map((cartProduct, index) => {
-    let productFromStore = props.productsProps.find(
-      (product) => product.id === cartProduct.id
-    );
-    productsPrices.push({
-      price:
-        productFromStore.quantity > 0
-          ? Math.round(productFromStore.price * currencyValue)
-          : 0,
-      count: cartProduct.quantity,
+  const cartProduct =
+    props.cartProductsProps.length > 0 &&
+    props.cartProductsProps.map((cartProduct, index) => {
+      let productFromStore = props.productsProps.find(
+        (product) => product.id === cartProduct.id
+      );
+      productsPrices.push({
+        price:
+          productFromStore.quantity > 0
+            ? Math.round(productFromStore.price * currencyValue)
+            : 0,
+        count: cartProduct.quantity,
+      });
+      arrayCartproduct.push(props.cartProductsProps[index]);
+      arrayproduct.push(productFromStore);
+      return (
+        <>
+          <CheckoutCartProduct
+            key={index}
+            checkoutProductName={productFromStore.name}
+            checkoutProductCategory={productFromStore.category}
+            checkoutProductPrice={Math.round(
+              productFromStore.price * currencyValue
+            )}
+            checkoutProductImage={productFromStore.img_name}
+            checkoutCartCount={cartProduct.quantity}
+            currency={props.usedCurrencyProp}
+          />
+        </>
+      );
     });
-    arrayCartproduct.push(props.cartProductsProps[index]);
-    arrayproduct.push(productFromStore);
-    return (
-      <>
-        <CheckoutCartProduct
-          key={index}
-          checkoutProductName={productFromStore.name}
-          checkoutProductCategory={productFromStore.category}
-          checkoutProductPrice={Math.round(
-            productFromStore.price * currencyValue
-          )}
-          checkoutProductImage={productFromStore.img_name}
-          checkoutCartCount={cartProduct.quantity}
-          currency={props.usedCurrencyProp}
-        />
-      </>
-    );
-  });
 
   let shippingPrice = shippingPrices
     ? Math.round(shippingPrices * currencyValue)
@@ -232,6 +199,7 @@ function Checkout(props) {
     productTotals > 0
       ? productTotals + vat + shippingPrice - discountAmount
       : 0;
+
   return (
     <div className="container py-4">
       {props.cartTotalProps <= 0 ? <Redirect to="/cart" /> : null}
@@ -293,28 +261,33 @@ function Checkout(props) {
                     <li>ชื่อ :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.firstname}</p>
-                      {props.Auth.user.firstname}
+                      {props.Auth.userDetail.firstname}
                     </span>
                   </div>
                   <div className="address-input">
                     <li>สกุล :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.lastname}</p>
-                      {props.Auth.user.lastname}
+                      {props.Auth.userDetail.lastname}
                     </span>
                   </div>
                   <div className="address-input">
                     <li>email :</li>
+                    <span>{props.Auth.userDetail.email}</span>
+                  </div>
+                  <div className="address-input">
+                    <li>เบอร์โทร :</li>
                     <span>
-                      <p style={{ color: "red" }}>{errors.email}</p>
-                      {props.Auth.user.email}
+                      <p style={{ color: "red" }}>{errors.phone}</p>
+                      {props.Auth.userDetail.phone}
                     </span>
                   </div>
+
                   <div className="address-input">
                     <li>ที่อยู่ :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.Address}</p>
-                      {props.Auth.user.Address}
+                      {props.Auth.userDetail.Address}
                     </span>
                   </div>
 
@@ -322,21 +295,21 @@ function Checkout(props) {
                     <li>จังหวัด :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.city}</p>
-                      {props.Auth.user.city}
+                      {props.Auth.userDetail.city}
                     </span>
                   </div>
                   <div className="address-input">
                     <li>รหัสไปรษณีย์ :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.ZipCode}</p>
-                      {props.Auth.user.ZipCode}
+                      {props.Auth.userDetail.ZipCode}
                     </span>
                   </div>
                   <div className="address-input">
                     <li>ประเทศ :</li>
                     <span>
                       <p style={{ color: "red" }}>{errors.Country}</p>
-                      {props.Auth.user.Country}
+                      {props.Auth.userDetail.Country}
                     </span>
                   </div>
                 </ul>
@@ -370,10 +343,10 @@ function Checkout(props) {
               className="btn shop-btn-secondary btn-lg btn-block"
               onClick={
                 (event) => {
-                  confirmOrderHandler(event);
                   setorders(arrayproduct);
                   setnewproductarray(arrayCartproduct);
                   setnewproduct(CartProducts);
+                  confirmOrderHandler(event);
                 }
 
                 // this.productcart(CartProducts);

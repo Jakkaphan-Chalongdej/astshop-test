@@ -49,10 +49,22 @@ db.order_detail = require("../model/order_detail")(sequelize, Sequelize);
 db.order.belongsToMany(db.product, {
   through: db.order_detail,
   foreignKey: "orderId",
+  otherKey: "productId",
 });
 db.product.belongsToMany(db.order, {
   through: db.order_detail,
   foreignKey: "productId",
+  otherKey: "orderId",
+});
+
+db.order.belongsToMany(db.user, {
+  through: db.order_detail,
+  foreignKey: "orderId",
+  otherKey: "userId",
+});
+db.user.belongsToMany(db.order, {
+  through: db.order_detail,
+  foreignKey: "userId",
   otherKey: "orderId",
 });
 
