@@ -81,18 +81,18 @@ function Login(props) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    <MenuItem onClick={handleClose}>
-                      <Link to="/user">
+                    <Link to="/user">
+                      <MenuItem onClick={handleClose}>
                         <AccountBoxIcon />
                         บัญชี
-                      </Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleLogout}>
-                      <Link to="/">
+                      </MenuItem>{" "}
+                    </Link>
+                    <Link to="/">
+                      <MenuItem onClick={handleLogout}>
                         <ExitToAppIcon />
                         ออกจากระบบ
-                      </Link>
-                    </MenuItem>
+                      </MenuItem>
+                    </Link>
                   </Menu>
                 </span>
               </div>

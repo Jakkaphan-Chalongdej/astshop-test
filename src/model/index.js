@@ -33,7 +33,8 @@ db.user.belongsToMany(db.role, {
 db.ROLES = ["user", "admin"];
 db.order = require("../model/order.model")(sequelize, Sequelize);
 db.product = require("../model/product.mode")(sequelize, Sequelize);
-
+db.product_promotion = require("../model/product_promotion")(sequelize, Sequelize);
+db.cart_detail = require("../model/cart_detail")(sequelize, Sequelize);
 // db.product.hasMany(db.order, { as: "order" });
 // db.order.belongsTo(db.product, {
 //   foreignKey: "productId",

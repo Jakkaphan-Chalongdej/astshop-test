@@ -18,7 +18,6 @@ export const getProducts = () => async (dispatch) => {
       });
 
       if (user.roles.toString() === "ROLE_ADMIN") {
-        console.log("user roles", user.roles.toString());
         dispatch(getUser());
         dispatch(getOrder());
       }
@@ -30,12 +29,11 @@ export const getProducts = () => async (dispatch) => {
     });
 };
 export const addProducts = (product) => async (dispatch) => {
-  console.log("product", product);
   const config = {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
-      // "Authorization" : `Bearer ${token}` ,
+      Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
@@ -66,6 +64,7 @@ export const UpdataProducts = (id, update) => async (dispatch) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${user.accessToken}`,
     },
   };
   console.log("Action Update Products", update, config);
@@ -107,9 +106,17 @@ export const addToCart = (productDetails) => {
 // };
 export const getOrder = () => async (dispatch) => {
   // console.log("action getOrder");
+ 
+  const config = {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .get("order")
+    .get("order", config)
     .then((res) => {
+      console.log("action getOrder",res)
       const response = res;
       dispatch({
         type: actionTypes.GET_ORDER,
@@ -122,8 +129,15 @@ export const getOrder = () => async (dispatch) => {
     });
 };
 export const getOrderID = (userID) => async (dispatch) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .get(`orderuser/${userID}`)
+    .get(`orderuser/${userID}`, config)
     .then((res) => {
       const response = res.data;
       dispatch({
@@ -138,8 +152,14 @@ export const getOrderID = (userID) => async (dispatch) => {
 };
 
 export const createOrder = (order) => async (dispatch) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .post("order/create", order)
+    .post("order/create", order, config)
     .then(() => {
       if (user.roles.toString() === "ROLE_ADMIN") {
         dispatch(getOrder());
@@ -154,8 +174,15 @@ export const createOrder = (order) => async (dispatch) => {
 };
 
 export const updateOrder = (id, update) => async (dispatch) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .put(`order/${id}`, update)
+    .put(`order/${id}`, update, config)
     .then((res) => {
       dispatch({
         type: actionTypes.UPDATE_ORDER,
@@ -198,8 +225,15 @@ export const confirmOrder = (order, props) => {
   };
 };
 export const OrderIDPrint = (id, props) => async (dispatch) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .get(`order/${id}`)
+    .get(`order/${id}`, config)
     .then((res) => {
       const response = res.data;
       console.log("OrderIDPrint", response);
@@ -214,8 +248,15 @@ export const OrderIDPrint = (id, props) => async (dispatch) => {
     });
 };
 export const OrderIDPrintAdmin = (id, props) => async (dispatch) => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+
+      Authorization: `Bearer ${user.accessToken}`,
+    },
+  };
   await axios
-    .get(`order/${id}`)
+    .get(`order/${id}`, config)
     .then((res) => {
       const response = res.data;
       dispatch({

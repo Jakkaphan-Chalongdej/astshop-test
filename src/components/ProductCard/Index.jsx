@@ -14,6 +14,7 @@ const Index = (props) => {
   let currencyKeys = currencyToUse(props.currency);
   let currencyValue = currencyKeys.value;
   let currencyName = currencyKeys.name;
+  
   let item = props.product;
   //col-sm-6 col-md-6 col-lg-4 mb-4
   return (

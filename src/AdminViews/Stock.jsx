@@ -433,7 +433,7 @@ function Stock(props) {
                             <TableCell>{row.id}</TableCell>
                             <TableCell>
                               <img src={row.img_name} alt={row.name} />
-                              <span> {row.name}</span>
+                              <ul> {row.name}</ul>
                             </TableCell>
                             <TableCell>{row.slug}</TableCell>
                             <TableCell>{row.des}</TableCell>

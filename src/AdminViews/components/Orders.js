@@ -20,11 +20,11 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import LastPageIcon from "@material-ui/icons/LastPage";
 import { TablePagination } from "@material-ui/core";
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   seeMore: {
+//     marginTop: theme.spacing(3),
+//   },
+// }));
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
@@ -102,7 +102,7 @@ TablePaginationActions.propTypes = {
 };
 
 function Orders(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const printOrder = (id) => {
     props.Order(id);
   };
@@ -163,7 +163,8 @@ function Orders(props) {
               <TableCell>{user_name}</TableCell>
               <TableCell>
                 <span>{OrderProduct.currency}</span>
-                {OrderProduct.price}
+
+                {OrderProduct.price.toLocaleString()}
               </TableCell>
               <TableCell>{products_name}</TableCell>
               <TableCell>{products_quantity}</TableCell>

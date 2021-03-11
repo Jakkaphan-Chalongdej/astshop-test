@@ -20,10 +20,10 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 } */
 
-@page {
+/* @page {
     size: A4;
     margin: 0;
-}
+} */
 
 @media print {
     .page {

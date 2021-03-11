@@ -37,8 +37,9 @@ exports.create = (req, res) => {
 
 // // FETCH all Customers
 exports.findAll = (req, res) => {
+ 
   Order.findAll({
-    // order: [["id", "DESC"]],
+    order: [["id", "DESC"]],
    
     include: [
       {

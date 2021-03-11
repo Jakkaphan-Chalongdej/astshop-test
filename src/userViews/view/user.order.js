@@ -159,7 +159,7 @@ function UserPayMethods(props) {
                     <span style={{ textTransform: "lowercase" }}>
                       {OrderProduct.currency}
                     </span>
-                    {OrderProduct.price}
+                    {OrderProduct.price.toLocaleString()}
                   </TableCell>
 
                   <TableCell>{products_quantity}</TableCell>

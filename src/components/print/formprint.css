@@ -18,13 +18,46 @@
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 } */
+.form-print-payment-head{
+    text-align: center;
+    font-size: 1rem;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.form-print-payment{
+    padding: 1px;
+    height: auto;
+    text-align: center;
+    align-items: center;
+    font-size: 1rem;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.form-print-payment img{
+    width: 153px;
+}
+.form-payment{
+   margin-left: 3vw !important;
+    text-align: left;
+    
+}
 
 @page {
     size: A4;
-    margin: 0;
+    
 }
 
 @media print {
+    .form-print-payment-head{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    .form-print-payment img{
+        width: 153px;
+    }
     .page {
         margin: 0;
         border: initial;
@@ -34,6 +67,25 @@
         box-shadow: initial;
         background: initial;
         page-break-after: always;
+    }
+    .form-print-payment{
+        padding: 1px;
+        height: auto;
+        text-align: center;
+        align-items: center;
+        font-size: 0.7rem;
+        display: grid;
+        border-radius: 20px;
+        grid-template-columns: repeat(3, 1fr);
+    
+    }
+    .form-payment-total{
+        margin-top: 5vw;
+    }
+    .form-payment{
+       margin-left: 3vw !important;
+        text-align: left;
+        
     }
 }
 
@@ -70,6 +122,7 @@
 .form-print-logo {
     margin-top: 10vw;
     height: auto;
+    font-size: 1rem;
     text-align: center;
     align-items: center;
     display: grid;

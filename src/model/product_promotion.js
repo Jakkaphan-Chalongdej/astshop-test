@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const promotion = sequelize.define("promotion", {
+  const Promotion = sequelize.define("promotion", {
     image: {
       type: Sequelize.STRING,
     },
@@ -17,5 +17,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Order;
+  return Promotion;
 };

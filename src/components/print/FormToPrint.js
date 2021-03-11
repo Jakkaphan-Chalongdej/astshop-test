@@ -15,14 +15,14 @@ function ComponentToPrint(props) {
             </Col>
 
             <Col>
-              <p>Product Name</p>
+              <p>ชื่อสินค้า</p>
 
               {/* <li>{props.product_name}</li> */}
               <li>{productmap.name}</li>
             </Col>
             <Col style={{ textAlign: "center" }}>
-              <p>Quantity</p>
-              <li>{productmap.order_detail.quantity}</li>
+              <p>จำนวน</p>
+              <li>{`${productmap.order_detail.quantity.toLocaleString()} ชิ้น`}</li>
             </Col>
           </Row>
         </Col>
@@ -40,21 +40,57 @@ function ComponentToPrint(props) {
           <div>
             <img src="../../../ast2.png" alt="logo ast" width="100px" />
           </div>
-          <div>
-            <span>{`ชื่อ ${props.firstname}`}</span>
-            <span
-              style={{ marginLeft: "5px" }}
-            >{`สกุล ${props.lastname}`}</span>
+          <div >
+            {`ชื่อ ${props.firstname}`}
+            <span style={{ marginLeft: "5px" }}>
+              {`สกุล ${props.lastname}`}
+            </span>
           </div>
         </div>
-
-        <hr style={{ marginTop: "200px" }} />
+        <hr style={{ marginTop: "100px" }} />
         {Orderproduct}
         <hr />
-        <Col style={{ marginTop: "300px" }}>
-          <Row>
+        <Col style={{ marginTop: "100px" }}>
+          <h6 style={{ textAlign: "left" }}>การชำระเงิน</h6>
+
+          <hr />
+          <div className="form-print-payment-head">
+            <ul>
+              <li>
+                เมื่อชำระเงินเรียบร้อยแล้ว กรุณาแจ้งทางร้าน ผ่านทางโทรศัพท์
+              </li>
+              <li>ทาง E-Mail หรือส่ง Fax. มาที่เบอร์ 044-353569</li>
+            </ul>
+            <li>
+              <b>ชื่อบัญชี บริษัท ออลล์เว็บ เทคโนโลยี่ จำกัด</b>
+            </li>
+          </div>
+          <br />
+          <div className="form-print-payment">
+            <span>
+              <img src="/ktb.jpg" alt="ธนาคารกรุงไทย" />
+            </span>
+            <div className="form-payment">
+              <li>ธนาคารกรุงไทย สาขาเดอะมอลล์ นครราชสีมา </li>
+              <li> ประเภทออมทรัพย์</li>
+            </div>
+            <li>398-0-03765-7</li>
+          </div>
+          <hr />
+          <div className="form-print-payment">
+            <span>
+              <img src="/scb-logo-desktop.svg" alt="ธนาคารไทยพาณิชย์" />
+            </span>
+            <div className="form-payment">
+              <li>ธนาคารไทยพาณิชย์ สาขาเดอะมอลล์ นครราชสีมา </li>
+              <li> ประเภทออมทรัพย์</li>
+            </div>
+            <li>813-2-63730-7</li>
+          </div>
+          <br />
+          <Row style={{ marginTop: "120px" }}>
             <Col>
-              <label>BILLING INFORMATION </label>
+              <h6>ที่อยู่จัดส่ง </h6>
               <hr />
               <div className="form-print2">
                 <label>ที่อยู่ </label>
@@ -78,33 +114,35 @@ function ComponentToPrint(props) {
               </div>
             </Col>
             <Col>
-              <label>Total </label>
+              <h6>สรุปยอด </h6>
               <hr />
               <div className="form-print">
-                <label>vat </label>
+                <label>ภาษี </label>
                 <li>
                   <span style={{ textTransform: "lowercase" }}>
                     {props.currency}
                   </span>
-                  {props.vat}
+
+                  {props.vat.toLocaleString()}
                 </li>
               </div>
               <div className="form-print">
-                <label>shippingPrice </label>
+                <label>ค่าส่ง </label>
                 <li>
                   <span style={{ textTransform: "lowercase" }}>
                     {props.currency}
                   </span>
-                  {props.shippingPrice}
+                  {props.shippingPrice.toLocaleString()}
                 </li>
               </div>
               <div className="form-print">
-                <label>Total price </label>
+                <label>ยอดเงินสุทธิ</label>
                 <li>
                   <span style={{ textTransform: "lowercase" }}>
                     {props.currency}
                   </span>
-                  {props.price}
+
+                  {props.price.toLocaleString()}
                 </li>
               </div>
             </Col>

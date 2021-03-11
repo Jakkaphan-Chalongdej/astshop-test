@@ -218,18 +218,18 @@ const MainLayout = (props) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                       >
-                        <MenuItem onClick={handleClose}>
-                          <Link to="/user">
+                        <Link to="/user">
+                          <MenuItem onClick={handleClose}>
                             <AccountBoxIcon />
                             บัญชี
-                          </Link>
-                        </MenuItem>
-                        <MenuItem onClick={handleLogout}>
-                          <Link to="/">
+                          </MenuItem>{" "}
+                        </Link>
+                        <Link to="/">
+                          <MenuItem onClick={handleLogout}>
                             <ExitToAppIcon />
                             ออกจากระบบ
-                          </Link>
-                        </MenuItem>
+                          </MenuItem>
+                        </Link>
                       </Menu>
                     </IconButton>
                   </Col>
@@ -250,14 +250,12 @@ MainLayout.propTpes = {
   modalMessage: PropTypes.string,
   showSideBar: PropTypes.bool,
   toggleSideBar: PropTypes.func.isRequired,
- 
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     Logout: () => {
       dispatch(logout());
     },
-    
   };
 };
 
