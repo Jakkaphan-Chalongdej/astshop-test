@@ -256,63 +256,65 @@ function Checkout(props) {
           <form className="shop-form shop-bg-white p-3" noValidate>
             <div className="address-form ">
               <div className="card-address ">
-                <ul>
-                  <div className="address-input">
-                    <li>ชื่อ :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.firstname}</p>
-                      {props.Auth.userDetail.firstname}
-                    </span>
-                  </div>
-                  <div className="address-input">
-                    <li>สกุล :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.lastname}</p>
-                      {props.Auth.userDetail.lastname}
-                    </span>
-                  </div>
-                  <div className="address-input">
-                    <li>email :</li>
-                    <span>{props.Auth.userDetail.email}</span>
-                  </div>
-                  <div className="address-input">
-                    <li>เบอร์โทร :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.phone}</p>
-                      {props.Auth.userDetail.phone}
-                    </span>
-                  </div>
+                {props.Auth.userDetail !== undefined && (
+                  <ul>
+                    <div className="address-input">
+                      <li>ชื่อ :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.firstname}</p>
+                        {props.Auth.userDetail.firstname}
+                      </span>
+                    </div>
+                    <div className="address-input">
+                      <li>สกุล :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.lastname}</p>
+                        {props.Auth.userDetail.lastname}
+                      </span>
+                    </div>
+                    <div className="address-input">
+                      <li>email :</li>
+                      <span>{props.Auth.userDetail.email}</span>
+                    </div>
+                    <div className="address-input">
+                      <li>เบอร์โทร :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.phone}</p>
+                        {props.Auth.userDetail.phone}
+                      </span>
+                    </div>
 
-                  <div className="address-input">
-                    <li>ที่อยู่ :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.Address}</p>
-                      {props.Auth.userDetail.Address}
-                    </span>
-                  </div>
+                    <div className="address-input">
+                      <li>ที่อยู่ :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.Address}</p>
+                        {props.Auth.userDetail.Address}
+                      </span>
+                    </div>
 
-                  <div className="address-input">
-                    <li>จังหวัด :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.city}</p>
-                      {props.Auth.userDetail.city}
-                    </span>
-                  </div>
-                  <div className="address-input">
-                    <li>รหัสไปรษณีย์ :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.ZipCode}</p>
-                      {props.Auth.userDetail.ZipCode}
-                    </span>
-                  </div>
-                  <div className="address-input">
-                    <li>ประเทศ :</li>
-                    <span>
-                      <p style={{ color: "red" }}>{errors.Country}</p>
-                      {props.Auth.userDetail.Country}
-                    </span>
-                  </div>
-                </ul>
+                    <div className="address-input">
+                      <li>จังหวัด :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.city}</p>
+                        {props.Auth.userDetail.city}
+                      </span>
+                    </div>
+                    <div className="address-input">
+                      <li>รหัสไปรษณีย์ :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.ZipCode}</p>
+                        {props.Auth.userDetail.ZipCode}
+                      </span>
+                    </div>
+                    <div className="address-input">
+                      <li>ประเทศ :</li>
+                      <span>
+                        <p style={{ color: "red" }}>{errors.Country}</p>
+                        {props.Auth.userDetail.Country}
+                      </span>
+                    </div>
+                  </ul>
+                )}
                 <Link to={"/user/"}>
                   <button>Edit</button>
                 </Link>

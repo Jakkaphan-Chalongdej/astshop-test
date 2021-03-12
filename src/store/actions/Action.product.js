@@ -19,7 +19,8 @@ export const getProducts = () => async (dispatch) => {
       if (user.roles.toString() === "ROLE_ADMIN") {
         dispatch(getUser());
         dispatch(getOrder());
-      } else if (user.roles.toString()) {
+      }
+      if (user.roles.toString()) {
         dispatch(getUserId(user.id));
         dispatch(getOrderID(user.id));
       }
@@ -132,7 +133,7 @@ export const getOrderID = (userID) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-       //Authorization: `Bearer ${user.accessToken}`,
+      //Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
