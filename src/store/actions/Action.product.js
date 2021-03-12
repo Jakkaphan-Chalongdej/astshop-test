@@ -16,13 +16,13 @@ export const getProducts = () => async (dispatch) => {
         type: actionTypes.GET_PRODUCTS,
         product: response,
       });
-
       if (user.roles.toString() === "ROLE_ADMIN") {
         dispatch(getUser());
         dispatch(getOrder());
+      } else if (user.roles.toString()) {
+        dispatch(getUserId(user.id));
+        dispatch(getOrderID(user.id));
       }
-      dispatch(getUserId(user.id));
-      dispatch(getOrderID(user.id));
     })
     .catch(function (error) {
       console.log(error);
@@ -106,17 +106,17 @@ export const addToCart = (productDetails) => {
 // };
 export const getOrder = () => async (dispatch) => {
   // console.log("action getOrder");
- 
+
   const config = {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
     .get("order", config)
     .then((res) => {
-      console.log("action getOrder",res)
+      console.log("action getOrder", res);
       const response = res;
       dispatch({
         type: actionTypes.GET_ORDER,
@@ -132,8 +132,7 @@ export const getOrderID = (userID) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-
-      Authorization: `Bearer ${user.accessToken}`,
+       //Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios

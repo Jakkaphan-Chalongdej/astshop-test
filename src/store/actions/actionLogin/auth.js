@@ -39,8 +39,8 @@ export const register = (data) => (dispatch) => {
 
 export const login = (data) => (dispatch) => {
   return axios.post("auth/signin", data).then(
-    (response) => {
-      dispatch({
+    async (response) => {
+      await dispatch({
         type: actionTypes.LOGIN_SUCCESS,
         payload: { user: response.data },
       });
@@ -53,8 +53,12 @@ export const login = (data) => (dispatch) => {
         dispatch(getUser());
         dispatch(getOrder());
       }
-      dispatch(getUserId(response.data.id));
-      dispatch(getOrderID(response.data.id));
+      if (response.data.roles.toString()) {
+        console.log(response.data.roles.toString());
+        dispatch(getUserId(response.data.id));
+        dispatch(getOrderID(response.data.id));
+      }
+      
       return Promise.resolve();
     },
     (error) => {
