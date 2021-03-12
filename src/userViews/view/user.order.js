@@ -155,14 +155,14 @@ function UserPayMethods(props) {
                 <TableRow key={i}>
                   <TableCell>{OrderProduct.id}</TableCell>
                   <TableCell>{products}</TableCell>
+
+                  <TableCell>{products_quantity}</TableCell>
                   <TableCell>
                     <span style={{ textTransform: "lowercase" }}>
                       {OrderProduct.currency}
                     </span>
                     {OrderProduct.price.toLocaleString()}
                   </TableCell>
-
-                  <TableCell>{products_quantity}</TableCell>
                   <Button
                     onClick={() => {
                       printOrder(OrderProduct.id);
@@ -196,8 +196,9 @@ function UserPayMethods(props) {
                     <TableRow>
                       <TableCell>Order No.</TableCell>
                       <TableCell>product name</TableCell>
-                      <TableCell>price </TableCell>
                       <TableCell>quantity </TableCell>
+                      <TableCell>price </TableCell>
+                      
                     </TableRow>
                   </TableHead>
                   {ordershow}

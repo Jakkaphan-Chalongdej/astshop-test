@@ -34,7 +34,7 @@ export const addProducts = (product) => async (dispatch) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
@@ -65,7 +65,7 @@ export const UpdataProducts = (id, update) => async (dispatch) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   console.log("Action Update Products", update, config);
@@ -155,7 +155,7 @@ export const createOrder = (order) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
@@ -177,8 +177,7 @@ export const updateOrder = (id, update) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
@@ -228,8 +227,7 @@ export const OrderIDPrint = (id, props) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios
@@ -251,8 +249,7 @@ export const OrderIDPrintAdmin = (id, props) => async (dispatch) => {
   const config = {
     headers: {
       Accept: "application/json",
-
-      Authorization: `Bearer ${user.accessToken}`,
+      // Authorization: `Bearer ${user.accessToken}`,
     },
   };
   await axios

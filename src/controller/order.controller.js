@@ -102,6 +102,7 @@ exports.findOrder = (req, res) => {
   console.log("userID------->>", userID);
   Order.findAll({
     // where: { userID: userID },
+    order: [["id", "DESC"]],
     include: [
       {
         model: Products,
